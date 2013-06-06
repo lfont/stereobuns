@@ -1,0 +1,30 @@
+<!--
+A sound aggregator.
+Loïc Fontaine - http://github.com/lfont - MIT Licensed
+-->
+
+<!DOCTYPE html>
+<html lang="en" manifest="manifest.appcache">
+    <head>
+        <title>SoundRocket</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
+        <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
+    </head>
+    <body>
+        <div ng-view></div>
+        <script data-main="js/main" src="components/requirejs/require.js"></script>
+        <script>
+            var _gaq = _gaq || [];    
+            _gaq.push(['_setAccount', 'XX-XXXXXXXX-X']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
+</html>

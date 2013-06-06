@@ -1,0 +1,16 @@
+{
+  "name": "SoundRocket",
+  "version": "0.0.0",
+  "description": "A sound aggregator.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "author": "Loïc Fontaine",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~3.2.6"
+  }
+}
