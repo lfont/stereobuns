@@ -6,9 +6,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'angular',
     'angular-ui',
-    'controllers'
+    'controllers',
+    'services'
 ], function (angular) {
     'use strict';
     
-    return angular.module('soundrocket', [ 'soundrocket.controllers' ]);
+    return angular.module('soundrocket', [
+        'ui',
+        'soundrocket.controllers',
+        'soundrocket.services'
+    ]);
 });

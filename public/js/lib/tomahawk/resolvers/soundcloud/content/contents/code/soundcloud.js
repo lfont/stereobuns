@@ -55,7 +55,8 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 		name: 'SoundCloud',
 		icon: 'soundcloud-icon.png',
 		weight: 85,
-		timeout: 15
+		timeout: 15,
+        clientId: 'acfd2e0f5cd5d115d60c81c05fe7eee5'
 	},
 	
 	init: function() {
@@ -101,7 +102,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 		if (title !== "") {
 			query += encodeURIComponent(title);
 		}
-		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=TiNg2DRYhBnp01DA3zNag&filter=streamable&q=" + query;
+		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.clientId + "&filter=streamable&q=" + query;
 		var that = this;
 		var empty = {
 			results: [],
@@ -142,7 +143,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.duration = resp[i].duration / 1000;
 					result.score = 0.85;
 					result.year = resp[i].release_year;
-					result.url = resp[i].stream_url + ".json?client_id=TiNg2DRYhBnp01DA3zNag";
+					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.clientId;
 					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
 					results.push(result);
 				}
@@ -160,7 +161,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 	
 	search: function (qid, searchString)
 	{
-		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=TiNg2DRYhBnp01DA3zNag&filter=streamable&q=" + encodeURIComponent(searchString.replace('"', '').replace("'", ""));
+		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.clientId + "&filter=streamable&q=" + encodeURIComponent(searchString.replace('"', '').replace("'", ""));
 		var that = this;
 		var empty = {
 			results: [],
@@ -225,7 +226,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.duration = resp[i].duration / 1000;
 					result.score = 0.85;
 					result.year = resp[i].release_year;
-					result.url = resp[i].stream_url + ".json?client_id=TiNg2DRYhBnp01DA3zNag";
+					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.clientId;
 					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
 					
 					(function (i, result) {

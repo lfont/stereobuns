@@ -5,9 +5,15 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'jquery',
-    'text!partials/main.html',
-    'text!partials/search.html'
-], function ($, mainTemplate, searchTemplate) {
+    'text!partials/stream.html',
+    'text!partials/search.html',
+    'text!partials/overview.html',
+    'text!partials/playlists.html',
+    'text!partials/search-filters.html',
+    'text!partials/search-result.html'
+], function ($, streamTemplate, searchTemplate, overviewTemplate,
+             playlistsTemplate, searchFiltersTemplate,
+             searchResultTemplate) {
     'use strict';
     
     function wrap (name, content) {
@@ -20,7 +26,11 @@ define([
     
     $(function () {
         var $body = $(document.body);
-        $body.prepend(wrap('main.html', mainTemplate));
+        $body.prepend(wrap('stream.html', streamTemplate));
         $body.prepend(wrap('search.html', searchTemplate));
+        $body.prepend(wrap('search-filters.html', searchFiltersTemplate));
+        $body.prepend(wrap('search-result.html', searchResultTemplate));
+        $body.prepend(wrap('overview.html', overviewTemplate));
+        $body.prepend(wrap('playlists.html', playlistsTemplate));
     });
 });

@@ -11,9 +11,42 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <meta charset="utf-8">
         <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
         <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
+        <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
-        <div ng-view></div>
+        <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavBarCtrl">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                     
+                    <!-- Be sure to leave the brand out there if you want it shown -->
+                    <a class="brand" href="#">SoundRocket</a>
+                     
+                    <!-- Everything you want hidden at 940px or less, place within here -->
+                    <div class="nav-collapse collapse">
+                        <!-- .nav, .navbar-search, .navbar-form, etc -->
+                        <ul class="nav">
+                            <li>
+                                <a href="/">Stream</a>    
+                            </li>
+                        </ul>
+                        <div ng-include="searchTemplateUrl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content" ng-view></div>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="navbar-inner">
+                <div class="container"></div>
+            </div>
+        </div>
         <script data-main="js/main" src="components/requirejs/require.js"></script>
         <script>
             var _gaq = _gaq || [];    

@@ -20,7 +20,12 @@ require.config({
         }
     },
     packages: [
-        'controllers'
+        'controllers',
+        'services',
+        {
+            name: 'lib/tomahawk',
+            main: 'tomahawk'
+        }
     ]
 });
 

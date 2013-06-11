@@ -11,7 +11,7 @@ define([
     return app.config([
         '$routeProvider',
         function ($routeProvider) {
-            $routeProvider.when('/', { templateUrl: 'main.html', controller: 'MainCtrl' })
+            $routeProvider.when('/', { templateUrl: 'stream.html', controller: 'StreamCtrl' })
                           .otherwise({ redirectTo: '/' });
         }
     ]);
