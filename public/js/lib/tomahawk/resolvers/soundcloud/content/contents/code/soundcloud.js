@@ -56,7 +56,8 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 		icon: 'soundcloud-icon.png',
 		weight: 85,
 		timeout: 15,
-        clientId: 'acfd2e0f5cd5d115d60c81c05fe7eee5'
+        soundcloudClientId: 'acfd2e0f5cd5d115d60c81c05fe7eee5',
+        echonestApiKey: 'K6KTZDCFZHPG6CHG4'
 	},
 	
 	init: function() {
@@ -102,7 +103,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 		if (title !== "") {
 			query += encodeURIComponent(title);
 		}
-		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.clientId + "&filter=streamable&q=" + query;
+		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.soundcloudClientId + "&filter=streamable&q=" + query;
 		var that = this;
 		var empty = {
 			results: [],
@@ -143,7 +144,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.duration = resp[i].duration / 1000;
 					result.score = 0.85;
 					result.year = resp[i].release_year;
-					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.clientId;
+					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.soundcloudClientId;
 					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
 					results.push(result);
 				}
@@ -161,7 +162,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 	
 	search: function (qid, searchString)
 	{
-		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.clientId + "&filter=streamable&q=" + encodeURIComponent(searchString.replace('"', '').replace("'", ""));
+		var apiQuery = "http://api.soundcloud.com/tracks.json?consumer_key=" + this.settings.soundcloudClientId + "&filter=streamable&q=" + encodeURIComponent(searchString.replace('"', '').replace("'", ""));
 		var that = this;
 		var empty = {
 			results: [],
@@ -226,12 +227,12 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.duration = resp[i].duration / 1000;
 					result.score = 0.85;
 					result.year = resp[i].release_year;
-					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.clientId;
+					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.soundcloudClientId;
 					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
 					
 					(function (i, result) {
 						var artist = encodeURIComponent(result.artist.capitalize());
-						var url = "http://developer.echonest.com/api/v4/artist/extract?api_key=JRIHWEP6GPOER2QQ6&format=json&results=1&sort=hotttnesss-desc&text=" + artist;
+						var url = "http://developer.echonest.com/api/v4/artist/extract?api_key=" + that.settings.echonestApiKey + "&format=json&results=1&sort=hotttnesss-desc&text=" + artist;
 						var xhr = new XMLHttpRequest();
 						xhr.open('GET', url, true);
 						xhr.onreadystatechange = function() {

@@ -33,10 +33,11 @@ define([
         };
         
         this.addTrackResults = function (result) {
-            var i, len;
+            var callbacks = onTrackResultsCallbacks.slice(0),
+                i, len;
             
-            for (i = 0, len = onTrackResultsCallbacks.length; i < len; i++) {
-                onTrackResultsCallbacks[i](result);
+            for (i = 0, len = callbacks.length; i < len; i++) {
+                callbacks[i](result);
             }
         };
     }

@@ -8,9 +8,10 @@ define([
 ], function (Tomahawk) {
     'use strict';
     
-    function TomahawkSrvFactory ($q) {
+    function TomahawkSrvFactory ($q, $rootScope) {
         var tomahawk = new Tomahawk([
-            'soundcloud'
+            'soundcloud',
+            'exfm'
         ]);
         
         return {
@@ -24,9 +25,11 @@ define([
                         songs: results
                     };
                     deferred.resolve(result);
+                    $rootScope.$apply();
                 });
                 promise.fail(function (error) {
                     deferred.reject(error);
+                    $rootScope.$apply();
                 });
                 
                 return deferred.promise;
@@ -34,7 +37,7 @@ define([
         };
     }
     
-    TomahawkSrvFactory.$inject = [ '$q' ];
+    TomahawkSrvFactory.$inject = [ '$q', '$rootScope' ];
     
     return TomahawkSrvFactory;
 });

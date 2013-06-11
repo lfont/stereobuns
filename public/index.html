@@ -44,7 +44,17 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <div class="content" ng-view></div>
         <div class="navbar navbar-inverse navbar-fixed-bottom">
             <div class="navbar-inner">
-                <div class="container"></div>
+                <div class="container" ng-controller="AudioPlayerCtrl">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <audio controls="controls"></audio>
+                        </div>
+                        <div class="span6">
+                            <p>{{ song.artist }} / {{ song.track }} / {{ song.duration }}</p>
+                            <p>{{ song.source }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script data-main="js/main" src="components/requirejs/require.js"></script>
