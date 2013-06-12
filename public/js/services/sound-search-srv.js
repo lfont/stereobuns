@@ -14,17 +14,31 @@ define([
             'exfm'
         ]);
         
+        function getArtworks (songs) {
+            var i, len;
+            
+            // TODO: should be done in the playlist by a worker?
+            for (i = 0, len = songs.length; i < len; i++) {
+                songs[i].artworkUrl = '/img/120_album.png';
+            }
+        }
+        
         return {
             search: function (searchString) {
                 var deferred = $q.defer();
                 
                 var promise = tomahawk.search(searchString);
                 promise.done(function (results) {
-                    var playlist = {
+                    var playlist;
+                    
+                    getArtworks(results);
+                    
+                    playlist = {
                         type: 'search',
                         name: searchString,
                         songs: results
                     };
+                    
                     deferred.resolve(playlist);
                     $rootScope.$apply();
                 });

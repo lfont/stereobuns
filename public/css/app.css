@@ -1,8 +1,16 @@
 .content {
-    padding: 40px 0;
+    padding: 40px 0 60px 0;
 }
 
-.overview {
+.playlist-overview {
     border-bottom: 1px solid #DDDDDD;
     margin-bottom: 40px;
+}
+
+.audio-player .button-bar {
+    margin-top: 1em;
+}
+
+.audio-player .media-body {
+    text-align: center;
 }

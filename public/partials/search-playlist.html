@@ -2,7 +2,7 @@
     <ul class="media-list">
         <li class="media" ng-repeat="song in songs" ng-click="$parent.play($event, song)">
             <a class="pull-left" href="#">
-                <img class="media-object" data-src="holder.js/64x64">
+                <img class="media-object" width="64px" height="64px" ng-src="{{ song.artworkUrl }}">
             </a>
             <div class="media-body">
                 <h4 class="media-heading">{{ song.artist }}</h4>
