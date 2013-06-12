@@ -7,7 +7,7 @@ define(function () {
     'use strict';
     
     function AudioPlayerCtrl ($scope) {
-        $scope.song = {};
+        $scope.song = null;
         
         $scope.$on('audioPlayer:play', function (event, song) {
             $scope.song = song;

@@ -5,14 +5,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'angular',
-    'angular-ui',
+    'angular-ui-utils-keypress',
+    'angular-ui-bootstrap-collapse',
     'controllers',
     'services'
 ], function (angular) {
     'use strict';
     
     return angular.module('soundrocket', [
-        'ui',
+        'ui.keypress',
+        'ui.bootstrap.collapse',
         'soundrocket.controllers',
         'soundrocket.services'
     ]);

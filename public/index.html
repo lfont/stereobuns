@@ -9,7 +9,6 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <title>SoundRocket</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="utf-8">
-        <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
         <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
         <link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/app.css">
@@ -19,7 +18,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
             <div class="navbar-inner">
                 <div class="container">
                     <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <a class="btn btn-navbar" ng-init="isNavBarCollapsed = true" ng-click="isNavBarCollapsed = !isNavBarCollapsed">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -29,7 +28,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
                     <a class="brand" href="#">SoundRocket</a>
                      
                     <!-- Everything you want hidden at 940px or less, place within here -->
-                    <div class="nav-collapse collapse">
+                    <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed">
                         <!-- .nav, .navbar-search, .navbar-form, etc -->
                         <ul class="nav">
                             <li>

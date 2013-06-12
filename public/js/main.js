@@ -9,15 +9,23 @@ require.config({
         'text': '../components/requirejs-text/text',
         'jquery': '../components/jquery/jquery',
         'angular': '../components/angular/angular',
-        'angular-ui': '../components/angular-ui/build/angular-ui',
+        'angular-ui-utils-keypress': '../components/angular-ui-utils/modules/keypress/keypress',
+        'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
+        'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
         'soundmanager2': '../components/soundmanager/script/soundmanager2'
     },
     shim: {
         angular: {
             exports: 'angular'
         },
-        'angular-ui': {
+        'angular-ui-utils-keypress': {
             deps: [ 'angular' ]
+        },
+        'angular-ui-bootstrap-transition': {
+            deps: [ 'angular' ]
+        },
+        'angular-ui-bootstrap-collapse': {
+            deps: [ 'angular-ui-bootstrap-transition' ]
         },
         soundmanager2: {
             exports: 'soundManager'
