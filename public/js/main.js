@@ -34,6 +34,7 @@ require.config({
     packages: [
         'controllers',
         'services',
+        'filters',
         {
             name: 'lib/tomahawk',
             main: 'tomahawk'

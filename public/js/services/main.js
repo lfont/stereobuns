@@ -10,8 +10,7 @@ define([
 ], function (angular, SoundSearchSrvFactory, AudioPlayerSrvFactory) {
     'use strict';
     
-    return angular.module('soundrocket.services', [], function ($provide) {
-        $provide.factory('soundSearchSrv', SoundSearchSrvFactory);
-        $provide.factory('audioPlayerSrv', AudioPlayerSrvFactory);
-    });
+    return angular.module('soundrocket.services', [])
+                  .service('soundSearchSrv', SoundSearchSrvFactory)
+                  .service('audioPlayerSrv', AudioPlayerSrvFactory);
 });

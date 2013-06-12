@@ -12,5 +12,6 @@
 }
 
 .audio-player .media-body {
+    color: grey;
     text-align: center;
 }

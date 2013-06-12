@@ -27,7 +27,7 @@
                     <h6 class="media-heading">{{ song.track }} by {{ song.artist }} on {{ song.source }}</h6>
                     <div class="row-fluid">
                         <div class="span2">
-                            {{ progress.position }}
+                            {{ progress.position | time }}
                         </div>
                         <div class="span8">
                             <div class="progress">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="span2">
-                            {{ progress.duration }}
+                            {{ progress.duration | time }}
                         </div>
                     </div>
                 </div>

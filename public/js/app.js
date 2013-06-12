@@ -8,7 +8,8 @@ define([
     'angular-ui-utils-keypress',
     'angular-ui-bootstrap-collapse',
     'controllers',
-    'services'
+    'services',
+    'filters'
 ], function (angular) {
     'use strict';
     
@@ -16,6 +17,7 @@ define([
         'ui.keypress',
         'ui.bootstrap.collapse',
         'soundrocket.controllers',
-        'soundrocket.services'
+        'soundrocket.services',
+        'soundrocket.filters'
     ]);
 });
