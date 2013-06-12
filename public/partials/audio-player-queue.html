@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4>Queue</h4>
+</div>
+<div class="modal-body">
+    <ul class="nav nav-tabs nav-stacked">
+        <li ng-repeat="song in songs" ng-click="$parent.play(song)">
+            <div class="row-fluid">
+                <div class="span1">
+                    <i class="icon-play" ng-show="$parent.isCurrentSong(song) && $parent.isPlaying"></i>
+                    <i class="icon-pause" ng-show="$parent.isCurrentSong(song) && !$parent.isPlaying"></i>
+                </div>
+                <div class="span11">
+                    {{ song.track }} by {{ song.artist }} on {{ song.source }}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

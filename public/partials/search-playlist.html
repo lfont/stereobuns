@@ -1,6 +1,6 @@
 <div ng-controller="SearchPlaylistCtrl">
     <ul class="media-list">
-        <li class="media" ng-repeat="song in songs" ng-click="$parent.play($event, song)">
+        <li class="media" ng-repeat="song in songs" ng-click="$parent.play(song)">
             <a class="pull-left" href="#">
                 <img class="media-object" width="64px" height="64px" ng-src="{{ song.artworkUrl }}">
             </a>

@@ -12,6 +12,7 @@ require.config({
         'angular-ui-utils-keypress': '../components/angular-ui-utils/modules/keypress/keypress',
         'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
         'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
+        'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
         'soundmanager2': '../components/soundmanager/script/soundmanager2'
     },
     shim: {
@@ -25,6 +26,9 @@ require.config({
             deps: [ 'angular' ]
         },
         'angular-ui-bootstrap-collapse': {
+            deps: [ 'angular-ui-bootstrap-transition' ]
+        },
+        'angular-ui-bootstrap-dialog': {
             deps: [ 'angular-ui-bootstrap-transition' ]
         },
         soundmanager2: {

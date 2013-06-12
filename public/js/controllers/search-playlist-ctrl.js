@@ -15,7 +15,7 @@ define(function () {
             }
         });
         
-        $scope.play = function (event, song) {
+        $scope.play = function (song) {
             audioPlayerSrv.play(song);
         };
     }

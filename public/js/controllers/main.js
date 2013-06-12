@@ -10,9 +10,11 @@ define([
     './search-ctrl',
     './search-playlist-ctrl',
     './audio-player-ctrl',
+    './audio-player-queue-ctrl',
     './playlist-overview-ctrl'
-], function (angular, LayoutCtrl, StreamCtrl, SearchCtrl,
-             SearchPlaylistCtrl, AudioPlayerCtrl,
+], function (angular, LayoutCtrl, StreamCtrl,
+             SearchCtrl, SearchPlaylistCtrl,
+             AudioPlayerCtrl, AudioPlayerQueueCtrl,
              PlaylistOverviewCtrl) {
     'use strict';
     
@@ -22,5 +24,6 @@ define([
                   .controller('SearchCtrl', SearchCtrl)
                   .controller('SearchPlaylistCtrl', SearchPlaylistCtrl)
                   .controller('AudioPlayerCtrl', AudioPlayerCtrl)
+                  .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
                   .controller('PlaylistOverviewCtrl', PlaylistOverviewCtrl);
 });

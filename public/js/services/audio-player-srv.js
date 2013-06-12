@@ -10,10 +10,11 @@ define([
     
     function AudioPlayerSrvFactory ($rootScope, $window) {
         var isReady = false,
-            currentPlaylist = null,
             currentSoundId = null,
             soundUrlsToIds = {},
-            previousSoundPosition = 0;
+            previousSoundPosition = 0,
+            queue = [],
+            queueIndex = 0;
         
         soundManager.setup({
             url: '/components/soundmanager/swf/',
@@ -51,16 +52,18 @@ define([
                     soundManager.destroySound(soundUrlsToIds[url]);
                 }
             }
+            soundUrlsToIds = {};
         }
         
         function SoundEventsHandler () {
         }
         
         SoundEventsHandler.prototype.onfinish = function () {
-            // TODO: play next item of the playlist
-            currentSoundId = null;
-            $rootScope.$broadcast('audioPlayer:stop');
-            $rootScope.$apply();
+            if (!audioPlayerService.next()) {
+                currentSoundId = null;
+                $rootScope.$broadcast('audioPlayer:stop');
+                $rootScope.$apply();
+            }
         };
         
         SoundEventsHandler.prototype.whileplaying = function () {
@@ -85,17 +88,20 @@ define([
             $rootScope.$apply();
         };
             
-        return {
-            setPlaylist: function (playlist) {
-                this.pause();
+        var audioPlayerService = {
+            enqueue: function (songs) {
+                queue = queue.concat(songs);
+                $rootScope.$broadcast('audioPlayer:enqueue', songs);
+            },
+            
+            clearQueue: function () {
+                if (currentSoundId) {
+                    soundManager.stop(currentSoundId);
+                }
                 destroySounds();
                 currentSoundId = null;
-                currentPlaylist = playlist;
-                $rootScope.$broadcast('audioPlayer:playlist', currentPlaylist);
-            },
-                
-            getPlaylist: function () {
-                return currentPlaylist;
+                queue.length = 0;
+                $rootScope.$broadcast('audioPlayer:clearQueue');
             },
                 
             play: function (song) {
@@ -117,7 +123,11 @@ define([
                     }
                     soundId = getSoundId(song);
                     if (!soundId) {
+                        queueIndex = queue.length;
+                        this.enqueue([ song ]);
                         soundId = createSound(song);
+                    } else {
+                        queueIndex = queue.indexOf(song);
                     }
                     currentSoundId = soundId;
                     soundManager.play(soundId, new SoundEventsHandler());
@@ -132,8 +142,26 @@ define([
                 
                 soundManager.pause(currentSoundId);
                 $rootScope.$broadcast('audioPlayer:pause');
+            },
+            
+            previous: function () {
+                if (queueIndex - 1 > -1) {
+                    this.play(queue[--queueIndex]);
+                    return true;
+                }
+                return false;
+            },
+            
+            next: function () {
+                if (queueIndex + 1 < queue.length) {
+                    this.play(queue[++queueIndex]);
+                    return true;
+                }
+                return false;
             }
         };
+        
+        return audioPlayerService;
     }
     
     AudioPlayerSrvFactory.$inject = [ '$rootScope', '$window' ];

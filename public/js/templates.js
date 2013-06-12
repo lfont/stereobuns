@@ -10,12 +10,13 @@ define([
     'text!partials/search-filters.html',
     'text!partials/search-playlist.html',
     'text!partials/audio-player.html',
+    'text!partials/audio-player-queue.html',
     'text!partials/playlist-overview.html',
     'text!partials/playlists.html'
 ], function ($, streamTemplate, searchTemplate,
              searchFiltersTemplate, searchPlaylistTemplate,
-             audioPlayerTemplate, playlistOverviewTemplate,
-             playlistsTemplate) {
+             audioPlayerTemplate, audioPlayerQueueTemplate,
+             playlistOverviewTemplate, playlistsTemplate) {
     'use strict';
     
     function wrap (name, content) {
@@ -33,6 +34,7 @@ define([
         $body.prepend(wrap('search-filters.html', searchFiltersTemplate));
         $body.prepend(wrap('search-playlist.html', searchPlaylistTemplate));
         $body.prepend(wrap('audio-player.html', audioPlayerTemplate));
+        $body.prepend(wrap('audio-player-queue.html', audioPlayerQueueTemplate));
         $body.prepend(wrap('playlist-overview.html', playlistOverviewTemplate));
         $body.prepend(wrap('playlists.html', playlistsTemplate));
     });
