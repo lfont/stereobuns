@@ -7,13 +7,15 @@ define([
     'jquery',
     'text!partials/stream.html',
     'text!partials/search.html',
-    'text!partials/overview.html',
-    'text!partials/playlists.html',
     'text!partials/search-filters.html',
-    'text!partials/search-result.html'
-], function ($, streamTemplate, searchTemplate, overviewTemplate,
-             playlistsTemplate, searchFiltersTemplate,
-             searchResultTemplate) {
+    'text!partials/search-playlist.html',
+    'text!partials/audio-player.html',
+    'text!partials/playlist-overview.html',
+    'text!partials/playlists.html'
+], function ($, streamTemplate, searchTemplate,
+             searchFiltersTemplate, searchPlaylistTemplate,
+             audioPlayerTemplate, playlistOverviewTemplate,
+             playlistsTemplate) {
     'use strict';
     
     function wrap (name, content) {
@@ -29,8 +31,9 @@ define([
         $body.prepend(wrap('stream.html', streamTemplate));
         $body.prepend(wrap('search.html', searchTemplate));
         $body.prepend(wrap('search-filters.html', searchFiltersTemplate));
-        $body.prepend(wrap('search-result.html', searchResultTemplate));
-        $body.prepend(wrap('overview.html', overviewTemplate));
+        $body.prepend(wrap('search-playlist.html', searchPlaylistTemplate));
+        $body.prepend(wrap('audio-player.html', audioPlayerTemplate));
+        $body.prepend(wrap('playlist-overview.html', playlistOverviewTemplate));
         $body.prepend(wrap('playlists.html', playlistsTemplate));
     });
 });

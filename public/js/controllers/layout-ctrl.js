@@ -6,11 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function NavBarCtrl ($scope) {
+    function LayoutCtrl ($scope) {
         $scope.searchTemplateUrl = 'search.html';
+        $scope.audioPlayerTemplateUrl = 'audio-player.html';
     }
     
-    NavBarCtrl.$inject = [ '$scope' ];
+    LayoutCtrl.$inject = [ '$scope' ];
     
-    return NavBarCtrl;
+    return LayoutCtrl;
 });

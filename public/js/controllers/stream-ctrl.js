@@ -8,9 +8,9 @@ define(function () {
     
     function StreamCtrl ($scope) {
         $scope.playlistsTemplateUrl = 'playlists.html';
-        $scope.overviewTemplateUrl = 'overview.html';
+        $scope.playlistOverviewTemplateUrl = 'playlist-overview.html';
         $scope.searchFiltersTemplateUrl = 'search-filters.html';
-        $scope.searchResultTemplateUrl = 'search-result.html';
+        $scope.searchPlaylistTemplateUrl = 'search-playlist.html';
     }
     
     StreamCtrl.$inject = [ '$scope' ];

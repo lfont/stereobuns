@@ -1,3 +1,8 @@
 .content {
     padding: 40px 0;
 }
+
+.overview {
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 40px;
+}

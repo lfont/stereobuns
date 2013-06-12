@@ -5,11 +5,13 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'angular',
-    './tomahawk-srv'
-], function (angular, TomahawkSrvFactory) {
+    './sound-search-srv',
+    './audio-player-srv'
+], function (angular, SoundSearchSrvFactory, AudioPlayerSrvFactory) {
     'use strict';
     
     return angular.module('soundrocket.services', [], function ($provide) {
-        $provide.factory('tomahawkSrv', TomahawkSrvFactory);
+        $provide.factory('soundSearchSrv', SoundSearchSrvFactory);
+        $provide.factory('audioPlayerSrv', AudioPlayerSrvFactory);
     });
 });

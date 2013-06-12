@@ -8,7 +8,7 @@ define([
 ], function (Tomahawk) {
     'use strict';
     
-    function TomahawkSrvFactory ($q, $rootScope) {
+    function SoundSearchSrvFactory ($q, $rootScope) {
         var tomahawk = new Tomahawk([
             'soundcloud',
             'exfm'
@@ -20,11 +20,12 @@ define([
                 
                 var promise = tomahawk.search(searchString);
                 promise.done(function (results) {
-                    var result = {
-                        searchString: searchString,
+                    var playlist = {
+                        type: 'search',
+                        name: searchString,
                         songs: results
                     };
-                    deferred.resolve(result);
+                    deferred.resolve(playlist);
                     $rootScope.$apply();
                 });
                 promise.fail(function (error) {
@@ -37,7 +38,7 @@ define([
         };
     }
     
-    TomahawkSrvFactory.$inject = [ '$q', '$rootScope' ];
+    SoundSearchSrvFactory.$inject = [ '$q', '$rootScope' ];
     
-    return TomahawkSrvFactory;
+    return SoundSearchSrvFactory;
 });

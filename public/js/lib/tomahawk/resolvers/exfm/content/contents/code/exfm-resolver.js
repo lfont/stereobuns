@@ -23,7 +23,7 @@ var ExfmResolver = Tomahawk.extend(TomahawkResolver, {
         icon: 'exfm-icon.png',
         weight: 30,
         timeout: 5,
-        exfmClientId: 'tomahawk'
+        exfmClientId: 'soundrocket'
     },
 
     checkUrl: function (item, callback) {

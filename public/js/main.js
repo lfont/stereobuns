@@ -9,7 +9,8 @@ require.config({
         'text': '../components/requirejs-text/text',
         'jquery': '../components/jquery/jquery',
         'angular': '../components/angular/angular',
-        'angular-ui': '../components/angular-ui/build/angular-ui'
+        'angular-ui': '../components/angular-ui/build/angular-ui',
+        'soundmanager2': '../components/soundmanager/script/soundmanager2'
     },
     shim: {
         angular: {
@@ -17,6 +18,9 @@ require.config({
         },
         'angular-ui': {
             deps: [ 'angular' ]
+        },
+        soundmanager2: {
+            exports: 'soundManager'
         }
     },
     packages: [
