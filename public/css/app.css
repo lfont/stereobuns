@@ -15,3 +15,8 @@
     color: grey;
     text-align: center;
 }
+
+.song-artwork {
+    height: 64px;
+    width: 64px;
+}

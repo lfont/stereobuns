@@ -10,7 +10,8 @@ define([
     'angular-ui-bootstrap-dialog',
     'controllers',
     'services',
-    'filters'
+    'filters',
+    'directives'
 ], function (angular) {
     'use strict';
     
@@ -20,6 +21,7 @@ define([
         'ui.bootstrap.dialog',
         'soundrocket.controllers',
         'soundrocket.services',
-        'soundrocket.filters'
+        'soundrocket.filters',
+        'soundrocket.directives'
     ]);
 });

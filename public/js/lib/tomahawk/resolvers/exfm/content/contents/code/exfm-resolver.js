@@ -103,6 +103,7 @@ var ExfmResolver = Tomahawk.extend(TomahawkResolver, {
                         result.url = song.url;
                         result.extension = "mp3";
                         result.score = 0.80;
+                        result.artworkUrl = song.image.small;
                         results.push(result);
                     }
                 });

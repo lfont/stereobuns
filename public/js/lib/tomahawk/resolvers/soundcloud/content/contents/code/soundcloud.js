@@ -43,7 +43,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 
 	newConfigSaved: function () {
 		var userConfig = this.getUserConfig();
-		if ((userConfig.includeCovers != this.includeCovers) || (userConfig.includeRemixes != this.includeRemixes) || (userConfig.includeLive != this.includeLive)) {
+		if ((userConfig.includeCovers !== this.includeCovers) || (userConfig.includeRemixes !== this.includeRemixes) || (userConfig.includeLive !== this.includeLive)) {
 			this.includeCovers = userConfig.includeCovers;
 			this.includeRemixes = userConfig.includeRemixes;
 			this.includeLive = userConfig.includeLive;
@@ -78,7 +78,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 		String.prototype.capitalize = function(){
 			return this.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); } );
 		};
-	},	
+	},
 
 	getTrack: function (trackTitle, origTitle) {
 		if ((this.includeCovers === false || this.includeCovers === undefined) && trackTitle.search(/cover/i) !== -1 && origTitle.search(/cover/i) === -1){
@@ -97,6 +97,8 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 
 	resolve: function (qid, artist, album, title)
 	{
+        var query, i;
+        
 		if (artist !== "") {
 			query = encodeURIComponent(artist) + "+";
 		}
@@ -129,7 +131,7 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					if (resp[i].title !== undefined && (resp[i].title.toLowerCase().indexOf(artist.toLowerCase()) === -1 || resp[i].title.toLowerCase().indexOf(title.toLowerCase()) === -1)) {
 						continue;
 					}
-					var result = new Object();
+					var result = {};
 					result.artist = artist;
 					if (that.getTrack(resp[i].title, title)){
 						result.track = title;
@@ -145,7 +147,9 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.score = 0.85;
 					result.year = resp[i].release_year;
 					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.soundcloudClientId;
-					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
+					if (resp[i].permalink_url !== undefined) {
+                        result.linkUrl = resp[i].permalink_url;
+                    }
 					results.push(result);
 				}
 				var return1 = {
@@ -168,17 +172,64 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 			results: [],
 			qid: qid
 		};
+        
+        function sortResults (a, b) {
+            return a.id - b.id;
+        }
+        
 		Tomahawk.asyncRequest(apiQuery, function (xhr) {
-			var resp = JSON.parse(xhr.responseText);
-			if (resp.length !== 0){
-				var results = [];
-				var stop = resp.length;
+			var resp = JSON.parse(xhr.responseText),
+                stop = resp.length,
+                results = [],
+                i;
+            
+            function sanitize (i, result) {
+                var artist = encodeURIComponent(result.artist.capitalize());
+                var url = "http://developer.echonest.com/api/v4/artist/extract?api_key=" + that.settings.echonestApiKey + "&format=json&results=1&sort=hotttnesss-desc&text=" + artist;
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4){
+                            if (xhr.status === 200) {
+                                var response = JSON.parse(xhr.responseText).response;
+                                if (response && response.artists && response.artists.length > 0) {
+                                    artist = response.artists[0].name;
+                                    result.artist = artist;
+                                    result.id = i;
+                                    results.push(result);
+                                    stop = stop - 1;
+                                }
+                                else {
+                                    stop = stop - 1;
+                                }
+                                if (stop === 0) {
+                                    results = results.sort(sortResults);
+                                    for (var j = 0; j < results.length; j++){
+                                        delete results[j].id;
+                                    }
+                                    var toReturn = {
+                                        results: results,
+                                        qid: qid
+                                    };
+                                    Tomahawk.addTrackResults(toReturn);
+                                }
+                            }
+                            else {
+                                Tomahawk.log("Failed to do GET request to: " + url);
+                                Tomahawk.log("Error: " + xhr.status + " " + xhr.statusText);
+                            }
+                        }
+                    };
+                xhr.send(null);
+            }
+            
+			if (resp.length !== 0) {
 				for (i = 0; i < resp.length; i++) {
 					if(resp[i] === undefined){
 						stop = stop - 1;
 						continue;
 					}
-					var result = new Object();
+					var result = {};
 
 					if (that.getTrack(resp[i].title, "")){
 						var track = resp[i].title;
@@ -228,52 +279,14 @@ var SoundcloudResolver = Tomahawk.extend(TomahawkResolver, {
 					result.score = 0.85;
 					result.year = resp[i].release_year;
 					result.url = resp[i].stream_url + ".json?client_id=" + that.settings.soundcloudClientId;
-					if (resp[i].permalink_url !== undefined) result.linkUrl = resp[i].permalink_url;
+                    result.artworkUrl = resp[i].artwork_url;
+					if (resp[i].permalink_url !== undefined) {
+                        result.linkUrl = resp[i].permalink_url;
+                    }
 					
-					(function (i, result) {
-						var artist = encodeURIComponent(result.artist.capitalize());
-						var url = "http://developer.echonest.com/api/v4/artist/extract?api_key=" + that.settings.echonestApiKey + "&format=json&results=1&sort=hotttnesss-desc&text=" + artist;
-						var xhr = new XMLHttpRequest();
-						xhr.open('GET', url, true);
-						xhr.onreadystatechange = function() {
-								if (xhr.readyState === 4){
-									if (xhr.status === 200) {
-										var response = JSON.parse(xhr.responseText).response;
-										if (response && response.artists && response.artists.length > 0) {
-											artist = response.artists[0].name;
-											result.artist = artist;
-											result.id = i;
-											results.push(result);
-											stop = stop - 1;
-										}
-										else {
-											stop = stop - 1;
-										}
-										if (stop === 0) {
-											function sortResults(a, b){
-												return a.id - b.id;
-											}
-											results = results.sort(sortResults);
-											for (var j = 0; j < results.length; j++){
-												delete results[j].id;
-											}
-											var toReturn = {
-												results: results,
-												qid: qid
-											};
-											Tomahawk.addTrackResults(toReturn);
-										}
-									}
-									else {
-										Tomahawk.log("Failed to do GET request to: " + url);
-										Tomahawk.log("Error: " + xhr.status + " " + xhr.statusText);
-									}
-								}
-						};
-						xhr.send(null);
-					})(i, result);	
+					sanitize(i, result);
 				}
-				if (stop === 0){
+				if (stop === 0) {
 					Tomahawk.addTrackResults(empty);
 				}
 			}
