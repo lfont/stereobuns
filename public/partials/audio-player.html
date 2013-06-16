@@ -25,8 +25,8 @@
             </a>
             <div class="media-body">
                 <p class="media-heading">
-                    <span ng-show="song">{{ song.track }} by {{ song.artist }} on {{ song.source }}</span>
-                    <span ng-hide="song">---</span>
+                    {{ song.artist }} / {{ song.track }}<br />
+                    {{ song.source }}
                 </p>
                 <div class="row-fluid">
                     <div class="span2">

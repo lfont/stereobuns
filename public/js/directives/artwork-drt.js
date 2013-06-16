@@ -14,19 +14,19 @@ define(function () {
             scope: {
                 song: '@'
             },
-            template: '<img ng-src="{{ src }}" class="{{ class }}" />',
+            template: '<img alt="{{ alt }}" ng-src="{{ src }}" ng-style="style" />',
             
             link: function (scope, iElement, iAttrs) {
-                scope.$watch('song', function (newValue, oldValue) {
-                    if (newValue) {
-                        scope.$parent.$watch(scope.song, function (newSong, oldSong) {
-                            if (newSong) {
-                                var url = artworkSrv.getSongArtwork(newSong);
-                                scope.class = 'song-artwork';
-                                scope.src = url;
-                            }
-                        });
-                    }
+                iAttrs.$observe('song', function (val) {
+                    scope.$parent.$watch(val, function (newSong, oldSong) {
+                        var url = artworkSrv.getSongArtwork(newSong);
+                        scope.alt = newSong ?
+                            newSong.artist + ' - ' + newSong.track :
+                            'none';
+                        // TODO: the artwork service should returns resized image.
+                        scope.style = { width: '64px', height: '64px' };
+                        scope.src = url;
+                    });
                 });
             }
         };

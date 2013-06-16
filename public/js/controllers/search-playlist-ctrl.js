@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function SearchResultCtrl ($scope, audioPlayerSrv) {
+    function SearchResultCtrl ($scope) {
         $scope.songs = [];
         
         $scope.$on('playlist', function (event, playlist) {
@@ -14,13 +14,9 @@ define(function () {
                 $scope.songs = playlist.songs;
             }
         });
-        
-        $scope.play = function (song) {
-            audioPlayerSrv.play(song);
-        };
     }
     
-    SearchResultCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+    SearchResultCtrl.$inject = [ '$scope' ];
     
     return SearchResultCtrl;
 });

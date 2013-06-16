@@ -10,12 +10,12 @@ define(function () {
         
         return {
             getSongArtwork: function (song) {
-                if (!song || !song.artworkUrl) {
-                    // TODO: try to get the artwork from last.fm
-                    return '/img/120_album.png';
+                if (song && song.artworkUrl) {
+                    return song.artworkUrl;
                 }
                 
-                return song.artworkUrl;
+                // TODO: try to get the artwork from last.fm
+                return '/img/120_album.png';
             }
         };
     }

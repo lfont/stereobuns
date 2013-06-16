@@ -14,7 +14,7 @@ define(function () {
             templateUrl: 'audio-player-queue.html',
             controller: 'AudioPlayerQueueCtrl',
             resolve: {
-                player: function () {
+                audioPlayerScope: function () {
                     return $scope;
                 }
             }
@@ -35,23 +35,19 @@ define(function () {
         $scope.$on('audioPlayer:play', function (event, song) {
             $scope.isPlaying = true;
             $scope.song = song;
-            refreshQueueDialog();
         });
         
         $scope.$on('audioPlayer:pause', function (event) {
             $scope.isPlaying = false;
-            refreshQueueDialog();
         });
         
         $scope.$on('audioPlayer:resume', function (event) {
             $scope.isPlaying = true;
-            refreshQueueDialog();
         });
         
         $scope.$on('audioPlayer:stop', function (event) {
             $scope.isPlaying = false;
             $scope.song = null;
-            refreshQueueDialog();
         });
         
         $scope.$on('audioPlayer:playing', function (event, progress) {

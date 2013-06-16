@@ -1,0 +1,23 @@
+<div class="song media">
+    <a class="pull-left" href="#" ng-click="play($event)">
+        <artwork song="song"></artwork>
+    </a>
+    <div class="media-body">
+        <div class="row-fluid">
+            <div class="span10">
+                <h4 class="media-heading">{{ song.artist }}</h4>
+                <p>{{ song.track }}</p>
+                <p>
+                    {{ song.source }}
+                    <span ng-show="song.duration"> - {{ song.duration | time }}</span>
+                </p>
+            </div>
+            <div class="span2">
+                <div ng-show="isCurrent()">
+                    <i class="icon-play" ng-show="isPlaying"></i>
+                    <i class="icon-pause" ng-hide="isPlaying"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

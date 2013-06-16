@@ -11,12 +11,15 @@
     margin-top: 1em;
 }
 
-.audio-player .media-body {
+.audio-player .media .media-body {
     color: grey;
     text-align: center;
 }
 
-.song-artwork {
-    height: 64px;
-    width: 64px;
+.song {
+    padding: 0 0 10px 0;
+}
+
+.song.media .media-body p {
+    margin-bottom: 2px;
 }

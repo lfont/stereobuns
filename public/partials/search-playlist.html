@@ -1,15 +1,7 @@
 <div ng-controller="SearchPlaylistCtrl">
     <ul class="media-list">
-        <li class="media" ng-repeat="song in songs" ng-click="$parent.play(song)">
-            <a class="pull-left" href="#">
-                <artwork song="song"></artwork>
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">{{ song.artist }}</h4>
-                <p>{{ song.track }}</p>
-                <p>{{ song.source }}</p>
-                <p ng-show="song.duration">{{ song.duration | time }}</p>
-            </div>
+        <li ng-repeat="song in songs">
+            <song data="song"></song>
         </li>
     </ul>
 </div>

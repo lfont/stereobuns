@@ -14,7 +14,8 @@ define([
             soundUrlsToIds = {},
             previousSoundPosition = 0,
             queue = [],
-            queueIndex = 0;
+            queueIndex = 0,
+            isPlaying = false;
         
         soundManager.setup({
             url: '/components/soundmanager/swf/',
@@ -61,6 +62,7 @@ define([
         SoundEventsHandler.prototype.onfinish = function () {
             if (!audioPlayerService.next()) {
                 currentSoundId = null;
+                isPlaying = false;
                 $rootScope.$broadcast('audioPlayer:stop');
                 $rootScope.$apply();
             }
@@ -89,6 +91,14 @@ define([
         };
             
         var audioPlayerService = {
+            getCurrentSong: function () {
+                return queue[queueIndex];
+            },
+            
+            isPlaying: function () {
+                return isPlaying;
+            },
+            
             enqueue: function (songs) {
                 queue = queue.concat(songs);
                 $rootScope.$broadcast('audioPlayer:enqueue', songs);
@@ -115,6 +125,7 @@ define([
                     if (!currentSoundId) {
                         return;
                     }
+                    isPlaying = true;
                     soundManager.resume(currentSoundId);
                     $rootScope.$broadcast('audioPlayer:resume');
                 } else {
@@ -129,6 +140,7 @@ define([
                     } else {
                         queueIndex = queue.indexOf(song);
                     }
+                    isPlaying = true;
                     currentSoundId = soundId;
                     soundManager.play(soundId, new SoundEventsHandler());
                     $rootScope.$broadcast('audioPlayer:play', song);
@@ -140,6 +152,7 @@ define([
                     return;
                 }
                 
+                isPlaying = false;
                 soundManager.pause(currentSoundId);
                 $rootScope.$broadcast('audioPlayer:pause');
             },
