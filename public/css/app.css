@@ -1,11 +1,25 @@
+/* layout */
+
 .content {
     padding: 40px 0 60px 0;
 }
 
-.playlist-overview {
-    border-bottom: 1px solid #DDDDDD;
-    margin-bottom: 40px;
+
+/* song-list */
+
+.song-list li {
+    border-bottom: 1px solid #f2f2f2;
+    padding: 1em .5em .2em .5em;
 }
+
+.song-list li:first-child {
+    padding-top: 0;
+}
+
+.song-list li:last-child {
+    border-bottom: 0;
+}
+
 
 /* song drt */
 
@@ -16,6 +30,7 @@
 .song.media .media-body p {
     margin-bottom: 2px;
 }
+
 
 /* audio player */
 

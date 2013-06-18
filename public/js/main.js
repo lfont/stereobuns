@@ -14,6 +14,7 @@ require.config({
         'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
         'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
         'angular-ui-bootstrap-modal': '../components/angular-ui-bootstrap/src/modal/modal',
+        'angular-ui-bootstrap-dropdownToggle': '../components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle',
         'soundmanager2': '../components/soundmanager/script/soundmanager2'
     },
     shim: {
@@ -21,6 +22,9 @@ require.config({
             exports: 'angular'
         },
         'angular-ui-utils-keypress': {
+            deps: [ 'angular' ]
+        },
+        'angular-ui-bootstrap-dropdownToggle': {
             deps: [ 'angular' ]
         },
         'angular-ui-bootstrap-transition': {

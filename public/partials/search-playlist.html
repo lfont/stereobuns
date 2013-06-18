@@ -1,5 +1,6 @@
 <div ng-controller="SearchPlaylistCtrl">
-    <ul class="media-list">
+    <songbar songs="songs" ng-show="songs.length"></songbar>
+    <ul class="media-list song-list">
         <li ng-repeat="song in songs">
             <song data="song"></song>
         </li>

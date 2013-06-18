@@ -1,0 +1,27 @@
+<div class="navbar">
+    <div class="navbar-inner">
+        <form class="navbar-form pull-left">
+            <button class="btn" ng-click="play()">
+                Play
+                <i class="icon-play"></i>
+            </button>
+            
+            <button class="btn" ng-click="add()">
+                Add
+                <i class="icon-plus"></i>
+            </button>
+            
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    Add to playlist...
+                    <i class="icon-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="playlist in playlists">
+                        <a ng-click="$parent.addToPlaylist(playlist)">{{ playlist.name }}</a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
