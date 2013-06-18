@@ -7,12 +7,11 @@ define([
     'soundmanager2'
 ], function (soundManager) {
     'use strict';
-    
+        
     function AudioPlayerSrvFactory ($rootScope, $window) {
         var isReady = false,
             currentSoundId = null,
             soundUrlsToIds = {},
-            previousSoundPosition = 0,
             queue = [],
             queueIndex = 0,
             isPlaying = false;
@@ -32,7 +31,45 @@ define([
                 volume: 100
             }
         });
+        
+        function SoundEventsHandler () {}
+        SoundEventsHandler.previousSoundPosition = 0;
+        
+        SoundEventsHandler.prototype.onplay = function () {
+            SoundEventsHandler.previousSoundPosition = 0;
+        };
+        
+        SoundEventsHandler.prototype.onfinish = function () {
+            if (!audioPlayerService.next()) {
+                currentSoundId = null;
+                isPlaying = false;
+                $rootScope.$broadcast('audioPlayer:stop');
+                $rootScope.$apply();
+            }
+        };
+        
+        SoundEventsHandler.prototype.whileplaying = function () {
+            var position = this.position / 1000,
+                shouldUpdate = position - SoundEventsHandler.previousSoundPosition >= 1,
+                duration, progress;
             
+            if (!shouldUpdate) {
+                return;
+            }
+            
+            SoundEventsHandler.previousSoundPosition = position;
+            duration = this.duration / 1000;
+            
+            progress = {
+                duration: parseInt(duration, 10),
+                position: parseInt(position, 10)
+            };
+            progress.percentage = progress.position * 100 / progress.duration;
+            
+            $rootScope.$broadcast('audioPlayer:playing', progress);
+            $rootScope.$apply();
+        };
+        
         function getSoundId (song) {
             return soundUrlsToIds[song.url];
         }
@@ -55,40 +92,6 @@ define([
             }
             soundUrlsToIds = {};
         }
-        
-        function SoundEventsHandler () {
-        }
-        
-        SoundEventsHandler.prototype.onfinish = function () {
-            if (!audioPlayerService.next()) {
-                currentSoundId = null;
-                isPlaying = false;
-                $rootScope.$broadcast('audioPlayer:stop');
-                $rootScope.$apply();
-            }
-        };
-        
-        SoundEventsHandler.prototype.whileplaying = function () {
-            var position = parseInt(this.position / 1000, 10),
-                shouldUpdate = position - previousSoundPosition >= 1,
-                duration, progress;
-            
-            previousSoundPosition = position;
-            
-            if (!shouldUpdate) {
-                return;
-            }
-            
-            duration = this.duration / 1000;
-            progress = {
-                duration: duration,
-                position: position,
-                percentage: position * 100 / duration
-            };
-            
-            $rootScope.$broadcast('audioPlayer:playing', progress);
-            $rootScope.$apply();
-        };
             
         var audioPlayerService = {
             getCurrentSong: function () {

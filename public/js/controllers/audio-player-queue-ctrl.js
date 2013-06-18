@@ -8,6 +8,7 @@ define(function () {
     
     function AudioPlayerQueueCtrl ($scope) {
         $scope.songs = [];
+        $scope.length = 0;
         
         $scope.modalOpts = {
             backdrop: true,
@@ -21,6 +22,7 @@ define(function () {
         
         $scope.$on('audioPlayerQueue:songs', function (event, songs) {
             $scope.songs = songs;
+            $scope.length = songs.length;
         });
         
         $scope.close = function () {

@@ -1,6 +1,20 @@
 <div ng-controller="AudioPlayerQueueCtrl" modal="shouldBeOpen" close="close()" options="modalOpts">
     <div class="modal-header">
-        <h4>Queue</h4>
+        <div class="row-fluid">
+            <div class="span10">
+                <h4>Queue</h4>
+            </div>
+            <div class="span2">
+                <h5 class="pull-right">
+                    <span ng-show="length">{{ length }}</span>
+                    <ng-pluralize count="length"
+                        when="{ '0': 'empty',
+                                '1': 'song',
+                                'other': 'songs' }">
+                    </ng-pluralize>
+                </h5>
+            </div>
+        </div>
     </div>
     <div class="modal-body">
         <ul class="nav nav-tabs nav-stacked">
@@ -10,6 +24,6 @@
         </ul>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="close()">Cancel</button>
+        <button class="btn btn-primary" ng-click="close()">Close</button>
     </div>
 </div>

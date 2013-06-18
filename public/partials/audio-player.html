@@ -1,11 +1,5 @@
 <div class="row-fluid audio-player" ng-controller="AudioPlayerCtrl">    
-    <div class="span3 button-bar">
-        <button class="btn" ng-click="showQueue()">
-            <i class="icon-list"></i>
-        </button>
-    </div>
-    
-    <div class="span3 button-bar">
+    <div class="span2 button-bar">
         <button class="btn" ng-click="previous()">
             <i class="icon-step-backward"></i>
         </button>
@@ -18,31 +12,36 @@
         </button>
     </div>
         
-    <div class="span6">
+    <div class="span3">
         <div class="media">
             <a class="pull-left" href="#">
                 <artwork song="song"></artwork>
             </a>
             <div class="media-body">
-                <p class="media-heading">
-                    {{ song.artist }} / {{ song.track }}<br />
-                    {{ song.source }}
-                </p>
-                <div class="row-fluid">
-                    <div class="span2">
-                        {{ progress.position | time }}
-                    </div>
-                    <div class="span8">
-                        <div class="progress">
-                            <div class="bar" style="width: {{ progress.percentage }}%;"></div>
-                        </div>
-                    </div>
-                    <div class="span2">
-                        {{ progress.duration | time }}
-                    </div>
-                </div>
+                <p class="media-heading">{{ song.artist }}</p>
+                {{ song.track }}<br />
+                {{ song.source }}
             </div>
         </div>
+    </div>
+    
+    <div class="span6 button-bar">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="progress">
+                    <div class="bar" style="width: {{ progress.percentage }}%;"></div>
+                </div>
+            </div>
+            <div class="span3">
+                {{ progress.position | time }} / {{ progress.duration | time }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="span1 button-bar">
+        <button class="btn pull-right" ng-click="showQueue()">
+            <i class="icon-list"></i>
+        </button>
     </div>
     
     <div ng-include="audioPlayerQueueTemplate"></div>
