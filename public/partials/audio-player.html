@@ -1,4 +1,4 @@
-<div class="row-fluid audio-player" ng-controller="AudioPlayerCtrl">
+<div class="row-fluid audio-player" ng-controller="AudioPlayerCtrl">    
     <div class="span3 button-bar">
         <button class="btn" ng-click="showQueue()">
             <i class="icon-list"></i>
@@ -44,4 +44,6 @@
             </div>
         </div>
     </div>
+    
+    <div ng-include="audioPlayerQueueTemplate"></div>
 </div>

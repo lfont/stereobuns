@@ -13,6 +13,7 @@ require.config({
         'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
         'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
         'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
+        'angular-ui-bootstrap-modal': '../components/angular-ui-bootstrap/src/modal/modal',
         'soundmanager2': '../components/soundmanager/script/soundmanager2'
     },
     shim: {
@@ -30,6 +31,9 @@ require.config({
         },
         'angular-ui-bootstrap-dialog': {
             deps: [ 'angular-ui-bootstrap-transition' ]
+        },
+        'angular-ui-bootstrap-modal': {
+            deps: [ 'angular-ui-bootstrap-dialog' ]
         },
         soundmanager2: {
             exports: 'soundManager'

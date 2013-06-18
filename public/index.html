@@ -18,19 +18,15 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
                     <a class="btn btn-navbar" ng-init="isNavBarCollapsed = true" ng-click="isNavBarCollapsed = !isNavBarCollapsed">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
                      
-                    <!-- Be sure to leave the brand out there if you want it shown -->
                     <a class="brand" href="#">SoundRocket</a>
                      
-                    <!-- Everything you want hidden at 940px or less, place within here -->
                     <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed">
-                        <!-- .nav, .navbar-search, .navbar-form, etc -->
                         <div ng-include="searchTemplateUrl"></div>
                     </div>
                 </div>

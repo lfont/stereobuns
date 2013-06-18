@@ -6,27 +6,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function AudioPlayerCtrl ($scope, $dialog, audioPlayerSrv) {
-        var queueDialog = $dialog.dialog({
-            backdrop: true,
-            keyboard: true,
-            backdropClick: true,
-            templateUrl: 'audio-player-queue.html',
-            controller: 'AudioPlayerQueueCtrl',
-            resolve: {
-                audioPlayerScope: function () {
-                    return $scope;
-                }
-            }
-        });
-        
-        function refreshQueueDialog () {
-            if (queueDialog.isOpen()) {
-                // force the refresh of the dialog
-                queueDialog.open();
-            }
-        }
-        
+    function AudioPlayerCtrl ($scope, audioPlayerSrv) {
+        $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
         $scope.songs = [];
         $scope.song = null;
         $scope.progress = null;
@@ -56,16 +37,16 @@ define(function () {
              
         $scope.$on('audioPlayer:clearQueue', function (event) {
             $scope.songs.length = 0;
-            refreshQueueDialog();
+            $scope.$broadcast('audioPlayerQueue:songs', $scope.songs);
         });
         
         $scope.$on('audioPlayer:enqueue', function (event, songs) {
             $scope.songs = $scope.songs.concat(songs);
-            refreshQueueDialog();
+            $scope.$broadcast('audioPlayerQueue:songs', $scope.songs);
         });
         
         $scope.showQueue = function () {
-            queueDialog.open();
+            $scope.$broadcast('audioPlayerQueue:open');
         };
         
         $scope.previous = function () {
@@ -85,7 +66,7 @@ define(function () {
         };
     }
     
-    AudioPlayerCtrl.$inject = [ '$scope', '$dialog', 'audioPlayerSrv' ];
+    AudioPlayerCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
     
     return AudioPlayerCtrl;
 });
