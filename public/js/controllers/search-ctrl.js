@@ -6,9 +6,20 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function SearchCtrl ($scope, filterFilter) {
+    function SearchCtrl ($scope, $routeParams, soundSearchSrv, filterFilter) {
         function getSelectedSongIndex (song) {
             return $scope.selectedSongs.indexOf(song);
+        }
+        
+        function search (query) {
+            var promise = soundSearchSrv.search(query);
+            promise.then(function (playlist) {
+                $scope.playlist = playlist;
+                $scope.selectedSongs.length = 0;
+                $scope.filterBy();
+            }, function (error) {
+                // TODO: handle error
+            });
         }
         
         function filterPredicate (song) {
@@ -36,14 +47,6 @@ define(function () {
         $scope.selectedSongs = [];
         $scope.searchFilter = null;
         
-        $scope.$on('playlist', function (event, playlist) {
-            if (playlist.type === 'search') {
-                $scope.playlist = playlist;
-                $scope.selectedSongs.length = 0;
-                $scope.filterBy();
-            }
-        });
-        
         $scope.filterBy = function (filter) {
             $scope.searchFilter = filter;
             
@@ -65,9 +68,11 @@ define(function () {
         $scope.isSongSelected = function (song) {
             return getSelectedSongIndex(song) > -1;
         };
+        
+        search($routeParams.q);
     }
     
-    SearchCtrl.$inject = [ '$scope', 'filterFilter' ];
+    SearchCtrl.$inject = [ '$scope', '$routeParams', 'soundSearchSrv', 'filterFilter' ];
     
     return SearchCtrl;
 });

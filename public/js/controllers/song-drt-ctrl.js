@@ -10,6 +10,7 @@ define(function () {
         var currentSong = audioPlayerSrv.getCurrentSong();
             
         $scope.isPlaying = audioPlayerSrv.isPlaying();
+        $scope.isLoved = false;
         
         $scope.$on('audioPlayer:play', function (event, song) {
             currentSong = song;
@@ -33,14 +34,16 @@ define(function () {
             return $scope.song === currentSong;
         };
 
-        $scope.play = function ($event) {
-            $event.preventDefault();
-            
+        $scope.play = function () {
             if ($scope.isCurrent()) {
                 audioPlayerSrv.play();
             } else {
                 audioPlayerSrv.play($scope.song);
             }
+        };
+        
+        $scope.toggleLoveStatus = function () {
+            console.log('TODO: toggleLoveStatus()');
         };
     }
      

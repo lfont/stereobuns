@@ -8,11 +8,12 @@ define([
 ], function (Tomahawk) {
     'use strict';
     
+    var tomahawk = new Tomahawk([
+        'soundcloud',
+        'exfm'
+    ]);
+    
     function SoundSearchSrvFactory ($q, $rootScope) {
-        var tomahawk = new Tomahawk([
-            'soundcloud',
-            'exfm'
-        ]);
         
         return {
             search: function (searchString) {

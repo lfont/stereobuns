@@ -1,21 +1,25 @@
 <div class="song media">
-    <a class="pull-left" href="#" ng-click="play($event)">
+    <a class="pull-left" href="#" ng-click="play(); $event.preventDefault()">
         <artwork song="song"></artwork>
     </a>
     <div class="media-body">
+        <h4 class="media-heading">
+            <i ng-class="{ 'icon-play': isPlaying, 'icon-pause': !isPlaying }"
+               ng-show="isCurrent()"></i>
+            {{ song.artist }}
+        </h4>
+        <p>{{ song.track }}</p>
         <div class="row-fluid">
-            <div class="span10">
-                <h4 class="media-heading">{{ song.artist }}</h4>
-                <p>{{ song.track }}</p>
+            <div class="span11">
                 <p>
                     {{ song.source }}
                     <span ng-show="song.duration"> - {{ song.duration | time }}</span>
                 </p>
             </div>
-            <div class="span2">
-                <div ng-show="isCurrent()">
-                    <i class="icon-play" ng-show="isPlaying"></i>
-                    <i class="icon-pause" ng-hide="isPlaying"></i>
+            <div class="span1">
+                <div class="pull-right actions">
+                    <i ng-class="{ 'icon-heart': isLoved, 'icon-heart-empty': !isLoved }"
+                       ng-click="toggleLoveStatus()"></i>
                 </div>
             </div>
         </div>

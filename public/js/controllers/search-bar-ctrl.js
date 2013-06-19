@@ -6,22 +6,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function SearchBarCtrl ($scope, $rootScope, soundSearchSrv) {
+    function SearchBarCtrl ($scope, $location) {
         $scope.query = '';
         
-        $scope.search = function ($event) {
-            var promise = soundSearchSrv.search($scope.query);
-            promise.then(function (playlist) {
-                $rootScope.$broadcast('playlist', playlist);
-                $scope.query = '';
-            }, function (error) {
-                $rootScope.$broadcast('error', error);
-                $scope.query = '';
-            });
+        $scope.search = function () {
+            $location.path('/search').search({ q: $scope.query });
+            $scope.query = '';
         };
     }
     
-    SearchBarCtrl.$inject = [ '$scope', '$rootScope', 'soundSearchSrv' ];
+    SearchBarCtrl.$inject = [ '$scope', '$location' ];
     
     return SearchBarCtrl;
 });

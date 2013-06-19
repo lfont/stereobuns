@@ -6,7 +6,10 @@
                     <ul class="nav nav-pills nav-stacked filters"
                         ng-show="playlist.songs.length">
                         <li ng-class="{ active: !searchFilter }">
-                            <a href="#" ng-click="filterBy(); $event.preventDefault()">Everything</a>
+                            <a href="#" ng-click="filterBy(); $event.preventDefault()">
+                                <i class="icon-search"></i>
+                                Everything
+                            </a>
                         </li>
                         <li ng-class="{ active: searchFilter == 'artist' }">
                             <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>

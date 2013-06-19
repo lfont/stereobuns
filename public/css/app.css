@@ -4,10 +4,8 @@
     padding: 40px 0 60px 0;
 }
 
-
-/* search */
-
-.search .filters {
+.filters,
+.playlists {
     margin-top: 3em;
 }
 
@@ -50,8 +48,14 @@
     padding: 0 0 10px 0;
 }
 
-.song.media .media-body p {
+.song .media-body p {
     margin-bottom: 2px;
+}
+
+.song .media-body .actions .icon-heart,
+.song .media-body .actions .icon-heart-empty:hover {
+    color: red;
+    cursor: pointer;
 }
 
 

@@ -1,4 +1,7 @@
-<ul class="nav nav-tabs nav-stacked">
-    <li>playlist 1</li>
-    <li>playlist 2</li>
+<ul ng-controller="PlaylistsCtrl" class="nav nav-pills nav-stacked playlists">
+    <li ng-repeat="playlist in playlists" ng-class="{ active: $parent.playlist == playlist }">
+        <a href="#/playlist/{{ playlist }}">
+            {{ playlist }}
+        </a>
+    </li>
 </ul>
