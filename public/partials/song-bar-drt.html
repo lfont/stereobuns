@@ -1,19 +1,43 @@
-<div class="navbar">
+<div class="navbar song-bar">
     <div class="navbar-inner">
-        <form class="navbar-form pull-left">
-            <button class="btn" ng-click="play()">
+        <form class="navbar-form pull-left">            
+            <button class="btn" ng-click="clearQueue()" ng-show="options.remove">
+                Remove All
+                <i class="icon-remove"></i>
+            </button>
+            
+            <button class="btn" ng-click="play()" ng-show="options.play">
                 Play
+                <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
+                <ng-pluralize count="selectedSongs.length"
+                    when="{ '0': 'All',
+                            '1': '',
+                            'other': '' }">
+                </ng-pluralize>
                 <i class="icon-play"></i>
             </button>
             
-            <button class="btn" ng-click="add()">
+            <button class="btn" ng-click="add()" ng-show="options.add">
                 Add
+                <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
+                <ng-pluralize count="selectedSongs.length"
+                    when="{ '0': 'All',
+                            '1': '',
+                            'other': '' }">
+                </ng-pluralize>
                 <i class="icon-plus"></i>
             </button>
             
-            <div class="btn-group">
+            <div class="btn-group" ng-show="options.playlists">
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    Add to playlist...
+                    Add
+                    <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
+                    <ng-pluralize count="selectedSongs.length"
+                        when="{ '0': 'All',
+                                '1': '',
+                                'other': '' }">
+                    </ng-pluralize>
+                    To Playlist...
                     <i class="icon-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
@@ -22,6 +46,11 @@
                     </li>
                 </ul>
             </div>
+            
+            <button class="btn pull-right" ng-click="clearSelection()" ng-show="selectedSongs.length">
+                Clear Selection
+                <i class="icon-check-empty"></i>
+            </button>
         </form>
     </div>
 </div>

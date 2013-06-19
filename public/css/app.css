@@ -5,6 +5,17 @@
 }
 
 
+/* song-bar */
+
+.song-bar {
+    margin-bottom: .5em;
+}
+
+.song-bar form {
+    width: 100%;
+}
+
+
 /* song-list */
 
 .song-list li {
@@ -12,12 +23,17 @@
     padding: 1em .5em .2em .5em;
 }
 
-.song-list li:first-child {
-    padding-top: 0;
-}
-
 .song-list li:last-child {
     border-bottom: 0;
+}
+
+.song-list li.selected,
+.song-list li:hover.selected {
+    background-color: #3892FD;
+}
+
+.song-list li:hover {
+    background-color: #EBF4FF;
 }
 
 

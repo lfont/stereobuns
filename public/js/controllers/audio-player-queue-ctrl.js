@@ -7,10 +7,20 @@ define(function () {
     'use strict';
     
     function AudioPlayerQueueCtrl ($scope) {
-        $scope.songs = [];
-        $scope.length = 0;
+        function getSelectedSongIndex (song) {
+            return $scope.selectedSongs.indexOf(song);
+        }
         
-        $scope.modalOpts = {
+        $scope.songs = [];
+        $scope.selectedSongs = [];
+        
+        $scope.songBarOptions = {
+            remove: true,
+            play: false,
+            add: false
+        };
+        
+        $scope.modalOptions = {
             backdrop: true,
             keyboard: true,
             backdropClick: true
@@ -22,11 +32,27 @@ define(function () {
         
         $scope.$on('audioPlayerQueue:songs', function (event, songs) {
             $scope.songs = songs;
-            $scope.length = songs.length;
+            $scope.selectedSongs.length = 0;
         });
         
         $scope.close = function () {
             $scope.shouldBeOpen = false;
+            $scope.selectedSongs.length = 0;
+        };
+        
+        $scope.toggleSongSelection = function (song) {
+            var songIndex = getSelectedSongIndex(song);
+            if (songIndex > -1) {
+                $scope.selectedSongs.splice(songIndex, 1);
+            } else {
+                $scope.selectedSongs.push(song);
+            }
+        };
+        
+        $scope.getSongClass = function (song) {
+            return getSelectedSongIndex(song) > -1 ?
+                'selected' :
+                '';
         };
     }
     

@@ -1,7 +1,9 @@
 <div ng-controller="SearchPlaylistCtrl">
-    <songbar songs="songs" ng-show="songs.length"></songbar>
+    <songbar all-songs="songs" selected-songs="selectedSongs" ng-show="songs.length"></songbar>
     <ul class="media-list song-list">
-        <li ng-repeat="song in songs">
+        <li ng-repeat="song in songs"
+            ng-click="$parent.toggleSongSelection(song)"
+            ng-class="$parent.getSongClass(song)">
             <song data="song"></song>
         </li>
     </ul>

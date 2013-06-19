@@ -35,16 +35,25 @@ define([
         function SoundEventsHandler () {}
         SoundEventsHandler.previousSoundPosition = 0;
         
+        SoundEventsHandler.stop = function () {
+            isPlaying = false;
+            $rootScope.$broadcast('audioPlayer:stop');
+            $rootScope.$broadcast('audioPlayer:playing', null);
+            $rootScope.$apply();
+        };
+        
         SoundEventsHandler.prototype.onplay = function () {
             SoundEventsHandler.previousSoundPosition = 0;
+        };
+        
+        SoundEventsHandler.prototype.onstop = function () {
+            SoundEventsHandler.stop();
         };
         
         SoundEventsHandler.prototype.onfinish = function () {
             if (!audioPlayerService.next()) {
                 currentSoundId = null;
-                isPlaying = false;
-                $rootScope.$broadcast('audioPlayer:stop');
-                $rootScope.$apply();
+                SoundEventsHandler.stop();
             }
         };
         
@@ -135,14 +144,18 @@ define([
                     if (currentSoundId) {
                         soundManager.stop(currentSoundId);
                     }
-                    soundId = getSoundId(song);
-                    if (!soundId) {
+                    
+                    queueIndex = queue.indexOf(song);
+                    if (queueIndex < 0) {
                         queueIndex = queue.length;
                         this.enqueue([ song ]);
-                        soundId = createSound(song);
-                    } else {
-                        queueIndex = queue.indexOf(song);
                     }
+                    
+                    soundId = getSoundId(song);
+                    if (!soundId) {
+                        soundId = createSound(song);
+                    }
+                    
                     isPlaying = true;
                     currentSoundId = soundId;
                     soundManager.play(soundId, new SoundEventsHandler());

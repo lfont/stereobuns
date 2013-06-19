@@ -1,4 +1,4 @@
-<div ng-controller="AudioPlayerQueueCtrl" modal="shouldBeOpen" close="close()" options="modalOpts">
+<div ng-controller="AudioPlayerQueueCtrl" modal="shouldBeOpen" close="close()" options="modalOptions">
     <div class="modal-header">
         <div class="row-fluid">
             <div class="span10">
@@ -6,8 +6,8 @@
             </div>
             <div class="span2">
                 <h5 class="pull-right">
-                    <span ng-show="length">{{ length }}</span>
-                    <ng-pluralize count="length"
+                    <span ng-show="songs.length">{{ songs.length }}</span>
+                    <ng-pluralize count="songs.length"
                         when="{ '0': 'empty',
                                 '1': 'song',
                                 'other': 'songs' }">
@@ -17,13 +17,17 @@
         </div>
     </div>
     <div class="modal-body">
-        <ul class="nav nav-tabs nav-stacked song-list">
-            <li ng-repeat="song in songs">
+        <songbar all-songs="songs" selected-songs="selectedSongs" options="songBarOptions"
+                 ng-show="songs.length"></songbar>
+        <ul class="media-list song-list">
+            <li ng-repeat="song in songs"
+                ng-click="$parent.toggleSongSelection(song)"
+                ng-class="$parent.getSongClass(song)">
                 <song data="song"></song>
             </li>
         </ul>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="close()">Close</button>
+        <button class="btn" ng-click="close()">Close</button>
     </div>
 </div>
