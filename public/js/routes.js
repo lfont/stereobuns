@@ -11,8 +11,8 @@ define([
     return app.config([
         '$routeProvider',
         function ($routeProvider) {
-            $routeProvider.when('/', { templateUrl: 'search.html', controller: 'SearchCtrl' })
-                          .otherwise({ redirectTo: '/' });
+            $routeProvider.when('', { templateUrl: 'search.html', controller: 'SearchCtrl' })
+                          .otherwise({ redirectTo: '' });
         }
     ]);
 });

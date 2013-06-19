@@ -11,9 +11,7 @@ define(function () {
         return {
             restrict: 'E',
             replace: true,
-            scope: {
-                song: '@'
-            },
+            scope: true,
             template: '<img alt="{{ alt }}" ng-src="{{ src }}" ng-style="style" />',
             
             link: function (scope, iElement, iAttrs) {

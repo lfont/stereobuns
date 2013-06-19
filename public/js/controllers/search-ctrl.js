@@ -11,6 +11,25 @@ define(function () {
             return $scope.selectedSongs.indexOf(song);
         }
         
+        function filterPredicate (song) {
+            var words, i, len;
+            
+            if (!$scope.searchFilter) {
+                return true;
+            }
+            
+            words = song[$scope.searchFilter].split(/ +/);
+            for (i = 0, len = words.length; i < len; i++) {
+                if (words[i].localeCompare($scope.playlist.name,
+                                           'en-US',
+                                           { sensitivity: 'base' }) === 0) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.playlist = null;
         $scope.filteredSongs = [];
@@ -20,21 +39,17 @@ define(function () {
         $scope.$on('playlist', function (event, playlist) {
             if (playlist.type === 'search') {
                 $scope.playlist = playlist;
-                $scope.filteredSongs = playlist.songs;
                 $scope.selectedSongs.length = 0;
+                $scope.filterBy();
             }
         });
         
         $scope.filterBy = function (filter) {
-            $scope.searchFilter = null;
+            $scope.searchFilter = filter;
             
             if ($scope.playlist) {
-                if (filter) {
-                    $scope.searchFilter = {};
-                    $scope.searchFilter[filter] = $scope.playlist.name;
-                }
-            
-                $scope.filteredSongs = filterFilter($scope.playlist.songs, $scope.searchFilter);
+                $scope.filteredSongs = filterFilter($scope.playlist.songs,
+                                                    filterPredicate);
             }
         };
         
