@@ -1,3 +1,29 @@
-<form class="navbar-search pull-left" ng-controller="SearchCtrl">
-    <input type="text" class="search-query" placeholder="Search" ng-model="query" ui-keydown="{ enter: 'search($event)' }">
-</form>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span10">
+            <div class="row-fluid">
+                <div class="span2">
+                    <ul class="nav nav-tabs nav-stacked">
+                        <li>Artists</li>
+                        <li>Albums</li>
+                        <li>Songs</li>
+                    </ul>    
+                </div>
+                
+                <div class="span10">
+                    <div ng-include="playlistOverviewTemplateUrl"></div>
+                    <songbar all-songs="songs" selected-songs="selectedSongs" ng-show="songs.length"></songbar>
+                    <ul class="media-list song-list">
+                        <li ng-repeat="song in songs"
+                            ng-click="$parent.toggleSongSelection(song)"
+                            ng-class="{ selected: $parent.isSongSelected(song) }">
+                            <song data="song"></song>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="span2" ng-include="playlistsTemplateUrl"></div>
+    </div>
+</div>

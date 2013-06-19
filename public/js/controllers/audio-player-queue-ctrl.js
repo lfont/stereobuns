@@ -49,10 +49,8 @@ define(function () {
             }
         };
         
-        $scope.getSongClass = function (song) {
-            return getSelectedSongIndex(song) > -1 ?
-                'selected' :
-                '';
+        $scope.isSongSelected = function (song) {
+            return getSelectedSongIndex(song) > -1;
         };
     }
     

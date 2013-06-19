@@ -6,23 +6,21 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'angular',
     './layout-ctrl',
-    './stream-ctrl',
     './search-ctrl',
-    './search-playlist-ctrl',
+    './search-bar-ctrl',
     './audio-player-ctrl',
     './audio-player-queue-ctrl',
     './playlist-overview-ctrl'
-], function (angular, LayoutCtrl, StreamCtrl,
-             SearchCtrl, SearchPlaylistCtrl,
+], function (angular, LayoutCtrl,
+             SearchCtrl, SearchBarCtrl,
              AudioPlayerCtrl, AudioPlayerQueueCtrl,
              PlaylistOverviewCtrl) {
     'use strict';
     
     return angular.module('soundrocket.controllers', [])
                   .controller('LayoutCtrl', LayoutCtrl)
-                  .controller('StreamCtrl', StreamCtrl)
                   .controller('SearchCtrl', SearchCtrl)
-                  .controller('SearchPlaylistCtrl', SearchPlaylistCtrl)
+                  .controller('SearchBarCtrl', SearchBarCtrl)
                   .controller('AudioPlayerCtrl', AudioPlayerCtrl)
                   .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
                   .controller('PlaylistOverviewCtrl', PlaylistOverviewCtrl);

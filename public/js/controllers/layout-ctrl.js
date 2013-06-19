@@ -7,7 +7,7 @@ define(function () {
     'use strict';
     
     function LayoutCtrl ($scope) {
-        $scope.searchTemplateUrl = 'search.html';
+        $scope.searchBarTemplateUrl = 'search-bar.html';
         $scope.audioPlayerTemplateUrl = 'audio-player.html';
     }
     

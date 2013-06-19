@@ -22,7 +22,7 @@
         <ul class="media-list song-list">
             <li ng-repeat="song in songs"
                 ng-click="$parent.toggleSongSelection(song)"
-                ng-class="$parent.getSongClass(song)">
+                ng-class="{ selected: $parent.isSongSelected(song) }">
                 <song data="song"></song>
             </li>
         </ul>
