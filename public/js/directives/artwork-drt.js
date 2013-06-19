@@ -17,8 +17,8 @@ define(function () {
             template: '<img alt="{{ alt }}" ng-src="{{ src }}" ng-style="style" />',
             
             link: function (scope, iElement, iAttrs) {
-                iAttrs.$observe('song', function (val) {
-                    scope.$parent.$watch(val, function (newSong, oldSong) {
+                iAttrs.$observe('song', function (value) {
+                    scope.$parent.$watch(value, function (newSong, oldSong) {
                         var url = artworkSrv.getSongArtwork(newSong);
                         scope.alt = newSong ?
                             newSong.artist + ' - ' + newSong.track :

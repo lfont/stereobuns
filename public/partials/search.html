@@ -1,20 +1,34 @@
-<div class="container">
+<div class="container search">
     <div class="row-fluid">
         <div class="span10">
-            <div class="row-fluid">
+            <div class="row-fluid" ng-show="playlist">
                 <div class="span2">
-                    <ul class="nav nav-tabs nav-stacked">
-                        <li>Artists</li>
-                        <li>Albums</li>
-                        <li>Songs</li>
-                    </ul>    
+                    <ul class="nav nav-pills nav-stacked filters">
+                        <li ng-class="{ active: !searchFilter }">
+                            <a href="#" ng-click="filterBy(); $event.preventDefault()">Everything</a>
+                        </li>
+                        <li ng-class="{ active: searchFilter.artist }">
+                            <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
+                        </li>
+                        <li ng-class="{ active: searchFilter.track }">
+                            <a href="#" ng-click="filterBy('track'); $event.preventDefault()">Songs</a>
+                        </li>
+                    </ul>
                 </div>
                 
                 <div class="span10">
-                    <div ng-include="playlistOverviewTemplateUrl"></div>
-                    <songbar all-songs="songs" selected-songs="selectedSongs" ng-show="songs.length"></songbar>
+                    <h1>{{ playlist.name }}</h1>
+                    <p>
+                        <span>{{ filteredSongs.length }}</span>
+                        <ng-pluralize count="filteredSongs.length"
+                            when="{ '0': 'no song',
+                                    '1': 'song',
+                                    'other': 'songs' }">
+                        </ng-pluralize>
+                    </p>
+                    <songbar all-songs="filteredSongs" selected-songs="selectedSongs"></songbar>
                     <ul class="media-list song-list">
-                        <li ng-repeat="song in songs"
+                        <li ng-repeat="song in filteredSongs"
                             ng-click="$parent.toggleSongSelection(song)"
                             ng-class="{ selected: $parent.isSongSelected(song) }">
                             <song data="song"></song>

@@ -27,13 +27,12 @@ define([
                         playlists: true
                     };
                     
-                    this.songs = [];
-                    
                     this.setOptions = function (options) {
                         var opts = angular.extend({}, DEFAULT_OPTIONS, options);
                         $scope.options = opts;
                     };
                     
+                    $scope.songs = [];
                     $scope.selectedSongs = [];
                     
                     // TODO: get the playlist list
@@ -56,8 +55,8 @@ define([
                             audioPlayerSrv.enqueue($scope.selectedSongs);
                             audioPlayerSrv.play($scope.selectedSongs[0]);
                         } else {
-                            audioPlayerSrv.enqueue(this.songs);
-                            audioPlayerSrv.play(this.songs[0]);
+                            audioPlayerSrv.enqueue($scope.songs);
+                            audioPlayerSrv.play($scope.songs[0]);
                         }
                         $scope.clearSelection();
                     };
@@ -66,7 +65,7 @@ define([
                         if ($scope.selectedSongs.length) {
                             audioPlayerSrv.enqueue($scope.selectedSongs);
                         } else {
-                            audioPlayerSrv.enqueue(this.songs);
+                            audioPlayerSrv.enqueue($scope.songs);
                         }
                         $scope.clearSelection();
                     };
@@ -81,7 +80,9 @@ define([
             
             link: function (scope, iElement, iAttrs, controller) {
                 iAttrs.$observe('allSongs', function (value) {
-                    controller.songs = scope.$parent.$eval(value);
+                    scope.$parent.$watch(value, function (newSongs, oldSongs) {
+                        scope.songs = newSongs;
+                    });
                 });
                 
                 iAttrs.$observe('selectedSongs', function (value) {

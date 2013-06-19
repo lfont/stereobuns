@@ -134,13 +134,19 @@ define([
                 }
                 
                 if (!song) {
-                    if (!currentSoundId) {
+                    if (currentSoundId) {
+                        isPlaying = true;
+                        soundManager.resume(currentSoundId);
+                        $rootScope.$broadcast('audioPlayer:resume');
                         return;
                     }
-                    isPlaying = true;
-                    soundManager.resume(currentSoundId);
-                    $rootScope.$broadcast('audioPlayer:resume');
-                } else {
+                    
+                    if (queue.length) {
+                        song = queue[queueIndex];
+                    }
+                }
+                        
+                if (song) {
                     if (currentSoundId) {
                         soundManager.stop(currentSoundId);
                     }
