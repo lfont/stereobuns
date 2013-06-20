@@ -68,10 +68,36 @@
     color: grey;
 }
 
-.audio-player .button-bar {
-    margin-top: 1.2em;
+.audio-player .progression-bar > div {
+    line-height: 10px;
+    min-height: 20px;
+    padding-top: .5em;
 }
 
-.audio-player .button-bar .btn {
-    margin: 0;
+.audio-player .progression-bar .progress {
+    height: 10px;
+    margin-bottom: 0;
+}
+
+.audio-player .middle {
+    margin-top: 1.5em;
+}
+
+.audio-player .button-bar a {
+    color: white;
+    font-size: 19px;
+    margin: .5em;
+    text-decoration: none;
+}
+
+.audio-player .button-bar a.active {
+    color: #0088cc;
+}
+
+.audio-player .button-bar a:first-child {
+    margin-left: 0;
+}
+
+.audio-player .button-bar a:last-child {
+    margin-right: 0;
 }

@@ -1,47 +1,57 @@
 <div class="row-fluid audio-player" ng-controller="AudioPlayerCtrl">    
-    <div class="span2 button-bar">
-        <button class="btn" ng-click="previous()">
-            <i class="icon-step-backward"></i>
-        </button>
-        <button class="btn" ng-click="togglePlay()">
-            <i class="icon-play" ng-hide="isPlaying"></i>
-            <i class="icon-pause" ng-show="isPlaying"></i>
-        </button>
-        <button class="btn" ng-click="next()">
-            <i class="icon-step-forward"></i>
-        </button>
+    <div class="span2 button-bar middle">
+        <div class="pull-right">
+            <a href="#" ng-click="previous(); $event.preventDefault()">
+                <i class="icon-step-backward"></i>
+            </a>
+            <a href="#" ng-click="togglePlay(); $event.preventDefault()">
+                <i ng-class="{ 'icon-play': !isPlaying, 'icon-pause': isPlaying }"></i>
+            </a>
+            <a href="#" ng-click="next(); $event.preventDefault()">
+                <i class="icon-step-forward"></i>
+            </a>
+        </div>
     </div>
         
-    <div class="span3">
-        <div class="media">
-            <a class="pull-left" href="#">
-                <artwork song="song"></artwork>
-            </a>
-            <div class="media-body">
-                <p class="media-heading">{{ song.artist }}</p>
-                {{ song.track }}<br />
-                {{ song.source }}
-            </div>
-        </div>
-    </div>
-    
-    <div class="span6 button-bar">
+    <div class="span8">
         <div class="row-fluid">
-            <div class="span9">
-                <div class="progress">
-                    <div class="bar" style="width: {{ progress.percentage }}%;"></div>
+            <div class="span2">
+                <a href="#" class="pull-right" ng-click="$event.preventDefault()">
+                    <artwork song="song"></artwork>
+                </a>
+            </div>
+            <div class="span10">
+                <div class="row-fluid">
+                    <div class="span9">
+                        {{ song.artist }}<br />
+                        {{ song.track }}    
+                    </div>
+                    <div class="span3">
+                        <br />
+                        {{ song.source }}
+                    </div>
+                </div>
+                <div class="row-fluid progression-bar">
+                    <div class="span9">
+                        <div class="progress">
+                            <div class="bar" style="width: {{ progress.percentage }}%;"></div>
+                        </div>
+                    </div>
+                    <div class="span3">
+                        {{ progress.position | time }} / {{ progress.duration | time }}    
+                    </div>
                 </div>
             </div>
-            <div class="span3">
-                {{ progress.position | time }} / {{ progress.duration | time }}
-            </div>
         </div>
     </div>
     
-    <div class="span1 button-bar">
-        <button class="btn pull-right" ng-click="showQueue()">
+    <div class="span2 button-bar middle">
+        <a href="#" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat(); $event.preventDefault()">
+            <i class="icon-retweet"></i>
+        </a>
+        <a href="#" ng-click="showQueue(); $event.preventDefault()">
             <i class="icon-list"></i>
-        </button>
+        </a>
     </div>
     
     <div ng-include="audioPlayerQueueTemplate"></div>

@@ -12,6 +12,7 @@ define(function () {
         $scope.song = null;
         $scope.progress = null;
         $scope.isPlaying = false;
+        $scope.shouldRepeat = false;
         
         $scope.$on('audioPlayer:play', function (event, song) {
             $scope.isPlaying = true;
@@ -59,6 +60,11 @@ define(function () {
             } else {
                 audioPlayerSrv.play();
             }
+        };
+        
+        $scope.toggleRepeat = function () {
+            $scope.shouldRepeat = !$scope.shouldRepeat;
+            console.log('TODO: toggleRepeat();');
         };
         
         $scope.next = function () {
