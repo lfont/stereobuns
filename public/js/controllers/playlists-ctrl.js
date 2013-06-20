@@ -8,10 +8,18 @@ define(function () {
 
     function PlaylistsCtrl ($scope, $location) {
         $scope.playlists = [
-            'loved'
+            {
+                name: 'Loved'
+            }
         ];
         
-        $scope.playlist = 'loved';
+        $scope.isCurrentPlaylist = function (playlist) {
+            var playlistNamePattern = /^\/playlist\/(.*)/,
+                matchs = playlistNamePattern.exec($location.path());
+            
+            return matchs &&
+                   matchs[1].toLowerCase() === playlist.name.toLowerCase();
+        };
     }
 
     PlaylistsCtrl.$inject = [ '$scope', '$location' ];

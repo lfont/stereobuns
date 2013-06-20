@@ -52,10 +52,13 @@
     margin-bottom: 2px;
 }
 
+.song .media-body .actions a {
+    text-decoration: none;
+}
+
 .song .media-body .actions .icon-heart,
 .song .media-body .actions .icon-heart-empty:hover {
     color: red;
-    cursor: pointer;
 }
 
 

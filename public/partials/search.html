@@ -3,21 +3,24 @@
         <div class="span10">
             <div class="row-fluid" ng-show="playlist">
                 <div class="span2">
-                    <ul class="nav nav-pills nav-stacked filters"
-                        ng-show="playlist.songs.length">
-                        <li ng-class="{ active: !searchFilter }">
-                            <a href="#" ng-click="filterBy(); $event.preventDefault()">
-                                <i class="icon-search"></i>
-                                Everything
-                            </a>
-                        </li>
-                        <li ng-class="{ active: searchFilter == 'artist' }">
-                            <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
-                        </li>
-                        <li ng-class="{ active: searchFilter == 'track' }">
-                            <a href="#" ng-click="filterBy('track'); $event.preventDefault()">Songs</a>
-                        </li>
-                    </ul>
+                    <div class="filters">
+                        <h4>Search</h4>
+                        <ul class="nav nav-pills nav-stacked"
+                            ng-show="playlist.songs.length">
+                            <li ng-class="{ active: !searchFilter }">
+                                <a href="#" ng-click="filterBy(); $event.preventDefault()">
+                                    <i class="icon-search"></i>
+                                    Everything
+                                </a>
+                            </li>
+                            <li ng-class="{ active: searchFilter == 'artist' }">
+                                <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
+                            </li>
+                            <li ng-class="{ active: searchFilter == 'track' }">
+                                <a href="#" ng-click="filterBy('track'); $event.preventDefault()">Songs</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="span10">

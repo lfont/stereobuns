@@ -1,5 +1,5 @@
 <div class="song media">
-    <a class="pull-left" href="#" ng-click="play(); $event.preventDefault()">
+    <a class="pull-left" href="#" ng-click="play(); $event.preventDefault(); $event.stopPropagation()">
         <artwork song="song"></artwork>
     </a>
     <div class="media-body">
@@ -18,8 +18,9 @@
             </div>
             <div class="span1">
                 <div class="pull-right actions">
-                    <i ng-class="{ 'icon-heart': isLoved, 'icon-heart-empty': !isLoved }"
-                       ng-click="toggleLoveStatus()"></i>
+                    <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
+                        <i ng-class="{ 'icon-heart': isLoved, 'icon-heart-empty': !isLoved }"></i>
+                    </a>
                 </div>
             </div>
         </div>
