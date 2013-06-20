@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function TimeFtlFactory () {
+    function timeFtlFactory () {
         
         function toTime (totalSeconds) {
             var hours, minutes, seconds, time;
@@ -44,5 +44,5 @@ define(function () {
         return toTime;
     }
     
-    return TimeFtlFactory;
+    return timeFtlFactory;
 });

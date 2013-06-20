@@ -6,7 +6,9 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function SearchCtrl ($scope, $routeParams, soundSearchSrv, filterFilter) {
+    function SearchCtrl ($scope, $routeParams, $filter, soundSearchSrv) {
+        var songFilter = $filter('song');
+        
         function getSelectedSongIndex (song) {
             return $scope.selectedSongs.indexOf(song);
         }
@@ -22,37 +24,19 @@ define(function () {
             });
         }
         
-        function filterPredicate (song) {
-            var words, i, len;
-            
-            if (!$scope.searchFilter) {
-                return true;
-            }
-            
-            words = song[$scope.searchFilter].split(/ +/);
-            for (i = 0, len = words.length; i < len; i++) {
-                if (words[i].localeCompare($scope.playlist.name,
-                                           'en-US',
-                                           { sensitivity: 'base' }) === 0) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.playlist = null;
         $scope.filteredSongs = [];
         $scope.selectedSongs = [];
         $scope.searchFilter = null;
         
-        $scope.filterBy = function (filter) {
-            $scope.searchFilter = filter;
+        $scope.filterBy = function (property) {
+            $scope.searchFilter = property;
             
             if ($scope.playlist) {
-                $scope.filteredSongs = filterFilter($scope.playlist.songs,
-                                                    filterPredicate);
+                $scope.filteredSongs = songFilter($scope.playlist.songs,
+                                                  $scope.searchFilter,
+                                                  $scope.playlist.name);
             }
         };
         
@@ -72,7 +56,7 @@ define(function () {
         search($routeParams.q);
     }
     
-    SearchCtrl.$inject = [ '$scope', '$routeParams', 'soundSearchSrv', 'filterFilter' ];
+    SearchCtrl.$inject = [ '$scope', '$routeParams', '$filter', 'soundSearchSrv' ];
     
     return SearchCtrl;
 });

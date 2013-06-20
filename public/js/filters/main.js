@@ -5,10 +5,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'angular',
-    './time-flt'
-], function (angular, TimeFltFactory) {
+    './time-flt',
+    './song-flt'
+], function (angular, timeFltFactory, songFltFactory) {
     'use strict';
     
     return angular.module('soundrocket.filters', [])
-                  .filter('time', TimeFltFactory);
+                  .filter('time', timeFltFactory)
+                  .filter('song', songFltFactory);
 });
