@@ -1,4 +1,4 @@
-<div class="row-fluid audio-player" ng-controller="AudioPlayerCtrl">    
+<div class="row-fluid audio-player-bar" ng-controller="AudioPlayerBarCtrl">    
     <div class="span2 button-bar middle">
         <div class="pull-right">
             <a href="#" ng-click="previous(); $event.preventDefault()">
@@ -24,7 +24,8 @@
                 <div class="row-fluid">
                     <div class="span9">
                         {{ song.artist }}<br />
-                        {{ song.track }}    
+                        {{ song.track }}
+                        <span ng-show="song.album"> - {{ song.album }}</span>
                     </div>
                     <div class="span3">
                         <br />
@@ -49,7 +50,7 @@
         <a href="#" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat(); $event.preventDefault()">
             <i class="icon-retweet"></i>
         </a>
-        <a href="#" ng-click="showQueue(); $event.preventDefault()">
+        <a href="#" ng-class="{ active: shouldOpenQueue }" ng-click="toggleQueue(); $event.preventDefault()">
             <i class="icon-list"></i>
         </a>
     </div>

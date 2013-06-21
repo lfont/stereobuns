@@ -14,7 +14,8 @@ define([
             soundUrlsToIds = {},
             queue = [],
             queueIndex = 0,
-            isPlaying = false;
+            isPlaying = false,
+            repeat = false;
         
         soundManager.setup({
             url: '/components/soundmanager/swf/',
@@ -53,7 +54,12 @@ define([
         SoundEventsHandler.prototype.onfinish = function () {
             if (!audioPlayerService.next()) {
                 currentSoundId = null;
-                SoundEventsHandler.stop();
+                if (repeat) {
+                    queueIndex = 0;
+                    audioPlayerService.play();
+                } else {
+                    SoundEventsHandler.stop();
+                }
             }
         };
         
@@ -193,6 +199,10 @@ define([
                     return true;
                 }
                 return false;
+            },
+            
+            toggleRepeat: function (shouldRepeat) {
+                repeat = shouldRepeat;
             }
         };
         

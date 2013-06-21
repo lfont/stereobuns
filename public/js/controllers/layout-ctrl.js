@@ -8,7 +8,7 @@ define(function () {
     
     function LayoutCtrl ($scope) {
         $scope.searchBarTemplateUrl = 'search-bar.html';
-        $scope.audioPlayerTemplateUrl = 'audio-player.html';
+        $scope.audioPlayerBarTemplateUrl = 'audio-player-bar.html';
     }
     
     LayoutCtrl.$inject = [ '$scope' ];

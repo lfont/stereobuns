@@ -6,13 +6,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function AudioPlayerCtrl ($scope, audioPlayerSrv) {
+    function AudioPlayerBarCtrl ($scope, audioPlayerSrv) {
         $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
         $scope.songs = [];
         $scope.song = null;
         $scope.progress = null;
         $scope.isPlaying = false;
         $scope.shouldRepeat = false;
+        $scope.shouldOpenQueue = false;
         
         $scope.$on('audioPlayer:play', function (event, song) {
             $scope.isPlaying = true;
@@ -38,20 +39,22 @@ define(function () {
              
         $scope.$on('audioPlayer:clearQueue', function (event) {
             $scope.songs.length = 0;
-            $scope.$broadcast('audioPlayerQueue:songs', $scope.songs);
         });
         
         $scope.$on('audioPlayer:enqueue', function (event, songs) {
             $scope.songs = $scope.songs.concat(songs);
-            $scope.$broadcast('audioPlayerQueue:songs', $scope.songs);
         });
         
-        $scope.showQueue = function () {
-            $scope.$broadcast('audioPlayerQueue:open');
-        };
+        $scope.$on('audioPlayerQueue:close', function (event) {
+            $scope.shouldOpenQueue = false;
+        });
         
         $scope.previous = function () {
             audioPlayerSrv.previous();
+        };
+        
+        $scope.next = function () {
+            audioPlayerSrv.next();
         };
         
         $scope.togglePlay = function () {
@@ -64,15 +67,16 @@ define(function () {
         
         $scope.toggleRepeat = function () {
             $scope.shouldRepeat = !$scope.shouldRepeat;
-            console.log('TODO: toggleRepeat();');
+            audioPlayerSrv.toggleRepeat($scope.shouldRepeat);
         };
         
-        $scope.next = function () {
-            audioPlayerSrv.next();
+        $scope.toggleQueue = function () {
+            $scope.shouldOpenQueue = !$scope.shouldOpenQueue;
+            $scope.$broadcast('audioPlayerBar:toggleQueue', $scope.shouldOpenQueue);
         };
     }
     
-    AudioPlayerCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+    AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
     
-    return AudioPlayerCtrl;
+    return AudioPlayerBarCtrl;
 });

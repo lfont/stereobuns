@@ -8,7 +8,10 @@
                ng-show="isCurrent()"></i>
             {{ song.artist }}
         </h4>
-        <p>{{ song.track }}</p>
+        <p>
+            {{ song.track }}
+            <span ng-show="song.album"> - {{ song.album }}</span>
+        </p>
         <div class="row-fluid">
             <div class="span11">
                 <p>

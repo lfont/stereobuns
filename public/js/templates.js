@@ -7,14 +7,14 @@ define([
     'jquery',
     'text!partials/search.html',
     'text!partials/search-bar.html',
-    'text!partials/audio-player.html',
+    'text!partials/audio-player-bar.html',
     'text!partials/audio-player-queue.html',
     'text!partials/song-drt.html',
     'text!partials/song-bar-drt.html',
     'text!partials/playlists.html',
     'text!partials/playlist.html'
 ], function ($, searchTemplate, searchBarTemplate,
-             audioPlayerTemplate, audioPlayerQueueTemplate,
+             audioPlayerBarTemplate, audioPlayerQueueTemplate,
              songDrtTemplate, songBarDrtTemplate,
              playlistsTemplate, playlistTemplate) {
     'use strict';
@@ -32,7 +32,7 @@ define([
         $body.prepend(wrap('search.html', searchTemplate));
         $body.prepend(wrap('search-bar.html', searchBarTemplate));
         
-        $body.prepend(wrap('audio-player.html', audioPlayerTemplate));
+        $body.prepend(wrap('audio-player-bar.html', audioPlayerBarTemplate));
         $body.prepend(wrap('audio-player-queue.html', audioPlayerQueueTemplate));
         
         $body.prepend(wrap('song-drt.html', songDrtTemplate));

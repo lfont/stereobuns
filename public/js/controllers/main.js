@@ -8,7 +8,7 @@ define([
     './layout-ctrl',
     './search-ctrl',
     './search-bar-ctrl',
-    './audio-player-ctrl',
+    './audio-player-bar-ctrl',
     './audio-player-queue-ctrl',
     './song-drt-ctrl',
     './song-bar-drt-ctrl',
@@ -16,7 +16,7 @@ define([
     './playlist-ctrl'
 ], function (angular, LayoutCtrl,
              SearchCtrl, SearchBarCtrl,
-             AudioPlayerCtrl, AudioPlayerQueueCtrl,
+             AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
              SongDrtCtrl, SongBarDrtCtrl,
              PlaylistsCtrl, PlaylistCtrl) {
     'use strict';
@@ -25,7 +25,7 @@ define([
                   .controller('LayoutCtrl', LayoutCtrl)
                   .controller('SearchCtrl', SearchCtrl)
                   .controller('SearchBarCtrl', SearchBarCtrl)
-                  .controller('AudioPlayerCtrl', AudioPlayerCtrl)
+                  .controller('AudioPlayerBarCtrl', AudioPlayerBarCtrl)
                   .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
                   .controller('SongDrtCtrl', SongDrtCtrl)
                   .controller('SongBarDrtCtrl', SongBarDrtCtrl)

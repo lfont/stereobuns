@@ -21,23 +21,28 @@ define(function () {
         };
         
         $scope.modalOptions = {
-            backdrop: true,
-            keyboard: true,
-            backdropClick: true
+            backdrop: false,
+            backdropClick: false,
+            keyboard: true
         };
         
-        $scope.$on('audioPlayerQueue:open', function (event) {
-            $scope.shouldBeOpen = true;
+        $scope.$on('audioPlayer:clearQueue', function (event) {
+            $scope.songs.length = 0;
+            $scope.selectedSongs.length = 0;
         });
         
-        $scope.$on('audioPlayerQueue:songs', function (event, songs) {
-            $scope.songs = songs;
-            $scope.selectedSongs.length = 0;
+        $scope.$on('audioPlayer:enqueue', function (event, songs) {
+            $scope.songs = $scope.songs.concat(songs);
+        });
+        
+        $scope.$on('audioPlayerBar:toggleQueue', function (event, shouldBeOpen) {
+            $scope.shouldBeOpen = shouldBeOpen;
         });
         
         $scope.close = function () {
             $scope.shouldBeOpen = false;
             $scope.selectedSongs.length = 0;
+            $scope.$emit('audioPlayerQueue:close');
         };
         
         $scope.toggleSongSelection = function (song) {
