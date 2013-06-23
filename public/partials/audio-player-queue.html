@@ -19,7 +19,7 @@
         </div>
         <div class="modal-body" no-scroll-propagation>
             <songbar all-songs="songs" selected-songs="selectedSongs" options="songBarOptions"
-                     ng-show="songs.length"></songbar>
+                     ng-show="songs.length" ui-scrollfix="{ offset: '-185', scroller: '.audio-player-queue .modal-body' }"></songbar>
             <ul class="media-list song-list">
                 <li ng-repeat="song in songs"
                     ng-click="$parent.toggleSongSelection(song)"
