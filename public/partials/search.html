@@ -1,56 +1,54 @@
-<div class="container search">
-    <div class="row-fluid">
-        <div class="span10">
-            <div class="row-fluid" ng-show="playlist">
-                <div class="span2">
-                    <div class="filters">
-                        <h4>Search</h4>
-                        <ul class="nav nav-pills nav-stacked"
-                            ng-show="playlist.songs.length">
-                            <li ng-class="{ active: !searchFilter }">
-                                <a href="#" ng-click="filterBy(); $event.preventDefault()">
-                                    <i class="icon-search"></i>
-                                    Everything
-                                </a>
-                            </li>
-                            <li ng-class="{ active: searchFilter == 'artist' }">
-                                <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
-                            </li>
-                            <li ng-class="{ active: searchFilter == 'album' }">
-                                <a href="#" ng-click="filterBy('album'); $event.preventDefault()">Albums</a>
-                            </li>
-                            <li ng-class="{ active: searchFilter == 'track' }">
-                                <a href="#" ng-click="filterBy('track'); $event.preventDefault()">Tracks</a>
-                            </li>
-                        </ul>
-                    </div>
+<div class="search row">
+    <div class="span10">
+        <div class="row" ng-show="playlist">
+            <div class="span2">
+                <div class="filters">
+                    <h4>Search</h4>
+                    <ul class="nav nav-pills nav-stacked"
+                        ng-show="playlist.songs.length">
+                        <li ng-class="{ active: !searchFilter }">
+                            <a href="#" ng-click="filterBy(); $event.preventDefault()">
+                                <i class="icon-search"></i>
+                                All
+                            </a>
+                        </li>
+                        <li ng-class="{ active: searchFilter == 'artist' }">
+                            <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
+                        </li>
+                        <li ng-class="{ active: searchFilter == 'album' }">
+                            <a href="#" ng-click="filterBy('album'); $event.preventDefault()">Albums</a>
+                        </li>
+                        <li ng-class="{ active: searchFilter == 'track' }">
+                            <a href="#" ng-click="filterBy('track'); $event.preventDefault()">Tracks</a>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="span10">
-                    <h1>{{ playlist.name }}</h1>
-                    <p>
-                        <span ng-show="filteredSongs.length">{{ filteredSongs.length }}</span>
-                        <ng-pluralize count="filteredSongs.length"
-                            when="{ '0': 'no song',
-                                    '1': 'song',
-                                    'other': 'songs' }">
-                        </ng-pluralize>
-                    </p>
-                    <div ng-show="playlist.songs.length">
-                        <songbar all-songs="filteredSongs" selected-songs="selectedSongs"
-                                 ui-scrollfix="{ offset: '-50' }"></songbar>
-                        <ul class="media-list song-list">
-                            <li ng-repeat="song in filteredSongs"
-                                ng-click="$parent.toggleSongSelection(song)"
-                                ng-class="{ selected: $parent.isSongSelected(song) }">
-                                <song data="song"></song>
-                            </li>
-                        </ul>
-                    </div>
+            </div>
+            
+            <div class="span8">
+                <h1>{{ playlist.name }}</h1>
+                <p>
+                    <span ng-show="filteredSongs.length">{{ filteredSongs.length }}</span>
+                    <ng-pluralize count="filteredSongs.length"
+                        when="{ '0': 'no song',
+                                '1': 'song',
+                                'other': 'songs' }">
+                    </ng-pluralize>
+                </p>
+                <div ng-show="playlist.songs.length">
+                    <songbar all-songs="filteredSongs" selected-songs="selectedSongs"
+                             ui-scrollfix="{ offset: '-50' }"></songbar>
+                    <ul class="media-list song-list">
+                        <li ng-repeat="song in filteredSongs"
+                            ng-click="$parent.toggleSongSelection(song)"
+                            ng-class="{ selected: $parent.isSongSelected(song) }">
+                            <song data="song"></song>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        
-        <div class="span2" ng-include="playlistsTemplateUrl"></div>
     </div>
+    
+    <div class="span2" ng-include="playlistsTemplateUrl"></div>
 </div>

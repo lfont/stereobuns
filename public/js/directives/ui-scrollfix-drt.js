@@ -19,7 +19,7 @@ define([
                     };
                 
                 if (iAttrs.uiScrollfix) {
-                    config = angular.extend(config, $parse(iAttrs.uiScrollfix)());
+                    config = angular.extend(config, $parse(iAttrs.uiScrollfix)(scope));
                 }
                 
                 if (!config.offset) {
@@ -28,6 +28,8 @@ define([
                     config.offset = top - parseInt(config.offset.substr(1), 10);
                 } else if (config.offset.charAt(0) === '+') {
                     config.offset = top + parseInt(config.offset.substr(1), 10);
+                } else {
+                    config.offset = parseInt(config.offset, 10);
                 }
                 
                 config.scroller = typeof(config.scroller) === 'object' ?
@@ -35,8 +37,8 @@ define([
                     $document.find(config.scroller);
                 
                 config.scroller.bind('scroll.ui-scrollfix', function () {
-                    var offset = config.scroller.get(0).pageYOffset ||
-                                 config.scroller.get(0).scrollTop;
+                    var element = config.scroller.get(0),
+                        offset = element.pageYOffset || element.scrollTop;
                     
                     if (!iElement.hasClass('ui-scrollfix') && offset > config.offset) {
                         iElement.addClass('ui-scrollfix');

@@ -105,7 +105,6 @@
 
 .audio-player-bar .button-bar a {
     color: white;
-    font-size: 19px;
     margin: .5em;
     text-decoration: none;
 }
@@ -127,5 +126,5 @@
 
 .audio-player-queue .song-bar.ui-scrollfix {
     position: fixed;
-    top: 145px;
+    top: 140px;
 }
