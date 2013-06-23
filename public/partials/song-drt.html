@@ -21,7 +21,7 @@
             </div>
             <div class="span1">
                 <div class="pull-right actions">
-                    <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
+                    <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault(); $event.stopPropagation()">
                         <i ng-class="{ 'icon-heart': isLoved, 'icon-heart-empty': !isLoved }"></i>
                     </a>
                 </div>

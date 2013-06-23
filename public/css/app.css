@@ -64,6 +64,7 @@
 }
 
 .song .media-body .actions a {
+    color: grey;
     text-decoration: none;
 }
 
