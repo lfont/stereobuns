@@ -41,8 +41,8 @@
                     <i class="icon-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li ng-repeat="playlist in playlists">
-                        <a ng-click="$parent.addToPlaylist(playlist)">{{ playlist.name }}</a>
+                    <li ng-repeat="playlistStore in playlistStores">
+                        <a ng-click="$parent.addToPlaylist(playlistStore)">{{ playlistStore.name }}</a>
                     </li>
                 </ul>
             </div>

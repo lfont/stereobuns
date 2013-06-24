@@ -8,13 +8,31 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongBarDrtCtrl ($scope, $window, audioPlayerSrv) {
+    function SongBarDrtCtrl ($scope, $location, audioPlayerSrv, playlistSrv) {
         var DEFAULT_OPTIONS = {
             remove: false,
             play: true,
             add: true,
             playlists: true
         };
+        
+        function filterPlaylistStores (playlistStores) {
+            var playlistNamePattern = /^\/playlist\/(.*)/,
+                stores = [],
+                i, len, playlistStore, matchs;
+            
+            for (i = 0, len = playlistStores.length; i < len; i++) {
+                playlistStore = playlistStores[i];
+                matchs = playlistNamePattern.exec($location.path());
+                if (!matchs ||
+                    matchs[1].toLowerCase() !== playlistStore.name.toLowerCase())
+                {
+                    stores.push(playlistStore);
+                }
+            }
+            
+            return stores;
+        }
         
         this.setOptions = function (options) {
             var opts = angular.extend({}, DEFAULT_OPTIONS, options);
@@ -23,12 +41,7 @@ define([
         
         $scope.songs = [];
         $scope.selectedSongs = [];
-        
-        // TODO: get the playlist list
-        $scope.playlists = [
-            { name: 'playlist 1' },
-            { name: 'playlist 2' }
-        ];
+        $scope.playlistStores = filterPlaylistStores(playlistSrv.getStores());
         
         $scope.clearSelection = function () {
             $scope.selectedSongs.length = 0;
@@ -59,14 +72,18 @@ define([
             $scope.clearSelection();
         };
         
-        $scope.addToPlaylist = function (playlist) {
-            $window.alert('TODO: addToPlaylist(' + playlist.name + ')');
+        $scope.addToPlaylist = function (playlistStore) {
+            if ($scope.selectedSongs.length) {
+                playlistStore.add($scope.selectedSongs);
+            } else {
+                playlistStore.add($scope.songs);
+            }
         };
         
         this.setOptions();
     }
     
-    SongBarDrtCtrl.$inject = [ '$scope', '$window', 'audioPlayerSrv' ];
+    SongBarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistSrv' ];
     
     return SongBarDrtCtrl;
 });

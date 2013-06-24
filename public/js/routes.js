@@ -16,7 +16,7 @@ define([
             $locationProvider.html5Mode(false);
             $routeProvider.when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
                           .when('/playlist/:name', { templateUrl: 'playlist.html', controller: 'PlaylistCtrl' })
-                          .otherwise({ redirectTo: '/playlist/loved' });
+                          .otherwise({ redirectTo: '/playlist/Loved' });
         }
     ]);
 });

@@ -6,11 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
 
-    function SongDrtCtrl ($scope, audioPlayerSrv) {
-        var currentSong = audioPlayerSrv.getCurrentSong();
+    function SongDrtCtrl ($scope, audioPlayerSrv, playlistSrv) {
+        var currentSong = audioPlayerSrv.getCurrentSong(),
+            lovedPlaylistStore = playlistSrv.getStore('Loved');
             
         $scope.isPlaying = audioPlayerSrv.isPlaying();
-        $scope.isLoved = false;
+        $scope.isLoved = lovedPlaylistStore.contains($scope.song);
         
         $scope.$on('audioPlayer:play', function (event, song) {
             currentSong = song;
@@ -43,11 +44,17 @@ define(function () {
         };
         
         $scope.toggleLoveStatus = function () {
-            console.log('TODO: toggleLoveStatus()');
+            if ($scope.isLoved) {
+                lovedPlaylistStore.remove($scope.song);
+                $scope.isLoved = false;
+            } else {
+                lovedPlaylistStore.add($scope.song);
+                $scope.isLoved = true;
+            }
         };
     }
      
-    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'playlistSrv' ];
     
     return SongDrtCtrl;
 });
