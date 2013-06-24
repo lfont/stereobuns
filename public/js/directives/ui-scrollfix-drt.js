@@ -38,7 +38,7 @@ define([
                 
                 config.scroller.bind('scroll.ui-scrollfix', function () {
                     var element = config.scroller.get(0),
-                        offset = element.pageYOffset || element.scrollTop;
+                        offset = element.pageYOffset || element.scrollTop || 0;
                     
                     if (!iElement.hasClass('ui-scrollfix') && offset > config.offset) {
                         iElement.addClass('ui-scrollfix');
