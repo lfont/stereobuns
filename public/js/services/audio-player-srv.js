@@ -129,14 +129,15 @@ define([
                 }
             },
             
-            clearQueue: function () {
+            dequeue: function (song) {
+                // TODO: remove only the selected songs
                 if (currentSoundId) {
                     soundManager.stop(currentSoundId);
                 }
                 destroySounds();
                 currentSoundId = null;
                 queue.length = 0;
-                $rootScope.$broadcast('audioPlayer:clearQueue');
+                $rootScope.$broadcast('audioPlayer:dequeue');
             },
                 
             play: function (song) {

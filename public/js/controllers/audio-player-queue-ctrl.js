@@ -26,13 +26,17 @@ define(function () {
             keyboard: true
         };
         
-        $scope.$on('audioPlayer:clearQueue', function (event) {
+        $scope.$on('audioPlayer:dequeue', function (event) {
             $scope.selectedSongs.length = 0;
         });
         
         $scope.$on('audioPlayerBar:toggleQueue', function (event, shouldBeOpen) {
             $scope.shouldBeOpen = shouldBeOpen;
         });
+        
+        $scope.dequeue = function (songs) {
+            audioPlayerSrv.dequeue(songs);
+        };
         
         $scope.close = function () {
             $scope.shouldBeOpen = false;

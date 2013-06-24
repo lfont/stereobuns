@@ -10,8 +10,8 @@
             </ng-pluralize>
         </p>
         <div ng-show="playlistStore.length()">
-            <songbar all-songs="playlistStore.getAll()" selected-songs="selectedSongs"
-                     ui-scrollfix="{ offset: '-50' }"></songbar>
+            <songbar all-songs="playlistStore.getAll()" selected-songs="selectedSongs" options="songBarOptions"
+                     on-remove="playlistStore.remove" ui-scrollfix="{ offset: '-50' }"></songbar>
             <ul class="media-list song-list">
                 <li ng-repeat="song in playlistStore.getAll()"
                     ng-click="$parent.toggleSongSelection(song)"

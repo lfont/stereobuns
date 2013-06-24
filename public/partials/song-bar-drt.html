@@ -1,9 +1,15 @@
 <div class="navbar song-bar">
     <div class="navbar-inner">
         <form class="navbar-form pull-left">            
-            <button class="btn" ng-click="clearQueue()" ng-show="options.remove">
+            <button class="btn" ng-click="remove()" ng-show="options.remove">
                 <i class="icon-remove"></i>
-                Clear Queue
+                Remove
+                <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
+                <ng-pluralize count="selectedSongs.length"
+                    when="{ '0': 'All',
+                            '1': '',
+                            'other': '' }">
+                </ng-pluralize>
             </button>
             
             <button class="btn" ng-click="play()" ng-show="options.play">
@@ -47,7 +53,7 @@
                 </ul>
             </div>
             
-            <button class="btn pull-right" ng-click="clearSelection()" ng-show="selectedSongs.length">
+            <button class="btn pull-right" ng-click="deselect()" ng-show="selectedSongs.length">
                 <i class="icon-check-empty"></i>
                 Deselect
             </button>

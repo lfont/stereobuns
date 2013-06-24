@@ -43,13 +43,13 @@ define([
         $scope.selectedSongs = [];
         $scope.playlistStores = filterPlaylistStores(playlistSrv.getStores());
         
-        $scope.clearSelection = function () {
-            $scope.selectedSongs.length = 0;
-        };
-        
-        $scope.clearQueue = function () {
-            audioPlayerSrv.clearQueue();
-            $scope.clearSelection();
+        $scope.remove = function () {
+            if ($scope.selectedSongs.length) {
+                $scope.onRemove($scope.selectedSongs);
+            } else {
+                $scope.onRemove($scope.songs);
+            }
+            $scope.deselect();
         };
         
         $scope.play = function () {
@@ -60,7 +60,7 @@ define([
                 audioPlayerSrv.enqueue($scope.songs);
                 audioPlayerSrv.play($scope.songs[0]);
             }
-            $scope.clearSelection();
+            $scope.deselect();
         };
         
         $scope.add = function () {
@@ -69,7 +69,7 @@ define([
             } else {
                 audioPlayerSrv.enqueue($scope.songs);
             }
-            $scope.clearSelection();
+            $scope.deselect();
         };
         
         $scope.addToPlaylist = function (playlistStore) {
@@ -78,6 +78,10 @@ define([
             } else {
                 playlistStore.add($scope.songs);
             }
+        };
+        
+        $scope.deselect = function () {
+            $scope.selectedSongs.length = 0;
         };
         
         this.setOptions();

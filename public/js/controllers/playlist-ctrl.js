@@ -15,6 +15,10 @@ define(function () {
             $scope.playlistStore = playlistSrv.getStore(name);
         }
         
+        $scope.songBarOptions = {
+            remove: true
+        };
+        
         $scope.playlistStore = null;
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.selectedSongs = [];

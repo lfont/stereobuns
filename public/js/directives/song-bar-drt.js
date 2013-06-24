@@ -31,6 +31,10 @@ define([
                 iAttrs.$observe('options', function (value) {
                     controller.setOptions(scope.$parent.$eval(value));
                 });
+                
+                iAttrs.$observe('onRemove', function (value) {
+                    scope.onRemove = scope.$parent.$eval(value);
+                });
             }
         };
     }

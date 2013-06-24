@@ -51,12 +51,22 @@ define([
             };
             
             this.remove = function (song) {
-                var i, len, s, removed = false;
-                for (i = 0, len = songs.length; i < len; i++) {
-                    s = songs[i];
-                    if (s.url === song.url) {
-                        songs.splice(i, 1);
-                        break;
+                var i, len, j, jlen, s, oldSongs = [];
+                if (!angular.isArray(song)) {
+                    oldSongs.push(song);
+                } else {
+                    // we make a copy of the array because
+                    // the given array could be a reference of
+                    // the songs array.
+                    oldSongs = oldSongs.concat(song);
+                }
+                for (i = 0, len = oldSongs.length; i < len; i++) {
+                    s = oldSongs[i];
+                    for (j = 0, jlen = songs.length; j < jlen; j++) {
+                        if (songs[j].url === s.url) {
+                            songs.splice(j, 1);
+                            break;
+                        }
                     }
                 }
             };
