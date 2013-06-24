@@ -4,8 +4,9 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
+    'angular',
     'soundmanager2'
-], function (soundManager) {
+], function (angular, soundManager) {
     'use strict';
         
     function AudioPlayerSrvFactory ($rootScope, $window) {
@@ -40,7 +41,6 @@ define([
             isPlaying = false;
             $rootScope.$broadcast('audioPlayer:stop');
             $rootScope.$broadcast('audioPlayer:playing', null);
-            $rootScope.$apply();
         };
         
         SoundEventsHandler.prototype.onplay = function () {
@@ -117,9 +117,16 @@ define([
                 return isPlaying;
             },
             
-            enqueue: function (songs) {
-                queue = queue.concat(songs);
-                $rootScope.$broadcast('audioPlayer:enqueue', songs);
+            getQueue: function () {
+                return queue;
+            },
+            
+            enqueue: function (song) {
+                if (!angular.isArray(song)) {
+                    queue.push(song);
+                } else {
+                    Array.prototype.push.apply(queue, song);
+                }
             },
             
             clearQueue: function () {

@@ -6,12 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function AudioPlayerQueueCtrl ($scope) {
+    function AudioPlayerQueueCtrl ($scope, audioPlayerSrv) {
         function getSelectedSongIndex (song) {
             return $scope.selectedSongs.indexOf(song);
         }
         
-        $scope.songs = [];
+        $scope.queue = audioPlayerSrv.getQueue();
         $scope.selectedSongs = [];
         
         $scope.songBarOptions = {
@@ -27,12 +27,7 @@ define(function () {
         };
         
         $scope.$on('audioPlayer:clearQueue', function (event) {
-            $scope.songs.length = 0;
             $scope.selectedSongs.length = 0;
-        });
-        
-        $scope.$on('audioPlayer:enqueue', function (event, songs) {
-            $scope.songs = $scope.songs.concat(songs);
         });
         
         $scope.$on('audioPlayerBar:toggleQueue', function (event, shouldBeOpen) {
@@ -59,7 +54,7 @@ define(function () {
         };
     }
     
-    AudioPlayerQueueCtrl.$inject = [ '$scope' ];
+    AudioPlayerQueueCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
     
     return AudioPlayerQueueCtrl;
 });

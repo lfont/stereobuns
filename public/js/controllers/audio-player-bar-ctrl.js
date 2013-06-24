@@ -8,7 +8,6 @@ define(function () {
     
     function AudioPlayerBarCtrl ($scope, audioPlayerSrv) {
         $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
-        $scope.songs = [];
         $scope.song = null;
         $scope.progress = null;
         $scope.isPlaying = false;
@@ -35,14 +34,6 @@ define(function () {
         
         $scope.$on('audioPlayer:playing', function (event, progress) {
             $scope.progress = progress;
-        });
-             
-        $scope.$on('audioPlayer:clearQueue', function (event) {
-            $scope.songs.length = 0;
-        });
-        
-        $scope.$on('audioPlayer:enqueue', function (event, songs) {
-            $scope.songs = $scope.songs.concat(songs);
         });
         
         $scope.$on('audioPlayerQueue:close', function (event) {
