@@ -4,17 +4,29 @@
     .search .song-bar {
         width: 770px;
     }
+
+    .playlist .song-bar {
+        width: 970px;
+    }
 }
 
 @media (max-width: 1199px) {
     .search .song-bar {
         width: 620px;
     }
+
+    .playlist .song-bar {
+        width: 780px;
+    }
 }
 
 @media (max-width: 978px) {
     .search .song-bar {
         width: 476px;
+    }
+
+    .playlist .song-bar {
+        width: 600px;
     }
 }
 
@@ -32,9 +44,10 @@
 }
 
 
-/* search */
+/* search, playlist */
 
-.search .song-bar.ui-scrollfix {
+.search .song-bar.ui-scrollfix,
+.playlist .song-bar.ui-scrollfix {
     position: fixed;
     top: 50px;
 }
