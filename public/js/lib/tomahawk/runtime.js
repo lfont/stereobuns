@@ -42,6 +42,10 @@ define([
         throw new Error('not implemented');
     };
     
+    TomahawkRuntime.prototype.valueForSubNode = function (node, subNode) {
+        return $(node).children(subNode).text();
+    };
+    
     TomahawkRuntime.prototype.asyncRequest = function (query, callback) {
         var promise = $.get(query);
         promise.done(function (data, textStatus, jqXHR) {
