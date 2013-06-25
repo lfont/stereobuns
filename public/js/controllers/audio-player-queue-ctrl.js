@@ -17,7 +17,8 @@ define(function () {
         $scope.songBarOptions = {
             remove: true,
             play: false,
-            add: false
+            add: false,
+            filteredPlaylists: false
         };
         
         $scope.modalOptions = {

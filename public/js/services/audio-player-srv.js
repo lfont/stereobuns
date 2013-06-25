@@ -97,15 +97,17 @@ define([
             return sound.id;
         }
         
-        function destroySounds () {
-            var url;
-            
-            for (url in soundUrlsToIds) {
-                if (soundUrlsToIds.hasOwnProperty(url)) {
-                    soundManager.destroySound(soundUrlsToIds[url]);
-                }
+        function destroySound (song) {
+            var soundId = soundUrlsToIds[song.url],
+                songIndex = queue.indexOf(song);
+            if (currentSoundId &&
+                currentSoundId === soundId) {
+                soundManager.stop(currentSoundId);
+                currentSoundId = null;
             }
-            soundUrlsToIds = {};
+            soundManager.destroySound(soundId);
+            delete soundUrlsToIds[song.url];
+            queue.splice(songIndex, 1);
         }
             
         var audioPlayerService = {
@@ -130,13 +132,19 @@ define([
             },
             
             dequeue: function (song) {
-                // TODO: remove only the selected songs
-                if (currentSoundId) {
-                    soundManager.stop(currentSoundId);
+                var oldSongs = [],
+                    i, len;
+                if (!angular.isArray(song)) {
+                    oldSongs.push(song);
+                } else {
+                    // we make a copy of the array because
+                    // the given array could be a reference of
+                    // the queue array.
+                    oldSongs = oldSongs.concat(song);
                 }
-                destroySounds();
-                currentSoundId = null;
-                queue.length = 0;
+                for (i = 0, len = oldSongs.length; i < len; i++) {
+                    destroySound(oldSongs[i]);
+                }
                 $rootScope.$broadcast('audioPlayer:dequeue');
             },
                 

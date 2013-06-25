@@ -13,10 +13,11 @@ define([
             remove: false,
             play: true,
             add: true,
-            playlists: true
+            playlists: true,
+            filteredPlaylists: true
         };
         
-        function filterPlaylistStores (playlistStores) {
+        function filterPlaylistStoresForLocation (playlistStores) {
             var playlistNamePattern = /^\/playlist\/(.*)/,
                 stores = [],
                 i, len, playlistStore, matchs;
@@ -37,11 +38,14 @@ define([
         this.setOptions = function (options) {
             var opts = angular.extend({}, DEFAULT_OPTIONS, options);
             $scope.options = opts;
+            $scope.playlistStores = $scope.options.filteredPlaylists ?
+                filterPlaylistStoresForLocation(playlistSrv.getStores()) :
+                playlistSrv.getStores();
         };
         
         $scope.songs = [];
         $scope.selectedSongs = [];
-        $scope.playlistStores = filterPlaylistStores(playlistSrv.getStores());
+        $scope.playlistStores = [];
         
         $scope.remove = function () {
             if ($scope.selectedSongs.length) {
@@ -83,8 +87,6 @@ define([
         $scope.deselect = function () {
             $scope.selectedSongs.length = 0;
         };
-        
-        this.setOptions();
     }
     
     SongBarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistSrv' ];

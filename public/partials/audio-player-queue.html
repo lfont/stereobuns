@@ -7,8 +7,8 @@
                 </div>
                 <div class="span2">
                     <h5 class="pull-right">
-                        <span ng-show="songs.length">{{ songs.length }}</span>
-                        <ng-pluralize count="songs.length"
+                        <span ng-show="queue.length">{{ queue.length }}</span>
+                        <ng-pluralize count="queue.length"
                             when="{ '0': 'empty',
                                     '1': 'song',
                                     'other': 'songs' }">
