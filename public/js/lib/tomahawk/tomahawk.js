@@ -95,8 +95,8 @@ define([
     Tomahawk.prototype.search = function (searchString) {
         var _this = this,
             qid = Date.now(),
-            resolversCount = tomahawkRuntime.resolver.instance.length,
-            resultsCount = 0;
+            resultsCount = 0,
+            resolversCount;
         
         function onTrackResults (result) {
             if (result.qid !== qid) {
@@ -119,6 +119,8 @@ define([
                 },
                 i, resolver;
             
+            // It's safe to retrieve the number of resolvers here.
+            resolversCount = tomahawkRuntime.resolver.instance.length;
             tomahawkRuntime.on('trackResults', onTrackResults);
             
             for (i = 0; i < resolversCount; i++) {
