@@ -5,38 +5,46 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'jquery',
     './runtime',
-    './resolver'
-], function ($, TomahawkRuntime, TomahawkResolver) {
+    './resolver',
+    './observable'
+], function ($, TomahawkRuntime, TomahawkResolver, Observable) {
     'use strict';
+    
+    var tomahawkRuntime;
+    
+    window.Tomahawk = tomahawkRuntime = new TomahawkRuntime();
+    window.TomahawkResolver = new TomahawkResolver();
     
     function Tomahawk (resolverNames) {
         var expectedResolversCount = resolverNames.length,
             onReadyCallbacks = [],
             ready = false;
         
+        $.extend(this, new Observable());
+        
         function onLoadScriptError (error) {
-            window.Tomahawk.log('The script ' + error.target.src + ' is not accessible.');
+            tomahawkRuntime.log('The script ' + error.target.src + ' is not accessible.');
         }
         
         function loadScript (src, callback) {
-            var script = document.createElement('script');
+            var firstScript = document.getElementsByTagName('script')[0],
+                script = document.createElement('script');
             script.type = 'text/javascript';
             script.async = true;
             script.src = src;
             script.onload = callback;
             script.onerror = onLoadScriptError;
-            var firstScript = document.getElementsByTagName('script')[0];
             firstScript.parentNode.insertBefore(script, firstScript);
         }
         
         function onLoadResolver () {
-            var len = window.Tomahawk.resolver.instance.length,
+            var len = tomahawkRuntime.resolver.instance.length,
                 i;
             
             if (expectedResolversCount === len) {
                 for (i = 0; i < len; i++) {
-                    if (window.Tomahawk.resolver.instance[i].init) {
-                        window.Tomahawk.resolver.instance[i].init();
+                    if (tomahawkRuntime.resolver.instance[i].init) {
+                        tomahawkRuntime.resolver.instance[i].init();
                     }
                 }
                 ready = true;
@@ -48,7 +56,7 @@ define([
         }
         
         function onLoadResolverError (name) {
-            window.Tomahawk.log('The resolver ' + name + ' is not accessible.');
+            tomahawkRuntime.log('The resolver ' + name + ' is not accessible.');
             expectedResolversCount--;
             onLoadResolver();
         }
@@ -85,10 +93,9 @@ define([
     }
     
     Tomahawk.prototype.search = function (searchString) {
-        var deferred = $.Deferred(),
+        var _this = this,
             qid = Date.now(),
-            results = [],
-            resolversCount = window.Tomahawk.resolver.instance.length,
+            resolversCount = tomahawkRuntime.resolver.instance.length,
             resultsCount = 0;
         
         function onTrackResults (result) {
@@ -96,11 +103,12 @@ define([
                 return;
             }
             
-            results = results.concat(result.results);
-            resultsCount++;
-            if (resultsCount === resolversCount) {
-                window.Tomahawk.offTrackResults(onTrackResults);
-                deferred.resolve(results);
+            if (++resultsCount === resolversCount) {
+                tomahawkRuntime.off('trackResults', onTrackResults);
+            }
+            
+            if (resultsCount <= resolversCount) {
+                _this.trigger('searchResult', result);
             }
         }
         
@@ -111,29 +119,27 @@ define([
                 },
                 i, resolver;
             
-            window.Tomahawk.onTrackResults(onTrackResults);
+            tomahawkRuntime.on('trackResults', onTrackResults);
             
             for (i = 0; i < resolversCount; i++) {
-                resolver = window.Tomahawk.resolver.instance[i];
+                resolver = tomahawkRuntime.resolver.instance[i];
+                
                 try {
                     resolver.search(qid, searchString);
+                    setTimeout(onTrackResults.bind(this, emptyResult),
+                               resolver.settings.timeout * 1000);
                 } catch (e) {
-                    window.Tomahawk.log('Search failed with resolver: ' +
+                    tomahawkRuntime.log('Search failed with resolver: ' +
                                         resolver.settings.name +
                                         '.Error: ' +
                                         e.message);
                     onTrackResults(emptyResult);
                 }
-                // TODO: cancle the timeout on success.
-                setTimeout(onTrackResults.bind(this, emptyResult),
-                    resolver.settings.timeout * 1000);
             }
         });
         
-        return deferred.promise();
+        return qid;
     };
     
-    window.Tomahawk = new TomahawkRuntime();
-    window.TomahawkResolver = new TomahawkResolver();
     return Tomahawk;
 });

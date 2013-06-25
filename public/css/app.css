@@ -53,6 +53,15 @@
 }
 
 
+/* search */
+
+.search .searching {
+    font-size: 2em;
+    margin-top: 10%;
+    text-align: center;
+}
+
+
 /* modal */
 
 .modal-header {

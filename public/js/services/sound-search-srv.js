@@ -13,34 +13,26 @@ define([
         'exfm'
     ]);
     
-    function SoundSearchSrvFactory ($q, $rootScope) {
+    function SoundSearchSrvFactory ($rootScope) {
+        var qid;
+        
+        tomahawk.on('searchResult', function (result) {
+            if (result.qid !== qid) {
+                return;
+            }
+            
+            $rootScope.$broadcast('soundSearch:result', result);
+            $rootScope.$apply();
+        });
         
         return {
             search: function (searchString) {
-                var deferred = $q.defer();
-                
-                var promise = tomahawk.search(searchString);
-                promise.done(function (results) {
-                    var playlist = {
-                        type: 'search',
-                        name: searchString,
-                        songs: results
-                    };
-                    
-                    deferred.resolve(playlist);
-                    $rootScope.$apply();
-                });
-                promise.fail(function (error) {
-                    deferred.reject(error);
-                    $rootScope.$apply();
-                });
-                
-                return deferred.promise;
+                qid = tomahawk.search(searchString);
             }
         };
     }
     
-    SoundSearchSrvFactory.$inject = [ '$q', '$rootScope' ];
+    SoundSearchSrvFactory.$inject = [ '$rootScope' ];
     
     return SoundSearchSrvFactory;
 });

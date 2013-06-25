@@ -3,13 +3,15 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-    'jquery'
-], function ($) {
+    'jquery',
+    './observable'
+], function ($, Observable) {
     'use strict';
     
     function TomahawkRuntime () {
-        var resolvers = [],
-            onTrackResultsCallbacks = [];
+        var resolvers = [];
+        
+        $.extend(this, new Observable());
         
         this.resolver = {};
         
@@ -23,22 +25,8 @@ define([
             }
         });
         
-        this.onTrackResults = function (callback) {
-            onTrackResultsCallbacks.push(callback);
-        };
-        
-        this.offTrackResults = function (callback) {
-            var index = onTrackResultsCallbacks.indexOf(callback);
-            onTrackResultsCallbacks.splice(index, 1);
-        };
-        
         this.addTrackResults = function (result) {
-            var callbacks = onTrackResultsCallbacks.slice(0),
-                i, len;
-            
-            for (i = 0, len = callbacks.length; i < len; i++) {
-                callbacks[i](result);
-            }
+            this.trigger('trackResults', result);
         };
     }
     
