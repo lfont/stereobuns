@@ -9,10 +9,11 @@ define([
     'use strict';
     
     var tomahawk = new Tomahawk([
-        'soundcloud',
         'exfm',
-        'official.fm',
+        'soundcloud',
         'jamendo'
+        //'youtube',
+        //'official.fm'
     ]);
     
     function SoundSearchSrvFactory ($rootScope) {
