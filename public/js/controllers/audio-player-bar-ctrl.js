@@ -6,9 +6,25 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function AudioPlayerBarCtrl ($scope, audioPlayerSrv) {
+    function AudioPlayerBarCtrl ($scope, audioPlayerSrv, playlistSrv) {
+        var lovedPlaylistStore = playlistSrv.getStore('Loved');
+        
+        function setSong (song) {
+            $scope.song = song;
+            $scope.isLoved = song ?
+                lovedPlaylistStore.contains($scope.song) :
+                false;
+        }
+        
+        function shouldUpdateLoveStatus (storeName, song) {
+            return storeName === 'Loved' &&
+                   $scope.song &&
+                   $scope.song.url === song.url;
+        }
+        
         $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
         $scope.song = null;
+        $scope.isLoved = false;
         $scope.progress = null;
         $scope.isPlaying = false;
         $scope.shouldRepeat = false;
@@ -16,7 +32,7 @@ define(function () {
         
         $scope.$on('audioPlayer:play', function (event, song) {
             $scope.isPlaying = true;
-            $scope.song = song;
+            setSong(song);
         });
         
         $scope.$on('audioPlayer:pause', function (event) {
@@ -29,7 +45,7 @@ define(function () {
         
         $scope.$on('audioPlayer:stop', function (event) {
             $scope.isPlaying = false;
-            $scope.song = null;
+            setSong(null);
         });
         
         $scope.$on('audioPlayer:playing', function (event, progress) {
@@ -38,6 +54,20 @@ define(function () {
         
         $scope.$on('audioPlayerQueue:close', function (event) {
             $scope.shouldOpenQueue = false;
+        });
+        
+        $scope.$on('playlistStore:add', function (event, storeName, song) {
+            if (shouldUpdateLoveStatus(storeName, song) &&
+                !$scope.isLoved) {
+                $scope.isLoved = true;
+            }
+        });
+        
+        $scope.$on('playlistStore:remove', function (event, storeName, song) {
+            if (shouldUpdateLoveStatus(storeName, song) &&
+                $scope.isLoved) {
+                $scope.isLoved = false;
+            }
         });
         
         $scope.previous = function () {
@@ -65,9 +95,17 @@ define(function () {
             $scope.shouldOpenQueue = !$scope.shouldOpenQueue;
             $scope.$broadcast('audioPlayerBar:toggleQueue', $scope.shouldOpenQueue);
         };
+        
+        $scope.toggleLoveStatus = function () {
+            if ($scope.isLoved) {
+                lovedPlaylistStore.remove($scope.song);
+            } else {
+                lovedPlaylistStore.add($scope.song);
+            }
+        };
     }
     
-    AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+    AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'playlistSrv' ];
     
     return AudioPlayerBarCtrl;
 });

@@ -10,9 +10,23 @@ define([
     
     function scrollfixDrtFactory ($document, $window, $parse) {
         
+        function computeOffset (iElement, offset) {
+            var top = iElement.offset().top;
+            
+            if (!offset) {
+                return top;
+            } else if (offset.charAt(0) === '-') {
+                return top - parseInt(offset.substr(1), 10);
+            } else if (offset.charAt(0) === '+') {
+                return top + parseInt(offset.substr(1), 10);
+            }
+            
+            return parseInt(offset, 10);
+        }
+        
         return {
             link: function (scope, iElement, iAttrs) {
-                var top = iElement.offset().top,
+                var offsetReady = false,
                     config = {
                         offset: 0,
                         scroller: $window
@@ -22,16 +36,6 @@ define([
                     config = angular.extend(config, $parse(iAttrs.uiScrollfix)(scope));
                 }
                 
-                if (!config.offset) {
-                    config.offset = top;
-                } else if (config.offset.charAt(0) === '-') {
-                    config.offset = top - parseInt(config.offset.substr(1), 10);
-                } else if (config.offset.charAt(0) === '+') {
-                    config.offset = top + parseInt(config.offset.substr(1), 10);
-                } else {
-                    config.offset = parseInt(config.offset, 10);
-                }
-                
                 config.scroller = typeof(config.scroller) === 'object' ?
                     angular.element(config.scroller) :
                     $document.find(config.scroller);
@@ -39,6 +43,12 @@ define([
                 config.scroller.bind('scroll.ui-scrollfix', function () {
                     var element = config.scroller.get(0),
                         offset = element.pageYOffset || element.scrollTop || 0;
+                    
+                    if (!offsetReady) {
+                        // It should be safe to compute the offset now.
+                        config.offset = computeOffset(iElement, config.offset);
+                        offsetReady = true;
+                    }
                     
                     if (!iElement.hasClass('ui-scrollfix') && offset > config.offset) {
                         iElement.addClass('ui-scrollfix');

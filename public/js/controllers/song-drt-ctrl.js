@@ -9,7 +9,13 @@ define(function () {
     function SongDrtCtrl ($scope, audioPlayerSrv, playlistSrv) {
         var currentSong = audioPlayerSrv.getCurrentSong(),
             lovedPlaylistStore = playlistSrv.getStore('Loved');
-            
+        
+        function shouldUpdateLoveStatus (storeName, song) {
+            return storeName === 'Loved' &&
+                   $scope.song &&
+                   $scope.song.url === song.url;
+        }
+        
         $scope.isPlaying = audioPlayerSrv.isPlaying();
         $scope.isLoved = lovedPlaylistStore.contains($scope.song);
         
@@ -31,6 +37,20 @@ define(function () {
             $scope.isPlaying = true;
         });
         
+        $scope.$on('playlistStore:add', function (event, storeName, song) {
+            if (shouldUpdateLoveStatus(storeName, song) &&
+                !$scope.isLoved) {
+                $scope.isLoved = true;
+            }
+        });
+        
+        $scope.$on('playlistStore:remove', function (event, storeName, song) {
+            if (shouldUpdateLoveStatus(storeName, song) &&
+                $scope.isLoved) {
+                $scope.isLoved = false;
+            }
+        });
+        
         $scope.isCurrent = function () {
             return $scope.song === currentSong;
         };
@@ -46,10 +66,8 @@ define(function () {
         $scope.toggleLoveStatus = function () {
             if ($scope.isLoved) {
                 lovedPlaylistStore.remove($scope.song);
-                $scope.isLoved = false;
             } else {
                 lovedPlaylistStore.add($scope.song);
-                $scope.isLoved = true;
             }
         };
     }

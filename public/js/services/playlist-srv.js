@@ -8,7 +8,7 @@ define([
 ], function (angular) {
     'use strict';
     
-    function playlistSrvFactory () {
+    function playlistSrvFactory ($rootScope) {
         var playlistStores = {};
         
         function PlaylistStore (name) {
@@ -46,6 +46,7 @@ define([
                     s = newSongs[i];
                     if (!this.contains(s)) {
                         songs.push(s);
+                        $rootScope.$broadcast('playlistStore:add', this.name, song);
                     }
                 }
             };
@@ -65,6 +66,7 @@ define([
                     for (j = 0, jlen = songs.length; j < jlen; j++) {
                         if (songs[j].url === s.url) {
                             songs.splice(j, 1);
+                            $rootScope.$broadcast('playlistStore:remove', this.name, song);
                             break;
                         }
                     }
@@ -100,7 +102,7 @@ define([
         };
     }
     
-    playlistSrvFactory.$inject = [];
+    playlistSrvFactory.$inject = [ '$rootScope' ];
     
     return playlistSrvFactory;
 });

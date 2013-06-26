@@ -44,12 +44,32 @@
 }
 
 
-/* search, playlist */
+/* actions */
+
+.audio-player-bar .actions a,
+.song .media-body .actions a {
+    color: grey;
+    text-decoration: none;
+}
+
+.audio-player-bar .actions .icon-heart,
+.audio-player-bar .actions .icon-heart-empty:hover,
+.song .media-body .actions .icon-heart,
+.song .media-body .actions .icon-heart-empty:hover {
+    color: #ec352f;
+}
+
+
+/* scrollfix */
 
 .search .song-bar.ui-scrollfix,
 .playlist .song-bar.ui-scrollfix {
     position: fixed;
     top: 50px;
+}
+
+.audio-player-queue .song-bar.ui-scrollfix {
+    position: fixed;
 }
 
 
@@ -115,16 +135,6 @@
     margin-bottom: 2px;
 }
 
-.song .media-body .actions a {
-    color: grey;
-    text-decoration: none;
-}
-
-.song .media-body .actions .icon-heart,
-.song .media-body .actions .icon-heart-empty:hover {
-    color: red;
-}
-
 
 /* audio player bar */
 
@@ -170,8 +180,4 @@
 
 .audio-player-queue .song-bar {
     width: 513px;
-}
-
-.audio-player-queue .song-bar.ui-scrollfix {
-    position: fixed;
 }
