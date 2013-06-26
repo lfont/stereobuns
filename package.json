@@ -11,6 +11,8 @@
   "author": "Loïc Fontaine",
   "license": "MIT",
   "dependencies": {
-    "express": "~3.2.6"
+    "express": "~3.2.6",
+    "socket.io": "~0.9.16",
+    "underscore": "~1.4.4"
   }
 }

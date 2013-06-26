@@ -15,7 +15,8 @@ require.config({
         'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
         'angular-ui-bootstrap-modal': '../components/angular-ui-bootstrap/src/modal/modal',
         'angular-ui-bootstrap-dropdownToggle': '../components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle',
-        'soundmanager2': '../components/soundmanager/script/soundmanager2'
+        'soundmanager2': '../components/soundmanager/script/soundmanager2',
+        'socket.io': '/socket.io/socket.io.js'
     },
     shim: {
         angular: {
@@ -42,17 +43,16 @@ require.config({
         },
         soundmanager2: {
             exports: 'soundManager'
+        },
+        'socket.io': {
+            exports: 'io'
         }
     },
     packages: [
         'controllers',
         'services',
         'filters',
-        'directives',
-        {
-            name: 'lib/tomahawk',
-            main: 'tomahawk'
-        }
+        'directives'
     ]
 });
 

@@ -4,22 +4,19 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-    'lib/tomahawk'
-], function (Tomahawk) {
+    'socket.io'
+], function (socketio) {
     'use strict';
     
-    var tomahawk = new Tomahawk([
-        'exfm',
-        'soundcloud',
-        'jamendo'
-        //'youtube',
-        //'official.fm'
-    ]);
-    
     function SoundSearchSrvFactory ($rootScope) {
-        var qid;
+        var socket = socketio.connect('/'),
+            qid;
         
-        tomahawk.on('searchResult', function (result) {
+        socket.on('searchQuery', function (id) {
+            qid = id;
+        });
+        
+        socket.on('searchResult', function (result) {
             if (result.qid !== qid) {
                 return;
             }
@@ -30,7 +27,7 @@ define([
         
         return {
             search: function (searchString) {
-                qid = tomahawk.search(searchString);
+                socket.emit('search', searchString);
             }
         };
     }
