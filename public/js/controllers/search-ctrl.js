@@ -14,6 +14,7 @@ define(function () {
         }
         
         function search (query) {
+            $scope.searchFilter = null;
             $scope.isSearching = true;
             $scope.playlist.name = query;
             $scope.playlist.songs.length = 0;
@@ -24,7 +25,7 @@ define(function () {
             $scope.isSearching = false;
             $scope.playlist.songs = $scope.playlist.songs.concat(result.results);
             $scope.selectedSongs.length = 0;
-            $scope.filterBy();
+            $scope.filterBy($scope.searchFilter);
         });
         
         $scope.playlistsTemplateUrl = 'playlists.html';
