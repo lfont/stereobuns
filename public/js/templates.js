@@ -4,7 +4,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-    'jquery',
+    'angular',
     'text!partials/search.html',
     'text!partials/search-bar.html',
     'text!partials/audio-player-bar.html',
@@ -13,7 +13,7 @@ define([
     'text!partials/song-bar-drt.html',
     'text!partials/playlists.html',
     'text!partials/playlist.html'
-], function ($, searchTemplate, searchBarTemplate,
+], function (angular, searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
              songDrtTemplate, songBarDrtTemplate,
              playlistsTemplate, playlistTemplate) {
@@ -21,24 +21,24 @@ define([
     
     function wrap (name, content) {
         var script = document.createElement('script');
-        script.type = 'text/ng-template';
         script.id = name;
+        script.type = 'text/ng-template';
         script.innerHTML = content;
         return script;
     }
     
-    $(function () {
-        var $body = $(document.body);
-        $body.prepend(wrap('search.html', searchTemplate));
-        $body.prepend(wrap('search-bar.html', searchBarTemplate));
+    angular.element('document').ready(function () {
+        var body = angular.element('body');
+        body.prepend(wrap('search.html', searchTemplate));
+        body.prepend(wrap('search-bar.html', searchBarTemplate));
         
-        $body.prepend(wrap('audio-player-bar.html', audioPlayerBarTemplate));
-        $body.prepend(wrap('audio-player-queue.html', audioPlayerQueueTemplate));
+        body.prepend(wrap('audio-player-bar.html', audioPlayerBarTemplate));
+        body.prepend(wrap('audio-player-queue.html', audioPlayerQueueTemplate));
         
-        $body.prepend(wrap('song-drt.html', songDrtTemplate));
-        $body.prepend(wrap('song-bar-drt.html', songBarDrtTemplate));
+        body.prepend(wrap('song-drt.html', songDrtTemplate));
+        body.prepend(wrap('song-bar-drt.html', songBarDrtTemplate));
         
-        $body.prepend(wrap('playlists.html', playlistsTemplate));
-        $body.prepend(wrap('playlist.html', playlistTemplate));
+        body.prepend(wrap('playlists.html', playlistsTemplate));
+        body.prepend(wrap('playlist.html', playlistTemplate));
     });
 });
