@@ -12,10 +12,6 @@ define([
         var socket = socketio.connect('/'),
             qid;
         
-        socket.on('searchQuery', function (id) {
-            qid = id;
-        });
-        
         socket.on('searchResult', function (result) {
             if (result.qid !== qid) {
                 return;
@@ -27,7 +23,8 @@ define([
         
         return {
             search: function (searchString) {
-                socket.emit('search', searchString);
+                qid = Date.now().toString();
+                socket.emit('searchQuery', qid, searchString);
             }
         };
     }
