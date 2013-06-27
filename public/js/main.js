@@ -20,7 +20,7 @@ require.config({
     },
     shim: {
         angular: {
-            deps: [ 'jquery' ], // jql is jquery
+            deps: [ 'jquery' ], // replace jqLite by jquery
             exports: 'angular'
         },
         'angular-ui-utils-keypress': {
@@ -65,8 +65,9 @@ require([
 ], function (angular, app) {
     'use strict';
     
-    angular.element('document').ready(function () {
-        var html = angular.element('html');
+    var doc = angular.element(document);
+    doc.ready(function () {
+        var html = doc.find('html');
         angular.bootstrap(html, [ app.name ]);
         // Because of RequireJS we need to bootstrap the app app manually
         // and Angular Scenario runner won't be able to communicate with our app

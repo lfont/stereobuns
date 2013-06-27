@@ -27,8 +27,8 @@ define([
         return script;
     }
     
-    angular.element('document').ready(function () {
-        var body = angular.element('body');
+    angular.element(document).ready(function () {
+        var body = angular.element(document.body);
         body.prepend(wrap('search.html', searchTemplate));
         body.prepend(wrap('search-bar.html', searchBarTemplate));
         

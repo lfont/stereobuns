@@ -1,0 +1,33 @@
+/* scrollfix */
+
+.search .song-bar.ui-scrollfix,
+.playlist .song-bar.ui-scrollfix {
+    position: fixed;
+    top: 50px;
+}
+
+.audio-player-queue .song-bar.ui-scrollfix {
+    position: fixed;
+}
+
+
+/* song */
+
+.song {
+    padding: 0 0 10px 0;
+}
+
+.song .media-body p {
+    margin-bottom: 2px;
+}
+
+
+/* modal */
+
+.modal-header {
+    background-color: #1b1b1b;
+    border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    color: #999999;
+}

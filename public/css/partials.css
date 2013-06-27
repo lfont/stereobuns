@@ -1,0 +1,86 @@
+/* search */
+
+.search .searching {
+    font-size: 2em;
+    margin-top: 10%;
+    text-align: center;
+}
+
+
+/* song bar */
+
+.song-bar {
+    margin-bottom: .5em;
+}
+
+.song-bar form {
+    width: 100%;
+}
+
+
+/* song list */
+
+.song-list li {
+    border-bottom: 1px solid #f2f2f2;
+    padding: 1em .5em .2em .5em;
+}
+
+.song-list li:last-child {
+    border-bottom: 0;
+}
+
+.song-list li.selected,
+.song-list li:hover.selected {
+    background-color: #3892FD;
+}
+
+.song-list li:hover {
+    background-color: #EBF4FF;
+}
+
+
+/* audio player bar */
+
+.audio-player-bar {
+    color: grey;
+}
+
+.audio-player-bar .progression-bar > div {
+    line-height: 10px;
+    min-height: 20px;
+    padding-top: .5em;
+}
+
+.audio-player-bar .progression-bar .progress {
+    height: 10px;
+    margin-bottom: 0;
+}
+
+.audio-player-bar .middle {
+    margin-top: 1.5em;
+}
+
+.audio-player-bar .button-bar a {
+    color: white;
+    margin: .5em;
+    text-decoration: none;
+}
+
+.audio-player-bar .button-bar a.active {
+    color: #0088cc;
+}
+
+.audio-player-bar .button-bar a:first-child {
+    margin-left: 0;
+}
+
+.audio-player-bar .button-bar a:last-child {
+    margin-right: 0;
+}
+
+
+/* audio player queue */
+
+.audio-player-queue .song-bar {
+    width: 513px;
+}

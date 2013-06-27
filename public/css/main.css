@@ -1,0 +1,40 @@
+@import url("../components/bootstrap/docs/assets/css/bootstrap.css");
+@import url("../components/bootstrap/docs/assets/css/bootstrap-responsive.css");
+@import url("../components/font-awesome/build/assets/font-awesome/css/font-awesome.css");
+@import url("common.css");
+@import url("directives.css");
+@import url("partials.css");
+
+@media (min-width: 1200px) {
+    .search .song-bar {
+        width: 770px;
+    }
+
+    .playlist .song-bar {
+        width: 970px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .search .song-bar {
+        width: 620px;
+    }
+
+    .playlist .song-bar {
+        width: 780px;
+    }
+}
+
+@media (max-width: 978px) {
+    .search .song-bar {
+        width: 476px;
+    }
+
+    .playlist .song-bar {
+        width: 600px;
+    }
+}
+
+/*@media (max-width: 767px) {
+
+}*/

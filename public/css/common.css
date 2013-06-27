@@ -1,0 +1,26 @@
+/* layout */
+
+.content {
+    padding: 40px 0 60px 0;
+}
+
+.filters,
+.playlists {
+    margin-top: 3em;
+}
+
+
+/* actions */
+
+.audio-player-bar .actions a,
+.song .media-body .actions a {
+    color: grey;
+    text-decoration: none;
+}
+
+.audio-player-bar .actions .icon-heart,
+.audio-player-bar .actions .icon-heart-empty:hover,
+.song .media-body .actions .icon-heart,
+.song .media-body .actions .icon-heart-empty:hover {
+    color: #ec352f;
+}
