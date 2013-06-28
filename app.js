@@ -3,8 +3,9 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var express = require('express'),
-    routes  = require('./routes');
+var express   = require('express'),
+    routes    = require('./routes'),
+    oauth     = require('./lib/oauth');
 
 var app = module.exports = express();
 
@@ -16,6 +17,12 @@ app.configure(function () {
     app.set('views', __dirname + '/views');
     
     app.use(express.favicon());
+    app.use(express.bodyParser());
+    app.use(express.cookieParser('secret string'));
+    app.use(express.session());
+    
+    oauth.configure(app); // before router but after the others!!!
+    
     app.use(app.router);
     
     app.enable('verbose errors');

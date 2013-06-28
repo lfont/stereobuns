@@ -12,11 +12,13 @@ define([
     'text!partials/song-drt.html',
     'text!partials/song-bar-drt.html',
     'text!partials/playlists.html',
-    'text!partials/playlist.html'
+    'text!partials/playlist.html',
+    'text!partials/user-menu.html'
 ], function (angular, searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
              songDrtTemplate, songBarDrtTemplate,
-             playlistsTemplate, playlistTemplate) {
+             playlistsTemplate, playlistTemplate,
+             userMenuTemplate) {
     'use strict';
     
     function wrap (name, content) {
@@ -40,5 +42,7 @@ define([
         
         body.prepend(wrap('playlists.html', playlistsTemplate));
         body.prepend(wrap('playlist.html', playlistTemplate));
+        
+        body.prepend(wrap('user-menu.html', userMenuTemplate));
     });
 });

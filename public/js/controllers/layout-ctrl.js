@@ -8,6 +8,7 @@ define(function () {
     
     function LayoutCtrl ($scope) {
         $scope.searchBarTemplateUrl = 'search-bar.html';
+        $scope.userMenuTemplateUrl = 'user-menu.html';
         $scope.audioPlayerBarTemplateUrl = 'audio-player-bar.html';
     }
     

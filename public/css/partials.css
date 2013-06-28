@@ -1,3 +1,13 @@
+/* user menu */
+
+.user-menu {
+    margin-top: 5px;
+}
+
+.user-menu .btn-group {
+    margin-top: 0;
+}
+
 /* search */
 
 .search .searching {

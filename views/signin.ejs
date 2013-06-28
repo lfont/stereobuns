@@ -20,23 +20,17 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
                     </a>
                      
                     <a class="brand" href="/">SoundRocket</a>
-                    <div class="pull-right" ng-include="userMenuTemplateUrl"></div>
                      
-                    <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed">
-                        <div ng-include="searchBarTemplateUrl"></div>
-                    </div>
+                    <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed"></div>
                 </div>
             </div>
         </div>
         <div class="content">
-            <div class="container" ng-view></div>
-        </div>
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="navbar-inner">
-                <div class="container" ng-include="audioPlayerBarTemplateUrl"></div>
+            <div class="container" ng-view>
+                <a href="/auth/twitter">Twitter</a>
             </div>
         </div>
-        <script data-main="/js/main" src="/components/requirejs/require.js"></script>
+        <!--<script data-main="/js/main" src="/components/requirejs/require.js"></script>-->
 <!--
         <script>
             var _gaq = _gaq || [];    
