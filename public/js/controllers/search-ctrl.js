@@ -7,44 +7,69 @@ define(function () {
     'use strict';
     
     function SearchCtrl ($scope, $routeParams, $filter, soundSearchSrv) {
-        var songFilter = $filter('song');
+        var songFilter = $filter('song'),
+            searchResults = [];
         
         function getSelectedSongIndex (song) {
             return $scope.selectedSongs.indexOf(song);
         }
         
+        function aggregateResults () {
+            var results = [],
+                i, len;
+            
+            searchResults.sort(function (a, b) {
+                if (a.weight > b.weight) {
+                    return -1;
+                }
+                
+                if (a.weight < b.weight) {
+                    return 1;
+                }
+                
+                return 0;
+            });
+            
+            for (i = 0, len = searchResults.length; i < len; i++) {
+                results = results.concat(searchResults[i].results);
+            }
+            
+            return results;
+        }
+        
         function search (query) {
+            searchResults.length = 0;
             $scope.searchFilter = null;
             $scope.isSearching = true;
-            $scope.playlist.name = query;
-            $scope.playlist.songs.length = 0;
+            $scope.searchQuery = query;
+            $scope.songs.length = 0;
             soundSearchSrv.search(query);
         }
         
         $scope.$on('soundSearch:result', function (event, result) {
+            searchResults.push(result);
             $scope.isSearching = false;
-            $scope.playlist.songs = $scope.playlist.songs.concat(result.results);
             $scope.selectedSongs.length = 0;
             $scope.filterBy($scope.searchFilter);
         });
         
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.isSearching = false;
-        $scope.playlist = {
-            name: null,
-            songs: []
-        };
-        $scope.filteredSongs = [];
+        $scope.songs = [];
         $scope.selectedSongs = [];
         $scope.searchFilter = null;
         
         $scope.filterBy = function (property) {
+            var allSongs, filteredSongs;
+            
             $scope.searchFilter = property;
             
-            if ($scope.playlist) {
-                $scope.filteredSongs = songFilter($scope.playlist.songs,
-                                                  $scope.searchFilter,
-                                                  $scope.playlist.name);
+            if (searchResults.length) {
+                allSongs = aggregateResults();
+                filteredSongs = songFilter(allSongs,
+                                           $scope.searchFilter,
+                                           $scope.searchQuery);
+                $scope.songs = filteredSongs;
             }
         };
         
@@ -59,6 +84,10 @@ define(function () {
         
         $scope.isSongSelected = function (song) {
             return getSelectedSongIndex(song) > -1;
+        };
+        
+        $scope.hasSearchResult = function () {
+            return searchResults.length > 0;
         };
         
         search($routeParams.q);

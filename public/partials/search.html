@@ -8,8 +8,7 @@
             <div class="span2">
                 <div class="filters">
                     <h4>Search</h4>
-                    <ul class="nav nav-pills nav-stacked"
-                        ng-show="playlist.songs.length">
+                    <ul class="nav nav-pills nav-stacked" ng-show="hasSearchResult()">
                         <li ng-class="{ active: !searchFilter }">
                             <a href="#" ng-click="filterBy(); $event.preventDefault()">
                                 <i class="icon-search"></i>
@@ -30,20 +29,20 @@
             </div>
             
             <div class="span8">
-                <h1>{{ playlist.name }}</h1>
+                <h1>{{ searchQuery }}</h1>
                 <p>
-                    <span ng-show="filteredSongs.length">{{ filteredSongs.length }}</span>
-                    <ng-pluralize count="filteredSongs.length"
+                    <span ng-show="songs.length">{{ songs.length }}</span>
+                    <ng-pluralize count="songs.length"
                         when="{ '0': 'no song',
                                 '1': 'song',
                                 'other': 'songs' }">
                     </ng-pluralize>
                 </p>
-                <div ng-show="playlist.songs.length">
-                    <songbar all-songs="filteredSongs" selected-songs="selectedSongs"
+                <div ng-show="songs.length">
+                    <songbar all-songs="songs" selected-songs="selectedSongs"
                              ui-scrollfix="{ offset: '-50' }"></songbar>
                     <ul class="media-list song-list">
-                        <li ng-repeat="song in filteredSongs"
+                        <li ng-repeat="song in songs"
                             ng-click="$parent.toggleSongSelection(song)"
                             ng-class="{ selected: $parent.isSongSelected(song) }">
                             <song data="song"></song>
