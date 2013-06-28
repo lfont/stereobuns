@@ -12,8 +12,7 @@ define([
         '$locationProvider',
         '$routeProvider',
         function ($locationProvider, $routeProvider) {
-            // TODO: The server must knows the routes before we can enable the html5 mode.
-            $locationProvider.html5Mode(false);
+            $locationProvider.html5Mode(true);
             $routeProvider.when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
                           .when('/playlist/:name', { templateUrl: 'playlist.html', controller: 'PlaylistCtrl' })
                           .otherwise({ redirectTo: '/playlist/Loved' });

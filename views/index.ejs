@@ -9,7 +9,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <title>SoundRocket</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="/css/main.css">
     </head>
     <body ng-controller="LayoutCtrl">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,7 +19,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
                         <i class="icon-align-justify"></i>
                     </a>
                      
-                    <a class="brand" href="#/home">SoundRocket</a>
+                    <a class="brand" href="/">SoundRocket</a>
                      
                     <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed">
                         <div ng-include="searchBarTemplateUrl"></div>
@@ -35,7 +35,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
                 <div class="container" ng-include="audioPlayerBarTemplateUrl"></div>
             </div>
         </div>
-        <script data-main="js/main" src="components/requirejs/require.js"></script>
+        <script data-main="/js/main" src="/components/requirejs/require.js"></script>
 <!--
         <script>
             var _gaq = _gaq || [];    
