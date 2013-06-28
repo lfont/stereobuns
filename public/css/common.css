@@ -15,7 +15,23 @@
 .audio-player-bar .actions a,
 .song .media-body .actions a {
     color: grey;
+    margin: 0 .5em;
     text-decoration: none;
+}
+
+.audio-player-bar .actions a:hover,
+.song .media-body .actions a:hover {
+    color: #0088cc;
+}
+
+.audio-player-bar .actions a:first-child,
+.song .media-body .actions a:first-child {
+    margin-left: 0;
+}
+
+.audio-player-bar .actions a:last-child,
+.song .media-body .actions a:last-child {
+    margin-right: 0;
 }
 
 .audio-player-bar .actions .icon-heart,

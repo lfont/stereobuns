@@ -23,9 +23,9 @@
                 </ng-pluralize>
             </button>
             
-            <button class="btn" ng-click="add()" ng-show="options.add">
+            <button class="btn" ng-click="queue()" ng-show="options.queue">
                 <i class="icon-plus"></i>
-                Add
+                Queue
                 <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
                 <ng-pluralize count="selectedSongs.length"
                     when="{ '0': 'All',

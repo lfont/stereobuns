@@ -17,7 +17,7 @@ define(function () {
         $scope.songBarOptions = {
             remove: true,
             play: false,
-            add: false,
+            queue: false,
             filteredPlaylists: false
         };
         
@@ -25,6 +25,10 @@ define(function () {
             backdrop: false,
             backdropClick: false,
             keyboard: true
+        };
+        
+        $scope.songOptions = {
+            queue: false
         };
         
         $scope.$on('audioPlayer:dequeue', function (event) {

@@ -46,7 +46,7 @@ define([
                     s = newSongs[i];
                     if (!this.contains(s)) {
                         songs.push(s);
-                        $rootScope.$broadcast('playlistStore:add', this.name, song);
+                        $rootScope.$broadcast('playlistStore:add', this.name, s);
                     }
                 }
             };
@@ -66,7 +66,7 @@ define([
                     for (j = 0, jlen = songs.length; j < jlen; j++) {
                         if (songs[j].url === s.url) {
                             songs.splice(j, 1);
-                            $rootScope.$broadcast('playlistStore:remove', this.name, song);
+                            $rootScope.$broadcast('playlistStore:remove', this.name, s);
                             break;
                         }
                     }

@@ -12,7 +12,7 @@ define([
         var DEFAULT_OPTIONS = {
             remove: false,
             play: true,
-            add: true,
+            queue: true,
             playlists: true,
             filteredPlaylists: true
         };
@@ -67,7 +67,7 @@ define([
             $scope.deselect();
         };
         
-        $scope.add = function () {
+        $scope.queue = function () {
             if ($scope.selectedSongs.length) {
                 audioPlayerSrv.enqueue($scope.selectedSongs);
             } else {
@@ -82,6 +82,7 @@ define([
             } else {
                 playlistStore.add($scope.songs);
             }
+            $scope.deselect();
         };
         
         $scope.deselect = function () {

@@ -19,6 +19,10 @@ define(function () {
                 iAttrs.$observe('data', function (value) {
                     scope.song = scope.$parent.$eval(value);
                 });
+                
+                iAttrs.$observe('options', function (value) {
+                    controller.setOptions(scope.$parent.$eval(value));
+                });
             }
         };
     }

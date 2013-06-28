@@ -3,10 +3,16 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-define(function () {
+define([
+    'angular'
+], function (angular) {
     'use strict';
 
     function SongDrtCtrl ($scope, audioPlayerSrv, playlistSrv) {
+        var DEFAULT_OPTIONS = {
+            queue: true
+        };
+        
         var currentSong = audioPlayerSrv.getCurrentSong(),
             lovedPlaylistStore = playlistSrv.getStore('Loved');
         
@@ -15,6 +21,11 @@ define(function () {
                    $scope.song &&
                    $scope.song.url === song.url;
         }
+        
+        this.setOptions = function (options) {
+            var opts = angular.extend({}, DEFAULT_OPTIONS, options);
+            $scope.options = opts;
+        };
         
         $scope.isPlaying = audioPlayerSrv.isPlaying();
         $scope.isLoved = lovedPlaylistStore.contains($scope.song);
@@ -61,6 +72,10 @@ define(function () {
             } else {
                 audioPlayerSrv.play($scope.song);
             }
+        };
+        
+        $scope.queue = function () {
+            audioPlayerSrv.enqueue($scope.song);
         };
         
         $scope.toggleLoveStatus = function () {
