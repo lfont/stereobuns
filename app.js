@@ -21,7 +21,8 @@ app.configure(function () {
     app.use(express.cookieParser('secret string'));
     app.use(express.session());
     
-    oauth.configure(app); // before router but after the others!!!
+    // before the app.router!!!
+    app.use(oauth.middleware(app));
     
     app.use(app.router);
     
