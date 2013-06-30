@@ -3,34 +3,38 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var site = require('./site'),
-    user = require('./user');
+var site    = require('./site'),
+    user    = require('./user'),
+    userApi = require('./api/user');
 
-function restrict (req, res, next) {
-    if (req.signedCookies.user) {
-        next();
-        return;
+function ensureAuthenticated (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
     }
     
-    if (req.user) {
-        res.cookie('user', {
-            email: 'foo',
-            name: 'bar',
-            avatar: 'http://my.avatar.com'
-        }, {
-            signed: true,
-            maxAge: 1000 * 60 * 60 * 24,
-        });
-        next();
+    // respond with html page
+    if (req.accepts('html')) {
+        res.redirect('/');
         return;
     }
 
-    res.redirect('/');
+    res.status(401);
+    
+    // respond with json
+    if (req.accepts('json')) {
+        res.send({ error: 'Unauthorized' });
+        return;
+    }
+
+    // default to plain-text. send()
+    res.type('txt').send('Unauthorized');
 }
 
 exports.register = function (app) {
-    app.get('/', site.signin);
-    app.get('/home', restrict, user.home);
-    app.get('/search', restrict, user.home);
-    app.get('/playlist/:name', restrict, user.home);
+    app.get('/', site.index);
+    app.get('/home', ensureAuthenticated, user.home);
+    app.get('/search', ensureAuthenticated, user.home);
+    app.get('/playlist/:name', ensureAuthenticated, user.home);
+    
+    app.get('/api/user', ensureAuthenticated, userApi.get);
 };

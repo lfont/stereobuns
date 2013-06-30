@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": "",
+  "repository": "git@github.com:lfont/SoundRocket.git",
   "author": "Loïc Fontaine",
   "license": "MIT",
   "dependencies": {
@@ -15,6 +15,8 @@
     "socket.io": "~0.9.16",
     "underscore": "~1.4.4",
     "ejs": "~0.8.4",
-    "everyauth": "~0.4.4"
+    "mongoose": "~3.6.13",
+    "passport": "~0.1.17",
+    "passport-google-oauth": "~0.1.5"
   }
 }

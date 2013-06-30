@@ -8,15 +8,17 @@ define([
     './sound-search-srv',
     './audio-player-srv',
     './artwork-srv',
-    './playlist-srv'
+    './playlist-srv',
+    './user-srv'
 ], function (angular, SoundSearchSrvFactory,
              AudioPlayerSrvFactory, ArtworkSrvFactory,
-             playlistSrvFactory) {
+             playlistSrvFactory, userSrvFactory) {
     'use strict';
     
     return angular.module('soundrocket.services', [])
                   .service('soundSearchSrv', SoundSearchSrvFactory)
                   .service('audioPlayerSrv', AudioPlayerSrvFactory)
                   .service('artworkSrv', ArtworkSrvFactory)
-                  .service('playlistSrv', playlistSrvFactory);
+                  .service('playlistSrv', playlistSrvFactory)
+                  .service('userSrv', userSrvFactory);
 });
