@@ -8,7 +8,7 @@ define([
 ], function (angular) {
     'use strict';
     
-    function playlistSrvFactory ($rootScope) {
+    function playlistSrvFactory ($rootScope, $q, $http) {
         var playlistStores = {};
         
         function PlaylistStore (name) {
@@ -74,35 +74,40 @@ define([
             };
         }
         
-        function initializeStores (storeNames) {
-            var i, len, storeName;
-            for (i = 0, len = storeNames.length; i < len; i++) {
-                storeName = storeNames[i];
-                playlistStores[storeName] = new PlaylistStore(storeName);
-            }
-        }
-        
-        initializeStores([ 'Loved', 'My Collection' ]);
-        
         return {
             getStores: function () {
-                var stores = [],
-                    property;
-                for (property in playlistStores) {
-                    if (playlistStores.hasOwnProperty(property)) {
-                        stores.push(playlistStores[property]);
-                    }
-                }
-                return stores;
+                var deferred = $q.defer();
+                $http
+                    .get('/api/me/playlist')
+                    .success(function (data, status, headers, config) {
+                        var i, len;
+                        for (i = 0, len = data.length; i < len; i++) {
+                            if (!playlistStores[data[i].name]) {
+                                playlistStores[data[i].name] = new PlaylistStore(data[i].name);
+                            }
+                        }
+                        deferred.resolve(playlistStores);
+                    })
+                    .error(function (data, status, headers, config) {
+                        deferred.reject(status);
+                    });
+                return deferred.promise;
             },
             
             getStore: function (name) {
-                return playlistStores[name];
+                var deferred = $q.defer();
+                var promise = this.getStores();
+                promise.then(function (playlistStores) {
+                    deferred.resolve(playlistStores[name]);
+                }, function (error)  {
+                    deferred.reject(error);
+                });
+                return deferred.promise;
             }
         };
     }
     
-    playlistSrvFactory.$inject = [ '$rootScope' ];
+    playlistSrvFactory.$inject = [ '$rootScope', '$q', '$http' ];
     
     return playlistSrvFactory;
 });

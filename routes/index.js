@@ -3,9 +3,10 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var site    = require('./site'),
-    user    = require('./user'),
-    userApi = require('./api/user');
+var site        = require('./site'),
+    user        = require('./user'),
+    userApi     = require('./api/user'),
+    playlistApi = require('./api/playlist');
 
 function ensureAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {
@@ -36,5 +37,7 @@ exports.register = function (app) {
     app.get('/search', ensureAuthenticated, user.home);
     app.get('/playlist/:name', ensureAuthenticated, user.home);
     
-    app.get('/api/user', ensureAuthenticated, userApi.get);
+    app.get('/api/user/me', ensureAuthenticated, userApi.get);
+    app.get('/api/user/me/playlist', ensureAuthenticated, playlistApi.all);
+    app.get('/api/user/me/playlist/:name', ensureAuthenticated, playlistApi.get);
 };

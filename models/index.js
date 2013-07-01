@@ -8,5 +8,6 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/soundrocket');
 
 module.exports = {
-    user: require('./user')
+    user: require('./user'),
+    playlist: require('./playlist')
 };

@@ -12,7 +12,7 @@ define(function () {
             getUser: function () {
                 var deferred = $q.defer();
                 $http
-                    .get('/api/user', { cache: true })
+                    .get('/api/user/me', { cache: true })
                     .success(function (data, status, headers, config) {
                         deferred.resolve(data);
                     })
