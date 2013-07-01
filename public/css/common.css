@@ -1,5 +1,9 @@
 /* layout */
 
+body, html {
+    height: 100%;
+}
+
 .content {
     padding: 40px 0 60px 0;
 }
@@ -39,44 +43,4 @@
 .song .media-body .actions .icon-heart,
 .song .media-body .actions .icon-heart-empty:hover {
     color: #ec352f;
-}
-
-
-/* oauths */
-
-.oauths {
-    margin-top: 20%;
-}
-
-.oauths .oauth {
-    border-radius: 6px;
-    color: white;
-    display: block;
-    height: 47px;
-    margin: 0 auto 1em auto;
-    text-align: center;
-    text-decoration: none;
-    width: 280px;
-}
-
-.oauths .oauth .logo {
-    float: left;
-    padding: 9px;
-    border-right: 1px solid white;
-}
-
-.oauths .oauth .text {
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 47px;
-    margin: 0;
-    padding: 0;
-}
-
-.oauths .oauth.google {
-    background-color: #DF4A32;
-}
-
-.oauths .oauth.facebook {
-    background-color: #5C77B4;
 }
