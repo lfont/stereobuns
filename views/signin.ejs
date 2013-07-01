@@ -11,29 +11,28 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
         <meta charset="utf-8">
         <link rel="stylesheet" href="/css/main.css">
     </head>
-    <body ng-controller="LayoutCtrl">
+    <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="btn btn-navbar" ng-init="isNavBarCollapsed = true" ng-click="isNavBarCollapsed = !isNavBarCollapsed">
-                        <i class="icon-align-justify"></i>
-                    </a>
-                     
                     <a class="brand" href="/">SoundRocket</a>
-                     
-                    <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed"></div>
                 </div>
             </div>
         </div>
         <div class="content">
-            <div class="container" ng-view>
-                <a href="/auth/google">
-                    <img alt="Sign-in with Google" src="/img/sign_in_with_google.png" />
-                </a>
-                <br />
-                <a href="/auth/facebook">
-                    <img alt="Sign-in with Facebook" src="/img/login_with_facebook.png" />
-                </a>
+            <div class="container">
+                <div class="row">
+                    <div class="span4 offset4 oauths">
+                        <a href="/auth/google" alt="Sign-in with Google" class="oauth google">
+                            <i class="icon-google-plus-sign icon-2x logo"></i>
+                            <p class="text">Sign-in with Google</p>
+                        </a>
+                        <a href="/auth/facebook" alt="Sign-in with Facebook" class="oauth facebook">
+                            <i class="icon-facebook-sign icon-2x logo"></i>
+                            <p class="text">Sign-in with Facebook</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <!--<script data-main="/js/main" src="/components/requirejs/require.js"></script>-->

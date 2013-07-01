@@ -4,9 +4,19 @@
     margin-top: 5px;
 }
 
-.user-menu .btn-group {
-    margin-top: 0;
+.user-menu a {
+    color: gray;
+    text-decoration: none;
 }
+
+.user-menu a:hover {
+    color: white;
+}
+
+.user-menu .icon-caret-down {
+    margin-left: .5em;
+}
+
 
 /* search */
 
