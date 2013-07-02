@@ -3,10 +3,11 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var site        = require('./site'),
-    user        = require('./user'),
-    userApi     = require('./api/user'),
-    playlistApi = require('./api/playlist');
+var site         = require('./site'),
+    user         = require('./user'),
+    usersApi     = require('./api/users'),
+    playlistsApi = require('./api/playlists'),
+    songsApi     = require('./api/songs');
 
 function ensureAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {
@@ -37,7 +38,11 @@ exports.register = function (app) {
     app.get('/search', ensureAuthenticated, user.home);
     app.get('/playlist/:name', ensureAuthenticated, user.home);
     
-    app.get('/api/user/me', ensureAuthenticated, userApi.get);
-    app.get('/api/user/me/playlist', ensureAuthenticated, playlistApi.all);
-    app.get('/api/user/me/playlist/:name', ensureAuthenticated, playlistApi.get);
+    app.get('/api/users/me', ensureAuthenticated, usersApi.show);
+    
+    app.get('/api/users/me/playlists', ensureAuthenticated, playlistsApi.index);
+    app.get('/api/users/me/playlists/:name', ensureAuthenticated, playlistsApi.show);
+    
+    app.post('/api/users/me/playlists/:name/songs', ensureAuthenticated, songsApi.create);
+    app.delete('/api/users/me/playlists/:name/songs/:id', ensureAuthenticated, songsApi.destroy);
 };

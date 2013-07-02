@@ -5,8 +5,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 var models = require('../../models');
 
-exports.all = function (req, res) {
-    models.playlist.getPlaylists(req.user.id, function (err, playlists) {
+exports.index = function (req, res) {
+    models.playlists.countByPlaylists(req.user.id, function (err, playlists) {
         if (err) {
             res.send({ error: err });
             return;
@@ -15,8 +15,8 @@ exports.all = function (req, res) {
     });
 };
 
-exports.get = function (req, res) {
-    models.playlist.getPlaylist(req.user.id, req.params.name, function (err, playlist) {
+exports.show = function (req, res) {
+    models.playlists.findByName(req.user.id, req.params.name, function (err, playlist) {
         if (err) {
             res.send({ error: err });
             return;

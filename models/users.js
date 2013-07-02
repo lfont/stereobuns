@@ -3,33 +3,31 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose = require('mongoose'),
-    playlist = require('./playlist');
+var mongoose  = require('mongoose'),
+    playlists = require('./playlists');
 
 var userSchema = new mongoose.Schema({
-        email: {
-            type: String,
-            required: true
-        },
+        email: { type: String, required: true },
         name: String,
         picture: String
     });
 
 var User = mongoose.model('User', userSchema);
 
-exports.create = function (user, callback) {
-    User.create(user, function (err, newUser) {
+exports.create = function (userData, callback) {
+    User.create(userData, function (err, user) {
         if (err) {
             // TODO: handle error
             console.log(err);
+            callback(err);
+            return;
         }
-        
-        // create the default playlists
-        playlist.create([
-            { name: 'Loved', userId: newUser.id },
-            { name: 'My Collection', userId: newUser.id }
-        ], function (err, playlists) {
-            callback(err, newUser);
+        playlists.create(user.id, 'My Collection', function (err, playlist) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            callback(err, user);
         });
     });
 };

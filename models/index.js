@@ -3,11 +3,15 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose = require('mongoose');
+var mongoose  = require('mongoose'),
+    users     = require('./users'),
+    playlists = require('./playlists'),
+    songs     = require('./songs')(playlists.Playlist);
 
 mongoose.connect('mongodb://localhost/soundrocket');
 
 module.exports = {
-    user: require('./user'),
-    playlist: require('./playlist')
+    users: users,
+    playlists: playlists,
+    songs: songs
 };
