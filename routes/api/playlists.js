@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 var models = require('../../models');
 
 exports.index = function (req, res) {
-    models.playlists.countByPlaylists(req.user.id, function (err, playlists) {
+    models.playlists.countSongs(req.user.id, function (err, playlists) {
         if (err) {
             res.send({ error: err });
             return;

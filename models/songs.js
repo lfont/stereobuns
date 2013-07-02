@@ -7,16 +7,64 @@ var mongoose  = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-module.exports = function (Playlist) {
-    var songs = {};
+var songSchema = new Schema({
+    userId: { type: Schema.ObjectId, required: true },
+    artist: String,
+    album: String,
+    track: String,
+    source: String,
+    url: { type: String, required: true },
+    artworkUrl: String,
+    loved: Boolean,
+    playlists: [{
+        name: { type: String, required: true }
+    }]
+});
+
+var Song = exports.Song = mongoose.model('Song', songSchema);
+
+exports.loved = function (userId, callback) {
+    Song.find({ userId: userId, loved: true }, function (err, songs) {
+        if (err) {
+            // TODO: handle error
+            console.log(err);
+        }
+        callback(err, songs);
+    });
+};
     
-    songs.addToPlaylist = function (userId, playlistName, songData, callback) {
-        callback();
-    };
-    
-    songs.removeFromPlaylist = function (userId, playlistName, id, callback) {
-        callback();
-    };
-    
-    return songs;
+exports.love = function (userId, songData, callback) {
+    Song.update(
+        { userId: userId, url: songData.url },
+        {
+            userId: userId,
+            artist: songData.artist,
+            album: songData.album,
+            track: songData.track,
+            source: songData.source,
+            url: songData.url,
+            artworkUrl: songData.artworkUrl,
+            loved: true
+        },
+        { upsert: true },
+        function (err) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            callback(err);
+        });
+};
+
+exports.unlove = function (userId, url, callback) {
+    Song.update(
+        { userId: userId, url: url },
+        { loved: false },
+        function (err) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            callback(err);
+        });
 };

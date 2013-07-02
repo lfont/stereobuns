@@ -7,97 +7,96 @@ var mongoose  = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var playlistSchema = new Schema({
-    userId: { type: Schema.ObjectId, required: true },
-    name: { type: String, required: true },
-    length: { type: Number, default: 0 },
-    songs: [{
-        artist: String,
-        album: String,
-        track: String,
-        source: String,
-        url: String,
-        artworkUrl: String,
-        loved: Boolean
-    }]
-});
+module.exports = function (Song) {
+    var exports = {};
 
-var Playlist = exports.Playlist = mongoose.model('Playlist', playlistSchema);
-
-exports.create = function (userId, name, callback) {
-    Playlist.create({ userId: userId, name: name }, function (err, playlist) {
-        if (err) {
-            // TODO: handle error
-            console.log(err);
-        }
-        callback(err, playlist);
-    });
-};
-
-exports.findByName = function (userId, name, callback) {
-    if (name === 'Loved') {
-        Playlist.aggregate([
-            { $match: { userId: mongoose.Types.ObjectId(userId) } },
-            { $unwind: '$songs' },
-            { $match: { 'songs.loved': true } },
-            { $group: { _id: 'Loved', songs: { $addToSet: '$songs' } } },
-            { $project: { _id: 0, name: '$_id', songs: 1 } }
-        ], function (err, playlist) {
+    exports.create = function (userId, playlistName, callback) {
+        // TODO: check if exists?
+        Song.create({
+            userId: userId,
+            url: 'empty:',
+            playlists: [{
+                name: playlistName
+            }]
+        }, function (err) {
             if (err) {
                 // TODO: handle error
                 console.log(err);
             }
-            
-            if (playlist.length) {
-                callback(err, playlist[0]);
+            callback(err);
+        });
+    };
+    
+    exports.findByName = function (userId, playlistName, callback) {
+        Song.aggregate([
+            { $match: { userId: mongoose.Types.ObjectId(userId) } },
+            { $unwind: '$playlists' },
+            { $match: { 'playlists.name': playlistName } },
+            { $group: { _id: playlistName, songs: { $push: {
+                artist: '$artist',
+                album: '$album',
+                track: '$track',
+                source: '$source',
+                url: '$url',
+                artworkUrl: '$artworkUrl',
+                loved: '$loved',
+            } } } },
+            { $project: { _id: 0, name: '$_id', songs: 1 } }
+        ], function (err, results) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            if (results.length === 0) {
+                callback(err, null);
+            } else if (results[0].songs.length === 1) {
+                results[0].songs.length = 0;
+                callback(err, results[0]);
             } else {
-                callback(err, { name: 'Loved', songs: [] });
+                callback(err, results[0]);
             }
         });
-        return;
-    }
+    };
     
-    Playlist.findOne({ userId: userId, name: name }, function (err, playlist) {
-        if (err) {
-            // TODO: handle error
-            console.log(err);
-        }
-        callback(err, playlist);
-    });
-};
-
-exports.countByPlaylists = function (userId, callback) {
-    Playlist.find(
-        { userId: userId },
-        { _id: 0, name: 1, length: 1 },
-        { sort: { name: 1 } },
-        function (err, playlists) {
+    exports.countSongs = function (userId, callback) {
+        Song.aggregate([
+            { $match: { userId: mongoose.Types.ObjectId(userId) } },
+            { $unwind: '$playlists' },
+            { $group: { _id: '$playlists.name', length: { $sum: 1 } } },
+            { $project: { _id: 0, name: '$_id', length: { $add: [ '$length', -1 ] } } },
+            { $sort: { name: 1 } }
+        ], function (err, playlists) {
             if (err) {
                 // TODO: handle error
                 console.log(err);
-                callback(err);
-                return;
             }
-            
-            Playlist.aggregate([
-                { $match: { userId: mongoose.Types.ObjectId(userId) } },
-                { $unwind: '$songs' },
-                { $match: { 'songs.loved': true } },
+            // TODO: asyncjs?
+            Song.aggregate([
+                { $match: { userId: mongoose.Types.ObjectId(userId), loved: true } },
                 { $group: { _id: 'Loved', length: { $sum: 1 } } },
-                { $project: { _id: 0, name: '$_id', length: 1 } }
-            ], function (err, playlist) {
+                { $project: { _id: 0, name: '$_id', length: 1 } },
+            ], function (err, results) {
                 if (err) {
                     // TODO: handle error
                     console.log(err);
                 }
-                
-                if (playlist.length) {
-                    playlists.push(playlist[0]);
+                if (results.length) {
+                    playlists.splice(0, 0, results[0]);
                 } else {
-                    playlists.push({ name: 'Loved', songs: [] });
+                    playlists.splice(0, 0, { name: 'Loved', length: 0 });
                 }
-                
                 callback(err, playlists);
             });
         });
+    };
+                
+    exports.addSong = function (userId, playlistName, songData, callback) {
+        callback({});
+    };
+                
+    exports.removeSong = function (userId, playlistName, songId, callback) {
+        callback({});
+    };
+    
+    return exports;
 };

@@ -5,8 +5,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 var mongoose  = require('mongoose'),
     users     = require('./users'),
-    playlists = require('./playlists'),
-    songs     = require('./songs')(playlists.Playlist);
+    songs     = require('./songs'),
+    playlists = require('./playlists')(songs.Song);
 
 mongoose.connect('mongodb://localhost/soundrocket');
 

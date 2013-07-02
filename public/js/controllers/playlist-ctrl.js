@@ -12,7 +12,7 @@ define(function () {
         }
         
         function setPlaylistStore (name) {
-            $scope.playlistStore = playlistSrv.getStore(name);
+            $scope.playlistStore = playlistSrv.getPlaylist(name);
         }
         
         $scope.songBarOptions = {

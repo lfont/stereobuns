@@ -14,7 +14,7 @@ define([
         };
         
         var currentSong = audioPlayerSrv.getCurrentSong(),
-            lovedPlaylistStore = playlistSrv.getStore('Loved');
+            lovedPlaylistStore = playlistSrv.getPlaylist('Loved');
         
         function shouldUpdateLoveStatus (storeName, song) {
             return storeName === 'Loved' &&

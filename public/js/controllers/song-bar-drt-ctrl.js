@@ -39,7 +39,7 @@ define([
             var opts = angular.extend({}, DEFAULT_OPTIONS, options);
             $scope.options = opts;
             $scope.playlistStores = $scope.options.filteredPlaylists ?
-                filterPlaylistStoresForLocation(playlistSrv.getStores()) :
+                filterPlaylistStoresForLocation(playlistSrv.getPlaylists()) :
                 playlistSrv.getStores();
         };
         

@@ -4,7 +4,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 var mongoose  = require('mongoose'),
-    playlists = require('./playlists');
+    songs     = require('./songs'),
+    playlists = require('./playlists')(songs.Song);
 
 var userSchema = new mongoose.Schema({
         email: { type: String, required: true },
@@ -22,7 +23,7 @@ exports.create = function (userData, callback) {
             callback(err);
             return;
         }
-        playlists.create(user.id, 'My Collection', function (err, playlist) {
+        playlists.create(user.id, 'My Collection', function (err) {
             if (err) {
                 // TODO: handle error
                 console.log(err);

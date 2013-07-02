@@ -7,14 +7,21 @@ define(function () {
     'use strict';
 
     function PlaylistsCtrl ($scope, $location, playlistSrv) {
-        $scope.playlistStores = playlistSrv.getStores();
+        var promise = playlistSrv.getPlaylists();
+        promise.then(function (playlists) {
+            $scope.playlists = playlists;
+        }, function (error) {
+            // TODO: handle error
+        });
         
-        $scope.isCurrentPlaylist = function (playlistStore) {
+        $scope.playlists = [];
+        
+        $scope.isCurrentPlaylist = function (playlist) {
             var playlistNamePattern = /^\/playlist\/(.*)/,
                 matchs = playlistNamePattern.exec($location.path());
             
             return matchs &&
-                   matchs[1].toLowerCase() === playlistStore.name.toLowerCase();
+                   matchs[1].toLowerCase() === playlist.name.toLowerCase();
         };
     }
 

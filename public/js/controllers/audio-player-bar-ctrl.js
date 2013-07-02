@@ -7,7 +7,7 @@ define(function () {
     'use strict';
     
     function AudioPlayerBarCtrl ($scope, audioPlayerSrv, playlistSrv) {
-        var lovedPlaylistStore = playlistSrv.getStore('Loved');
+        var lovedPlaylistStore = playlistSrv.getPlaylist('Loved');
         
         function setSong (song) {
             $scope.song = song;
