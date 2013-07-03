@@ -30,7 +30,7 @@
                     <div class="span3 actions">
                         <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()"
                             ng-show="song">
-                            <i ng-class="{ 'icon-heart': isLoved, 'icon-heart-empty': !isLoved }"></i>
+                            <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
                         </a><br />
                         {{ song.source }}
                     </div>

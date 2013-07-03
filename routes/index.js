@@ -34,10 +34,11 @@ function ensureAuthenticated (req, res, next) {
 }
 
 exports.register = function (app) {
-    /* html */
+    /* views */
     app.get('/', site.index);
     app.get('/home', ensureAuthenticated, user.home);
     app.get('/search', ensureAuthenticated, user.home);
+    app.get('/songs/:name', ensureAuthenticated, user.home);
     app.get('/playlist/:name', ensureAuthenticated, user.home);
     
     /* api */
@@ -51,5 +52,5 @@ exports.register = function (app) {
     
     app.get('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.index);
     app.post('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.create);
-    app.delete('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.destroy);
+    app.put('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.update);
 };

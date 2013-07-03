@@ -39,7 +39,7 @@ exports.love = function (userId, songData, callback) {
         {
             userId: userId,
             artist: songData.artist,
-            album: songData.album,
+            album: songData.album || '',
             track: songData.track,
             source: songData.source,
             url: songData.url,
@@ -67,4 +67,12 @@ exports.unlove = function (userId, url, callback) {
             }
             callback(err);
         });
+};
+                
+exports.addToPlaylist = function (userId, playlistName, songData, callback) {
+    callback({});
+};
+            
+exports.removeFromPlaylist = function (userId, playlistName, songId, callback) {
+    callback({});
 };

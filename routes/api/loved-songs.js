@@ -8,7 +8,7 @@ var models = require('../../models');
 exports.index = function (req, res) {
     models.songs.loved(req.user.id, function (err, songs) {
         if (err) {
-            res.send({ error: err });
+            res.send(400, { error: err });
             return;
         }
         res.send(songs);
@@ -18,17 +18,17 @@ exports.index = function (req, res) {
 exports.create = function (req, res) {
     models.songs.love(req.user.id, req.body, function (err) {
         if (err) {
-            res.send({ error: err });
+            res.send(400, { error: err });
             return;
         }
-        res.send({ result: 'ok' });
+        res.send(201, { result: 'ok' });
     });
 };
 
-exports.destroy = function (req, res) {
+exports.update = function (req, res) {
     models.songs.unlove(req.user.id, req.body.url, function (err) {
         if (err) {
-            res.send({ error: err });
+            res.send(400, { error: err });
             return;
         }
         res.send({ result: 'ok' });

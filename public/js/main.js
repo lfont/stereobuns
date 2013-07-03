@@ -52,7 +52,8 @@ require.config({
         'controllers',
         'services',
         'filters',
-        'directives'
+        'directives',
+        'models'
     ]
 });
 

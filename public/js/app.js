@@ -12,7 +12,8 @@ define([
     'controllers',
     'services',
     'filters',
-    'directives'
+    'directives',
+    'models'
 ], function (angular) {
     'use strict';
     
@@ -24,6 +25,7 @@ define([
         'soundrocket.controllers',
         'soundrocket.services',
         'soundrocket.filters',
-        'soundrocket.directives'
+        'soundrocket.directives',
+        'soundrocket.models'
     ]);
 });

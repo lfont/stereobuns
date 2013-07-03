@@ -31,7 +31,7 @@ module.exports = function (Song) {
         Song.aggregate([
             { $match: { userId: mongoose.Types.ObjectId(userId) } },
             { $unwind: '$playlists' },
-            { $match: { 'playlists.name': playlistName } },
+            { $match: { 'playlists.name': playlistName, 'url': { $ne: 'empty:' } } },
             { $group: { _id: playlistName, songs: { $push: {
                 artist: '$artist',
                 album: '$album',
@@ -48,10 +48,7 @@ module.exports = function (Song) {
                 console.log(err);
             }
             if (results.length === 0) {
-                callback(err, null);
-            } else if (results[0].songs.length === 1) {
-                results[0].songs.length = 0;
-                callback(err, results[0]);
+                callback(err, { name: playlistName, songs: [] });
             } else {
                 callback(err, results[0]);
             }
@@ -70,32 +67,8 @@ module.exports = function (Song) {
                 // TODO: handle error
                 console.log(err);
             }
-            // TODO: asyncjs?
-            Song.aggregate([
-                { $match: { userId: mongoose.Types.ObjectId(userId), loved: true } },
-                { $group: { _id: 'Loved', length: { $sum: 1 } } },
-                { $project: { _id: 0, name: '$_id', length: 1 } },
-            ], function (err, results) {
-                if (err) {
-                    // TODO: handle error
-                    console.log(err);
-                }
-                if (results.length) {
-                    playlists.splice(0, 0, results[0]);
-                } else {
-                    playlists.splice(0, 0, { name: 'Loved', length: 0 });
-                }
-                callback(err, playlists);
-            });
+            callback(err, playlists);
         });
-    };
-                
-    exports.addSong = function (userId, playlistName, songData, callback) {
-        callback({});
-    };
-                
-    exports.removeSong = function (userId, playlistName, songId, callback) {
-        callback({});
     };
     
     return exports;
