@@ -21,7 +21,7 @@ exports.create = function (req, res) {
             res.send(400, { error: err });
             return;
         }
-        res.send(201, { result: 'ok' });
+        res.send({ result: 'ok' });
     });
 };
 

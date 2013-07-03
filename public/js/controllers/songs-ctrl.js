@@ -30,14 +30,14 @@ define(function () {
         $scope.selectedSongs = [];
         
         $scope.$on('songsStore:add', function (event, name, song) {
-            if (name === 'loved') {
+            if (name === 'Loved') {
                 $scope.songs.push(song);
             }
         });
         
         $scope.$on('songsStore:remove', function (event, name, song) {
             var songIndex;
-            if (name === 'loved') {
+            if (name === 'Loved') {
                 songIndex = $scope.songs.indexOf(song);
                 $scope.songs.splice(songIndex, 1);
             }

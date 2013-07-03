@@ -35,7 +35,7 @@ define([
             
             this.add = function (song) {
                 this.length++;
-                $rootScope.$broadcast('songsStore:add', 'loved', song);
+                $rootScope.$broadcast('songsStore:add', this.name, song);
                 $http
                     .post('/api/users/me/songs/loved', song)
                     .success(function (data, status, headers, config) {
@@ -44,13 +44,13 @@ define([
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
                         _this.length--;
-                        $rootScope.$broadcast('songsStore:remove', 'loved', song);
+                        $rootScope.$broadcast('songsStore:remove', _this.name, song);
                     });
             };
             
             this.remove = function (song) {
                 this.length--;
-                $rootScope.$broadcast('songsStore:remove', 'loved', song);
+                $rootScope.$broadcast('songsStore:remove', this.name, song);
                 $http
                     .put('/api/users/me/songs/loved', song)
                     .success(function (data, status, headers, config) {
@@ -59,7 +59,7 @@ define([
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
                         _this.length++;
-                        $rootScope.$broadcast('songsStore:add', 'loved', song);
+                        $rootScope.$broadcast('songsStore:add', _this.name, song);
                     });
             };
         }

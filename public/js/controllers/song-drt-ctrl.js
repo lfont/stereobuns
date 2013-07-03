@@ -41,7 +41,7 @@ define([
         });
         
         $scope.$on('songsStore:add', function (event, name, song) {
-            if (name === 'loved' &&
+            if (name === 'Loved' &&
                 $scope.song &&
                 $scope.song.url === song.url &&
                 !$scope.song.loved) {
@@ -50,7 +50,7 @@ define([
         });
         
         $scope.$on('songsStore:remove', function (event, name, song) {
-            if (name === 'loved' &&
+            if (name === 'Loved' &&
                 $scope.song &&
                 $scope.song.url === song.url &&
                 $scope.song.loved) {

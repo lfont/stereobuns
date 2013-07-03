@@ -6,16 +6,15 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
 
-    function PlaylistsCtrl ($scope, $location, songsMdl, playlistSrv) {
-        
+    function PlaylistsCtrl ($scope, $location, songsMdl, playlistMdl) {
         function loadSongsStores () {
             $scope.songsStores = songsMdl.getSongsStores();
         }
         
         function loadPlaylistStores () {
-            var promise = playlistSrv.getPlaylists();
-            promise.then(function (playlists) {
-                $scope.playlists = playlists;
+            var promise = playlistMdl.getPlaylistStores();
+            promise.then(function (playlistStores) {
+                $scope.playlistStores = playlistStores;
             }, function (error) {
                 // TODO: handle error
             });
@@ -44,7 +43,7 @@ define(function () {
         loadPlaylistStores();
     }
 
-    PlaylistsCtrl.$inject = [ '$scope', '$location', 'songsMdl', 'playlistSrv' ];
+    PlaylistsCtrl.$inject = [ '$scope', '$location', 'songsMdl', 'playlistMdl' ];
     
     return PlaylistsCtrl;
 });

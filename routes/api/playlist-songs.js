@@ -11,7 +11,7 @@ exports.create = function (req, res) {
             res.send(400, { error: err });
             return;
         }
-        res.send(201, song);
+        res.send({ result: 'ok' });
     });
 };
 

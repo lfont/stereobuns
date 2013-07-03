@@ -3,7 +3,8 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose  = require('mongoose');
+var mongoose = require('mongoose'),
+    _        = require('underscore');
 
 var Schema = mongoose.Schema;
 
@@ -23,6 +24,12 @@ var songSchema = new Schema({
 
 var Song = exports.Song = mongoose.model('Song', songSchema);
 
+function sanitize (songData) {
+    delete songData._id;
+    delete songData.playlists;
+    return songData;
+}
+
 exports.loved = function (userId, callback) {
     Song.find({ userId: userId, loved: true }, function (err, songs) {
         if (err) {
@@ -34,18 +41,10 @@ exports.loved = function (userId, callback) {
 };
     
 exports.love = function (userId, songData, callback) {
+    var song = _.extend(sanitize(songData), { loved: true });
     Song.update(
-        { userId: userId, url: songData.url },
-        {
-            userId: userId,
-            artist: songData.artist,
-            album: songData.album || '',
-            track: songData.track,
-            source: songData.source,
-            url: songData.url,
-            artworkUrl: songData.artworkUrl,
-            loved: true
-        },
+        { userId: userId, url: song.url },
+        song,
         { upsert: true },
         function (err) {
             if (err) {
@@ -70,9 +69,29 @@ exports.unlove = function (userId, url, callback) {
 };
                 
 exports.addToPlaylist = function (userId, playlistName, songData, callback) {
-    callback({});
+    var song = _.extend(sanitize(songData), { $addToSet: { playlists: { name: playlistName } } });
+    Song.update(
+        { userId: userId, url: song.url },
+        song,
+        { upsert: true },
+        function (err) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            callback(err);
+        });
 };
             
 exports.removeFromPlaylist = function (userId, playlistName, songId, callback) {
-    callback({});
+    Song.update(
+        { userId: userId, _id: songId },
+        { $pull: { playlists: { name: playlistName } } },
+        function (err) {
+            if (err) {
+                // TODO: handle error
+                console.log(err);
+            }
+            callback(err);
+        });
 };

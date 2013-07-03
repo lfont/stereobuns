@@ -5,10 +5,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'angular',
-    './songs-mdl'
-], function (angular, songsMdlFactory) {
+    './songs-mdl',
+    './playlist-mdl'
+], function (angular, songsMdlFactory, playlistMdlFactory) {
     'use strict';
     
     return angular.module('soundrocket.models', [])
-                  .service('songsMdl', songsMdlFactory);
+                  .service('songsMdl', songsMdlFactory)
+                  .service('playlistMdl', playlistMdlFactory);
 });

@@ -8,7 +8,7 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongBarDrtCtrl ($scope, $location, audioPlayerSrv, playlistSrv) {
+    function SongBarDrtCtrl ($scope, $location, audioPlayerSrv, playlistMdl) {
         var DEFAULT_OPTIONS = {
             remove: false,
             play: true,
@@ -36,11 +36,17 @@ define([
         }
         
         this.setOptions = function (options) {
-            var opts = angular.extend({}, DEFAULT_OPTIONS, options);
+            var opts    = angular.extend({}, DEFAULT_OPTIONS, options),
+                promise = playlistMdl.getPlaylistStores();
             $scope.options = opts;
-            $scope.playlistStores = $scope.options.filteredPlaylists ?
-                filterPlaylistStoresForLocation(playlistSrv.getPlaylists()) :
-                playlistSrv.getStores();
+            
+            promise.then(function (playlistStores) {
+                $scope.playlistStores = $scope.options.filteredPlaylists ?
+                    filterPlaylistStoresForLocation(playlistStores) :
+                    playlistStores;
+            }, function (error) {
+                // TODO: handle error
+            });
         };
         
         $scope.songs = [];
@@ -90,7 +96,7 @@ define([
         };
     }
     
-    SongBarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistSrv' ];
+    SongBarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistMdl' ];
     
     return SongBarDrtCtrl;
 });

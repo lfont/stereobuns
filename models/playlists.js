@@ -33,6 +33,7 @@ module.exports = function (Song) {
             { $unwind: '$playlists' },
             { $match: { 'playlists.name': playlistName, 'url': { $ne: 'empty:' } } },
             { $group: { _id: playlistName, songs: { $push: {
+                _id: '$_id',
                 artist: '$artist',
                 album: '$album',
                 track: '$track',
