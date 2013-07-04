@@ -5,14 +5,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 var http         = require('http'),
     app          = require('./app'),
-    searchServer = require('./lib/search-server');
+    searchServer = require('./lib/search-server'),
+    config       = require('./lib/configuration');
 
 var server = http.createServer(app);
 
 searchServer.listen(server);
 
-server.listen(process.env.PORT || 3000, function () {
-    app.set('port', server.address().port);
+server.listen(config.serverPort, function () {
     console.log('Express server listening on port %d in %s mode',
-                app.get('port'), app.settings.env);
+                config.serverPort, app.settings.env);
 });
