@@ -36,7 +36,7 @@ exports.loved = function (userId, callback) {
             // TODO: handle error
             console.log(err);
         }
-        callback(err, songs);
+        callback(err, { name: 'Loved', songs: songs });
     });
 };
     

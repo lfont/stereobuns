@@ -24,8 +24,8 @@ define([
                 $http
                     .get('/api/users/me/songs/loved')
                     .success(function (data, status, headers, config) {
-                        _this.length = data.length;
-                        deferred.resolve(data);
+                        _this.length = data.songs.length;
+                        deferred.resolve(data.songs);
                     })
                     .error(function (data, status, headers, config) {
                         deferred.reject(status);

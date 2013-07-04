@@ -11,7 +11,7 @@ exports.create = function (req, res) {
             res.send(400, { error: err });
             return;
         }
-        res.send({ result: 'ok' });
+        res.send({ success: true });
     });
 };
 
@@ -21,6 +21,6 @@ exports.destroy = function (req, res) {
             res.send(400, { error: err });
             return;
         }
-        res.send({ result: 'ok' });
+        res.send({ success: true });
     });
 };
