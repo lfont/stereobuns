@@ -18,33 +18,35 @@ define([
             this.name = playlist.name;
             this.length = playlist.length;
             
-            function add (song) {
-                _this.length++;
-                $rootScope.$broadcast('playlistStore:add', _this.name, song);
+            function addOne (song) {
                 $http
                     .post('/api/users/me/playlists/' + _this.name + '/songs', song)
                     .success(function (data, status, headers, config) {
-                        $window.console.log('song: ' + song.url + ' has been added to ' + _this.name);
+                        if (data.count !== 0) {
+                            _this.length++;
+                            $rootScope.$broadcast('playlistStore:add', _this.name, song);
+                            $window.console.log('song: ' + song.url + ' has been added to ' + _this.name);
+                        }
                     })
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
-                        _this.length--;
-                        $rootScope.$broadcast('playlistStore:remove', _this.name, song);
+                        $window.console.log('song: ' + song.url + ' has not been added to ' + _this.name);
                     });
             }
             
-            function remove (song) {
-                _this.length--;
-                $rootScope.$broadcast('playlistStore:remove', _this.name, song);
+            function removeOne (song) {
                 $http
                     .delete('/api/users/me/playlists/' + _this.name + '/songs/' + song._id)
                     .success(function (data, status, headers, config) {
-                        $window.console.log('song: ' + song.url + ' has been removed from ' + _this.name);
+                        if (data.count !== 0) {
+                            _this.length--;
+                            $rootScope.$broadcast('playlistStore:remove', _this.name, song);
+                            $window.console.log('song: ' + song.url + ' has been removed from ' + _this.name);
+                        }
                     })
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
-                        _this.length++;
-                        $rootScope.$broadcast('playlistStore:add', _this.name, song);
+                        $window.console.log('song: ' + song.url + ' has not been removed from ' + _this.name);
                     });
             }
             
@@ -70,7 +72,7 @@ define([
                     songs = song;
                 }
                 for (i = 0, len = songs.length; i < len; i++) {
-                    add(songs[i]);
+                    addOne(songs[i]);
                 }
             };
             
@@ -84,7 +86,7 @@ define([
                     songs = song.slice(0);
                 }
                 for (i = 0, len = songs.length; i < len; i++) {
-                    remove(songs[i]);
+                    removeOne(songs[i]);
                 }
             };
         }

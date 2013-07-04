@@ -16,21 +16,21 @@ exports.index = function (req, res) {
 };
 
 exports.create = function (req, res) {
-    models.songs.love(req.user.id, req.body, function (err) {
+    models.songs.love(req.user.id, req.body, function (err, numberAffected) {
         if (err) {
             res.send(400, { error: err });
             return;
         }
-        res.send({ success: true });
+        res.send({ success: true, count: numberAffected });
     });
 };
 
 exports.update = function (req, res) {
-    models.songs.unlove(req.user.id, req.body.url, function (err) {
+    models.songs.unlove(req.user.id, req.body.url, function (err, numberAffected) {
         if (err) {
             res.send(400, { error: err });
             return;
         }
-        res.send({ success: true });
+        res.send({ success: true, count: numberAffected });
     });
 };

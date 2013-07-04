@@ -15,9 +15,7 @@ module.exports = function (Song) {
         Song.create({
             userId: userId,
             url: 'empty:',
-            playlists: [{
-                name: playlistName
-            }]
+            playlists: [ playlistName ]
         }, function (err) {
             if (err) {
                 // TODO: handle error
@@ -31,7 +29,7 @@ module.exports = function (Song) {
         Song.aggregate([
             { $match: { userId: mongoose.Types.ObjectId(userId) } },
             { $unwind: '$playlists' },
-            { $match: { 'playlists.name': playlistName, 'url': { $ne: 'empty:' } } },
+            { $match: { 'playlists': playlistName, 'url': { $ne: 'empty:' } } },
             { $group: { _id: playlistName, songs: { $push: {
                 _id: '$_id',
                 artist: '$artist',
@@ -60,7 +58,7 @@ module.exports = function (Song) {
         Song.aggregate([
             { $match: { userId: mongoose.Types.ObjectId(userId) } },
             { $unwind: '$playlists' },
-            { $group: { _id: '$playlists.name', length: { $sum: 1 } } },
+            { $group: { _id: '$playlists', length: { $sum: 1 } } },
             { $project: { _id: 0, name: '$_id', length: { $add: [ '$length', -1 ] } } },
             { $sort: { name: 1 } }
         ], function (err, playlists) {

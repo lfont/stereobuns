@@ -34,32 +34,34 @@ define([
             };
             
             this.add = function (song) {
-                this.length++;
-                $rootScope.$broadcast('songsStore:add', this.name, song);
                 $http
                     .post('/api/users/me/songs/loved', song)
                     .success(function (data, status, headers, config) {
-                        $window.console.log('song: ' + song.url + ' has been loved.');
+                        if (data.count !== 0) {
+                            _this.length++;
+                            $rootScope.$broadcast('songsStore:add', _this.name, song);
+                            $window.console.log('song: ' + song.url + ' has been loved.');
+                        }
                     })
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
-                        _this.length--;
-                        $rootScope.$broadcast('songsStore:remove', _this.name, song);
+                        $window.console.log('song: ' + song.url + ' has not been loved.');
                     });
             };
             
             this.remove = function (song) {
-                this.length--;
-                $rootScope.$broadcast('songsStore:remove', this.name, song);
                 $http
                     .put('/api/users/me/songs/loved', song)
                     .success(function (data, status, headers, config) {
-                        $window.console.log('song: ' + song.url + ' has been unloved.');
+                        if (data.count !== 0) {
+                            _this.length--;
+                            $rootScope.$broadcast('songsStore:remove', _this.name, song);
+                            $window.console.log('song: ' + song.url + ' has been unloved.');
+                        }
                     })
                     .error(function (data, status, headers, config) {
                         // TODO: handle error
-                        _this.length++;
-                        $rootScope.$broadcast('songsStore:add', _this.name, song);
+                        $window.console.log('song: ' + song.url + ' has not been unloved.');
                     });
             };
         }
