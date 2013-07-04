@@ -18,9 +18,10 @@ define([
             
             $locationProvider.html5Mode(true);
             $routeProvider.when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
+                          .when('/songs/:name', { templateUrl: 'songs.html', controller: 'SongsCtrl' })
                           .when('/playlist/:name', { templateUrl: 'playlist.html', controller: 'PlaylistCtrl' })
                           .when('/logout', { redirectTo: redirect.bind(this, '/logout') })
-                          .otherwise({ redirectTo: '/playlist/Loved' });
+                          .otherwise({ redirectTo: '/songs/loved' });
         }
     ]);
 });

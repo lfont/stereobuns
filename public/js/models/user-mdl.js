@@ -6,13 +6,13 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function userSrvFactory ($q, $http) {
+    function userMdlFactory ($q, $http) {
         
         return {
             getUser: function () {
                 var deferred = $q.defer();
                 $http
-                    .get('/api/user', { cache: true })
+                    .get('/api/users/me', { cache: true })
                     .success(function (data, status, headers, config) {
                         deferred.resolve(data);
                     })
@@ -24,7 +24,7 @@ define(function () {
         };
     }
     
-    userSrvFactory.$inject = [ '$q', '$http' ];
+    userMdlFactory.$inject = [ '$q', '$http' ];
     
-    return userSrvFactory;
+    return userMdlFactory;
 });

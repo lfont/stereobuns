@@ -19,5 +19,12 @@
     "passport": "~0.1.17",
     "passport-google-oauth": "~0.1.5",
     "passport-facebook": "~0.1.5"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "rjs-build-analysis": "0.0.3",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1"
   }
 }

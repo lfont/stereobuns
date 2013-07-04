@@ -6,12 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function (angular) {
     'use strict';
 
-    function UserMenuCtrl ($scope, userSrv) {
+    function UserMenuCtrl ($scope, userMdl) {
         var promise;
         
         $scope.user = null;
         
-        promise = userSrv.getUser();
+        promise = userMdl.getUser();
         promise.then(function (user) {
             $scope.user = user;
         }, function (error) {
@@ -19,7 +19,7 @@ define(function (angular) {
         });
     }
     
-    UserMenuCtrl.$inject = [ '$scope', 'userSrv' ];
+    UserMenuCtrl.$inject = [ '$scope', 'userMdl' ];
     
     return UserMenuCtrl;
 });

@@ -8,19 +8,12 @@ define([
 ], function (angular) {
     'use strict';
 
-    function SongDrtCtrl ($scope, audioPlayerSrv, playlistSrv) {
+    function SongDrtCtrl ($scope, audioPlayerSrv, songsMdl) {
         var DEFAULT_OPTIONS = {
             queue: true
         };
         
-        var currentSong = audioPlayerSrv.getCurrentSong(),
-            lovedPlaylistStore = playlistSrv.getStore('Loved');
-        
-        function shouldUpdateLoveStatus (storeName, song) {
-            return storeName === 'Loved' &&
-                   $scope.song &&
-                   $scope.song.url === song.url;
-        }
+        var currentSong = audioPlayerSrv.getCurrentSong();
         
         this.setOptions = function (options) {
             var opts = angular.extend({}, DEFAULT_OPTIONS, options);
@@ -28,7 +21,6 @@ define([
         };
         
         $scope.isPlaying = audioPlayerSrv.isPlaying();
-        $scope.isLoved = lovedPlaylistStore.contains($scope.song);
         
         $scope.$on('audioPlayer:play', function (event, song) {
             currentSong = song;
@@ -48,17 +40,21 @@ define([
             $scope.isPlaying = true;
         });
         
-        $scope.$on('playlistStore:add', function (event, storeName, song) {
-            if (shouldUpdateLoveStatus(storeName, song) &&
-                !$scope.isLoved) {
-                $scope.isLoved = true;
+        $scope.$on('songsStore:add', function (event, name, song) {
+            if (name === 'Loved' &&
+                $scope.song &&
+                $scope.song.url === song.url &&
+                !$scope.song.loved) {
+                $scope.song.loved = true;
             }
         });
         
-        $scope.$on('playlistStore:remove', function (event, storeName, song) {
-            if (shouldUpdateLoveStatus(storeName, song) &&
-                $scope.isLoved) {
-                $scope.isLoved = false;
+        $scope.$on('songsStore:remove', function (event, name, song) {
+            if (name === 'Loved' &&
+                $scope.song &&
+                $scope.song.url === song.url &&
+                $scope.song.loved) {
+                $scope.song.loved = false;
             }
         });
         
@@ -79,15 +75,16 @@ define([
         };
         
         $scope.toggleLoveStatus = function () {
-            if ($scope.isLoved) {
-                lovedPlaylistStore.remove($scope.song);
+            var lovedSongsStore = songsMdl.getSongsStore('loved');
+            if ($scope.song.loved) {
+                lovedSongsStore.remove($scope.song);
             } else {
-                lovedPlaylistStore.add($scope.song);
+                lovedSongsStore.add($scope.song);
             }
         };
     }
      
-    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'playlistSrv' ];
+    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];
     
     return SongDrtCtrl;
 });

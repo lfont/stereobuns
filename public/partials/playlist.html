@@ -1,19 +1,19 @@
 <div class="playlist row">
     <div class="span10">
-        <h1>{{ playlistStore.name }}</h1>
+        <h1>{{ name }}</h1>
         <p>
-            <span ng-show="playlistStore.length()">{{ playlistStore.length() }}</span>
-            <ng-pluralize count="playlistStore.length()"
+            <span ng-show="songs.length">{{ songs.length }}</span>
+            <ng-pluralize count="songs.length"
                 when="{ '0': 'no song',
                         '1': 'song',
                         'other': 'songs' }">
             </ng-pluralize>
         </p>
-        <div ng-show="playlistStore.length()">
-            <songbar all-songs="playlistStore.getAll()" selected-songs="selectedSongs" options="songBarOptions"
-                     on-remove="playlistStore.remove" ui-scrollfix="{ offset: '-50' }"></songbar>
+        <div ng-show="songs.length">
+            <songbar all-songs="songs" selected-songs="selectedSongs" options="songBarOptions"
+                     on-remove="remove" ui-scrollfix="{ offset: '-50' }"></songbar>
             <ul class="media-list song-list">
-                <li ng-repeat="song in playlistStore.getAll()"
+                <li ng-repeat="song in songs"
                     ng-click="$parent.toggleSongSelection(song)"
                     ng-class="{ selected: $parent.isSongSelected(song) }">
                     <song data="song"></song>
