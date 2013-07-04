@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function userSrvFactory ($q, $http) {
+    function userMdlFactory ($q, $http) {
         
         return {
             getUser: function () {
@@ -24,7 +24,7 @@ define(function () {
         };
     }
     
-    userSrvFactory.$inject = [ '$q', '$http' ];
+    userMdlFactory.$inject = [ '$q', '$http' ];
     
-    return userSrvFactory;
+    return userMdlFactory;
 });
