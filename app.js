@@ -3,9 +3,11 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var express = require('express'),
-    routes  = require('./routes'),
-    oauth   = require('./lib/oauth');
+var express   = require('express'),
+    ejsLocals = require('ejs-locals'),
+    routes    = require('./routes'),
+    oauth     = require('./lib/oauth'),
+    config    = require('./lib/configuration');
 
 var app = module.exports = express();
 
@@ -13,6 +15,8 @@ var app = module.exports = express();
 // configuration
 
 app.configure(function () {
+    app.engine('ejs', ejsLocals);
+    
     app.set('view engine', 'ejs');
     app.set('views', __dirname + '/views');
     
@@ -20,9 +24,7 @@ app.configure(function () {
     app.use(express.bodyParser());
     app.use(express.cookieParser('secret string'));
     app.use(express.session());
-    
     oauth.middleware(app);
-    
     app.use(app.router);
     
     app.enable('verbose errors');
@@ -54,7 +56,11 @@ app.use(function (err, req, res, next) {
     // here and next(err) appropriately, or if
     // we possibly recovered from the error, simply next().
     res.status(err.status || 500);
-    res.render('500', { error: err });
+    res.render('error/500', {
+        title: 'Internal Error',
+        trackingCode: config.googleAnalyticsTrackingCode,
+        error: err
+    });
 });
 
 
@@ -65,7 +71,11 @@ app.use(function (req, res) {
 
     // respond with html page
     if (req.accepts('html')) {
-        res.render('404', { url: req.url });
+        res.render('error/404', {
+            title: 'Not Found',
+            trackingCode: config.googleAnalyticsTrackingCode,
+            url: req.url
+        });
         return;
     }
 

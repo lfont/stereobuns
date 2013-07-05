@@ -1,84 +1,18 @@
 @import url("../components/bootstrap/docs/assets/css/bootstrap.css");
 @import url("../components/bootstrap/docs/assets/css/bootstrap-responsive.css");
 @import url("../components/font-awesome/css/font-awesome.css");
-@import url("common.css");
-@import url("directives.css");
-@import url("partials.css");
 
-@media (min-width: 1200px) {
-    .search .song-bar {
-        width: 770px;
-    }
 
-    .playlist .song-bar {
-        width: 970px;
-    }
+/* layout */
+
+body, html {
+    height: 100%;
 }
 
-@media (max-width: 1199px) {
-    .search .song-bar {
-        width: 620px;
-    }
-
-    .playlist .song-bar {
-        width: 780px;
-    }
+.content {
+    padding: 40px 0 60px 0;
 }
 
-@media (max-width: 978px) {
-    .search .song-bar {
-        width: 476px;
-    }
-
-    .playlist .song-bar {
-        width: 600px;
-    }
-}
-
-/*@media (max-width: 767px) {
-
-}*/
-
-
-/* signin */
-
-.signin {
-    background: url("/img/background.jpg") repeat scroll 0% 0% / cover  transparent;
-}
-
-
-/* oauths */
-
-.oauths {
-    margin-top: 20%;
-}
-
-.oauths .oauth {
-    border-radius: 6px;
-    color: white;
-    display: block;
-    height: 47px;
-    margin: 0 auto 1em auto;
-    text-align: center;
-    text-decoration: none;
-    width: 280px;
-}
-
-.oauths .oauth .logo {
-    float: left;
-    padding: 9px 12px;
-    border-right: 1px solid #D2D2D2;
-}
-
-.oauths .oauth .text {
-    font-size: 16px;
-    line-height: 47px;
-}
-
-.oauths .oauth.google {
-    background-color: #DF4A32;
-}
-
-.oauths .oauth.facebook {
-    background-color: #5C77B4;
+.side-menu {
+    margin-top: 3em;
 }

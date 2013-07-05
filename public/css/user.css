@@ -1,17 +1,39 @@
-/* layout */
+@import url("directives.css");
+@import url("partials.css");
 
-body, html {
-    height: 100%;
+@media (min-width: 1200px) {
+    .search .song-bar {
+        width: 770px;
+    }
+
+    .playlist .song-bar {
+        width: 970px;
+    }
 }
 
-.content {
-    padding: 40px 0 60px 0;
+@media (max-width: 1199px) {
+    .search .song-bar {
+        width: 620px;
+    }
+
+    .playlist .song-bar {
+        width: 780px;
+    }
 }
 
-.filters,
-.playlists {
-    margin-top: 3em;
+@media (max-width: 978px) {
+    .search .song-bar {
+        width: 476px;
+    }
+
+    .playlist .song-bar {
+        width: 600px;
+    }
 }
+
+/*@media (max-width: 767px) {
+
+}*/
 
 
 /* actions */

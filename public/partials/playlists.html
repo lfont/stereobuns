@@ -1,4 +1,4 @@
-<div ng-controller="PlaylistsCtrl" class="playlists">
+<div ng-controller="PlaylistsCtrl" class="side-menu">
     <ul class="nav nav-pills nav-stacked">
         <li ng-repeat="songsStore in songsStores" ng-class="{ active: $parent.isCurrentSongsStore(songsStore) }">
             <a href="/songs/{{ songsStore.name | lowercase }}">

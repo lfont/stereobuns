@@ -1,0 +1,8 @@
+<% layout('./layout') -%>
+    
+<h1><%= error.message %></h1>
+<% if (settings['verbose errors']) { %>
+    <pre>error.stack</pre>
+<% } else { %>
+    <p>An error ocurred!</p>
+<% } %>

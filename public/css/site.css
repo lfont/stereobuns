@@ -1,0 +1,42 @@
+/* background */
+
+.background {
+    background: url("/img/background.jpg") repeat scroll 0% 0% / cover  transparent;
+}
+
+
+/* oauths */
+
+.oauths {
+    margin-top: 20%;
+}
+
+.oauths .oauth {
+    border-radius: 6px;
+    color: white;
+    display: block;
+    height: 47px;
+    margin: 0 auto 1em auto;
+    text-align: center;
+    text-decoration: none;
+    width: 280px;
+}
+
+.oauths .oauth .logo {
+    float: left;
+    padding: 9px 12px;
+    border-right: 1px solid #D2D2D2;
+}
+
+.oauths .oauth .text {
+    font-size: 16px;
+    line-height: 47px;
+}
+
+.oauths .oauth.google {
+    background-color: #DF4A32;
+}
+
+.oauths .oauth.facebook {
+    background-color: #5C77B4;
+}

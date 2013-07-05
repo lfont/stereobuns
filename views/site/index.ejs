@@ -1,0 +1,26 @@
+<% layout('../layout') -%>
+<% stylesheet('/css/site.css') -%>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">SoundRocket</a>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="span4 offset4 oauths">
+                <a href="/auth/google" alt="Sign-in with Google" class="oauth google">
+                    <i class="icon-google-plus-sign icon-2x logo"></i>
+                    <p class="text">Sign-in with Google</p>
+                </a>
+                <a href="/auth/facebook" alt="Sign-in with Facebook" class="oauth facebook">
+                    <i class="icon-facebook-sign icon-2x logo"></i>
+                    <p class="text">Sign-in with Facebook</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
