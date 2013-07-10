@@ -1,24 +1,22 @@
 <div class="row-fluid audio-player-bar" ng-controller="AudioPlayerBarCtrl">    
     <div class="span2 button-bar middle">
         <div class="pull-right">
-            <a href="#" ng-click="previous(); $event.preventDefault()">
+            <button class="btn" ng-click="previous()">
                 <i class="icon-step-backward icon-large"></i>
-            </a>
-            <a href="#" ng-click="togglePlay(); $event.preventDefault()">
+            </button>
+            <button class="btn" ng-click="togglePlay()">
                 <i class="icon-large" ng-class="{ 'icon-play': !isPlaying, 'icon-pause': isPlaying }"></i>
-            </a>
-            <a href="#" ng-click="next(); $event.preventDefault()">
+            </button>
+            <button class="btn" ng-click="next()">
                 <i class="icon-step-forward icon-large"></i>
-            </a>
+            </button>
         </div>
     </div>
         
     <div class="span8">
         <div class="row-fluid">
             <div class="span2">
-                <a href="#" class="pull-right" ng-click="$event.preventDefault()">
-                    <artwork song="song"></artwork>
-                </a>
+                <artwork song="song" class="pull-right"></artwork>
             </div>
             <div class="span10">
                 <div class="row-fluid">
@@ -27,7 +25,7 @@
                         {{ song.track }}
                         <span ng-show="song.album"> - {{ song.album }}</span>
                     </div>
-                    <div class="span3 actions">
+                    <div class="span3 song-actions">
                         <br />
                         
                         <div ng-switch on="song">
@@ -42,9 +40,9 @@
                                 <img ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
                                      ng-hide="song.linkUrl" height="22px" width="22px" />
                                 
-                                <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
+                                <button class="btn" title="Love" ng-click="toggleLoveStatus()">
                                     <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -64,12 +62,12 @@
     </div>
     
     <div class="span2 button-bar middle">
-        <a href="#" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat(); $event.preventDefault()">
+        <button class="btn" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat()">
             <i class="icon-retweet icon-large"></i>
-        </a>
-        <a href="#" ng-class="{ active: shouldOpenQueue }" ng-click="toggleQueue(); $event.preventDefault()">
+        </button>
+        <button class="btn" ng-class="{ active: shouldOpenQueue }" ng-click="toggleQueue()">
             <i class="icon-list icon-large"></i>
-        </a>
+        </button>
     </div>
     
     <div ng-include="audioPlayerQueueTemplate"></div>

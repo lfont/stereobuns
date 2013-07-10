@@ -13,31 +13,34 @@ define([
             queue: true
         };
         
-        var currentSong = audioPlayerSrv.getCurrentSong();
+        var currentSong = audioPlayerSrv.getCurrentSong(),
+            isPlaying   = audioPlayerSrv.isPlaying();
+        
+        function isCurrentSong () {
+            return $scope.song === currentSong;
+        }
         
         this.setOptions = function (options) {
             var opts = angular.extend({}, DEFAULT_OPTIONS, options);
             $scope.options = opts;
         };
         
-        $scope.isPlaying = audioPlayerSrv.isPlaying();
-        
         $scope.$on('audioPlayer:play', function (event, song) {
             currentSong = song;
-            $scope.isPlaying = true;
+            isPlaying = true;
         });
         
         $scope.$on('audioPlayer:stop', function (event) {
             currentSong = null;
-            $scope.isPlaying = false;
+            isPlaying = false;
         });
         
         $scope.$on('audioPlayer:pause', function (event) {
-            $scope.isPlaying = false;
+            isPlaying = false;
         });
         
         $scope.$on('audioPlayer:resume', function (event) {
-            $scope.isPlaying = true;
+            isPlaying = true;
         });
         
         $scope.$on('songsStore:add', function (event, name, song) {
@@ -58,20 +61,24 @@ define([
             }
         });
         
-        $scope.isCurrent = function () {
-            return $scope.song === currentSong;
-        };
-
-        $scope.play = function () {
-            if ($scope.isCurrent()) {
-                audioPlayerSrv.play();
-            } else {
-                audioPlayerSrv.play($scope.song);
-            }
+        $scope.isPlaying = function () {
+            return isCurrentSong() && isPlaying;
         };
         
         $scope.queue = function () {
             audioPlayerSrv.enqueue($scope.song);
+        };
+        
+        $scope.togglePlay = function () {
+            if (isCurrentSong()) {
+                if (isPlaying) {
+                    audioPlayerSrv.pause();
+                } else {
+                    audioPlayerSrv.play();
+                }
+            } else {
+                audioPlayerSrv.play($scope.song);
+            }
         };
         
         $scope.toggleLoveStatus = function () {

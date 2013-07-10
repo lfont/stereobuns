@@ -1,11 +1,10 @@
 <div class="song media">
-    <a class="pull-left" href="#" ng-click="play(); $event.preventDefault(); $event.stopPropagation()">
-        <artwork song="song"></artwork>
-    </a>
+    <artwork song="song" class="pull-left"></artwork>
     <div class="media-body">
         <h4 class="media-heading">
-            <i ng-class="{ 'icon-play': isPlaying, 'icon-pause': !isPlaying }"
-               ng-show="isCurrent()"></i>
+            <button class="btn" ng-click="togglePlay(); $event.stopPropagation()">
+                <i ng-class="{ 'icon-play': !isPlaying(), 'icon-pause': isPlaying() }"></i>
+            </button>
             {{ song.artist }}
         </h4>
         <p>
@@ -22,14 +21,13 @@
                 </p>
             </div>
             <div class="span2">
-                <div class="pull-right actions">
-                    <a href="#" title="Queue" ng-click="queue(); $event.preventDefault(); $event.stopPropagation()"
-                        ng-show="options.queue">
+                <div class="pull-right song-actions">
+                    <button class="btn" title="Queue" ng-click="queue(); $event.stopPropagation()" ng-show="options.queue">
                         <i class="icon-plus"></i>
-                    </a>
-                    <a href="#" title="Love" ng-click="toggleLoveStatus(); $event.preventDefault(); $event.stopPropagation()">
+                    </button>
+                    <button class="btn" title="Love" ng-click="toggleLoveStatus(); $event.stopPropagation()">
                         <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

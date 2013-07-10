@@ -65,6 +65,14 @@
     color: grey;
 }
 
+.audio-player-bar .btn {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin-top: 0;
+    text-shadow: none;
+}
+
 .audio-player-bar .progression-bar > div {
     line-height: 10px;
     min-height: 20px;
@@ -80,22 +88,12 @@
     margin-top: 1.5em;
 }
 
-.audio-player-bar .button-bar a {
+.audio-player-bar .button-bar .btn {
     color: white;
-    margin: .5em;
-    text-decoration: none;
 }
 
-.audio-player-bar .button-bar a.active {
+.audio-player-bar .button-bar .btn.active {
     color: #0088cc;
-}
-
-.audio-player-bar .button-bar a:first-child {
-    margin-left: 0;
-}
-
-.audio-player-bar .button-bar a:last-child {
-    margin-right: 0;
 }
 
 

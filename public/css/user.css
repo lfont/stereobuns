@@ -36,33 +36,34 @@
 }*/
 
 
-/* actions */
+/* song actions */
 
-.audio-player-bar .actions a,
-.song .media-body .actions a {
+.song-actions a {
     color: grey;
-    margin: 0 .5em;
     text-decoration: none;
 }
 
-.audio-player-bar .actions a:hover,
-.song .media-body .actions a:hover {
+.songs-actions a:hover {
     color: #0088cc;
 }
 
-.audio-player-bar .actions a:first-child,
-.song .media-body .actions a:first-child {
+.song-actions a,
+.song-actions button {
+    margin: 0 .5em;
+    padding: 0 5px;
+}
+
+.song-actions a:first-child,
+.song-actions button:first-child {
     margin-left: 0;
 }
 
-.audio-player-bar .actions a:last-child,
-.song .media-body .actions a:last-child {
+.song-actions a:last-child,
+.song-actions button:last-child {
     margin-right: 0;
 }
 
-.audio-player-bar .actions .icon-heart,
-.audio-player-bar .actions .icon-heart-empty:hover,
-.song .media-body .actions .icon-heart,
-.song .media-body .actions .icon-heart-empty:hover {
+.song-actions .icon-heart,
+.song-actions .icon-heart-empty:hover {
     color: #ec352f;
 }

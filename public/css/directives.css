@@ -18,6 +18,13 @@
     padding: 0 0 10px 0;
 }
 
+.song .media-heading .btn {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
 .song .media-body p {
     margin-bottom: 2px;
 }
