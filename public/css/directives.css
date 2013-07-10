@@ -1,12 +1,13 @@
 /* scrollfix */
 
-.search .song-bar.ui-scrollfix,
-.playlist .song-bar.ui-scrollfix {
+.search .songbar.ui-scrollfix,
+.playlist .songbar.ui-scrollfix,
+.songs .songbar.ui-scrollfix {
     position: fixed;
     top: 50px;
 }
 
-.audio-player-queue .song-bar.ui-scrollfix {
+.audio-player-queue .songbar.ui-scrollfix {
     position: fixed;
 }
 
