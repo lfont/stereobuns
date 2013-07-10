@@ -51,6 +51,7 @@ require.config({
     packages: [
         'components/song',
         'components/songbar',
+        'components/playlists',
         'controllers',
         'services',
         'filters',

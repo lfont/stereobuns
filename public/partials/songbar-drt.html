@@ -35,7 +35,8 @@
             </button>
             
             <div class="btn-group" ng-show="options.playlists">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"
+                   ng-click="$event.preventDefault()">
                     Add
                     <span ng-show="selectedSongs.length">({{ selectedSongs.length }})</span>
                     <ng-pluralize count="selectedSongs.length"
@@ -46,11 +47,7 @@
                     To Playlist...
                     <i class="icon-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="playlistStore in playlistStores">
-                        <a ng-click="$parent.addToPlaylist(playlistStore)">{{ playlistStore.name }}</a>
-                    </li>
-                </ul>
+                <playlists options="playlistsOptions" class="dropdown-menu"></playlists>
             </div>
             
             <button class="btn pull-right" ng-click="deselect()" ng-show="selectedSongs.length">

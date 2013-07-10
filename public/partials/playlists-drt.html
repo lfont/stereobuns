@@ -1,0 +1,5 @@
+<ul ng-controller="PlaylistsDrtCtrl">
+    <li ng-repeat="playlistStore in playlistStores">
+        <a ng-click="$parent.addToPlaylist(playlistStore)">{{ playlistStore.name }}</a>
+    </li>
+</ul>

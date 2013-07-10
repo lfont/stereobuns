@@ -18,7 +18,7 @@ define(function () {
             remove: true,
             play: false,
             queue: false,
-            filteredPlaylists: false
+            filterPlaylists: false
         };
         
         $scope.modalOptions = {

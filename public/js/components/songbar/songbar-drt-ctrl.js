@@ -8,45 +8,22 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongbarDrtCtrl ($scope, $location, audioPlayerSrv, playlistMdl) {
+    function SongbarDrtCtrl ($scope, audioPlayerSrv) {
         var DEFAULT_OPTIONS = {
             remove: false,
             play: true,
             queue: true,
             playlists: true,
-            filteredPlaylists: true
+            filterPlaylists: true
         };
         
-        function filterPlaylistStoresForLocation (playlistStores) {
-            var playlistNamePattern = /^\/playlist\/(.*)/,
-                stores = [],
-                i, len, playlistStore, matchs;
-            
-            for (i = 0, len = playlistStores.length; i < len; i++) {
-                playlistStore = playlistStores[i];
-                matchs = playlistNamePattern.exec($location.path());
-                if (!matchs ||
-                    matchs[1].toLowerCase() !== playlistStore.name.toLowerCase())
-                {
-                    stores.push(playlistStore);
-                }
-            }
-            
-            return stores;
-        }
-        
         this.setOptions = function (options) {
-            var opts    = angular.extend({}, DEFAULT_OPTIONS, options),
-                promise = playlistMdl.getPlaylistStores();
-            $scope.options = opts;
-            
-            promise.then(function (playlistStores) {
-                $scope.playlistStores = $scope.options.filteredPlaylists ?
-                    filterPlaylistStoresForLocation(playlistStores) :
-                    playlistStores;
-            }, function (error) {
-                // TODO: handle error
-            });
+            $scope.options = angular.extend({}, DEFAULT_OPTIONS, options);
+            $scope.playlistsOptions.filter = $scope.options.filteredPlaylists;
+        };
+        
+        $scope.playlistsOptions = {
+            filter: DEFAULT_OPTIONS.filterPlaylists
         };
         
         $scope.songs = [];
@@ -82,21 +59,12 @@ define([
             $scope.deselect();
         };
         
-        $scope.addToPlaylist = function (playlistStore) {
-            if ($scope.selectedSongs.length) {
-                playlistStore.add($scope.selectedSongs);
-            } else {
-                playlistStore.add($scope.songs);
-            }
-            $scope.deselect();
-        };
-        
         $scope.deselect = function () {
             $scope.selectedSongs.length = 0;
         };
     }
     
-    SongbarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistMdl' ];
+    SongbarDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
     
     return SongbarDrtCtrl;
 });
