@@ -13,13 +13,15 @@ define([
     'text!partials/song-bar-drt.html',
     'text!partials/playlists.html',
     'text!partials/playlist.html',
+    'text!partials/songs-status.html',
     'text!partials/songs.html',
     'text!partials/user-menu.html'
 ], function (angular, searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
              songDrtTemplate, songBarDrtTemplate,
              playlistsTemplate, playlistTemplate,
-             songsTemplate, userMenuTemplate) {
+             songsStatusTemplate, songsTemplate,
+             userMenuTemplate) {
     'use strict';
     
     function wrap (name, content) {
@@ -44,6 +46,7 @@ define([
         body.prepend(wrap('playlists.html', playlistsTemplate));
         body.prepend(wrap('playlist.html', playlistTemplate));
         
+        body.prepend(wrap('songs-status.html', songsStatusTemplate));
         body.prepend(wrap('songs.html', songsTemplate));
         
         body.prepend(wrap('user-menu.html', userMenuTemplate));

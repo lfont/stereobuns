@@ -14,6 +14,7 @@ define([
     './song-bar-drt-ctrl',
     './playlists-ctrl',
     './playlist-ctrl',
+    './songs-status-ctrl',
     './songs-ctrl',
     './user-menu-ctrl'
 ], function (angular, LayoutCtrl,
@@ -21,7 +22,8 @@ define([
              AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
              SongDrtCtrl, SongBarDrtCtrl,
              PlaylistsCtrl, PlaylistCtrl,
-             SongsCtrl, UserMenuCtrl) {
+             SongsStatusCtrl, SongsCtrl,
+             UserMenuCtrl) {
     'use strict';
     
     return angular.module('soundrocket.controllers', [])
@@ -34,6 +36,7 @@ define([
                   .controller('SongBarDrtCtrl', SongBarDrtCtrl)
                   .controller('PlaylistsCtrl', PlaylistsCtrl)
                   .controller('PlaylistCtrl', PlaylistCtrl)
+                  .controller('SongsStatusCtrl', SongsStatusCtrl)
                   .controller('SongsCtrl', SongsCtrl)
                   .controller('UserMenuCtrl', UserMenuCtrl);
 });

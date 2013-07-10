@@ -24,6 +24,7 @@ define(function () {
             });
         }
         
+        $scope.songsStatusTemplateUrl = 'songs-status.html';
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.name = '';
         $scope.songs = [];

@@ -53,6 +53,7 @@ define(function () {
             $scope.filterBy($scope.searchFilter);
         });
         
+        $scope.songsStatusTemplateUrl = 'songs-status.html';
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.isSearching = false;
         $scope.songs = [];
