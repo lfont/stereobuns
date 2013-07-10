@@ -8,7 +8,7 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongBarDrtCtrl ($scope, $location, audioPlayerSrv, playlistMdl) {
+    function SongbarDrtCtrl ($scope, $location, audioPlayerSrv, playlistMdl) {
         var DEFAULT_OPTIONS = {
             remove: false,
             play: true,
@@ -96,7 +96,7 @@ define([
         };
     }
     
-    SongBarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistMdl' ];
+    SongbarDrtCtrl.$inject = [ '$scope', '$location', 'audioPlayerSrv', 'playlistMdl' ];
     
-    return SongBarDrtCtrl;
+    return SongbarDrtCtrl;
 });

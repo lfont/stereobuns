@@ -10,17 +10,15 @@ define([
     './search-bar-ctrl',
     './audio-player-bar-ctrl',
     './audio-player-queue-ctrl',
-    './song-drt-ctrl',
-    './song-bar-drt-ctrl',
     './playlists-ctrl',
     './playlist-ctrl',
     './songs-status-ctrl',
     './songs-ctrl',
     './user-menu-ctrl'
-], function (angular, LayoutCtrl,
+], function (angular,
+             LayoutCtrl,
              SearchCtrl, SearchBarCtrl,
              AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
-             SongDrtCtrl, SongBarDrtCtrl,
              PlaylistsCtrl, PlaylistCtrl,
              SongsStatusCtrl, SongsCtrl,
              UserMenuCtrl) {
@@ -32,8 +30,6 @@ define([
                   .controller('SearchBarCtrl', SearchBarCtrl)
                   .controller('AudioPlayerBarCtrl', AudioPlayerBarCtrl)
                   .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
-                  .controller('SongDrtCtrl', SongDrtCtrl)
-                  .controller('SongBarDrtCtrl', SongBarDrtCtrl)
                   .controller('PlaylistsCtrl', PlaylistsCtrl)
                   .controller('PlaylistCtrl', PlaylistCtrl)
                   .controller('SongsStatusCtrl', SongsStatusCtrl)

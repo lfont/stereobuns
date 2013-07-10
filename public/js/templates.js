@@ -10,7 +10,7 @@ define([
     'text!partials/audio-player-bar.html',
     'text!partials/audio-player-queue.html',
     'text!partials/song-drt.html',
-    'text!partials/song-bar-drt.html',
+    'text!partials/songbar-drt.html',
     'text!partials/playlists.html',
     'text!partials/playlist.html',
     'text!partials/songs-status.html',
@@ -18,7 +18,7 @@ define([
     'text!partials/user-menu.html'
 ], function (angular, searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
-             songDrtTemplate, songBarDrtTemplate,
+             songDrtTemplate, songbarDrtTemplate,
              playlistsTemplate, playlistTemplate,
              songsStatusTemplate, songsTemplate,
              userMenuTemplate) {
@@ -41,7 +41,7 @@ define([
         body.prepend(wrap('audio-player-queue.html', audioPlayerQueueTemplate));
         
         body.prepend(wrap('song-drt.html', songDrtTemplate));
-        body.prepend(wrap('song-bar-drt.html', songBarDrtTemplate));
+        body.prepend(wrap('songbar-drt.html', songbarDrtTemplate));
         
         body.prepend(wrap('playlists.html', playlistsTemplate));
         body.prepend(wrap('playlist.html', playlistTemplate));

@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function SongDrtFactory () {
+    function songDrtFactory () {
         
         return {
             restrict: 'E',
@@ -27,5 +27,5 @@ define(function () {
         };
     }
     
-    return SongDrtFactory;
+    return songDrtFactory;
 });

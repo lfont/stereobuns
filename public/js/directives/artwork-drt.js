@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function ArtworkDrtFactory (artworkSrv) {
+    function artworkDrtFactory (artworkSrv) {
         
         return {
             restrict: 'E',
@@ -30,7 +30,7 @@ define(function () {
         };
     }
     
-    ArtworkDrtFactory.$inject = [ 'artworkSrv' ];
+    artworkDrtFactory.$inject = [ 'artworkSrv' ];
     
-    return ArtworkDrtFactory;
+    return artworkDrtFactory;
 });

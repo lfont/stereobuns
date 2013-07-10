@@ -8,14 +8,14 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongBarDrtFactory () {
+    function songbarDrtFactory () {
         
         return {
             restrict: 'E',
             replace: true,
             scope: true,
-            templateUrl: 'song-bar-drt.html',
-            controller: 'SongBarDrtCtrl',
+            templateUrl: 'songbar-drt.html',
+            controller: 'SongbarDrtCtrl',
             
             link: function (scope, iElement, iAttrs, controller) {
                 iAttrs.$observe('allSongs', function (value) {
@@ -39,7 +39,5 @@ define([
         };
     }
     
-    SongBarDrtFactory.$inject = [];
-    
-    return SongBarDrtFactory;
+    return songbarDrtFactory;
 });

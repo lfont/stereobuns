@@ -28,21 +28,24 @@
                         <span ng-show="song.album"> - {{ song.album }}</span>
                     </div>
                     <div class="span3 actions">
-                        <div ng-show="song">
-                            <br />
-                            
-                            <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
-                               ng-show="song.linkUrl" ng-click="$event.stopPropagation()">
-                                <img src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
-                                     height="22px" width="22px" />
-                            </a>
-                            
-                            <img src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
-                                 ng-hide="song.linkUrl" height="22px" width="22px" />
-                            
-                            <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
-                                <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                            </a>
+                        <br />
+                        
+                        <div ng-switch on="song">
+                            <div ng-switch-when="null"></div>
+                            <div ng-switch-default>
+                                <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+                                   ng-show="song.linkUrl" ng-click="$event.stopPropagation()">
+                                    <img ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
+                                         height="22px" width="22px" />
+                                </a>
+                                
+                                <img ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
+                                     ng-hide="song.linkUrl" height="22px" width="22px" />
+                                
+                                <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
+                                    <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
