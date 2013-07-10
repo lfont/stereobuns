@@ -28,11 +28,22 @@
                         <span ng-show="song.album"> - {{ song.album }}</span>
                     </div>
                     <div class="span3 actions">
-                        <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()"
-                            ng-show="song">
-                            <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                        </a><br />
-                        {{ song.source }}
+                        <div ng-show="song">
+                            <br />
+                            
+                            <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+                               ng-show="song.linkUrl" ng-click="$event.stopPropagation()">
+                                <img src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
+                                     height="22px" width="22px" />
+                            </a>
+                            
+                            <img src="/tomahawk/resolvers/{{ song.source }}/icon.png" alt="{{ song.source }}"
+                                 ng-hide="song.linkUrl" height="22px" width="22px" />
+                            
+                            <a href="#" ng-click="toggleLoveStatus(); $event.preventDefault()">
+                                <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="row-fluid progression-bar">

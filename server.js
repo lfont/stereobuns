@@ -10,7 +10,7 @@ var http         = require('http'),
 
 var server = http.createServer(app);
 
-searchServer.listen(server);
+searchServer.listen(server, app);
 
 server.listen(config.serverPort, function () {
     console.log('Express server listening on port %d in %s mode',

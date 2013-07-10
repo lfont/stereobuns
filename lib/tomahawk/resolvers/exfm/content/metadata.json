@@ -1,5 +1,5 @@
 {
-    "name": "ex.fm",
+    "name": "Ex.fm",
     "pluginName": "ex.fm",
     "author": "Nicolas and Uwe",
     "email": "uwelk@xhochy.com",
@@ -9,11 +9,11 @@
     "type": "resolver/javascript",
     "manifest": {
         "main": "contents/code/exfm-resolver.js",
-    	"scripts": [
+        "scripts": [
         ],
-	"icon": "contents/images/icon.png",
-	"resources": [
-        "contents/code/exfm-icon.png"
-	]
+        "icon": "contents/images/icon.png",
+        "resources": [
+            "contents/code/exfm-icon.png"
+        ]
     }
 }

@@ -15,7 +15,9 @@
         <div class="row-fluid">
             <div class="span10">
                 <p>
-                    {{ song.source }}
+                    <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+                       ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
+                    <span ng-hide="song.linkUrl">{{ song.source }}</span>
                     <span ng-show="song.duration"> - {{ song.duration | time }}</span>
                 </p>
             </div>
