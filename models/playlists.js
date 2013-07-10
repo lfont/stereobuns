@@ -11,18 +11,21 @@ module.exports = function (Song) {
     var exports = {};
 
     exports.create = function (userId, playlistName, callback) {
-        // TODO: check if exists?
-        Song.create({
-            userId: userId,
-            url: 'empty:',
-            playlists: [ playlistName ]
-        }, function (err) {
-            if (err) {
-                // TODO: handle error
-                console.log(err);
-            }
-            callback(err);
-        });
+        Song.update(
+            { userId: userId, url: 'empty:' },
+            {
+                userId: userId,
+                url: 'empty:',
+                $addToSet: { playlists: playlistName }
+            },
+            { upsert: true },
+            function (err, numberAffected, raw) {
+                if (err) {
+                    // TODO: handle error
+                    console.log(err);
+                }
+                callback(err, numberAffected);
+            });
     };
     
     exports.findByName = function (userId, playlistName, callback) {
