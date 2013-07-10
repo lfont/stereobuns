@@ -1,15 +1,15 @@
 /* user menu */
 
-.user-menu {
-    margin-top: 5px;
+.user-menu .btn {
+    background: none;
+    border: 0;
+    color: grey;
+    text-shadow: none;
+    box-shadow: none;
 }
 
-.user-menu a {
-    color: gray;
-    text-decoration: none;
-}
-
-.user-menu a:hover {
+.user-menu .btn:hover,
+.user-menu .btn.active {
     color: white;
 }
 

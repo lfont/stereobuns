@@ -4,12 +4,12 @@
   "dependencies": {
     "requirejs": "~2.1.6",
     "bootstrap": "~2.3.2",
-    "angular": "~1.0.7",
     "requirejs-text": "~2.0.6",
     "soundmanager": "latest",
     "angular-ui-utils": "~0.0.2",
     "angular-ui-bootstrap": "~0.4.0",
     "font-awesome": "~3.2.1",
-    "jquery": "~2.0.2"
+    "jquery": "~2.0.2",
+    "angular-unstable": "~1.1.5"
   }
 }

@@ -8,7 +8,7 @@ require.config({
         'partials': '../partials',
         'text': '../components/requirejs-text/text',
         'jquery': '../components/jquery/jquery',
-        'angular': '../components/angular/angular',
+        'angular': '../components/angular-unstable/angular',
         'angular-ui-utils-keypress': '../components/angular-ui-utils/modules/keypress/keypress',
         'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
         'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',

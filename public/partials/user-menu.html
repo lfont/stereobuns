@@ -1,10 +1,10 @@
 <div class="user-menu" ng-controller="UserMenuCtrl">
-    <div class="dropdown">
-        <a href="#" class="dropdown-toggle">
+    <div class="dropdown" ng-init="isOpen = false">
+        <button class="btn dropdown-toggle" ng-class="{ active: isOpen }" ng-click="isOpen = !isOpen">
             <img ng-src="{{ user.picture }}" width="30px" height="30px" />    
             {{ user.name }}
             <i class="icon-caret-down icon-large"></i>
-        </a>
+        </button>
         <ul class="dropdown-menu">
             <li>
                 <a href="/logout">Sign out</a>
