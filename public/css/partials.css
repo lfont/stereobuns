@@ -27,14 +27,16 @@
 }
 
 
-/* song bar */
+/* playlist */
 
-.song-bar {
-    margin-bottom: .5em;
+.playlist .playlist-header h1 {
+    display: inline;
+    margin-right: .5em;
 }
 
-.song-bar form {
-    width: 100%;
+.playlist .playlist-header .btn {
+    font-size: 12px;
+    line-height: 10px;
 }
 
 

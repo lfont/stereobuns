@@ -45,7 +45,9 @@ exports.register = function (app) {
     app.get('/api/users/me', ensureAuthenticated, usersApi.show);
     
     app.get('/api/users/me/playlists', ensureAuthenticated, playlistsApi.index);
+    app.post('/api/users/me/playlists', ensureAuthenticated, playlistsApi.create);
     app.get('/api/users/me/playlists/:name', ensureAuthenticated, playlistsApi.show);
+    app.delete('/api/users/me/playlists/:name', ensureAuthenticated, playlistsApi.destroy);
     
     app.post('/api/users/me/playlists/:name/songs', ensureAuthenticated, playlistSongsApi.create);
     app.delete('/api/users/me/playlists/:name/songs/:id', ensureAuthenticated, playlistSongsApi.destroy);

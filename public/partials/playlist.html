@@ -1,6 +1,9 @@
-<div class="playlist row">
+<div class="playlist row-fluid">
     <div class="span10">
-        <h1>{{ name }}</h1>
+        <div class="playlist-header">
+            <h1>{{ name }}</h1>
+            <button class="btn btn-danger" ng-click="deletePlaylist()">Delete</button>
+        </div>
         <p>
             <span ng-show="songs.length">{{ songs.length }}</span>
             <ng-pluralize count="songs.length"

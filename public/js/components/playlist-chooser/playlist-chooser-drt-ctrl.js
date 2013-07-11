@@ -47,8 +47,14 @@ define([
         $scope.playlistName = '';
         
         $scope.createPlaylist = function () {
-            var playlistStore = playlistMdl.createPlaylistStore($scope.playlistName);
-            $scope.playlistStores.push(playlistStore);
+            var promise = playlistMdl.createPlaylistStore($scope.playlistName);
+            
+            promise.then(function (playlistStore) {
+                $scope.playlistStores.push(playlistStore);
+            }, function (error) {
+                // TODO: handle error
+            });
+
             $scope.playlistName = '';
         };
 

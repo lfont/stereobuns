@@ -135,14 +135,43 @@ define([
             },
             
             createPlaylistStore: function (name) {
-                var playlistStore = new PlaylistStore({
-                        name: name,
-                        length: 0
+                var deferred = $q.defer();
+                
+                $http
+                    .post('/api/users/me/playlists', { name: name })
+                    .success(function (data, status, headers, config) {
+                        var playlistStore = new PlaylistStore({
+                                name: name,
+                                length: 0
+                            });
+                        
+                        playlistStoresMap[playlistStore.name.toLowerCase()] = playlistStore;
+                        playlistStores.push(playlistStore);
+                        
+                        deferred.resolve(playlistStore);
+                    })
+                    .error(function (data, status, headers, config) {
+                        deferred.reject(status);
                     });
-                // TODO: call the create service.
-                playlistStoresMap[playlistStore.name.toLowerCase()] = playlistStore;
-                playlistStores.push(playlistStore);
-                return playlistStore;
+                
+                return deferred.promise;
+            },
+            
+            deletePlaylistStore: function (playlistStore) {
+                $http
+                    .delete('/api/users/me/playlists/' + playlistStore.name)
+                    .success(function (data, status, headers, config) {
+                        var index = playlistStores.indexOf(playlistStore);
+                        
+                        delete playlistStoresMap[name.toLowerCase()];
+                        playlistStores.splice(index, 1);
+                        
+                        $window.console.log('playlist: ' + playlistStore.name + ' has been removed');
+                    })
+                    .error(function (data, status, headers, config) {
+                        // TODO: handle error
+                        $window.console.log('playlist: ' + playlistStore.name + ' has not been removed');
+                    });
             }
         };
     }

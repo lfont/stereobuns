@@ -28,6 +28,20 @@ module.exports = function (Song) {
             });
     };
     
+    exports.delete = function (userId, playlistName, callback) {
+        Song.update(
+            { userId: userId },
+            { $pull: { playlists: playlistName } },
+            { multi: true },
+            function (err, numberAffected, raw) {
+                if (err) {
+                    // TODO: handle error
+                    console.log(err);
+                }
+                callback(err, numberAffected);
+            });
+    };
+    
     exports.findByName = function (userId, playlistName, callback) {
         Song.aggregate([
             { $match: { userId: mongoose.Types.ObjectId(userId) } },

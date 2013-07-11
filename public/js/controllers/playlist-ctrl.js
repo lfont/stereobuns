@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
 
-    function PlaylistCtrl ($scope, $routeParams, playlistMdl) {
+    function PlaylistCtrl ($scope, $routeParams, $location, playlistMdl) {
         var currentPlaylistStore;
         
         function getSelectedSongIndex (song) {
@@ -56,6 +56,11 @@ define(function () {
             }
         });
         
+        $scope.deletePlaylist = function () {
+            playlistMdl.deletePlaylistStore(currentPlaylistStore);
+            $location.path('/home');
+        };
+        
         $scope.toggleSongSelection = function (song) {
             var songIndex = getSelectedSongIndex(song);
             if (songIndex > -1) {
@@ -76,7 +81,7 @@ define(function () {
         setPlaylistStore($routeParams.name);
     }
 
-    PlaylistCtrl.$inject = [ '$scope', '$routeParams', 'playlistMdl' ];
+    PlaylistCtrl.$inject = [ '$scope', '$routeParams', '$location', 'playlistMdl' ];
     
     return PlaylistCtrl;
 });

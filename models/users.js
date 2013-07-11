@@ -3,9 +3,7 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose  = require('mongoose'),
-    songs     = require('./songs'),
-    playlists = require('./playlists')(songs.Song);
+var mongoose  = require('mongoose');
 
 var userSchema = new mongoose.Schema({
         email: { type: String, required: true },
@@ -20,16 +18,8 @@ exports.create = function (userData, callback) {
         if (err) {
             // TODO: handle error
             console.log(err);
-            callback(err);
-            return;
         }
-        playlists.create(user.id, 'My Collection', function (err) {
-            if (err) {
-                // TODO: handle error
-                console.log(err);
-            }
-            callback(err, user);
-        });
+        callback(err, user);
     });
 };
 
