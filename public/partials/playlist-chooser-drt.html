@@ -1,0 +1,12 @@
+<div ng-controller="PlaylistChooserDrtCtrl" class="playlist-chooser">
+    <ul class="nav nav-pills nav-stacked">
+        <li ng-repeat="playlistStore in playlistStores">
+            <a href="#" ng-click="$parent.addToPlaylist(playlistStore); $event.preventDefault()">{{ playlistStore.name }}</a>
+        </li>
+    </ul>
+    <span class="divider"></span>
+    <form class="form-inline" ng-click="$event.stopPropagation()">
+        <input type="text" placeholder="Playlist Name" class="input-medium" ng-model="playlistName" />
+        <button class="btn" ng-click="createPlaylist()">Create</button>
+    </form>
+</div>

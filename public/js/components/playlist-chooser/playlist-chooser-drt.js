@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
     'use strict';
     
-    function playlistsDrtFactory () {
+    function playlistChooserDrtFactory () {
         
         return {
             restrict: 'E',
@@ -15,10 +15,10 @@ define(function () {
                 options: '=',
                 songs: '='
             },
-            templateUrl: 'playlists-drt.html',
-            controller: 'PlaylistsDrtCtrl'
+            templateUrl: 'playlist-chooser-drt.html',
+            controller: 'PlaylistChooserDrtCtrl'
         };
     }
     
-    return playlistsDrtFactory;
+    return playlistChooserDrtFactory;
 });

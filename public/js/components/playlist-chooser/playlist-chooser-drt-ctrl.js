@@ -8,7 +8,7 @@ define([
 ], function (angular) {
     'use strict';
 
-    function PlaylistsDrtCtrl ($scope, $location, playlistMdl) {
+    function PlaylistChooserDrtCtrl ($scope, $location, playlistMdl) {
         var DEFAULT_OPTIONS = {
             filter: true
         };
@@ -43,6 +43,14 @@ define([
                 // TODO: handle error
             });
         }
+        
+        $scope.playlistName = '';
+        
+        $scope.createPlaylist = function () {
+            var playlistStore = playlistMdl.createPlaylistStore($scope.playlistName);
+            $scope.playlistStores.push(playlistStore);
+            $scope.playlistName = '';
+        };
 
         $scope.addToPlaylist = function (playlistStore) {
             playlistStore.add($scope.songs);
@@ -51,7 +59,7 @@ define([
         loadPlaylistStores();
     }
      
-    PlaylistsDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
+    PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
     
-    return PlaylistsDrtCtrl;
+    return PlaylistChooserDrtCtrl;
 });

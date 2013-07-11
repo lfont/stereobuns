@@ -132,6 +132,17 @@ define([
                 });
                 
                 return deferred.promise;
+            },
+            
+            createPlaylistStore: function (name) {
+                var playlistStore = new PlaylistStore({
+                        name: name,
+                        length: 0
+                    });
+                // TODO: call the create service.
+                playlistStoresMap[playlistStore.name.toLowerCase()] = playlistStore;
+                playlistStores.push(playlistStore);
+                return playlistStore;
             }
         };
     }
