@@ -40,21 +40,21 @@
 
 /* song list */
 
-.song-list li {
+.song-list > li {
     border-bottom: 1px solid #f2f2f2;
     padding: 1em .5em .2em .5em;
 }
 
-.song-list li:last-child {
+.song-list > li:last-child {
     border-bottom: 0;
 }
 
-.song-list li.selected,
-.song-list li:hover.selected {
+.song-list > li.selected,
+.song-list > li:hover.selected {
     background-color: #3892FD;
 }
 
-.song-list li:hover {
+.song-list > li:hover {
     background-color: #EBF4FF;
 }
 

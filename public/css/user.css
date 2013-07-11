@@ -38,10 +38,6 @@
 
 /* song actions */
 
-.song-actions .btn-group {
-    vertical-align: inherit;
-}
-
 .song-actions .btn {
     color: grey;
     font-size: 10px;

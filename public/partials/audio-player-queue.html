@@ -20,13 +20,13 @@
         <div class="modal-body" no-scroll-propagation>
             <div ng-show="queue.length">
                 <songbar all-songs="queue" selected-songs="selectedSongs" options="songBarOptions"
-                         on-remove="dequeue" ui-scrollfix="{ offset: '5', scroller: '.audio-player-queue .modal-body' }"></songbar>
+                         on-remove="dequeue(songs)" ui-scrollfix="{ offset: '5', scroller: '.audio-player-queue .modal-body' }"></songbar>
             </div>
             <ul class="media-list song-list">
                 <li ng-repeat="song in queue"
                     ng-click="$parent.toggleSongSelection(song)"
                     ng-class="{ selected: $parent.isSongSelected(song) }">
-                    <song data="song" options="songOptions"></song>
+                    <song song="song" options="songOptions"></song>
                 </li>
             </ul>
         </div>

@@ -31,8 +31,8 @@ define([
             return stores;
         }
         
-        this.setOptions = function (options) {
-            var opts    = angular.extend({}, DEFAULT_OPTIONS, options),
+        function loadPlaylistStores () {
+            var opts    = angular.extend({}, DEFAULT_OPTIONS, $scope.options),
                 promise = playlistMdl.getPlaylistStores();
             
             promise.then(function (playlistStores) {
@@ -42,11 +42,13 @@ define([
             }, function (error) {
                 // TODO: handle error
             });
-        };
-                
+        }
+
         $scope.addToPlaylist = function (playlistStore) {
             playlistStore.add($scope.songs);
         };
+        
+        loadPlaylistStores();
     }
      
     PlaylistsDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];

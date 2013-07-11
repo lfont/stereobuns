@@ -11,19 +11,12 @@ define(function () {
         return {
             restrict: 'E',
             replace: true,
-            scope: true,
+            scope: {
+                customOptions: '=options',
+                song: '='
+            },
             templateUrl: 'song-drt.html',
-            controller: 'SongDrtCtrl',
-            
-            link: function (scope, iElement, iAttrs, controller) {
-                iAttrs.$observe('data', function (value) {
-                    scope.song = scope.$parent.$eval(value);
-                });
-                
-                iAttrs.$observe('options', function (value) {
-                    controller.setOptions(scope.$parent.$eval(value));
-                });
-            }
+            controller: 'SongDrtCtrl'
         };
     }
     

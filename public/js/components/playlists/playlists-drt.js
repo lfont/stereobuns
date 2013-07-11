@@ -11,15 +11,12 @@ define(function () {
         return {
             restrict: 'E',
             replace: true,
-            scope: true,
+            scope: {
+                options: '=',
+                songs: '='
+            },
             templateUrl: 'playlists-drt.html',
-            controller: 'PlaylistsDrtCtrl',
-            
-            link: function (scope, iElement, iAttrs, controller) {
-                iAttrs.$observe('options', function (value) {
-                    controller.setOptions(scope.$parent.$eval(value));
-                });
-            }
+            controller: 'PlaylistsDrtCtrl'
         };
     }
     

@@ -1,7 +1,7 @@
-<div class="song media">
+<div class="song">
     <artwork song="song" class="pull-left"></artwork>
-    <div class="media-body">
-        <h4 class="media-heading">
+    <div class="song-body">
+        <h4 class="song-heading">
             <button class="btn" title="Play" ng-click="togglePlay(); $event.stopPropagation()"
                     ng-if="!isPlaying()">
                 <i class="icon-play"></i>
@@ -16,31 +16,26 @@
             {{ song.track }}
             <span ng-show="song.album"> - {{ song.album }}</span>
         </p>
-        <div class="row-fluid">
-            <div class="span9">
-                <p>
-                    <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
-                       ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
-                    <span ng-hide="song.linkUrl">{{ song.source }}</span>
-                    <span ng-show="song.duration"> - {{ song.duration | time }}</span>
-                </p>
-            </div>
-            <div class="span3">
-                <div class="pull-right song-actions">
-                    <div class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"
-                           title="Add To Playlist..." ng-click="$event.preventDefault()">
-                            <i class="icon-caret-down"></i>
-                        </a>
-                        <playlists class="dropdown-menu"></playlists>
-                    </div>
-                    <button class="btn" title="Queue" ng-click="queue(); $event.stopPropagation()" ng-show="options.queue">
-                        <i class="icon-plus"></i>
+        <div>
+            <p class="pull-left">
+                <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+                   ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
+                <span ng-hide="song.linkUrl">{{ song.source }}</span>
+                <span ng-show="song.duration"> - {{ song.duration | time }}</span>
+            </p>
+            <div class="pull-right song-actions">
+                <div class="btn-group" ng-click="$event.stopPropagation()">
+                    <button class="btn dropdown-toggle" title="Add To Playlist...">
+                        <i class="icon-reorder"></i>
                     </button>
-                    <button class="btn" title="Love" ng-click="toggleLoveStatus(); $event.stopPropagation()">
-                        <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                    </button>
+                    <playlists songs="song" class="dropdown-menu"></playlists>
                 </div>
+                <button class="btn" title="Queue" ng-click="queue(); $event.stopPropagation()" ng-show="options.queue">
+                    <i class="icon-plus"></i>
+                </button>
+                <button class="btn" title="Love" ng-click="toggleLoveStatus(); $event.stopPropagation()">
+                    <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
+                </button>
             </div>
         </div>
     </div>

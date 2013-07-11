@@ -20,10 +20,9 @@ define([
             return $scope.song === currentSong;
         }
         
-        this.setOptions = function (options) {
-            var opts = angular.extend({}, DEFAULT_OPTIONS, options);
-            $scope.options = opts;
-        };
+        function setOptions () {
+            $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
+        }
         
         $scope.$on('audioPlayer:play', function (event, song) {
             currentSong = song;
@@ -89,6 +88,8 @@ define([
                 lovedSongsStore.add($scope.song);
             }
         };
+        
+        setOptions();
     }
      
     SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];

@@ -45,7 +45,7 @@
                         <li ng-repeat="song in songs"
                             ng-click="$parent.toggleSongSelection(song)"
                             ng-class="{ selected: $parent.isSongSelected(song) }">
-                            <song data="song"></song>
+                            <song song="song"></song>
                         </li>
                     </ul>
                 </div>

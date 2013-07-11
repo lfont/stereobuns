@@ -18,7 +18,23 @@
     padding: 0 0 10px 0;
 }
 
-.song .media-heading .btn {
+.song img {
+    margin-right: 10px;
+}
+
+.song .song-body p {
+    margin: 0;
+}
+
+.song .song-body div {
+    min-height: 20px;
+}
+
+.song .song-heading {
+    margin: 0 0 5px 0;
+}
+
+.song .song-heading .btn {
     background: none;
     border: 0;
     box-shadow: none;
@@ -26,8 +42,11 @@
     text-shadow: none;
 }
 
-.song .media-body p {
-    margin-bottom: 2px;
+
+/* songbar */
+
+.songbar form {
+    width: 100%;
 }
 
 

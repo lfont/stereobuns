@@ -69,8 +69,8 @@ define(function () {
             return getSelectedSongIndex(song) > -1;
         };
         
-        $scope.remove = function (song) {
-            currentPlaylistStore.remove(song);
+        $scope.remove = function (songs) {
+            currentPlaylistStore.remove(songs);
         };
         
         setPlaylistStore($routeParams.name);
