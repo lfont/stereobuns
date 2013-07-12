@@ -29,16 +29,21 @@
 
 /* audio player bar */
 
-.audio-player-bar {
+.audio-player-bar .song-info {
     color: grey;
 }
 
-.audio-player-bar .btn {
+.audio-player-bar .button-bar .btn {
     background: none;
     border: 0;
     box-shadow: none;
     margin-top: 0;
     text-shadow: none;
+}
+
+.audio-player-bar .button-bar .icon-heart,
+.audio-player-bar .button-bar .icon-heart-empty:hover {
+    color: #ec352f;
 }
 
 .audio-player-bar .progression-bar > div {
@@ -67,6 +72,45 @@
 
 /* audio player queue */
 
-.audio-player-queue .song-bar {
-    width: 513px;
+.audio-player-queue {
+    background-color: white;
+    border: 1px solid #999;
+    border-bottom: 0;
+    border-radius: 7px 7px 0 0;
+    bottom: 66px;
+    box-shadow: 0 0 7px #999;
+    height: 400px;
+    position: fixed;
+}
+
+.audio-player-queue .modal-body {
+    max-height: 311px;
+    min-height: 311px;
+}
+
+.audio-player-queue.show-animation,
+.audio-player-queue.hide-animation {
+    -webkit-transition: all linear 0.3s;
+    -moz-transition:    all linear 0.3s;
+    transition:         all linear 0.3s;
+}
+
+.audio-player-queue.show-animation {
+    bottom: -400px;
+    opacity: 0;
+}
+
+.audio-player-queue.show-animation-active {
+    bottom: 66px;
+    opacity: 1;
+}
+
+.audio-player-queue.hide-animation {
+    bottom: 66px;
+    opacity: 1;
+}
+
+.audio-player-queue.hide-animation-active {
+    bottom: -400px;
+    opacity: 0;
 }

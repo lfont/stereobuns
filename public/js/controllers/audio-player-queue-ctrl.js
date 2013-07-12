@@ -9,12 +9,6 @@ define(function () {
     function AudioPlayerQueueCtrl ($scope, audioPlayerSrv) {
         $scope.queue = audioPlayerSrv.getQueue();
         
-        $scope.modalOptions = {
-            backdrop: false,
-            backdropClick: false,
-            keyboard: true
-        };
-        
         $scope.songsActionsOptions = {
             remove: true,
             play: false,

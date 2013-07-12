@@ -24,8 +24,13 @@
     background: none;
     border: 0;
     box-shadow: none;
+    margin-top: 0;
     padding: 0 5px;
     text-shadow: none;
+}
+
+.song .songs-actions .dropdown-menu {
+    left: -210px;
 }
 
 
@@ -59,10 +64,6 @@
 .songs-actions .icon-heart,
 .songs-actions .icon-heart-empty:hover {
     color: #ec352f;
-}
-
-.songs-actions .dropdown-menu {
-    left: -210px;
 }
 
 

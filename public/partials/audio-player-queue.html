@@ -1,30 +1,26 @@
-<div ng-controller="AudioPlayerQueueCtrl" modal="shouldBeOpen" close="close()" options="modalOptions">
-    <div class="audio-player-queue">
-        <div class="modal-header">
-            <h4>Queue</h4>
+<div ng-controller="AudioPlayerQueueCtrl" ng-show="shouldBeOpen"
+     ng-animate="{ show: 'show-animation', hide: 'hide-animation' }"
+     class="container audio-player-queue">
+    <div class="modal-header">
+        <h4>Queue</h4>
+    </div>
+    
+    <div class="modal-body" no-scroll-propagation>
+        <div class="playlist-actions">
+            <span ng-show="queue.length">{{ queue.length }}</span>
+            <ng-pluralize count="queue.length"
+                when="{ '0': 'empty',
+                        '1': 'song',
+                        'other': 'songs' }">
+            </ng-pluralize>
+            <songs-actions songs="queue" options="songsActionsOptions"
+                           on-remove="dequeue(songs)"></songs-actions>
         </div>
         
-        <div class="modal-body" no-scroll-propagation>
-            <div class="playlist-actions">
-                <span ng-show="queue.length">{{ queue.length }}</span>
-                <ng-pluralize count="queue.length"
-                    when="{ '0': 'empty',
-                            '1': 'song',
-                            'other': 'songs' }">
-                </ng-pluralize>
-                <songs-actions songs="queue" options="songsActionsOptions"
-                               on-remove="dequeue(songs)"></songs-actions>
-            </div>
-            
-            <ul class="playlist-songs">
-                <li ng-repeat="song in queue">
-                    <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="modal-footer">
-            <button class="btn" ng-click="close()">Close</button>
-        </div>
+        <ul class="playlist-songs">
+            <li ng-repeat="song in queue">
+                <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
+            </li>
+        </ul>
     </div>
 </div>
