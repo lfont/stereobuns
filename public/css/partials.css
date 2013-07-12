@@ -27,40 +27,6 @@
 }
 
 
-/* playlist */
-
-.playlist .playlist-header h1 {
-    display: inline-block;
-    margin-right: .5em;
-}
-
-.playlist .playlist-header .btn {
-    font-size: 12px;
-    line-height: 10px;
-}
-
-
-/* song list */
-
-.song-list > li {
-    border-bottom: 1px solid #f2f2f2;
-    padding: 1em .5em .2em .5em;
-}
-
-.song-list > li:last-child {
-    border-bottom: 0;
-}
-
-.song-list > li.selected,
-.song-list > li:hover.selected {
-    background-color: #3892FD;
-}
-
-.song-list > li:hover {
-    background-color: #EBF4FF;
-}
-
-
 /* audio player bar */
 
 .audio-player-bar {

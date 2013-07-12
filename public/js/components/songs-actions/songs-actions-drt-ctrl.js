@@ -8,10 +8,10 @@ define([
 ], function (angular) {
     'use strict';
     
-    function SongbarDrtCtrl ($scope, audioPlayerSrv) {
+    function SongsActionsDrtCtrl ($scope, audioPlayerSrv, songsMdl) {
         var DEFAULT_OPTIONS = {
             remove: false,
-            play: true,
+            play: false,
             queue: true,
             playlists: true,
             filterPlaylists: true
@@ -26,37 +26,35 @@ define([
             filter: DEFAULT_OPTIONS.filterPlaylists
         };
         
-        $scope.getSongs = function () {
-            return $scope.selectedSongs.length ?
-                $scope.selectedSongs :
-                $scope.allSongs;
-        };
-        
-        $scope.remove = function () {
-            $scope.onRemove({ songs: $scope.getSongs() });
-            $scope.deselect();
-        };
+        $scope.isMulti = angular.isArray($scope.songs);
         
         $scope.play = function () {
-            var songs = $scope.getSongs();
+            var songs = $scope.songs;
             audioPlayerSrv.enqueue(songs);
-            audioPlayerSrv.play(songs[0]);
-            $scope.deselect();
+            audioPlayerSrv.play($scope.isMulti ? songs[0] : songs);
         };
         
         $scope.queue = function () {
-            audioPlayerSrv.enqueue($scope.getSongs());
-            $scope.deselect();
+            audioPlayerSrv.enqueue($scope.songs);
+        };
+            
+        $scope.toggleLove = function () {
+            var lovedSongsStore = songsMdl.getSongsStore('loved');
+            if ($scope.songs.loved) {
+                lovedSongsStore.remove($scope.songs);
+            } else {
+                lovedSongsStore.add($scope.songs);
+            }
         };
         
-        $scope.deselect = function () {
-            $scope.selectedSongs.length = 0;
+        $scope.remove = function () {
+            $scope.onRemove({ songs: $scope.songs });
         };
         
         setOptions();
     }
     
-    SongbarDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+    SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];
     
-    return SongbarDrtCtrl;
+    return SongsActionsDrtCtrl;
 });

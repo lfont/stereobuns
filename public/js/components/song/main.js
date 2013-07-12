@@ -6,7 +6,10 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'angular',
     './song-drt-ctrl',
-    './song-drt'
+    './song-drt',
+    'services',
+    'models',
+    'components/songs-actions'
 ], function (angular,
              SongDrtCtrl,
              songDrtFactory) {
@@ -14,7 +17,8 @@ define([
     
     var songComponent = angular.module('soundrocket.components.song', [
         'soundrocket.services',
-        'soundrocket.models'
+        'soundrocket.models',
+        'soundrocket.components.songs-actions'
     ]);
     
     songComponent.controller('SongDrtCtrl', SongDrtCtrl)

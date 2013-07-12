@@ -50,7 +50,7 @@ require.config({
     },
     packages: [
         'components/song',
-        'components/songbar',
+        'components/songs-actions',
         'components/playlist-chooser',
         'controllers',
         'services',

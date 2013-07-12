@@ -6,7 +6,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'angular',
     './playlist-chooser-drt-ctrl',
-    './playlist-chooser-drt'
+    './playlist-chooser-drt',
+    'models'
 ], function (angular,
              PlaylistChooserDrtCtrl,
              playlistChooserDrtFactory) {

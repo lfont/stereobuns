@@ -18,29 +18,43 @@
 }*/
 
 
-/* song actions */
+/* playlist-header */
 
-.song-actions a {
-    text-decoration: none;
+.playlist-header h1 {
+    display: inline-block;
+    margin-right: .5em;
 }
 
-.song-actions .btn {
-    color: grey;
-    font-size: 10px;
-    line-height: 15px;
-    margin: 0 .5em;
-    padding: 0 5px;
+.playlist-header .btn {
+    font-size: 12px;
+    line-height: 10px;
 }
 
-.song-actions .btn:first-child {
-    margin-left: 0;
+
+/* playlist-actions */
+
+.playlist-actions {
+    margin: 0 0 10px 0;    
 }
 
-.song-actions .btn:last-child {
-    margin-right: 0;
+.playlist-actions .songs-actions {
+    display: inline-block;
+    margin-left: .5em;
 }
 
-.song-actions .icon-heart,
-.song-actions .icon-heart-empty:hover {
-    color: #ec352f;
+
+/* playlist-songs */
+
+.playlist-songs {
+    list-style-type: none;
+    margin: 0;
+}
+
+.playlist-songs > li {
+    border-bottom: 1px solid #f2f2f2;
+    padding: 1em .5em .2em .5em;
+}
+
+.playlist-songs > li:last-child {
+    border-bottom: 0;
 }

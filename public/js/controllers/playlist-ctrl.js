@@ -9,10 +9,6 @@ define(function () {
     function PlaylistCtrl ($scope, $routeParams, $location, playlistMdl) {
         var currentPlaylistStore;
         
-        function getSelectedSongIndex (song) {
-            return $scope.selectedSongs.indexOf(song);
-        }
-        
         function setPlaylistStore (name) {
             var promise = playlistMdl.getPlaylistStore(name);
             
@@ -32,7 +28,12 @@ define(function () {
             });
         }
         
-        $scope.songBarOptions = {
+        $scope.songsActionsOptions = {
+            play: true,
+            remove: true
+        };
+        
+        $scope.songOptions = {
             remove: true
         };
         
@@ -40,7 +41,6 @@ define(function () {
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.name = '';
         $scope.songs = [];
-        $scope.selectedSongs = [];
         
         $scope.$on('playlistStore:add', function (event, name, song) {
             if (name === $scope.name) {
@@ -59,19 +59,6 @@ define(function () {
         $scope.deletePlaylist = function () {
             playlistMdl.deletePlaylistStore(currentPlaylistStore);
             $location.path('/home');
-        };
-        
-        $scope.toggleSongSelection = function (song) {
-            var songIndex = getSelectedSongIndex(song);
-            if (songIndex > -1) {
-                $scope.selectedSongs.splice(songIndex, 1);
-            } else {
-                $scope.selectedSongs.push(song);
-            }
-        };
-        
-        $scope.isSongSelected = function (song) {
-            return getSelectedSongIndex(song) > -1;
         };
         
         $scope.remove = function (songs) {

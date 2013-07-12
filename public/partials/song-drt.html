@@ -23,20 +23,8 @@
                 <span ng-hide="song.linkUrl">{{ song.source }}</span>
                 <span ng-show="song.duration"> - {{ song.duration | time }}</span>
             </p>
-            <div class="pull-right song-actions">
-                <div class="btn-group" ng-click="$event.stopPropagation()">
-                    <button class="btn dropdown-toggle" title="Add To Playlist...">
-                        <i class="icon-reorder"></i>
-                    </button>
-                    <playlist-chooser songs="song" class="dropdown-menu"></playlist-chooser>
-                </div>
-                <button class="btn" title="Queue" ng-click="queue(); $event.stopPropagation()" ng-show="options.queue">
-                    <i class="icon-plus"></i>
-                </button>
-                <button class="btn" title="Love" ng-click="toggleLoveStatus(); $event.stopPropagation()">
-                    <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                </button>
-            </div>
+            <songs-actions class="pull-right" songs="song" options="options"
+                           on-remove="remove(songs)"></songs-actions>
         </div>
     </div>
 </div>

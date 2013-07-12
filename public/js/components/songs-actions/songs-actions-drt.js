@@ -8,21 +8,20 @@ define([
 ], function (angular) {
     'use strict';
     
-    function songbarDrtFactory () {
+    function songsActionsDrtFactory () {
         
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 customOptions: '=options',
-                allSongs: '=',
-                selectedSongs: '=',
+                songs: '=',
                 onRemove: '&'
             },
-            templateUrl: 'songbar-drt.html',
-            controller: 'SongbarDrtCtrl'
+            templateUrl: 'songs-actions-drt.html',
+            controller: 'SongsActionsDrtCtrl'
         };
     }
     
-    return songbarDrtFactory;
+    return songsActionsDrtFactory;
 });

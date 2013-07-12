@@ -46,15 +46,22 @@ define([
         
         $scope.playlistName = '';
         
-        $scope.createPlaylist = function () {
-            var promise = playlistMdl.createPlaylistStore($scope.playlistName);
-            
-            promise.then(function (playlistStore) {
+        $scope.$on('playlistMdl:create', function (event, playlistStore) {
+            var index = $scope.playlistStores.indexOf(playlistStore);
+            if (index < 0) {
                 $scope.playlistStores.push(playlistStore);
-            }, function (error) {
-                // TODO: handle error
-            });
-
+            }
+        });
+        
+        $scope.$on('playlistMdl:delete', function (event, playlistStore) {
+            var index = $scope.playlistStores.indexOf(playlistStore);
+            if (index > -1) {
+                $scope.playlistStores.splice(index, 1);
+            }
+        });
+        
+        $scope.createPlaylist = function () {
+            playlistMdl.createPlaylistStore($scope.playlistName);
             $scope.playlistName = '';
         };
 

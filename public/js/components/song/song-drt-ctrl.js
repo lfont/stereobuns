@@ -8,8 +8,9 @@ define([
 ], function (angular) {
     'use strict';
 
-    function SongDrtCtrl ($scope, audioPlayerSrv, songsMdl) {
+    function SongDrtCtrl ($scope, audioPlayerSrv) {
         var DEFAULT_OPTIONS = {
+            remove: false,
             queue: true
         };
         
@@ -66,10 +67,6 @@ define([
             return isCurrentSong() && isPlaying;
         };
         
-        $scope.queue = function () {
-            audioPlayerSrv.enqueue($scope.song);
-        };
-        
         $scope.togglePlay = function () {
             if (isCurrentSong()) {
                 if (isPlaying) {
@@ -82,19 +79,14 @@ define([
             }
         };
         
-        $scope.toggleLoveStatus = function () {
-            var lovedSongsStore = songsMdl.getSongsStore('loved');
-            if ($scope.song.loved) {
-                lovedSongsStore.remove($scope.song);
-            } else {
-                lovedSongsStore.add($scope.song);
-            }
+        $scope.remove = function (songs) {
+            $scope.onRemove({ song: songs });
         };
         
         setOptions();
     }
      
-    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];
+    SongDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
     
     return SongDrtCtrl;
 });

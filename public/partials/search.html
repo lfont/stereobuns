@@ -39,9 +39,8 @@
                     </ng-pluralize>
                 </p>
                 <div ng-show="songs.length">
-                    <songbar all-songs="songs" selected-songs="selectedSongs"
-                             ui-scrollfix="{ offset: '-50' }"></songbar>
-                    <ul class="media-list song-list">
+                    <!--<songs-actions all-songs="songs" selected-songs="selectedSongs"></songs-actions>-->
+                    <ul class="playlist-songs">
                         <li ng-repeat="song in songs"
                             ng-click="$parent.toggleSongSelection(song)"
                             ng-class="{ selected: $parent.isSongSelected(song) }">

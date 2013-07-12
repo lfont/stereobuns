@@ -135,8 +135,6 @@ define([
             },
             
             createPlaylistStore: function (name) {
-                var deferred = $q.defer();
-                
                 $http
                     .post('/api/users/me/playlists', { name: name })
                     .success(function (data, status, headers, config) {
@@ -147,14 +145,14 @@ define([
                         
                         playlistStoresMap[playlistStore.name.toLowerCase()] = playlistStore;
                         playlistStores.push(playlistStore);
+                        $rootScope.$broadcast('playlistMdl:create', playlistStore);
                         
-                        deferred.resolve(playlistStore);
+                        $window.console.log('playlist: ' + name + ' has been created');
                     })
                     .error(function (data, status, headers, config) {
-                        deferred.reject(status);
+                        // TODO: handle error
+                        $window.console.log('playlist: ' + name + ' has not been created');
                     });
-                
-                return deferred.promise;
             },
             
             deletePlaylistStore: function (playlistStore) {
@@ -165,6 +163,7 @@ define([
                         
                         delete playlistStoresMap[name.toLowerCase()];
                         playlistStores.splice(index, 1);
+                        $rootScope.$broadcast('playlistMdl:delete', playlistStore);
                         
                         $window.console.log('playlist: ' + playlistStore.name + ' has been removed');
                     })

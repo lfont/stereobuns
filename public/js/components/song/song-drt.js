@@ -13,7 +13,8 @@ define(function () {
             replace: true,
             scope: {
                 customOptions: '=options',
-                song: '='
+                song: '=',
+                onRemove: '&'
             },
             templateUrl: 'song-drt.html',
             controller: 'SongDrtCtrl'
