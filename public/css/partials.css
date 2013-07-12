@@ -43,8 +43,8 @@
 
 .audio-player-bar .progression-bar > div {
     line-height: 10px;
-    min-height: 20px;
-    padding-top: .5em;
+    min-height: 10px;
+    padding-top: 2px;
 }
 
 .audio-player-bar .progression-bar .progress {
@@ -53,7 +53,7 @@
 }
 
 .audio-player-bar .middle {
-    margin-top: 1.5em;
+    line-height: 65px;
 }
 
 .audio-player-bar .button-bar .btn {

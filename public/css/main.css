@@ -16,3 +16,58 @@ body, html {
 .side-menu {
     margin-top: 3em;
 }
+
+/*
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 1199px) {
+
+}
+*/
+
+@media (max-width: 979px) {
+    .content {
+        padding-top: 0;
+    }
+
+    .side-menu {
+        margin-top: .5em;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+
+    .navbar-fixed-bottom {
+        position: fixed;
+    }
+
+    .navbar-fixed-top .navbar-inner,
+    .navbar-fixed-bottom .navbar-inner {
+        padding: 0;
+    }
+
+    .btn {
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .content {
+        padding-top: 0;
+    }
+
+    .side-menu {
+        margin-top: .5em;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+
+    .navbar-fixed-bottom {
+        position: fixed;
+    }
+}
