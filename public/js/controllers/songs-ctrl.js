@@ -7,9 +7,6 @@ define(function () {
     'use strict';
 
     function SongsCtrl ($scope, $routeParams, songsMdl) {
-        function getSelectedSongIndex (song) {
-            return $scope.selectedSongs.indexOf(song);
-        }
         
         function setSongsStore (name) {
             var songsStore = songsMdl.getSongsStore(name),
@@ -24,11 +21,15 @@ define(function () {
             });
         }
         
+        $scope.songsActionsOptions = {
+            play: true,
+            filterPlaylists: false
+        };
+        
         $scope.songsStatusTemplateUrl = 'songs-status.html';
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.name = '';
         $scope.songs = [];
-        $scope.selectedSongs = [];
         
         $scope.$on('songsStore:add', function (event, name, song) {
             if (name === 'Loved') {
@@ -37,25 +38,12 @@ define(function () {
         });
         
         $scope.$on('songsStore:remove', function (event, name, song) {
-            var songIndex;
+            var index;
             if (name === 'Loved') {
-                songIndex = $scope.songs.indexOf(song);
-                $scope.songs.splice(songIndex, 1);
+                index = $scope.songs.indexOf(song);
+                $scope.songs.splice(index, 1);
             }
         });
-        
-        $scope.toggleSongSelection = function (song) {
-            var songIndex = getSelectedSongIndex(song);
-            if (songIndex > -1) {
-                $scope.selectedSongs.splice(songIndex, 1);
-            } else {
-                $scope.selectedSongs.push(song);
-            }
-        };
-        
-        $scope.isSongSelected = function (song) {
-            return getSelectedSongIndex(song) > -1;
-        };
         
         setSongsStore($routeParams.name);
     }

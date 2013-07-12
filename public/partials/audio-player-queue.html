@@ -1,35 +1,28 @@
 <div ng-controller="AudioPlayerQueueCtrl" modal="shouldBeOpen" close="close()" options="modalOptions">
     <div class="audio-player-queue">
         <div class="modal-header">
-            <div class="row-fluid">
-                <div class="span10">
-                    <h4>Queue</h4>
-                </div>
-                <div class="span2">
-                    <h5 class="pull-right">
-                        <span ng-show="queue.length">{{ queue.length }}</span>
-                        <ng-pluralize count="queue.length"
-                            when="{ '0': 'empty',
-                                    '1': 'song',
-                                    'other': 'songs' }">
-                        </ng-pluralize>
-                    </h5>
-                </div>
-            </div>
+            <h4>Queue</h4>
         </div>
+        
         <div class="modal-body" no-scroll-propagation>
-            <div ng-show="queue.length">
-                <!--<songs-actions all-songs="queue" selected-songs="selectedSongs" options="songBarOptions"
-                         on-remove="dequeue(songs)"></songs-actions>-->
+            <div class="playlist-actions">
+                <span ng-show="queue.length">{{ queue.length }}</span>
+                <ng-pluralize count="queue.length"
+                    when="{ '0': 'empty',
+                            '1': 'song',
+                            'other': 'songs' }">
+                </ng-pluralize>
+                <songs-actions songs="queue" options="songsActionsOptions"
+                               on-remove="dequeue(songs)"></songs-actions>
             </div>
+            
             <ul class="playlist-songs">
-                <li ng-repeat="song in queue"
-                    ng-click="$parent.toggleSongSelection(song)"
-                    ng-class="{ selected: $parent.isSongSelected(song) }">
-                    <song song="song" options="songOptions"></song>
+                <li ng-repeat="song in queue">
+                    <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
                 </li>
             </ul>
         </div>
+        
         <div class="modal-footer">
             <button class="btn" ng-click="close()">Close</button>
         </div>

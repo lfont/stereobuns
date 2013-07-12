@@ -7,12 +7,8 @@ define(function () {
     'use strict';
     
     function SearchCtrl ($scope, $routeParams, $filter, soundSearchSrv) {
-        var songFilter = $filter('song'),
+        var songFilter    = $filter('song'),
             searchResults = [];
-        
-        function getSelectedSongIndex (song) {
-            return $scope.selectedSongs.indexOf(song);
-        }
         
         function aggregateResults () {
             var results = [],
@@ -46,19 +42,22 @@ define(function () {
             soundSearchSrv.search(query);
         }
         
-        $scope.$on('soundSearch:result', function (event, result) {
-            searchResults.push(result);
-            $scope.isSearching = false;
-            $scope.selectedSongs.length = 0;
-            $scope.filterBy($scope.searchFilter);
-        });
+        $scope.songsActionsOptions = {
+            play: true,
+            filterPlaylists: false
+        };
         
         $scope.songsStatusTemplateUrl = 'songs-status.html';
         $scope.playlistsTemplateUrl = 'playlists.html';
         $scope.isSearching = false;
         $scope.songs = [];
-        $scope.selectedSongs = [];
         $scope.searchFilter = null;
+        
+        $scope.$on('soundSearch:result', function (event, result) {
+            searchResults.push(result);
+            $scope.isSearching = false;
+            $scope.filterBy($scope.searchFilter);
+        });
         
         $scope.filterBy = function (property) {
             var allSongs, filteredSongs;
@@ -72,19 +71,6 @@ define(function () {
                                            $scope.searchQuery);
                 $scope.songs = filteredSongs;
             }
-        };
-        
-        $scope.toggleSongSelection = function (song) {
-            var songIndex = getSelectedSongIndex(song);
-            if (songIndex > -1) {
-                $scope.selectedSongs.splice(songIndex, 1);
-            } else {
-                $scope.selectedSongs.push(song);
-            }
-        };
-        
-        $scope.isSongSelected = function (song) {
-            return getSelectedSongIndex(song) > -1;
         };
         
         $scope.hasSearchResult = function () {

@@ -28,6 +28,13 @@ define([
         
         $scope.isMulti = angular.isArray($scope.songs);
         
+        $scope.isVisible = function () {
+            var notDefined;
+            return $scope.isMulti ?
+                $scope.songs.length !== 0 :
+                $scope.songs !== notDefined && $scope.songs !== null;
+        };
+        
         $scope.play = function () {
             var songs = $scope.songs;
             audioPlayerSrv.enqueue(songs);

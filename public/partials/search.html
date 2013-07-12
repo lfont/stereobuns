@@ -29,25 +29,25 @@
             </div>
             
             <div class="span8">
-                <h1>{{ searchQuery }}</h1>
-                <p>
+                <div class="playlist-header">
+                    <h1>{{ searchQuery }}</h1>
+                </div>
+                
+                <div class="playlist-actions">
                     <span ng-show="songs.length">{{ songs.length }}</span>
                     <ng-pluralize count="songs.length"
                         when="{ '0': 'no song',
                                 '1': 'song',
                                 'other': 'songs' }">
                     </ng-pluralize>
-                </p>
-                <div ng-show="songs.length">
-                    <!--<songs-actions all-songs="songs" selected-songs="selectedSongs"></songs-actions>-->
-                    <ul class="playlist-songs">
-                        <li ng-repeat="song in songs"
-                            ng-click="$parent.toggleSongSelection(song)"
-                            ng-class="{ selected: $parent.isSongSelected(song) }">
-                            <song song="song"></song>
-                        </li>
-                    </ul>
+                    <songs-actions songs="songs" options="songsActionsOptions"></songs-actions>
                 </div>
+                
+                <ul class="playlist-songs">
+                    <li ng-repeat="song in songs">
+                        <song song="song"></song>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
