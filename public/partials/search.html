@@ -1,5 +1,5 @@
-<div class="search row">
-    <div class="span10">
+<div class="search row-fluid">
+    <div class="span9">
         <div class="searching" ng-show="isSearching">
             <i class="icon-spinner icon-spin icon-large"></i> Searching...
         </div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             
-            <div class="span8">
+            <div class="span10">
                 <div class="playlist-header">
                     <h1>{{ searchQuery }}</h1>
                 </div>
@@ -52,7 +52,7 @@
         </div>
     </div>
     
-    <div class="span2">
+    <div class="span3">
         <div class="side-menu">
             <div ng-include="songsStatusTemplateUrl"></div>
             <div ng-include="playlistsTemplateUrl"></div>

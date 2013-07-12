@@ -61,6 +61,10 @@
     color: #ec352f;
 }
 
+.songs-actions .dropdown-menu {
+    left: -210px;
+}
+
 
 /* playlist-chooser */
 
