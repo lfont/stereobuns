@@ -17,7 +17,9 @@ define([
             isPlaying   = audioPlayerSrv.isPlaying();
         
         function isCurrentSong () {
-            return $scope.song === currentSong;
+            return $scope.song &&
+                   currentSong &&
+                   $scope.song.url === currentSong.url;
         }
         
         function setOptions () {

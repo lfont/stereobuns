@@ -54,6 +54,7 @@ module.exports = function (Song) {
                 track: '$track',
                 source: '$source',
                 url: '$url',
+                linkUrl: '$linkUrl',
                 artworkUrl: '$artworkUrl',
                 loved: '$loved',
             } } } },

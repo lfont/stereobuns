@@ -15,6 +15,7 @@ var songSchema = new Schema({
     track: String,
     source: String,
     url: { type: String, required: true },
+    linkUrl: String,
     artworkUrl: String,
     loved: Boolean,
     playlists: Array

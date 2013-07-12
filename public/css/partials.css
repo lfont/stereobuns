@@ -30,7 +30,7 @@
 /* playlist */
 
 .playlist .playlist-header h1 {
-    display: inline;
+    display: inline-block;
     margin-right: .5em;
 }
 

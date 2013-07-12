@@ -1,42 +1,28 @@
 @import url("directives.css");
 @import url("partials.css");
 
-@media (min-width: 1200px) {
-    .search .song-bar {
-        width: 770px;
-    }
+/*@media (min-width: 1200px) {
 
-    .playlist .song-bar {
-        width: 970px;
-    }
 }
 
 @media (max-width: 1199px) {
-    .search .song-bar {
-        width: 620px;
-    }
 
-    .playlist .song-bar {
-        width: 780px;
-    }
 }
 
 @media (max-width: 978px) {
-    .search .song-bar {
-        width: 476px;
-    }
 
-    .playlist .song-bar {
-        width: 600px;
-    }
 }
 
-/*@media (max-width: 767px) {
+@media (max-width: 767px) {
 
 }*/
 
 
 /* song actions */
+
+.song-actions a {
+    text-decoration: none;
+}
 
 .song-actions .btn {
     color: grey;
