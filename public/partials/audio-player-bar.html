@@ -53,19 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="row-fluid progression-bar">
-                                <div class="span1">
-                                    {{ progress.position | time }}
-                                </div>
-                                <div class="span10">
-                                    <div class="progress">
-                                        <div class="bar" style="width: {{ progress.percentage }}%;"></div>
-                                    </div>
-                                </div>
-                                <div class="span1">
-                                    {{ progress.duration | time }}    
-                                </div>
-                            </div>
+                            <song-progress></song-progress>
                         </div>
                     </div>
                 </div>

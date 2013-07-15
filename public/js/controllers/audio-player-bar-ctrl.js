@@ -9,14 +9,13 @@ define(function () {
     function AudioPlayerBarCtrl ($scope, audioPlayerSrv, songsMdl) {
         $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
         $scope.song = null;
-        $scope.progress = null;
         $scope.isPlaying = false;
         $scope.shouldRepeat = false;
         $scope.shouldOpenQueue = false;
         
-        $scope.$on('audioPlayer:play', function (event, song) {
+        $scope.$on('audioPlayer:play', function (event) {
             $scope.isPlaying = true;
-            $scope.song = song;
+            $scope.song = audioPlayerSrv.getStatus().song;
         });
         
         $scope.$on('audioPlayer:pause', function (event) {
@@ -30,10 +29,6 @@ define(function () {
         $scope.$on('audioPlayer:stop', function (event) {
             $scope.isPlaying = false;
             $scope.song = null;
-        });
-        
-        $scope.$on('audioPlayer:playing', function (event, progress) {
-            $scope.progress = progress;
         });
         
         $scope.$on('audioPlayerQueue:close', function (event) {

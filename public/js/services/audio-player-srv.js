@@ -36,15 +36,35 @@ define([
         
         function SoundEventsHandler () {}
         SoundEventsHandler.previousSoundPosition = 0;
+        SoundEventsHandler.previousSoundPercentage = 0;
+        
+        SoundEventsHandler.apply = function () {
+            if(!$rootScope.$$phase) {
+                $rootScope.$apply();
+            }
+        };
         
         SoundEventsHandler.stop = function () {
             isPlaying = false;
             $rootScope.$broadcast('audioPlayer:stop');
-            $rootScope.$broadcast('audioPlayer:playing', null);
+            SoundEventsHandler.apply();
         };
         
         SoundEventsHandler.prototype.onplay = function () {
             SoundEventsHandler.previousSoundPosition = 0;
+            SoundEventsHandler.previousSoundPercentage = 0;
+            $rootScope.$broadcast('audioPlayer:play');
+            SoundEventsHandler.apply();
+        };
+        
+        SoundEventsHandler.prototype.onpause = function () {
+            $rootScope.$broadcast('audioPlayer:pause');
+            SoundEventsHandler.apply();
+        };
+        
+        SoundEventsHandler.prototype.onresume = function () {
+            $rootScope.$broadcast('audioPlayer:resume');
+            SoundEventsHandler.apply();
         };
         
         SoundEventsHandler.prototype.onstop = function () {
@@ -63,26 +83,35 @@ define([
             }
         };
         
+        SoundEventsHandler.prototype.whileloading = function () {
+            var percentage   = Math.floor(this.bytesLoaded * 100 / this.bytesTotal),
+                shouldUpdate = percentage !== SoundEventsHandler.previousSoundPercentage;
+            
+            if (!shouldUpdate) {
+                return;
+            }
+            
+            SoundEventsHandler.previousSoundPercentage = percentage;
+            $rootScope.$broadcast('audioPlayer:loading', percentage);
+            SoundEventsHandler.apply();
+        };
+        
         SoundEventsHandler.prototype.whileplaying = function () {
-            var position = this.position / 1000,
-                shouldUpdate = position - SoundEventsHandler.previousSoundPosition >= 1,
-                duration, progress;
+            var position     = Math.floor(this.position / 1000),
+                shouldUpdate = position !== SoundEventsHandler.previousSoundPosition,
+                duration;
             
             if (!shouldUpdate) {
                 return;
             }
             
             SoundEventsHandler.previousSoundPosition = position;
-            duration = this.duration / 1000;
-            
-            progress = {
-                duration: parseInt(duration, 10),
-                position: parseInt(position, 10)
-            };
-            progress.percentage = progress.position * 100 / progress.duration;
-            
-            $rootScope.$broadcast('audioPlayer:playing', progress);
-            $rootScope.$apply();
+            duration = Math.floor((this.readyState === 3 ? this.duration : this.durationEstimate) / 1000);
+            $rootScope.$broadcast('audioPlayer:playing', {
+                position: position,
+                duration: duration
+            });
+            SoundEventsHandler.apply();
         };
         
         function getSoundId (song) {
@@ -111,12 +140,11 @@ define([
         }
             
         var audioPlayerService = {
-            getCurrentSong: function () {
-                return queue[queueIndex];
-            },
-            
-            isPlaying: function () {
-                return isPlaying;
+            getStatus: function () {
+                return {
+                    song: queue[queueIndex],
+                    isPlaying: isPlaying
+                };
             },
             
             getQueue: function () {
@@ -159,7 +187,6 @@ define([
                     if (currentSoundId) {
                         isPlaying = true;
                         soundManager.resume(currentSoundId);
-                        $rootScope.$broadcast('audioPlayer:resume');
                         return;
                     }
                     
@@ -187,7 +214,6 @@ define([
                     isPlaying = true;
                     currentSoundId = soundId;
                     soundManager.play(soundId, new SoundEventsHandler());
-                    $rootScope.$broadcast('audioPlayer:play', song);
                 }
             },
                 
@@ -198,7 +224,6 @@ define([
                 
                 isPlaying = false;
                 soundManager.pause(currentSoundId);
-                $rootScope.$broadcast('audioPlayer:pause');
             },
             
             previous: function () {
