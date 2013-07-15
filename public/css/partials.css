@@ -29,6 +29,10 @@
 
 /* audio player bar */
 
+.audio-player-bar {
+    padding: 2px;
+}
+
 .audio-player-bar .song-info {
     color: gray;
 }
