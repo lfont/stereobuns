@@ -13,15 +13,15 @@ define([
              songDrtTemplate, songsActionsDrtTemplate,
              playlistChooserDrtTemplate, songProgressDrtTemplate) {
     'use strict';
-    
+
     var componentsTemplateModule = angular.module('soundrocket.templates.components', []);
-    
+
     componentsTemplateModule.run(['$templateCache', function ($templateCache) {
         $templateCache.put('song-drt.html', songDrtTemplate);
         $templateCache.put('songs-actions-drt.html', songsActionsDrtTemplate);
         $templateCache.put('playlist-chooser-drt.html', playlistChooserDrtTemplate);
         $templateCache.put('song-progress-drt.html', songProgressDrtTemplate);
     }]);
-    
+
     return componentsTemplateModule;
 });

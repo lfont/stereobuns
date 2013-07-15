@@ -13,7 +13,7 @@ define(function () {
         $scope.shouldRepeat = false;
         $scope.shouldOpenQueue = false;
         
-        $scope.$on('audioPlayer:play', function (event) {
+        $scope.$on('audioPlayer:play', function (event, loaded) {
             $scope.isPlaying = true;
             $scope.song = audioPlayerSrv.getStatus().song;
         });

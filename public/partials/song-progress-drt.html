@@ -1,11 +1,14 @@
 <div class="row-fluid progression-bar">
     <div class="span1">
-        {{ position | time }}
+        {{ progress.position | time }}
     </div>
     <div class="span10">
-        <progress percent="stackedStatus"></progress>
+        <div class="progress">
+            <div class="bar bar-info" style="width: {{ progress.percentage }}%;"></div>
+            <div class="bar bar-success loading" style="width: {{ loadingPercentage() }}%;"></div>
+        </div>
     </div>
     <div class="span1">
-        {{ duration | time }}    
+        {{ progress.duration | time }}  
     </div>
 </div>

@@ -21,24 +21,24 @@ define([
              songsStatusTemplate, songsTemplate,
              userMenuTemplate) {
     'use strict';
-    
+
     var partialsTemplateModule = angular.module('soundrocket.templates.partials', []);
-    
+
     partialsTemplateModule.run(['$templateCache', function ($templateCache) {
         $templateCache.put('search.html', searchTemplate);
         $templateCache.put('search-bar.html', searchBarTemplate);
-        
+
         $templateCache.put('audio-player-bar.html', audioPlayerBarTemplate);
         $templateCache.put('audio-player-queue.html', audioPlayerQueueTemplate);
-        
+
         $templateCache.put('playlists.html', playlistsTemplate);
         $templateCache.put('playlist.html', playlistTemplate);
-        
+
         $templateCache.put('songs-status.html', songsStatusTemplate);
         $templateCache.put('songs.html', songsTemplate);
-        
+
         $templateCache.put('user-menu.html', userMenuTemplate);
     }]);
-    
+
     return partialsTemplateModule;
 });

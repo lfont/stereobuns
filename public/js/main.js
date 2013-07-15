@@ -14,7 +14,6 @@ require.config({
         'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
         'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
         'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
-        'angular-ui-bootstrap-progressbar': '../components/angular-ui-bootstrap/src/progressbar/progressbar',
         'angular-ui-bootstrap-dropdownToggle': '../components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle',
         'soundmanager2': '../components/soundmanager/script/soundmanager2',
         'socket.io': '/socket.io/socket.io.js'
@@ -37,9 +36,6 @@ require.config({
             deps: [ 'angular-ui-bootstrap-transition' ]
         },
         'angular-ui-bootstrap-dialog': {
-            deps: [ 'angular-ui-bootstrap-transition' ]
-        },
-        'angular-ui-bootstrap-progressbar': {
             deps: [ 'angular-ui-bootstrap-transition' ]
         },
         soundmanager2: {
@@ -71,7 +67,7 @@ require([
     'routes'
 ], function (angular, app, templates) {
     'use strict';
-    
+
     var doc = angular.element(document);
     doc.ready(function () {
         var html = doc.find('html');

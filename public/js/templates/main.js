@@ -6,17 +6,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
     'angular',
     './partials-tpls',
-    './components-tpls',
-    './angular-ui-tpls'
+    './components-tpls'
 ], function (angular,
              partialsTemplates,
-             componentsTemplates,
-             angularUiTemplates) {
+             componentsTemplates) {
     'use strict';
-    
+
     return angular.module('soundrocket.templates', [
         partialsTemplates.name,
-        componentsTemplates.name,
-        angularUiTemplates.name
+        componentsTemplates.name
     ]);
 });
