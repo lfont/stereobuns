@@ -37,10 +37,23 @@ define([
         function SoundEventsHandler () {}
         SoundEventsHandler.previousSoundPosition = 0;
         SoundEventsHandler.previousSoundPercentage = 0;
+        SoundEventsHandler.playTime = 0;
+        SoundEventsHandler.submited = false;
 
         SoundEventsHandler.apply = function () {
             if(!$rootScope.$$phase) {
                 $rootScope.$apply();
+            }
+        };
+
+        SoundEventsHandler.checkPlayTime = function (sound, duration) {
+            if (SoundEventsHandler.submited) {
+                return;
+            }
+
+            if (++SoundEventsHandler.playTime >= (duration / 2)) {
+                console.log('********submit: ' + SoundEventsHandler.playTime);
+                SoundEventsHandler.submited = true;
             }
         };
 
@@ -53,6 +66,8 @@ define([
         SoundEventsHandler.prototype.onplay = function () {
             SoundEventsHandler.previousSoundPosition = 0;
             SoundEventsHandler.previousSoundPercentage = 0;
+            SoundEventsHandler.playTime = 0;
+            SoundEventsHandler.submited = false;
             $rootScope.$broadcast('audioPlayer:play', this.readyState === 3);
             SoundEventsHandler.apply();
         };
@@ -114,7 +129,9 @@ define([
                 duration: duration,
                 percentage: Math.floor(position * 100 / duration)
             });
+
             SoundEventsHandler.apply();
+            SoundEventsHandler.checkPlayTime(this, duration);
         };
 
         function getSoundId (song) {
