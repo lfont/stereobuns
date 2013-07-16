@@ -126,14 +126,3 @@
     background-color: gray;
     background-image: linear-gradient(to bottom, gray, #F2F2F2);
 }
-
-
-/* modal */
-
-.modal-header {
-    background-color: #1b1b1b;
-    -webkit-border-radius: 6px 6px 0 0;
-    -moz-border-radius:    6px 6px 0 0;
-    border-radius:         6px 6px 0 0;
-    color: #999999;
-}

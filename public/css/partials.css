@@ -42,7 +42,7 @@
 }
 
 .audio-player-bar .song-info .button-bar .btn {
-    padding: 4px 5px;
+    padding: 3px 5px;
 }
 
 .audio-player-bar .button-bar .btn {
@@ -91,6 +91,14 @@
     height: 400px;
     position: fixed;
     width: 80%;
+}
+
+.audio-player-queue .modal-header {
+    background-color: #1b1b1b;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius:    6px 6px 0 0;
+    border-radius:         6px 6px 0 0;
+    color: #999999;
 }
 
 .audio-player-queue .modal-body {
