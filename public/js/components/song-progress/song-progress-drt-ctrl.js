@@ -12,7 +12,12 @@ define([
         var loadingPercentage;
 
         this.setPlayingPercentage = function (percentage) {
-            console.log('********playing percentage: ' + percentage);
+            var position;
+            if (!$scope.progress) {
+                return;
+            }
+            position = Math.round(percentage * $scope.progress.duration / 100);
+            audioPlayerSrv.setPosition(position);
         };
 
         $scope.progress = null;

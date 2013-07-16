@@ -154,6 +154,18 @@ define([
                 return queue;
             },
 
+            setPosition: function (position) {
+                var song = queue[queueIndex],
+                    soundId;
+
+                if (!song) {
+                    return;
+                }
+
+                soundId = getSoundId(song);
+                soundManager.setPosition(soundId, position * 1000);
+            },
+
             enqueue: function (song) {
                 if (!angular.isArray(song)) {
                     queue.push(song);

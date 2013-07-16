@@ -21,7 +21,7 @@ define(function () {
                     var total      = progress.width(),
                         position   = event.pageX - progress.offset().left,
                         percentage = Math.floor(position * 100 / total);
-                    
+
                     controller.setPlayingPercentage(percentage);
                 });
             }
