@@ -1,14 +1,7 @@
-<div class="row-fluid progression-bar">
-    <div class="span1">
-        {{ progress.position | time }}
+<div class="song-progress">
+    <div class="progress">
+        <div class="bar bar-info" style="width: {{ progress.percentage }}%;"></div>
+        <div class="bar bar-success loading" style="width: {{ loadingPercentage() }}%;"></div>
     </div>
-    <div class="span10">
-        <div class="progress">
-            <div class="bar bar-info" style="width: {{ progress.percentage }}%;"></div>
-            <div class="bar bar-success loading" style="width: {{ loadingPercentage() }}%;"></div>
-        </div>
-    </div>
-    <div class="span1">
-        {{ progress.duration | time }}  
-    </div>
+    <span>{{ progress.position | time }} / {{ progress.duration | time }}</span>
 </div>

@@ -37,6 +37,14 @@
     color: gray;
 }
 
+.audio-player-bar .song-info .row-fluid [class*="span"] {
+    min-height: 26px;
+}
+
+.audio-player-bar .song-info .button-bar .btn {
+    padding: 4px 5px;
+}
+
 .audio-player-bar .button-bar .btn {
     background: none;
     border: 0;
@@ -48,18 +56,6 @@
 .audio-player-bar .button-bar .icon-heart,
 .audio-player-bar .button-bar .icon-heart-empty:hover {
     color: #ec352f;
-}
-
-.audio-player-bar .progression-bar > div {
-    line-height: 10px;
-    min-height: 10px;
-    padding-top: 2px;
-}
-
-.audio-player-bar .progression-bar .progress {
-    height: 10px;
-    margin: 0 auto;
-    width: 95%;
 }
 
 .audio-player-bar .middle {

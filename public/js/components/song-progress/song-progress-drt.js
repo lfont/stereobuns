@@ -16,8 +16,13 @@ define(function () {
             controller: 'SongProgressDrtCtrl',
 
             link: function (scope, iElement, iAttrs, controller) {
-                iElement.find('.progress').on('click', function (event) {
-                    console.log(event.pageX - iElement.offset().left);
+                var progress = iElement.find('.progress');
+                progress.on('click', function (event) {
+                    var total      = progress.width(),
+                        position   = event.pageX - progress.offset().left,
+                        percentage = Math.floor(position * 100 / total);
+                    
+                    controller.setPlayingPercentage(percentage);
                 });
             }
         };

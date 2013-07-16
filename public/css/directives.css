@@ -108,6 +108,26 @@
 }
 
 
+/* song-progress */
+
+.song-progress {
+    line-height: 10px;
+}
+
+.song-progress .progress {
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    width: 70%;
+    margin-bottom: 0;
+}
+
+.song-progress .progress .loading {
+    background-color: gray;
+    background-image: linear-gradient(to bottom, gray, #F2F2F2);
+}
+
+
 /* modal */
 
 .modal-header {

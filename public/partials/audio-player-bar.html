@@ -26,9 +26,20 @@
 
                         <div class="span10 song-info">
                             <div class="row-fluid">
+                                <div class="span1 button-bar">
+                                    <button class="btn" title="Love"
+                                            ng-click="toggleLoveStatus()"
+                                            ng-show="song">
+                                        <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
+                                    </button>
+                                </div>
                                 <div class="span11">
                                     {{ song.artist }}
-                                    <br />
+                                </div>
+                            </div>
+                            
+                            <div class="row-fluid">
+                                <div class="span1">
                                     <span ng-if="song">
                                         <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
                                            ng-if="song.linkUrl" ng-click="$event.stopPropagation()">
@@ -41,15 +52,9 @@
                                              alt="{{ song.source }}"
                                              ng-if="!song.linkUrl" height="22px" width="22px" />
                                     </span>
-                                    {{ song.track }}<span ng-show="song.album"> - {{ song.album }}</span>
                                 </div>
-                                <div class="span1 button-bar">
-                                    <br />
-                                    <button class="btn" title="Love"
-                                            ng-click="toggleLoveStatus()"
-                                            ng-show="song">
-                                        <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
-                                    </button>
+                                <div class="span11">
+                                    {{ song.track }}<span ng-show="song.album"> - {{ song.album }}</span>
                                 </div>
                             </div>
 
