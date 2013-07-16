@@ -26,6 +26,9 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "rjs-build-analysis": "0.0.3",
     "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-nodemon": "0.0.8",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-concurrent": "~0.3.0"
   }
 }

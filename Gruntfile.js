@@ -98,6 +98,40 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+        
+        nodemon: {
+            dev: {
+                options: {
+                    file: 'server.js',
+                    watchedExtensions: [ 'js' ],
+                    watchedFolders: [ 'lib', 'models', 'routes' ],
+                    debug: true,
+                    delayTime: 1,
+                    env: {
+                        PORT: '3000'
+                    },
+                    cwd: __dirname
+                }
+            }
+        },
+        
+        watch: {
+            options: {
+                livereload: true,
+            },
+            assets: {
+                files: [ 'public/**/*.js', 'public/**/*.css', 'public/**/*.html' ]
+            }
+        },
+        
+        concurrent: {
+            dev: {
+                tasks: [ 'nodemon:dev', 'watch:assets' ],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
         }
     });
 
@@ -105,6 +139,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-concurrent');
 
     // Default task(s).
     grunt.registerTask('default', [
@@ -115,4 +152,6 @@ module.exports = function(grunt) {
         'copy:restore',
         'clean:build-temp'
     ]);
+    
+    grunt.registerTask('live', [ 'concurrent:dev' ]);
 };
