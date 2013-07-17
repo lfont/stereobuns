@@ -4,16 +4,20 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-    'angular',
-    './sound-search-srv',
-    './audio-player-srv',
-    './artwork-srv'
-], function (angular, SoundSearchSrvFactory,
-             AudioPlayerSrvFactory, ArtworkSrvFactory) {
-    'use strict';
-    
-    return angular.module('soundrocket.services', [])
-                  .service('soundSearchSrv', SoundSearchSrvFactory)
-                  .service('audioPlayerSrv', AudioPlayerSrvFactory)
-                  .service('artworkSrv', ArtworkSrvFactory);
+  'angular',
+  './sound-search-srv',
+  './audio-player-sound-srv',
+  './audio-player-srv',
+  './artwork-srv'
+], function (angular,
+             soundSearchSrvFactory,
+             audioPlayerSoundSrvFactory, audioPlayerSrvFactory,
+             artworkSrvFactory) {
+  'use strict';
+
+  return angular.module('soundrocket.services', [])
+                .service('soundSearchSrv', soundSearchSrvFactory)
+                .service('audioPlayerSoundSrv', audioPlayerSoundSrvFactory)
+                .service('audioPlayerSrv', audioPlayerSrvFactory)
+                .service('artworkSrv', artworkSrvFactory);
 });

@@ -20,7 +20,7 @@
     "node": true,
     "nonstandard": true,
 
-    "indent": 4,
+    "indent": 2,
     "maxerr": 50,
     
     "globals": {
