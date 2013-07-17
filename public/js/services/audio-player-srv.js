@@ -9,7 +9,8 @@ define([
 ], function (angular, soundManager) {
   'use strict';
 
-  function audioPlayerSrvFactory ($rootScope, $window, audioPlayerSoundSrv) {
+  function audioPlayerSrvFactory ($rootScope, $window,
+                                  audioPlayerSoundSrv, songsMdl) {
     var isReady = false,
         currentSoundId = null,
         soundUrlsToIds = {},
@@ -202,13 +203,15 @@ define([
     });
 
     audioPlayerSoundSrv.onHalfPlay(function () {
-      console.log('********half play');
+      var mostPlayedSongStore = songsMdl.getSongsStore('mostplayed');
+      mostPlayedSongStore.add(queue[queueIndex]);
     });
 
     return audioPlayerSrv;
   }
 
-  audioPlayerSrvFactory.$inject = [ '$rootScope', '$window', 'audioPlayerSoundSrv' ];
+  audioPlayerSrvFactory.$inject = [ '$rootScope', '$window',
+                                    'audioPlayerSoundSrv', 'songsMdl' ];
 
   return audioPlayerSrvFactory;
 });
