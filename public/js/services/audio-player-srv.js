@@ -9,15 +9,16 @@ define([
 ], function (angular, soundManager) {
   'use strict';
 
-  function audioPlayerSrvFactory ($rootScope, $window,
+  function audioPlayerSrvFactory ($rootScope, $window, $q,
                                   audioPlayerSoundSrv, songsMdl) {
     var isReady = false,
         currentSoundId = null,
         soundUrlsToIds = {},
-        queue = [],
         queueIndex = 0,
         isPlaying = false,
-        repeat = false;
+        repeat = false,
+        queuedSongsStore = songsMdl.getSongsStore('queued'),
+        queue;
 
     soundManager.setup({
       url: '/components/soundmanager/swf/',
@@ -34,6 +35,29 @@ define([
         volume: 100
       }
     });
+
+    function play (song) {
+      var soundId;
+
+      if (currentSoundId) {
+        soundManager.stop(currentSoundId);
+      }
+
+      queueIndex = queue.indexOf(song);
+      if (queueIndex < 0) {
+        queueIndex = queue.length;
+        audioPlayerSrv.enqueue(song);
+      }
+
+      soundId = getSoundId(song);
+      if (!soundId) {
+        soundId = createSound(song);
+      }
+
+      isPlaying = true;
+      currentSoundId = soundId;
+      soundManager.play(soundId, audioPlayerSoundSrv.getEventsHandler());
+    }
 
     function stop () {
       isPlaying = false;
@@ -71,13 +95,62 @@ define([
     var audioPlayerSrv = {
       getStatus: function () {
         return {
-          song: queue[queueIndex],
+          song: queue ? queue[queueIndex] : null,
           isPlaying: isPlaying
         };
       },
 
       getQueue: function () {
-        return queue;
+        var deferred = $q.defer(),
+            promise = queuedSongsStore.songs();
+
+        promise.then(function (songs) {
+          queue = songs;
+          deferred.resolve(songs);
+        }, function (error) {
+          // TODO: handle error
+          deferred.resolve([]);
+        });
+
+        return deferred.promise;
+      },
+
+      enqueue: function (songs) {
+        var _this = this,
+            promise = queuedSongsStore.add(songs);
+
+        function addToQueue () {
+          var i, len;
+          for (i = 0, len = songs.length; i < len; i++) {
+            queue.push(songs[i]);
+          }
+          $rootScope.$broadcast('audioPlayer:queue');
+        }
+
+        promise.then(function (songs) {
+          if (!queue) {
+            _this.getQueue().then(function () {
+              addToQueue(songs);
+            });
+          } else {
+            addToQueue(songs);
+          }
+        }, function (error) {
+          // TODO: handle error
+        });
+      },
+
+      dequeue: function (songs) {
+        var promise = queuedSongsStore.remove(songs);
+        promise.then(function (songs) {
+          var i, len;
+          for (i = 0, len = songs.length; i < len; i++) {
+            destroySound(songs[i]);
+          }
+          $rootScope.$broadcast('audioPlayer:dequeue');
+        }, function (error) {
+          // TODO: handle error
+        });
       },
 
       setPosition: function (position) {
@@ -92,69 +165,29 @@ define([
         soundManager.setPosition(soundId, position * 1000);
       },
 
-      enqueue: function (song) {
-        if (!angular.isArray(song)) {
-          queue.push(song);
-        } else {
-          Array.prototype.push.apply(queue, song);
-        }
-      },
-
-      dequeue: function (song) {
-        var oldSongs = [],
-            i, len;
-        if (!angular.isArray(song)) {
-          oldSongs.push(song);
-        } else {
-          // we make a copy of the array because
-          // the given array could be a reference of
-          // the queue array.
-          oldSongs = oldSongs.concat(song);
-        }
-        for (i = 0, len = oldSongs.length; i < len; i++) {
-          destroySound(oldSongs[i]);
-        }
-        $rootScope.$broadcast('audioPlayer:dequeue');
-      },
-
       play: function (song) {
-        var soundId;
-
         if (!isReady) {
           return;
         }
 
-        if (!song) {
-          if (currentSoundId) {
-            isPlaying = true;
-            soundManager.resume(currentSoundId);
-            return;
-          }
-
-          if (queue.length) {
-            song = queue[queueIndex];
-          }
+        if (!song && currentSoundId) {
+          isPlaying = true;
+          soundManager.resume(currentSoundId);
+          return;
         }
 
-        if (song) {
-          if (currentSoundId) {
-            soundManager.stop(currentSoundId);
-          }
+        if (!queue) {
+          this.getQueue().then(function () {
+            queueIndex = 0;
+            if (queue.length) {
+              play(queue[queueIndex]);
+            }
+          });
+          return;
+        }
 
-          queueIndex = queue.indexOf(song);
-          if (queueIndex < 0) {
-            queueIndex = queue.length;
-            this.enqueue([ song ]);
-          }
-
-          soundId = getSoundId(song);
-          if (!soundId) {
-            soundId = createSound(song);
-          }
-
-          isPlaying = true;
-          currentSoundId = soundId;
-          soundManager.play(soundId, audioPlayerSoundSrv.getEventsHandler());
+        if (queue.length) {
+          play(queue[queueIndex]);
         }
       },
 
@@ -210,7 +243,7 @@ define([
     return audioPlayerSrv;
   }
 
-  audioPlayerSrvFactory.$inject = [ '$rootScope', '$window',
+  audioPlayerSrvFactory.$inject = [ '$rootScope', '$window', '$q',
                                     'audioPlayerSoundSrv', 'songsMdl' ];
 
   return audioPlayerSrvFactory;

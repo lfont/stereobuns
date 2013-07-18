@@ -18,6 +18,7 @@ var songSchema = new Schema({
   linkUrl: String,
   artworkUrl: String,
   loved: Boolean,
+  queued: Boolean,
   playCount: Number,
   playlists: Array
 });
@@ -59,6 +60,44 @@ exports.unlove = function (userId, url, callback) {
   Song.update(
     { userId: userId, url: url },
     { loved: false },
+    function (err, numberAffected, raw) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+      }
+      callback(err, numberAffected);
+    });
+};
+
+exports.queued = function (userId, callback) {
+  Song.find({ userId: userId, queued: true }, function (err, songs) {
+    if (err) {
+      // TODO: handle error
+      console.log(err);
+    }
+    callback(err, { name: 'Queue', songs: songs });
+  });
+};
+
+exports.queue = function (userId, songData, callback) {
+  var song = _.extend(sanitize(songData), { queued: true });
+  Song.update(
+    { userId: userId, url: song.url },
+    song,
+    { upsert: true },
+    function (err, numberAffected, raw) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+      }
+      callback(err, numberAffected);
+    });
+};
+
+exports.dequeue = function (userId, url, callback) {
+  Song.update(
+    { userId: userId, url: url },
+    { queued: false },
     function (err, numberAffected, raw) {
       if (err) {
         // TODO: handle error

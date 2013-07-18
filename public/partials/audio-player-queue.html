@@ -7,18 +7,18 @@
     
     <div class="modal-body" no-scroll-propagation>
         <div class="playlist-actions">
-            <span ng-show="queue.length">{{ queue.length }}</span>
-            <ng-pluralize count="queue.length"
+            <span ng-show="songs.length">{{ songs.length }}</span>
+            <ng-pluralize count="songs.length"
                 when="{ '0': 'empty',
                         '1': 'song',
                         'other': 'songs' }">
             </ng-pluralize>
-            <songs-actions songs="queue" options="songsActionsOptions"
+            <songs-actions songs="songs" options="songsActionsOptions"
                            on-remove="dequeue(songs)"></songs-actions>
         </div>
         
         <ul class="playlist-songs">
-            <li ng-repeat="song in queue">
+            <li ng-repeat="song in songs">
                 <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
             </li>
         </ul>

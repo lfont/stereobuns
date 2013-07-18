@@ -9,6 +9,7 @@ var site               = require('./site'),
     playlistsApi       = require('./api/playlists'),
     playlistSongsApi   = require('./api/playlist-songs'),
     lovedSongsApi      = require('./api/loved-songs'),
+    queuedSongsApi     = require('./api/queued-songs'),
     mostPlayedSongsApi = require('./api/most-played-songs');
 
 function ensureAuthenticated (req, res, next) {
@@ -56,6 +57,10 @@ exports.register = function (app) {
   app.get('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.index);
   app.post('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.create);
   app.put('/api/users/me/songs/loved', ensureAuthenticated, lovedSongsApi.update);
+
+  app.get('/api/users/me/songs/queued', ensureAuthenticated, queuedSongsApi.index);
+  app.post('/api/users/me/songs/queued', ensureAuthenticated, queuedSongsApi.create);
+  app.put('/api/users/me/songs/queued', ensureAuthenticated, queuedSongsApi.update);
 
   app.get('/api/users/me/songs/mostplayed', ensureAuthenticated, mostPlayedSongsApi.index);
   app.post('/api/users/me/songs/mostplayed', ensureAuthenticated, mostPlayedSongsApi.create);

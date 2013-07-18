@@ -15,6 +15,46 @@ define([
     function SongsStore (id, name, icon) {
       var _this = this;
 
+      function addOne (song) {
+        var deferred = $q.defer();
+        $http
+          .post('/api/users/me/songs/' + _this.id, song)
+          .success(function (data, status, headers, config) {
+            if (data.count !== 0) {
+              _this.length++;
+              $rootScope.$broadcast('songsStore:add', _this.id, song);
+              deferred.resolve(song);
+              $window.console.log('song: ' + song.url + ' has been added.');
+            }
+          })
+          .error(function (data, status, headers, config) {
+            // TODO: handle error
+            deferred.reject(status);
+            $window.console.log('song: ' + song.url + ' has not been added.');
+          });
+        return deferred.promise;
+      }
+
+      function removeOne (song) {
+        var deferred = $q.defer();
+        $http
+            .put('/api/users/me/songs/' + _this.id, song)
+            .success(function (data, status, headers, config) {
+              if (data.count !== 0) {
+                _this.length--;
+                $rootScope.$broadcast('songsStore:remove', _this.id, song);
+                deferred.resolve(song);
+                $window.console.log('song: ' + song.url + ' has been removed.');
+              }
+            })
+            .error(function (data, status, headers, config) {
+              // TODO: handle error
+              deferred.reject(status);
+              $window.console.log('song: ' + song.url + ' has not been removed.');
+            });
+        return deferred.promise;
+      }
+
       this.id = id;
       this.name = name;
       this.icon = icon;
@@ -34,36 +74,62 @@ define([
         return deferred.promise;
       };
 
-      this.add = function (song) {
-        $http
-          .post('/api/users/me/songs/' + this.id, song)
-          .success(function (data, status, headers, config) {
-            if (data.count !== 0) {
-              _this.length++;
-              $rootScope.$broadcast('songsStore:add', _this.id, song);
-              $window.console.log('song: ' + song.url + ' has been added.');
-            }
-          })
-          .error(function (data, status, headers, config) {
-            // TODO: handle error
-            $window.console.log('song: ' + song.url + ' has not been added.');
-          });
+      this.add = function (songs) {
+        var deferred = $q.defer(),
+            addedSongs = [],
+            expectedCount, i, len, newSongs;
+
+        function onSongAdded (song) {
+          addedSongs.push(song);
+          if (addedSongs.length === expectedCount) {
+            deferred.resolve(addedSongs);
+          }
+        }
+
+        function onError (error) {
+          expectedCount--;
+        }
+
+        if (!angular.isArray(songs)) {
+          newSongs = [ songs ];
+        } else {
+          newSongs = songs;
+        }
+        expectedCount = newSongs.length;
+        for (i = 0, len = newSongs.length; i < len; i++) {
+          addOne(newSongs[i]).then(onSongAdded, onError);
+        }
+
+        return deferred.promise;
       };
 
-      this.remove = function (song) {
-        $http
-          .put('/api/users/me/songs/' + this.id, song)
-          .success(function (data, status, headers, config) {
-            if (data.count !== 0) {
-              _this.length--;
-              $rootScope.$broadcast('songsStore:remove', _this.id, song);
-              $window.console.log('song: ' + song.url + ' has been removed.');
-            }
-          })
-          .error(function (data, status, headers, config) {
-            // TODO: handle error
-            $window.console.log('song: ' + song.url + ' has not been removed.');
-          });
+      this.remove = function (songs) {
+        var deferred = $q.defer(),
+            removedSongs = [],
+            expectedCount, i, len, oldSongs;
+
+        function onSongRemoved (song) {
+          removedSongs.push(song);
+          if (removedSongs.length === expectedCount) {
+            deferred.resolve(removedSongs);
+          }
+        }
+
+        function onError (error) {
+          expectedCount--;
+        }
+
+        if (!angular.isArray(songs)) {
+          oldSongs = [ songs ];
+        } else {
+          oldSongs = songs;
+        }
+        expectedCount = oldSongs.length;
+        for (i = 0, len = oldSongs.length; i < len; i++) {
+          removeOne(oldSongs[i]).then(onSongRemoved, onError);
+        }
+
+        return deferred.promise;
       };
     }
 
@@ -76,6 +142,9 @@ define([
         if (!songsStoresMap.mostplayed) {
           songsStoresMap.mostplayed = new SongsStore('mostplayed', 'Most Played', 'icon-music');
           songsStores.push(songsStoresMap.mostplayed);
+        }
+        if (!songsStoresMap.queued) {
+          songsStoresMap.queued = new SongsStore('queued', 'Queue');
         }
         return songsStores;
       },

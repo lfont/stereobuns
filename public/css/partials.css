@@ -115,20 +115,16 @@
 
 .audio-player-queue.show-animation {
     bottom: -400px;
-    opacity: 0;
 }
 
 .audio-player-queue.show-animation-active {
     bottom: 66px;
-    opacity: 1;
 }
 
 .audio-player-queue.hide-animation {
     bottom: 66px;
-    opacity: 1;
 }
 
 .audio-player-queue.hide-animation-active {
     bottom: -400px;
-    opacity: 0;
 }
