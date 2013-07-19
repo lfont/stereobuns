@@ -16,7 +16,7 @@ exports.index = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  models.songs.incrementPlayCount(req.user.id, req.body.url, function (err, numberAffected) {
+  models.songs.incrementPlayCount(req.user.id, req.body.song.url, function (err, numberAffected) {
     if (err) {
       res.send(400, { error: err });
       return;

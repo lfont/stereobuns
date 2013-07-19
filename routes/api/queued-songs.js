@@ -16,7 +16,7 @@ exports.index = function (req, res) {
 };
 
 exports.create = function (req, res) {
-  models.songs.queue(req.user.id, req.body, function (err, numberAffected) {
+  models.songs.enqueue(req.user.id, req.body.song, req.body.params.index, function (err, numberAffected) {
     if (err) {
       res.send(400, { error: err });
       return;

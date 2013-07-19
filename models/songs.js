@@ -9,23 +9,25 @@ var mongoose = require('mongoose'),
 var Schema = mongoose.Schema;
 
 var songSchema = new Schema({
-  userId: { type: Schema.ObjectId, required: true },
+  userId: { type: Schema.ObjectId, required: true, select: false },
+  url: { type: String, required: true },
   artist: String,
   album: String,
   track: String,
   source: String,
-  url: { type: String, required: true },
   linkUrl: String,
   artworkUrl: String,
   loved: Boolean,
-  queued: Boolean,
-  playCount: Number,
-  playlists: Array
+  queueIndex: { type: Number, select: false },
+  queueTimestamp: { type: Number, select: false },
+  playCount: { type: Number, select: false },
+  playlists: { type: Array, select: false }
 });
 
 var Song = exports.Song = mongoose.model('Song', songSchema);
 
 function sanitize (songData) {
+  // TODO: should be done by the client
   delete songData._id;
   delete songData.playlists;
   return songData;
@@ -37,7 +39,7 @@ exports.loved = function (userId, callback) {
       // TODO: handle error
       console.log(err);
     }
-    callback(err, { name: 'Loved', songs: songs });
+    callback(err, { id: 'loved', songs: songs });
   });
 };
 
@@ -70,17 +72,22 @@ exports.unlove = function (userId, url, callback) {
 };
 
 exports.queued = function (userId, callback) {
-  Song.find({ userId: userId, queued: true }, function (err, songs) {
-    if (err) {
-      // TODO: handle error
-      console.log(err);
-    }
-    callback(err, { name: 'Queue', songs: songs });
-  });
+  Song.find({ userId: userId, queueIndex: { $exists: true } },
+            null,
+            { sort: { queueIndex: 1, queueTimestamp: 1 } },
+            function (err, songs) {
+              if (err) {
+                // TODO: handle error
+                console.log(err);
+              }
+              callback(err, { id: 'queued', songs: songs });
+            });
 };
 
-exports.queue = function (userId, songData, callback) {
-  var song = _.extend(sanitize(songData), { queued: true });
+exports.enqueue = function (userId, songData, index, callback) {
+  var song = _.extend(sanitize(songData),
+                      { queueIndex: index, queueTimestamp: Date.now() });
+
   Song.update(
     { userId: userId, url: song.url },
     song,
@@ -97,7 +104,7 @@ exports.queue = function (userId, songData, callback) {
 exports.dequeue = function (userId, url, callback) {
   Song.update(
     { userId: userId, url: url },
-    { queued: false },
+    { $unset: { queueIndex: '', queueTimestamp: '' } },
     function (err, numberAffected, raw) {
       if (err) {
         // TODO: handle error
@@ -108,14 +115,16 @@ exports.dequeue = function (userId, url, callback) {
 };
 
 exports.mostPlayed = function (userId, callback) {
-  Song.find({ userId: userId, playCount: { $gt: 0 } }, null,
-            { sort: { playCount: 1 }, limit: 50 }, function (err, songs) {
-    if (err) {
-      // TODO: handle error
-      console.log(err);
-    }
-    callback(err, { name: 'Most Played', songs: songs });
-  });
+  Song.find({ userId: userId, playCount: { $gt: 0 } },
+            null,
+            { sort: { playCount: 1 }, limit: 50 },
+            function (err, songs) {
+              if (err) {
+                // TODO: handle error
+                console.log(err);
+              }
+              callback(err, { id: 'mostPlayed', songs: songs });
+            });
 };
 
 exports.incrementPlayCount = function (userId, url, callback) {

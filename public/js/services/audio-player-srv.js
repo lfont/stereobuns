@@ -106,7 +106,9 @@ define([
 
         promise.then(function (songs) {
           queue = songs;
-          deferred.resolve(songs);
+          // This must be a copy to prevent alteration
+          // of the queue by other component.
+          deferred.resolve(songs.slice(0));
         }, function (error) {
           // TODO: handle error
           deferred.resolve([]);
@@ -116,28 +118,26 @@ define([
       },
 
       enqueue: function (songs) {
-        var _this = this,
-            promise = queuedSongsStore.add(songs);
-
-        function addToQueue () {
-          var i, len;
-          for (i = 0, len = songs.length; i < len; i++) {
-            queue.push(songs[i]);
-          }
-          $rootScope.$broadcast('audioPlayer:queue');
+        function innerEnqueue (startIndex) {
+          var promise = queuedSongsStore.add(songs, { index: startIndex });
+          promise.then(function (songs) {
+            var i, len;
+            for (i = 0, len = songs.length; i < len; i++) {
+              queue.push(songs[i]);
+            }
+            $rootScope.$broadcast('audioPlayer:queue');
+          }, function (error) {
+            // TODO: handle error
+          });
         }
 
-        promise.then(function (songs) {
-          if (!queue) {
-            _this.getQueue().then(function () {
-              addToQueue(songs);
-            });
-          } else {
-            addToQueue(songs);
-          }
-        }, function (error) {
-          // TODO: handle error
-        });
+        if (!queue) {
+          this.getQueue().then(function () {
+            innerEnqueue(queue.length);
+          });
+        } else {
+          innerEnqueue(queue.length);
+        }
       },
 
       dequeue: function (songs) {

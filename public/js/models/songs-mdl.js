@@ -15,10 +15,10 @@ define([
     function SongsStore (id, name, icon) {
       var _this = this;
 
-      function addOne (song) {
+      function addOne (song, params) {
         var deferred = $q.defer();
         $http
-          .post('/api/users/me/songs/' + _this.id, song)
+          .post('/api/users/me/songs/' + _this.id, { song: song, params: params })
           .success(function (data, status, headers, config) {
             if (data.count !== 0) {
               _this.length++;
@@ -75,8 +75,9 @@ define([
       };
 
       this.add = function (songs) {
-        var deferred = $q.defer(),
+        var deferred   = $q.defer(),
             addedSongs = [],
+            params     = Array.prototype.slice.call(arguments, 1)[0],
             expectedCount, i, len, newSongs;
 
         function onSongAdded (song) {
@@ -97,14 +98,20 @@ define([
         }
         expectedCount = newSongs.length;
         for (i = 0, len = newSongs.length; i < len; i++) {
-          addOne(newSongs[i]).then(onSongAdded, onError);
+          addOne.call(this, newSongs[i], params).then(onSongAdded, onError);
+          if (this.id === 'queued') {
+            // TODO: This is not required if the backend can handle
+            // batch operation
+            params = angular.extend({}, params);
+            params.index++;
+          }
         }
 
         return deferred.promise;
       };
 
       this.remove = function (songs) {
-        var deferred = $q.defer(),
+        var deferred     = $q.defer(),
             removedSongs = [],
             expectedCount, i, len, oldSongs;
 
