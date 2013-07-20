@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function audioPlayerSoundSrvFactory ($rootScope) {
+  function SoundSrvFactory ($rootScope) {
     var playingPosition = 0,
         loadingPercentage = 0,
         playTime = 0,
@@ -96,34 +96,32 @@ define(function () {
       updatePlayTime(this, duration);
     };
 
-    return {
-      onStop: function (callback) {
-        onStopCallback = callback;
-      },
+    this.onStop = function (callback) {
+      onStopCallback = callback;
+    };
 
-      onFinish: function (callback) {
-        onFinishCallback = callback;
-      },
+    this.onFinish = function (callback) {
+      onFinishCallback = callback;
+    };
 
-      onHalfPlay: function (callback) {
-        onHalfPlayCallback = callback;
-      },
+    this.onHalfPlay = function (callback) {
+      onHalfPlayCallback = callback;
+    };
 
-      getEventsHandler: function () {
-        return {
-          onplay: onplay,
-          onpause: onpause,
-          onresume: onresume,
-          onstop: onstop,
-          onfinish: onfinish,
-          whileloading: whileloading,
-          whileplaying: whileplaying
-        };
-      }
+    this.getEventsHandler = function () {
+      return {
+        onplay: onplay,
+        onpause: onpause,
+        onresume: onresume,
+        onstop: onstop,
+        onfinish: onfinish,
+        whileloading: whileloading,
+        whileplaying: whileplaying
+      };
     };
   }
 
-  audioPlayerSoundSrvFactory.$inject = [ '$rootScope' ];
+  SoundSrvFactory.$inject = [ '$rootScope' ];
 
-  return audioPlayerSoundSrvFactory;
+  return SoundSrvFactory;
 });
