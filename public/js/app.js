@@ -31,7 +31,7 @@ define([
     'soundrocket.models'
   ]);
 
-  soundRocket.constant('config', { isDebug: false });
+  soundRocket.constant('config', { debug: false });
 
   return soundRocket;
 });

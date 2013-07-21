@@ -3,23 +3,20 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-define(function () {
+define([
+  'angular',
+  'observable'
+], function (angular, Observable) {
   'use strict';
 
-  function SoundSrvFactory ($rootScope) {
-    var playingPosition = 0,
+  function SoundSrvFactory () {
+    var _this             = this,
+        playingPosition   = 0,
         loadingPercentage = 0,
-        playTime = 0,
-        halfPlayTriggered = false,
-        onStopCallback,
-        onFinishCallback,
-        onHalfPlayCallback;
+        playTime          = 0,
+        halfPlayTriggered = false;
 
-    function apply () {
-      if(!$rootScope.$$phase) {
-        $rootScope.$apply();
-      }
-    }
+    angular.extend(this, new Observable());
 
     function updatePlayTime (sound, duration) {
       if (halfPlayTriggered) {
@@ -27,7 +24,7 @@ define(function () {
       }
 
       if (++playTime >= (duration / 2)) {
-        onHalfPlayCallback();
+        _this.trigger('halfPlay', playTime);
         halfPlayTriggered = true;
       }
     }
@@ -37,26 +34,23 @@ define(function () {
       loadingPercentage = 0;
       playTime = 0;
       halfPlayTriggered = false;
-      $rootScope.$broadcast('audioPlayer:play', this.readyState === 3);
-      apply();
+      _this.trigger('play', this.readyState === 3);
     };
 
     var onpause = function () {
-      $rootScope.$broadcast('audioPlayer:pause');
-      apply();
+      _this.trigger('pause');
     };
 
     var onresume = function () {
-      $rootScope.$broadcast('audioPlayer:resume');
-      apply();
+      _this.trigger('resume');
     };
 
     var onstop = function () {
-      onStopCallback();
+      _this.trigger('stop');
     };
 
     var onfinish = function () {
-      onFinishCallback();
+      _this.trigger('finish');
     };
 
     var whileloading = function () {
@@ -69,8 +63,7 @@ define(function () {
       }
 
       loadingPercentage = percentage;
-      $rootScope.$broadcast('audioPlayer:loading', percentage);
-      apply();
+      _this.trigger('loading', percentage);
     };
 
     var whileplaying = function () {
@@ -86,26 +79,13 @@ define(function () {
       duration = Math.floor((this.readyState === 3 ?
                             this.duration : this.durationEstimate) / 1000);
 
-      $rootScope.$broadcast('audioPlayer:playing', {
+      _this.trigger('playing', {
         position: position,
         duration: duration,
         percentage: Math.floor(position * 100 / duration)
       });
 
-      apply();
       updatePlayTime(this, duration);
-    };
-
-    this.onStop = function (callback) {
-      onStopCallback = callback;
-    };
-
-    this.onFinish = function (callback) {
-      onFinishCallback = callback;
-    };
-
-    this.onHalfPlay = function (callback) {
-      onHalfPlayCallback = callback;
     };
 
     this.getEventsHandler = function () {
@@ -120,8 +100,6 @@ define(function () {
       };
     };
   }
-
-  SoundSrvFactory.$inject = [ '$rootScope' ];
 
   return SoundSrvFactory;
 });

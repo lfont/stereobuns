@@ -4,18 +4,23 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
+  'angular',
+  'observable',
   'soundmanager2'
-], function (soundManager) {
+], function (angular, Observable, soundManager) {
   'use strict';
 
   function SoundManagerSrv ($window, config, soundSrv) {
-    var isPlaying      = false,
+    var _this          = this,
+        isPlaying      = false,
         soundUrlsToIds = {},
         currentSoundId;
 
+    angular.extend(this, new Observable());
+
     soundManager.setup({
       url: '/components/soundmanager/swf/',
-      debugMode: config.isDebug,
+      debugMode: config.debug,
       flashVersion: 9,
       preferFlash: false,
       ontimeout: function () {
@@ -25,6 +30,21 @@ define([
         // set global default volume for all sound objects
         volume: 100
       }
+    });
+
+    soundSrv.on('stop', function () {
+      isPlaying = false;
+      _this.trigger('stop');
+    });
+
+    soundSrv.on('finish', function () {
+      currentSoundId = null;
+      _this.trigger('finish');
+    });
+
+    [ 'play', 'pause', 'resume',
+      'halfPlay', 'loading', 'playing' ].forEach(function (topic) {
+      soundSrv.on(topic, _this.trigger.bind(_this, topic));
     });
 
     function createSound (url) {
@@ -45,24 +65,6 @@ define([
         soundManager.stop(currentSoundId);
       }
     }
-
-    this.onStop = function (callback) {
-      soundSrv.onStop(function () {
-        isPlaying = false;
-        callback();
-      });
-    };
-
-    this.onFinish =  function (callback) {
-      soundSrv.onFinish(function () {
-        currentSoundId = null;
-        callback();
-      });
-    };
-
-    this.onHalfPlay = function (callback) {
-      soundSrv.onHalfPlay(callback);
-    };
 
     this.isPlaying = function () {
       return isPlaying;

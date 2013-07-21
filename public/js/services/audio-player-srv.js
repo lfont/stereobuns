@@ -13,31 +13,68 @@ define(function () {
         queueIndex       = 0,
         queue;
 
-    function play (song) {
-      queueIndex = queue.indexOf(song);
-      if (queueIndex < 0) {
-        queueIndex = queue.length;
-        _this.enqueue(song);
-      }
-      soundManagerSrv.play(song.url);
-    }
-
-    function stop () {
-      $rootScope.$broadcast('audioPlayer:stop');
-      if(!$rootScope.$$phase) {
+    function apply () {
+      if (!$rootScope.$$phase) {
         $rootScope.$apply();
       }
     }
 
-    function destroySound (song) {
-      var songIndex = queue.indexOf(song);
-      soundManagerSrv.destroySound(song.url);
-      queue.splice(songIndex, 1);
+    function play (song) {
+      queueIndex = queue.indexOf(song);
+      if (queueIndex < 0) {
+        _this.enqueue(song).then(function () {
+          queueIndex = queue.length - 1;
+          soundManagerSrv.play(song.url);
+        });
+      } else {
+        soundManagerSrv.play(song.url);
+      }
     }
 
-    soundManagerSrv.onStop(stop);
+    function stop () {
+      $rootScope.$broadcast('audioPlayer:stop');
+      apply();
+    }
 
-    soundManagerSrv.onFinish(function () {
+    function destroySound (song) {
+      var songIndex = queue.indexOf(song);
+      queue.splice(songIndex, 1);
+      soundManagerSrv.destroySound(song.url);
+    }
+
+    soundManagerSrv.on('playing', function (progress) {
+      $rootScope.$broadcast('audioPlayer:playing', progress);
+      apply();
+    });
+
+    soundManagerSrv.on('loading', function (percentage) {
+      $rootScope.$broadcast('audioPlayer:loading', percentage);
+      apply();
+    });
+
+    soundManagerSrv.on('play', function (loaded) {
+      $rootScope.$broadcast('audioPlayer:play', loaded);
+      apply();
+    });
+
+    soundManagerSrv.on('pause', function () {
+      $rootScope.$broadcast('audioPlayer:pause');
+      apply();
+    });
+
+    soundManagerSrv.on('resume', function () {
+      $rootScope.$broadcast('audioPlayer:resume');
+      apply();
+    });
+
+    soundManagerSrv.on('stop', stop);
+
+    soundManagerSrv.on('halfPlay', function (playTime) {
+      var mostPlayedSongStore = songsMdl.getSongsStore('mostplayed');
+      mostPlayedSongStore.add(queue[queueIndex]);
+    });
+
+    soundManagerSrv.on('finish', function () {
       if (!_this.next()) {
         if (repeat) {
           queueIndex = 0;
@@ -46,11 +83,6 @@ define(function () {
           stop();
         }
       }
-    });
-
-    soundManagerSrv.onHalfPlay(function () {
-      var mostPlayedSongStore = songsMdl.getSongsStore('mostplayed');
-      mostPlayedSongStore.add(queue[queueIndex]);
     });
 
     this.getStatus = function () {
@@ -78,6 +110,8 @@ define(function () {
     };
 
     this.enqueue = function (songs) {
+      var deferred = $q.defer();
+
       function innerEnqueue (startIndex) {
         var promise = queuedSongsStore.add(songs, { index: startIndex });
         promise.then(function (songs) {
@@ -86,6 +120,7 @@ define(function () {
             queue.push(songs[i]);
           }
           $rootScope.$broadcast('audioPlayer:queue');
+          deferred.resolve();
         }, function (error) {
           // TODO: handle error
         });
@@ -98,6 +133,8 @@ define(function () {
       } else {
         innerEnqueue(queue.length);
       }
+
+      return deferred.promise;
     };
 
     this.dequeue = function (songs) {
@@ -129,7 +166,6 @@ define(function () {
 
       if (!queue) {
         this.getQueue().then(function () {
-          queueIndex = 0;
           if (queue.length) {
             play(queue[queueIndex]);
           }
