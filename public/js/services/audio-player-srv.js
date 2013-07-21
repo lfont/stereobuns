@@ -155,21 +155,26 @@ define(function () {
     };
 
     this.play = function (song) {
+      if (!queue) {
+        this.getQueue().then(function () {
+          if (song) {
+            play(song);
+            return;
+          }
+
+          if (queue.length) {
+            play(queue[queueIndex]);
+          }
+        });
+        return;
+      }
+
       if (song) {
         play(song);
         return;
       }
 
       if (soundManagerSrv.resume()) {
-        return;
-      }
-
-      if (!queue) {
-        this.getQueue().then(function () {
-          if (queue.length) {
-            play(queue[queueIndex]);
-          }
-        });
         return;
       }
 
