@@ -17,6 +17,7 @@ define([
 
       function addOne (song, params) {
         var deferred = $q.defer();
+        delete song._id;
         $http
           .post('/api/users/me/songs/' + _this.id, { song: song, params: params })
           .success(function (data, status, headers, config) {
@@ -37,6 +38,7 @@ define([
 
       function removeOne (song) {
         var deferred = $q.defer();
+        delete song._id;
         $http
             .put('/api/users/me/songs/' + _this.id, song)
             .success(function (data, status, headers, config) {

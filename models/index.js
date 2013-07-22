@@ -3,16 +3,17 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose  = require('mongoose'),
-    users     = require('./users'),
-    songs     = require('./songs'),
-    playlists = require('./playlists')(songs.Song),
-    config    = require('../lib/configuration');
+var mongoose = require('mongoose'),
+    config   = require('../lib/configuration');
 
 mongoose.connect(config.mongodbConnectionString);
 
 module.exports = {
-    users: users,
-    playlists: playlists,
-    songs: songs
+  users: require('./users'),
+  playlists: require('./playlists'),
+  songs: {
+    loved: require('./loved-songs'),
+    queued: require('./queued-songs'),
+    mostPlayed: require('./most-played-songs')
+  }
 };
