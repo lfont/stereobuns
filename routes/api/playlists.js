@@ -32,7 +32,7 @@ exports.destroy = function (req, res) {
 };
 
 exports.index = function (req, res) {
-  models.playlists.countSongs(
+  models.playlists.countSongsByPlaylists(
     req.user.id,
     function (err, playlists) {
       if (err) {

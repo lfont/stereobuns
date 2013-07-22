@@ -3,8 +3,9 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var _    = require('underscore'),
-    Song = require('./models').Song;
+var _           = require('underscore'),
+    Song        = require('./models').Song,
+    orphanSongs = require('./orphan-songs');
 
 exports.findByUserId = function (userId, callback) {
   Song.find({ userId: userId, loved: true }, function (err, songs) {
@@ -40,6 +41,7 @@ exports.remove = function (userId, url, callback) {
         // TODO: handle error
         console.log(err);
       }
+      orphanSongs.cleanForUserId(userId);
       callback(err, numberAffected);
     });
 };

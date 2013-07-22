@@ -3,9 +3,10 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var _     = require('underscore'),
-    Types = require('mongoose').Types,
-    Song  = require('./models').Song;
+var _           = require('underscore'),
+    Types       = require('mongoose').Types,
+    Song        = require('./models').Song,
+    orphanSongs = require('./orphan-songs');
 
 exports.create = function (userId, playlistName, callback) {
   Song.update(
@@ -69,7 +70,7 @@ exports.findByName = function (userId, playlistName, callback) {
   });
 };
 
-exports.countSongs = function (userId, callback) {
+exports.countSongsByPlaylists = function (userId, callback) {
   Song.aggregate([
     { $match: { userId: Types.ObjectId(userId) } },
     { $unwind: '$playlists' },
@@ -121,6 +122,7 @@ exports.removeSong = function (userId, playlistName, songId, callback) {
         // TODO: handle error
         console.log(err);
       }
+      orphanSongs.cleanForUserId(userId);
       callback(err, numberAffected);
     });
 };
