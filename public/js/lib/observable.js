@@ -7,7 +7,12 @@ define(
   function (require, exports, module) {
   // uRequire: start body of original nodejs module
 function Observable() {
-    var observables = {};
+    var _this = this, observables = {};
+    function callHandler(handler, args) {
+        setTimeout(function() {
+            handler.apply(_this, args);
+        }, 0);
+    }
     this.on = function(eventName, callback) {
         if (!observables[eventName]) {
             observables[eventName] = [];
@@ -30,12 +35,11 @@ function Observable() {
         if (!handlers) {
             return;
         }
-        handlers = handlers.slice(0);
         args = Array.prototype.slice.call(arguments, 1);
         for (i = 0, len = handlers.length; i < len; i++) {
             handler = handlers[i];
             if (handler) {
-                handler.apply(this, args);
+                callHandler(handler, args);
             }
         }
     };

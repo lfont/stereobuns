@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 
       observableAsAMD: {
         template: 'AMD',
-        path: 'lib/tomahawk/',
+        path: 'lib/',
         filez: [ 'observable.js' ],
         dstPath: 'public/js/lib/'
       }
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
         }
       },
       urequire: {
-        files: [ 'lib/tomahawk/observable.js' ],
+        files: [ 'lib/observable.js' ],
         tasks: [ 'urequire:observableAsAMD' ],
         options: {
           nospawn: true
