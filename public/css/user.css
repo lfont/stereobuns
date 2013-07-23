@@ -5,40 +5,41 @@
 /* playlist-header */
 
 .playlist-header h1 {
-    display: inline-block;
-    margin-right: .5em;
+  display: inline-block;
+  margin-right: .5em;
 }
 
 .playlist-header .btn {
-    font-size: 12px;
-    line-height: 10px;
+  font-size: 12px;
+  line-height: 10px;
+  margin-top: -9px;
 }
 
 
 /* playlist-actions */
 
 .playlist-actions {
-    margin: 0 0 10px 0;    
+  margin: 0 0 10px 0;    
 }
 
 .playlist-actions .songs-actions {
-    display: inline-block;
-    margin-left: .5em;
+  display: inline-block;
+  margin-left: .5em;
 }
 
 
 /* playlist-songs */
 
 .playlist-songs {
-    list-style-type: none;
-    margin: 0;
+  list-style-type: none;
+  margin: 0;
 }
 
 .playlist-songs > li {
-    border-bottom: 1px solid #f2f2f2;
-    padding: 1em .5em .2em .5em;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 1em .5em .2em .5em;
 }
 
 .playlist-songs > li:last-child {
-    border-bottom: 0;
+  border-bottom: 0;
 }

@@ -162,7 +162,7 @@ define([
             .success(function (data, status, headers, config) {
               var index = playlistStores.indexOf(playlistStore);
 
-              delete playlistStoresMap[name.toLowerCase()];
+              delete playlistStoresMap[playlistStore.name.toLowerCase()];
               playlistStores.splice(index, 1);
               $rootScope.$broadcast('playlistMdl:delete', playlistStore);
 

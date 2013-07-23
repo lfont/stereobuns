@@ -5,8 +5,9 @@
         </li>
     </ul>
     <span class="divider"></span>
-    <form class="form-inline" ng-click="$event.stopPropagation()">
-        <input type="text" placeholder="Playlist Name" class="input-medium" ng-model="playlistName" />
-        <button class="btn" ng-click="createPlaylist()">Create</button>
+    <form class="form-inline" name="playlistForm" ng-submit="createPlaylist()" ng-click="$event.stopPropagation()">
+        <input type="text" placeholder="Name your playlist" class="input-medium" name="nameField"
+               ng-model="playlistName" required maxlength="20">
+        <input type="submit" class="btn" value="Create">
     </form>
 </div>

@@ -9,7 +9,6 @@ require.config({
     'text': '../components/requirejs-text/text',
     'jquery': '../components/jquery/jquery',
     'angular': '../components/angular-unstable/angular',
-    'angular-ui-utils-keypress': '../components/angular-ui-utils/modules/keypress/keypress',
     'angular-ui-bootstrap-template': '../components/angular-ui-bootstrap/template',
     'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
     'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
@@ -23,9 +22,6 @@ require.config({
     angular: {
       deps: [ 'jquery' ], // replace jqLite by jquery
       exports: 'angular'
-    },
-    'angular-ui-utils-keypress': {
-      deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-dropdownToggle': {
       deps: [ 'angular' ]

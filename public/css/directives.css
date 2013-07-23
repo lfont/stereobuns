@@ -73,25 +73,14 @@
 
 /* playlist-chooser */
 
-.playlist-chooser {
-    padding: .5em;
+.playlist-chooser .nav,
+.playlist-chooser form {
+    margin-bottom: 0;
+    padding: 0 5px;
 }
 
 .playlist-chooser .nav {
-    margin-bottom: .5em;
-}
-
-.playlist-chooser .divider {
-    background-color: #e5e5e5;
-    border-bottom: 1px solid #ffffff;
-    display: block;
-    height: 1px;
-    margin: 9px 1px;
-    overflow: hidden;
-}
-
-.playlist-chooser form {
-    margin-bottom: 0;
+    min-height: 1em;
 }
 
 .playlist-chooser form input {
@@ -105,6 +94,15 @@
     height: 20px;
     margin: 0 .5em;
     padding: 0 5px;
+}
+
+.playlist-chooser .divider {
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ffffff;
+    display: block;
+    height: 1px;
+    margin: 5px 0;
+    overflow: hidden;
 }
 
 
