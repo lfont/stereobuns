@@ -39,6 +39,7 @@ define(function () {
 
     $scope.songsStatusTemplateUrl = 'songs-status.html';
     $scope.playlistsTemplateUrl = 'playlists.html';
+    $scope.noSongMessageTemplateUrl = 'no-playlist-songs.html';
     $scope.name = '';
     $scope.songs = [];
 
@@ -58,11 +59,11 @@ define(function () {
 
     $scope.openDeleteConfirmationBox = function () {
       $dialog.messageBox(
-        'Playlist',
-        'The playlist: "' + currentPlaylistStore.name + '" will be deleted.',
+        'Confirmation',
+        '"' + currentPlaylistStore.name + '" will be deleted.',
         [
-          { label: 'Delete', result: true, cssClass: 'btn-danger' },
-          { label: 'Cancel', result: false }
+          { label: 'Cancel', result: false },
+          { label: 'Delete', result: true, cssClass: 'btn-danger' }
         ])
         .open()
         .then(function (confirmed) {

@@ -1,8 +1,14 @@
 <% layout('./layout') -%>
-    
-<h1><%= error.message %></h1>
+
+<div class="span8 offset2">
+  <div class="well well-large well-transparent">
+    <i class="icon-warning-sign icon-4x icon-muted pull-left"></i>
+    <%= error.message %><br />
+    An error occurred. We're sorry about that.<br />
+    Go back to the <a href="/">homepage</a>.
+  </div>
+</div>
+
 <% if (settings['verbose errors']) { %>
-    <pre>error.stack</pre>
-<% } else { %>
-    <p>An error ocurred!</p>
+  <pre><%= error.stack %></pre>
 <% } %>

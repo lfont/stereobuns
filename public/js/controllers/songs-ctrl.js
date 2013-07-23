@@ -12,6 +12,7 @@ define(function () {
           promise    = songsStore.songs();
 
       $scope.name = songsStore.name;
+      $scope.noSongMessageTemplateUrl = 'no-' + id + '-songs.html';
 
       promise.then(function (songs) {
         $scope.songs = songs;
@@ -27,6 +28,7 @@ define(function () {
 
     $scope.songsStatusTemplateUrl = 'songs-status.html';
     $scope.playlistsTemplateUrl = 'playlists.html';
+    $scope.noSongMessageTemplateUrl = '';
     $scope.name = '';
     $scope.songs = [];
 
