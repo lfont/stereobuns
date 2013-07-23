@@ -101,7 +101,7 @@ define([
         expectedCount = newSongs.length;
         for (i = 0, len = newSongs.length; i < len; i++) {
           addOne.call(this, newSongs[i], params).then(onSongAdded, onError);
-          if (this.id === 'queued') {
+          if (this.id === 'queued' && params.index) {
             // TODO: This is not required if the backend can handle
             // batch operation
             params = angular.extend({}, params);

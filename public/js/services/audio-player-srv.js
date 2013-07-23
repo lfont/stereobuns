@@ -124,8 +124,8 @@ define(function () {
     this.enqueue = function (songs) {
       var deferred = $q.defer();
 
-      function innerEnqueue (startIndex) {
-        var promise = queuedSongsStore.add(songs, { index: startIndex });
+      function innerEnqueue () {
+        var promise = queuedSongsStore.add(songs, {});
         promise.then(function (songs) {
           var i, len;
           for (i = 0, len = songs.length; i < len; i++) {
@@ -140,10 +140,10 @@ define(function () {
 
       if (!queue) {
         this.getQueue().then(function () {
-          innerEnqueue(queue.length);
+          innerEnqueue();
         });
       } else {
-        innerEnqueue(queue.length);
+        innerEnqueue();
       }
 
       return deferred.promise;
