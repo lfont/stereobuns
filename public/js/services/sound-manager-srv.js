@@ -32,18 +32,33 @@ define([
       }
     });
 
+    soundSrv.on('play', function (loaded) {
+      isPlaying = true;
+      _this.trigger('play', loaded);
+    });
+
+    soundSrv.on('pause', function () {
+      isPlaying = false;
+      _this.trigger('pause');
+    });
+
+    soundSrv.on('resume', function () {
+      isPlaying = true;
+      _this.trigger('resume');
+    });
+
     soundSrv.on('stop', function () {
       isPlaying = false;
       _this.trigger('stop');
     });
 
     soundSrv.on('finish', function () {
+      isPlaying = false;
       currentSoundId = null;
       _this.trigger('finish');
     });
 
-    [ 'play', 'pause', 'resume',
-      'halfPlay', 'loading', 'playing' ].forEach(function (topic) {
+    [ 'halfPlay', 'loading', 'playing' ].forEach(function (topic) {
       soundSrv.on(topic, _this.trigger.bind(_this, topic));
     });
 
@@ -57,13 +72,6 @@ define([
 
     function getSoundId (url) {
       return soundUrlsToIds[url];
-    }
-
-    function stop () {
-      if (currentSoundId) {
-        isPlaying = false;
-        soundManager.stop(currentSoundId);
-      }
     }
 
     this.isPlaying = function () {
@@ -84,8 +92,9 @@ define([
 
     this.play = function (url) {
       var soundId = getSoundId(url) || createSound(url);
-      stop();
-      isPlaying = true;
+      if (currentSoundId) {
+        soundManager.stop(currentSoundId);
+      }
       currentSoundId = soundId;
       soundManager.play(soundId, soundSrv.getEventsHandler());
     };
@@ -98,14 +107,12 @@ define([
 
     this.pause = function () {
       if (currentSoundId) {
-        isPlaying = false;
         soundManager.pause(currentSoundId);
       }
     };
 
     this.resume = function () {
       if (currentSoundId) {
-        isPlaying = true;
         soundManager.resume(currentSoundId);
         return true;
       }

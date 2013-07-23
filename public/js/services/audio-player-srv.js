@@ -19,8 +19,20 @@ define(function () {
       }
     }
 
+    function indexOfSong (song) {
+      var index = -1,
+          i, len;
+      for (i = 0, len = queue.length; i < len; i++) {
+        if (queue[i].url === song.url) {
+          index = i;
+          break;
+        }
+      }
+      return index;
+    }
+
     function play (song) {
-      queueIndex = queue.indexOf(song);
+      queueIndex = indexOfSong(song);
       if (queueIndex < 0) {
         _this.enqueue(song).then(function () {
           queueIndex = queue.length - 1;
@@ -37,7 +49,7 @@ define(function () {
     }
 
     function destroySound (song) {
-      var songIndex = queue.indexOf(song);
+      var songIndex = indexOfSong(song);
       queue.splice(songIndex, 1);
       soundManagerSrv.destroySound(song.url);
     }

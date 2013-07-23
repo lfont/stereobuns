@@ -14,6 +14,10 @@ define([
       queue: true
     };
 
+    function setOptions () {
+      $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
+    }
+
     function isPlayerSong () {
       var song = audioPlayerSrv.getStatus().song;
       return song &&
@@ -21,9 +25,23 @@ define([
              song.url === $scope.song.url;
     }
 
-    function setOptions () {
-      $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
-    }
+    $scope.isPlaying = isPlayerSong() && audioPlayerSrv.getStatus().isPlaying;
+
+    $scope.$on('audioPlayer:play', function (event, loaded) {
+      $scope.isPlaying = isPlayerSong();
+    });
+
+    $scope.$on('audioPlayer:pause', function (event) {
+      $scope.isPlaying = false;
+    });
+
+    $scope.$on('audioPlayer:resume', function (event) {
+      $scope.isPlaying = isPlayerSong();
+    });
+
+    $scope.$on('audioPlayer:stop', function (event) {
+      $scope.isPlaying = false;
+    });
 
     $scope.$on('songsStore:add', function (event, id, song) {
       if (id === 'loved' && song.url === $scope.song.url && !$scope.song.loved) {
@@ -36,10 +54,6 @@ define([
         $scope.song.loved = false;
       }
     });
-
-    $scope.isPlaying = function () {
-      return isPlayerSong() && audioPlayerSrv.getStatus().isPlaying;
-    };
 
     $scope.togglePlay = function () {
       if (isPlayerSong()) {

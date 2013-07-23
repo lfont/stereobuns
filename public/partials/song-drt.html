@@ -2,12 +2,12 @@
     <artwork song="song" class="pull-left"></artwork>
     <div class="song-body">
         <h4 class="song-heading">
-            <button class="btn" title="Play" ng-click="togglePlay(); $event.stopPropagation()"
-                    ng-if="!isPlaying()">
+            <button class="btn" title="Play"
+                    ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
                 <i class="icon-play"></i>
             </button>
-            <button class="btn" title="Pause" ng-click="togglePlay(); $event.stopPropagation()"
-                    ng-if="isPlaying()">
+            <button class="btn" title="Pause"
+                    ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
                 <i class="icon-pause"></i>
             </button>
             {{ song.artist }}
