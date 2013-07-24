@@ -26,19 +26,21 @@ define([
       filter: DEFAULT_OPTIONS.filterPlaylists
     };
 
-    $scope.isMulti = angular.isArray($scope.songs);
+    $scope.isMulti = false;
+    $scope.isVisible = false;
 
-    $scope.isVisible = function () {
-      var notDefined;
-      return $scope.isMulti ?
-        $scope.songs.length !== 0 :
-        $scope.songs !== notDefined && $scope.songs !== null;
-    };
+    $scope.$watch('songs', function (newValue, oldValue) {
+      $scope.isMulti = angular.isArray(newValue);
+      $scope.isVisible = $scope.isMulti ?
+        newValue.length !== 0 :
+        angular.isDefined(newValue) && newValue !== null;
+    });
 
     $scope.play = function () {
-      var songs = $scope.songs;
-      audioPlayerSrv.enqueue(songs);
-      audioPlayerSrv.play($scope.isMulti ? songs[0] : songs);
+      var promise = audioPlayerSrv.enqueue($scope.songs);
+      promise.then(function () {
+        audioPlayerSrv.play($scope.isMulti ? $scope.songs[0] : $scope.songs);
+      });
     };
 
     $scope.queue = function () {

@@ -14,6 +14,7 @@ define([
     var _this          = this,
         isPlaying      = false,
         soundUrlsToIds = {},
+        soundIdsToUrls = {},
         currentSoundId;
 
     angular.extend(this, new Observable());
@@ -67,12 +68,20 @@ define([
         url: url
       });
       soundUrlsToIds[url] = sound.id;
+      soundIdsToUrls[sound.id] = url;
       return sound.id;
     }
 
     function getSoundId (url) {
       return soundUrlsToIds[url];
     }
+
+    this.getCurrentUrl = function () {
+      if (currentSoundId) {
+        return soundIdsToUrls[currentSoundId];
+      }
+      return null;
+    };
 
     this.isPlaying = function () {
       return isPlaying;
@@ -86,6 +95,7 @@ define([
           currentSoundId = null;
         }
         delete soundUrlsToIds[url];
+        delete soundIdsToUrls[soundId];
         soundManager.destroySound(soundId);
       }
     };
