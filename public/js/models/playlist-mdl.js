@@ -15,13 +15,15 @@ define([
     function PlaylistStore (playlist) {
       var _this = this;
 
-      this.name = playlist.name;
-      this.length = playlist.length;
+      function sanitizeSong (song) {
+        var newSong = angular.copy(song);
+        delete newSong._id;
+        return newSong;
+      }
 
       function addOne (song) {
-        delete song._id;
         $http
-            .post('/api/users/me/playlists/' + _this.name + '/songs', song)
+            .post('/api/users/me/playlists/' + _this.name + '/songs', sanitizeSong(song))
             .success(function (data, status, headers, config) {
               if (data.count !== 0) {
                 _this.length++;
@@ -51,6 +53,9 @@ define([
             });
       }
 
+      this.name = playlist.name;
+      this.length = playlist.length;
+
       this.songs = function () {
         var deferred = $q.defer();
         $http
@@ -65,29 +70,29 @@ define([
         return deferred.promise;
       };
 
-      this.add = function (song) {
-        var i, len, songs;
-        if (!angular.isArray(song)) {
-          songs = [ song ];
+      this.add = function (songs) {
+        var i, len, newSongs;
+        if (!angular.isArray(songs)) {
+          newSongs = [ songs ];
         } else {
-          songs = song;
+          newSongs = songs;
         }
-        for (i = 0, len = songs.length; i < len; i++) {
-          addOne(songs[i]);
+        for (i = 0, len = newSongs.length; i < len; i++) {
+          addOne(newSongs[i]);
         }
       };
 
-      this.remove = function (song) {
-        var i, len, songs;
-        if (!angular.isArray(song)) {
-          songs = [ song ];
+      this.remove = function (songs) {
+        var i, len, oldSsongs;
+        if (!angular.isArray(songs)) {
+          oldSsongs = [ songs ];
         } else {
           // the array must be duplicated because it can be
           // altered during the iteration.
-          songs = song.slice(0);
+          oldSsongs = songs.slice(0);
         }
-        for (i = 0, len = songs.length; i < len; i++) {
-          removeOne(songs[i]);
+        for (i = 0, len = oldSsongs.length; i < len; i++) {
+          removeOne(oldSsongs[i]);
         }
       };
     }

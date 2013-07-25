@@ -15,11 +15,17 @@ define([
     function SongsStore (id, name, icon) {
       var _this = this;
 
-      function addOne (song, params) {
+      function sanitizeSong (song) {
+        var newSong = angular.copy(song);
+        delete newSong._id;
+        return newSong;
+      }
+
+      function addOne (song) {
         var deferred = $q.defer();
-        delete song._id;
+
         $http
-          .post('/api/users/me/songs/' + _this.id, { song: song, params: params })
+          .post('/api/users/me/songs/' + _this.id, sanitizeSong(song))
           .success(function (data, status, headers, config) {
             if (data.count !== 0) {
               _this.length++;
@@ -33,14 +39,15 @@ define([
             deferred.reject(status);
             $window.console.log('song: ' + song.url + ' has not been added.');
           });
+
         return deferred.promise;
       }
 
       function removeOne (song) {
         var deferred = $q.defer();
-        delete song._id;
+
         $http
-            .put('/api/users/me/songs/' + _this.id, song)
+            .put('/api/users/me/songs/' + _this.id, sanitizeSong(song))
             .success(function (data, status, headers, config) {
               if (data.count !== 0) {
                 _this.length--;
@@ -54,6 +61,7 @@ define([
               deferred.reject(status);
               $window.console.log('song: ' + song.url + ' has not been removed.');
             });
+
         return deferred.promise;
       }
 
@@ -79,7 +87,6 @@ define([
       this.add = function (songs) {
         var deferred   = $q.defer(),
             addedSongs = [],
-            params     = Array.prototype.slice.call(arguments, 1)[0],
             expectedCount, i, len, newSongs;
 
         function onSongAdded (song) {
@@ -100,13 +107,7 @@ define([
         }
         expectedCount = newSongs.length;
         for (i = 0, len = newSongs.length; i < len; i++) {
-          addOne.call(this, newSongs[i], params).then(onSongAdded, onError);
-          if (this.id === 'queued' && params.index) {
-            // TODO: This is not required if the backend can handle
-            // batch operation
-            params = angular.extend({}, params);
-            params.index++;
-          }
+          addOne(newSongs[i]).then(onSongAdded, onError);
         }
 
         return deferred.promise;

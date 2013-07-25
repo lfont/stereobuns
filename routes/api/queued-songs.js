@@ -20,8 +20,7 @@ exports.index = function (req, res) {
 exports.create = function (req, res) {
   models.songs.queued.add(
     req.user.id,
-    req.body.song,
-    req.body.params.index,
+    req.body,
     function (err, numberAffected) {
       if (err) {
         res.send(400, { error: err });

@@ -12,7 +12,6 @@ define(function () {
           promise    = songsStore.songs();
 
       $scope.name = songsStore.name;
-      $scope.noSongMessageTemplateUrl = 'no-' + id + '-songs.html';
 
       promise.then(function (songs) {
         $scope.songs = songs;
@@ -30,7 +29,13 @@ define(function () {
     $scope.playlistsTemplateUrl = 'playlists.html';
     $scope.noSongMessageTemplateUrl = '';
     $scope.name = '';
-    $scope.songs = [];
+    $scope.songs = null;
+
+    $scope.$watchCollection('songs', function (newSongs, oldSongs) {
+      $scope.noSongMessageTemplateUrl = !newSongs || newSongs.length ?
+        '' :
+        'no-' + $routeParams.id + '-songs.html';
+    });
 
     $scope.$on('songsStore:add', function (event, id, song) {
       if (id === $routeParams.id) {

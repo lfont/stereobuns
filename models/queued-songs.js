@@ -20,7 +20,7 @@ exports.findByUserId = function (userId, callback) {
             });
 };
 
-exports.add = function (userId, songData, index, callback) {
+exports.add = function (userId, songData, callback) {
   function update (index) {
     _.extend(songData, { queueIndex: index, queueTimestamp: Date.now() });
     Song.update(
@@ -36,23 +36,19 @@ exports.add = function (userId, songData, index, callback) {
       });
   }
 
-  if (!index) {
-    // append
-    Song.find(
-      { userId: userId, queueIndex: { $exists: true } },
-      '+queueIndex',
-      { sort: { queueIndex: -1 }, limit: 1 },
-      function (err, songs) {
-        if (err) {
-          // TODO: handle error
-          console.log(err);
-          callback(err);
-          return;
-        }
-        update(songs.length ? songs[0].queueIndex + 1 : 0);
-      });
-  }
-  // TODO: insert
+  Song.find(
+    { userId: userId, queueIndex: { $exists: true } },
+    '+queueIndex',
+    { sort: { queueIndex: -1 }, limit: 1 },
+    function (err, songs) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+        callback(err);
+        return;
+      }
+      update(songs.length ? songs[0].queueIndex + 1 : 0);
+    });
 };
 
 exports.remove = function (userId, url, callback) {

@@ -29,11 +29,11 @@ define([
     $scope.isMulti = false;
     $scope.isVisible = false;
 
-    $scope.$watch('songs', function (newValue, oldValue) {
-      $scope.isMulti = angular.isArray(newValue);
+    $scope.$watchCollection('songs', function (newSongs, oldSongs) {
+      $scope.isMulti = angular.isArray(newSongs);
       $scope.isVisible = $scope.isMulti ?
-        newValue.length !== 0 :
-        angular.isDefined(newValue) && newValue !== null;
+        newSongs.length !== 0 :
+        angular.isDefined(newSongs) && newSongs !== null;
     });
 
     $scope.play = function () {

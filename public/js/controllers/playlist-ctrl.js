@@ -39,9 +39,15 @@ define(function () {
 
     $scope.songsStatusTemplateUrl = 'songs-status.html';
     $scope.playlistsTemplateUrl = 'playlists.html';
-    $scope.noSongMessageTemplateUrl = 'no-playlist-songs.html';
+    $scope.noSongMessageTemplateUrl = '';
     $scope.name = '';
-    $scope.songs = [];
+    $scope.songs = null;
+
+    $scope.$watchCollection('songs', function (newSongs, oldSongs) {
+      $scope.noSongMessageTemplateUrl = !newSongs || newSongs.length ?
+        '' :
+        'no-playlist-songs.html';
+    });
 
     $scope.$on('playlistStore:add', function (event, name, song) {
       if (name === $scope.name) {
