@@ -5,10 +5,18 @@
 }
 
 
-/* oauths */
+/* homepage */
 
+.introduction,
 .oauths {
-    margin-top: 20%;
+    color: white;
+    margin-top: 10%;
+}
+
+.introduction {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
 }
 
 .oauths .oauth {
@@ -25,12 +33,11 @@
 .oauths .oauth .logo {
     float: left;
     padding: 9px 12px;
-    border-right: 1px solid #D2D2D2;
 }
 
 .oauths .oauth .text {
     font-size: 16px;
-    line-height: 47px;
+    line-height: 40px;
 }
 
 .oauths .oauth.google {
@@ -39,4 +46,23 @@
 
 .oauths .oauth.facebook {
     background-color: #5C77B4;
+}
+
+.marketing {
+    margin-top: 15%;
+}
+
+.well-wrapper {
+    padding: 0 1.5em;
+}
+
+footer {
+    color: white;
+}
+
+@media (min-width: 975px) {
+    footer {
+        bottom: 0;
+        position: fixed;
+    }
 }
