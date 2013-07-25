@@ -85,6 +85,8 @@
 
 .playlist-chooser form input {
     height: 10px;
+    line-height: 1;
+    font-size: 12px;
 }
 
 .playlist-chooser form .btn {
