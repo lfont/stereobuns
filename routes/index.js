@@ -4,7 +4,6 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 var site               = require('./site'),
-    user               = require('./user'),
     usersApi           = require('./api/users'),
     playlistsApi       = require('./api/playlists'),
     playlistSongsApi   = require('./api/playlist-songs'),
@@ -38,10 +37,9 @@ function ensureAuthenticated (req, res, next) {
 exports.register = function (app) {
   /* views */
   app.get('/', site.index);
-  app.get('/home', ensureAuthenticated, user.home);
-  app.get('/search', ensureAuthenticated, user.home);
-  app.get('/songs/:name', ensureAuthenticated, user.home);
-  app.get('/playlist/:name', ensureAuthenticated, user.home);
+  app.get('/search', ensureAuthenticated, site.index);
+  app.get('/songs/:name', ensureAuthenticated, site.index);
+  app.get('/playlist/:name', ensureAuthenticated, site.index);
 
   /* api */
   app.get('/api/users/me', ensureAuthenticated, usersApi.show);

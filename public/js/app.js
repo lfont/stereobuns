@@ -5,6 +5,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
+  'angular-cookies',
   'components/song',
   'components/song-progress',
   'controllers',
@@ -16,6 +17,7 @@ define([
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
+    'ngCookies',
     'soundrocket.components.song',
     'soundrocket.components.song-progress',
     'soundrocket.controllers',

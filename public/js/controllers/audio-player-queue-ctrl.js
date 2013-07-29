@@ -21,6 +21,7 @@ define(function () {
 
     $scope.songs = [];
     $scope.shouldBeOpen = false;
+    $scope.isLoaded = false;
 
     $scope.songsActionsOptions = {
       remove: true,
@@ -51,6 +52,7 @@ define(function () {
         close();
       } else {
         $scope.shouldBeOpen = true;
+        $scope.isLoaded = true;
         loadSongs();
       }
     });

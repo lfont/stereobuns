@@ -8,20 +8,24 @@ define([
 ], function (app) {
   'use strict';
 
-  return app.config([
+  app.config([
     '$locationProvider',
     '$routeProvider',
     function ($locationProvider, $routeProvider) {
-      function redirect (path) {
-        window.location.href = path;
-      }
-
       $locationProvider.html5Mode(true);
-      $routeProvider.when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
+      $routeProvider.when('/', { templateUrl: 'partials/root.html', controller: 'RootCtrl' })
+                    .when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
                     .when('/songs/:id', { templateUrl: 'songs.html', controller: 'SongsCtrl' })
                     .when('/playlist/:name', { templateUrl: 'playlist.html', controller: 'PlaylistCtrl' })
-                    .when('/logout', { redirectTo: redirect.bind(this, '/logout') })
-                    .otherwise({ redirectTo: '/songs/loved' });
+                    .otherwise({ redirectTo: '/' });
     }
   ]);
+
+  app.run([ '$rootScope', '$location', 'userMdl', function ($rootScope, $location, userMdl) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      if (next.$$route.controller === 'RootCtrl' && userMdl.isAuthenticated()) {
+        $location.path('/songs/loved');
+      }
+    });
+  }]);
 });

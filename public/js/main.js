@@ -8,7 +8,8 @@ require.config({
     'partials': '../partials',
     'text': '../components/requirejs-text/text',
     'jquery': '../components/jquery/jquery',
-    'angular': '../components/angular-unstable/angular',
+    'angular': '../components/angular/angular',
+    'angular-cookies': '../components/angular/angular-cookies',
     'angular-ui-bootstrap-template': '../components/angular-ui-bootstrap/template',
     'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
     'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
@@ -22,6 +23,9 @@ require.config({
     angular: {
       deps: [ 'jquery' ], // replace jqLite by jquery
       exports: 'angular'
+    },
+    'angular-cookies': {
+      deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-dropdownToggle': {
       deps: [ 'angular' ]

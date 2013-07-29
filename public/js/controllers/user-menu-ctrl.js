@@ -4,22 +4,31 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define(function (angular) {
-    'use strict';
+  'use strict';
 
-    function UserMenuCtrl ($scope, userMdl) {
-        var promise;
-        
-        $scope.user = null;
-        
-        promise = userMdl.getUser();
-        promise.then(function (user) {
-            $scope.user = user;
-        }, function (error) {
-            // TODO: handle error            
-        });
+  function UserMenuCtrl ($scope, $location, userMdl) {
+    function loadUser () {
+      var promise = userMdl.getUser();
+      promise.then(function (response) {
+        $scope.user = response.data;
+      }, function (response) {
+        // TODO: handle error            
+      });
     }
-    
-    UserMenuCtrl.$inject = [ '$scope', 'userMdl' ];
-    
-    return UserMenuCtrl;
+
+    $scope.user = null;
+
+    $scope.signOut = function () {
+      var promise = userMdl.signOut();
+      promise.then(function () {
+        $location.path('/');
+      });
+    };
+
+    loadUser();
+  }
+
+  UserMenuCtrl.$inject = [ '$scope', '$location', 'userMdl' ];
+
+  return UserMenuCtrl;
 });

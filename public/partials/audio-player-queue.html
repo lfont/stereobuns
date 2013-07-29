@@ -1,5 +1,7 @@
-<div ng-controller="AudioPlayerQueueCtrl" ng-show="shouldBeOpen"
+<div ng-controller="AudioPlayerQueueCtrl"
+     ng-show="shouldBeOpen"
      ng-animate="{ show: 'show-animation', hide: 'hide-animation' }"
+     ng-class="{ visible: isLoaded }"
      class="container audio-player-queue">
     <div class="modal-header">
         <h4>Queue</h4>

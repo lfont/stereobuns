@@ -1,0 +1,12 @@
+<% layout('../layout') -%>
+
+<script>
+  setTimeout(function () {
+    window.opener.onOauthResult(<%= success %>);
+    window.close();
+  }, 2000);
+</script>
+
+<div>
+  success: <%= success %>
+</div>

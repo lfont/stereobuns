@@ -1,3 +1,71 @@
+/* root */
+
+.root .introduction,
+.root .oauths {
+  color: white;
+  margin-top: 10%;
+}
+
+.root .introduction {
+  font-size: 26px;
+  line-height: 51px;
+}
+
+.root .introduction > p > span {
+  background: black;
+  padding: .2em;
+  opacity: .5;
+}
+
+.root .oauths .oauth {
+  border-radius: 6px;
+  color: white;
+  display: block;
+  height: 47px;
+  margin: 0 auto 1em auto;
+  text-align: center;
+  text-decoration: none;
+  width: 80%;
+}
+
+.root .oauths .oauth .logo {
+  float: left;
+  padding: 9px 12px;
+}
+
+.root .oauths .oauth .text {
+  font-size: 16px;
+  line-height: 47px;
+}
+
+.root .oauths .oauth.google {
+  background-color: #DF4A32;
+}
+
+.root .oauths .oauth.facebook {
+  background-color: #5C77B4;
+}
+
+.root .marketing {
+  margin-top: 15%;
+}
+
+.root .well-wrapper {
+  padding: 0 1.5em;
+}
+
+.root footer {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .root footer {
+    bottom: 0;
+    position: fixed;
+  }
+}
+
+
 /* user menu */
 
 .user-menu .btn {
@@ -85,12 +153,16 @@
     border: 1px solid #999;
     border-bottom: 0;
     border-radius: 7px 7px 0 0;
-    bottom: 66px;
     box-shadow: 0 0 7px #999;
+    bottom: -400px;
     left: 10%;
     height: 400px;
     position: fixed;
     width: 80%;
+}
+
+.audio-player-queue.visible {
+  bottom: 66px;
 }
 
 .audio-player-queue .modal-header {
