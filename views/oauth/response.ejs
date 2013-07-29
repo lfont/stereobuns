@@ -1,12 +1,37 @@
 <% layout('../layout') -%>
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <span class="brand">StereoBuns</span>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="content">
+    <div class="row-fluid">
+      <div class="span8 offset2 push-top">
+        <% if (success) { %>
+          <div class="well well-large well-transparent">
+            <i class="icon-info icon-4x icon-muted pull-left"></i>
+            You are now logged in StereoBuns.<br />
+            This window will clause in a few second, enjoy!
+          </div>
+        <% } else { %>
+          <div class="well well-large well-transparent">
+            <i class="icon-warning-sign icon-4x icon-muted pull-left"></i>
+            Login failed!<br />
+            If the window doesn't close automatically, close it and try again.
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   setTimeout(function () {
-    window.opener.onOauthResult(<%= success %>);
+    window.opener.setAuthResult(<%= success %>);
     window.close();
   }, 2000);
 </script>
-
-<div>
-  success: <%= success %>
-</div>

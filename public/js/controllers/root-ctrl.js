@@ -7,7 +7,20 @@ define(function () {
   'use strict';
 
   function RootCtrl ($scope, $window, $location) {
-    $window.onOauthResult = function (success) {
+    function openAuthDialog (providerName) {
+      var height = 620,
+          width  = 450,
+          top    = $window.screen.height / 2 - height / 2,
+          left   = $window.screen.width / 2 - width / 2;
+
+      $window.open('/auth/' + providerName,
+                   'Authentication',
+                   'dialog=yes, ' +
+                   'height=' + height + ',width=' + width + ',' +
+                   'top=' + top + ',left=' + left);
+    }
+
+    $window.setAuthResult = function (success) {
       if (success) {
         $scope.$apply(function () {
           $location.path('/songs/loved');
@@ -16,7 +29,7 @@ define(function () {
     };
 
     $scope.signIn = function (providerName) {
-      $window.open('/auth/' + providerName, 'Authentication', 'height=615,width=445,dialog=yes');
+      openAuthDialog(providerName);
     };
   }
 

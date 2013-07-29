@@ -8,7 +8,10 @@
 
 .root .introduction {
   font-size: 26px;
-  line-height: 51px;
+}
+
+.root .introduction > p {
+  line-height: 37px;
 }
 
 .root .introduction > p > span {
@@ -17,33 +20,30 @@
   opacity: .5;
 }
 
-.root .oauths .oauth {
-  border-radius: 6px;
-  color: white;
+.root .btn-oauth {
+  color: #ffffff;
+  background-image: none;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   display: block;
-  height: 47px;
+  font-size: 16px;
+  line-height: 50px;
   margin: 0 auto 1em auto;
-  text-align: center;
-  text-decoration: none;
+  padding: 0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   width: 80%;
 }
 
-.root .oauths .oauth .logo {
-  float: left;
-  padding: 9px 12px;
-}
-
-.root .oauths .oauth .text {
-  font-size: 16px;
-  line-height: 47px;
-}
-
-.root .oauths .oauth.google {
+.root .btn-oauth.btn-oauth-google {
   background-color: #DF4A32;
 }
 
-.root .oauths .oauth.facebook {
+.root .btn-oauth.btn-oauth-facebook {
   background-color: #5C77B4;
+}
+
+.root .btn-oauth .btn-oauth-icon {
+  float: left;
+  padding: 9px 12px;
 }
 
 .root .marketing {
@@ -56,6 +56,7 @@
 
 .root footer {
   color: white;
+  margin-top: 2em;
 }
 
 @media (min-width: 768px) {
