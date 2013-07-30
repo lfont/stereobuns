@@ -18,8 +18,8 @@ define(function () {
         currentPlaylistStore = playlistStore;
         $scope.name = playlistStore.name;
 
-        promise.then(function (songs) {
-          $scope.songs = songs;
+        promise.then(function (response) {
+          $scope.songs = response.data.songs;
         }, function (error) {
           // TODO: handle error
         });

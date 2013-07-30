@@ -29,5 +29,31 @@ define([
 
   soundRocket.constant('config', { debug: false });
 
+  soundRocket.config([
+    '$httpProvider',
+    function ($httpProvider) {
+      $httpProvider.defaults.headers.common.Accept = 'application/json';
+
+      $httpProvider.interceptors.push([
+        '$q',
+        '$cookies',
+        '$location',
+        function ($q, $cookies, $location) {
+          return {
+            responseError: function (rejection) {
+              if (rejection.status === 401) {
+                delete $cookies.user;
+                $location.path('/');
+                return $q.reject(rejection);
+              }
+
+              return rejection;
+            }
+          };
+        }
+      ]);
+    }
+  ]);
+
   return soundRocket;
 });

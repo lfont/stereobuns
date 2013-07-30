@@ -57,17 +57,14 @@ define([
       this.length = playlist.length;
 
       this.songs = function () {
-        var deferred = $q.defer();
-        $http
-            .get('/api/users/me/playlists/' + this.name)
-            .success(function (data, status, headers, config) {
-              _this.length = data.songs.length;
-              deferred.resolve(data.songs);
-            })
-            .error(function (data, status, headers, config) {
-              deferred.reject(status);
-            });
-        return deferred.promise;
+        return $http
+          .get('/api/users/me/playlists/' + this.name)
+          .success(function (data, status, headers, config) {
+            _this.length = data.songs.length;
+          })
+          .error(function (data, status, headers, config) {
+            // TODO: handle error
+          });
       };
 
       this.add = function (songs) {

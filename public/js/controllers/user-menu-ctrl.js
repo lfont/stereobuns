@@ -8,7 +8,7 @@ define(function (angular) {
 
   function UserMenuCtrl ($scope, $location, userMdl) {
     function loadUser () {
-      var promise = userMdl.getUser();
+      var promise = userMdl.get();
       promise.then(function (response) {
         $scope.user = response.data;
       }, function (response) {
@@ -19,7 +19,7 @@ define(function (angular) {
     $scope.user = null;
 
     $scope.signOut = function () {
-      var promise = userMdl.signOut();
+      var promise = userMdl.logout();
       promise.then(function () {
         $location.path('/');
       });

@@ -7,7 +7,7 @@ var config = require('../lib/configuration');
 
 exports.index = function (req, res) {
   res.render('site/index', {
-    title: req.isAuthenticated() ? req.user.name : 'Welcome',
+    title: 'Welcome',
     trackingCode: config.googleAnalyticsTrackingCode
   });
 };

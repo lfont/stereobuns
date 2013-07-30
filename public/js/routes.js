@@ -13,19 +13,74 @@ define([
     '$routeProvider',
     function ($locationProvider, $routeProvider) {
       $locationProvider.html5Mode(true);
-      $routeProvider.when('/', { templateUrl: 'partials/root.html', controller: 'RootCtrl' })
-                    .when('/search', { templateUrl: 'search.html', controller: 'SearchCtrl' })
-                    .when('/songs/:id', { templateUrl: 'songs.html', controller: 'SongsCtrl' })
-                    .when('/playlist/:name', { templateUrl: 'playlist.html', controller: 'PlaylistCtrl' })
-                    .otherwise({ redirectTo: '/' });
+
+      $routeProvider
+        .when('/', {
+          templateUrl: 'partials/root.html',
+          controller: 'RootCtrl',
+          pageTitle: 'Welcome',
+          authenticated: false
+        })
+        .when('/search', {
+          templateUrl: 'search.html',
+          controller: 'SearchCtrl',
+          pageTitle: 'Search',
+          authenticated: true
+        })
+        .when('/songs/:id', {
+          templateUrl: 'songs.html',
+          controller: 'SongsCtrl',
+          pageTitle: 'Songs',
+          authenticated: true
+        })
+        .when('/playlist/:name', {
+          templateUrl: 'playlist.html',
+          controller: 'PlaylistCtrl',
+          pageTitle: 'Playlist',
+          authenticated: true
+        })
+        .otherwise({ redirectTo: '/' });
     }
   ]);
 
-  app.run([ '$rootScope', '$location', 'userMdl', function ($rootScope, $location, userMdl) {
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-      if (next.$$route.controller === 'RootCtrl' && userMdl.isAuthenticated()) {
-        $location.path('/songs/loved');
+  app.run([
+    '$rootScope',
+    '$window',
+    '$location',
+    'userMdl',
+    function ($rootScope, $window, $location, userMdl) {
+      function setPageTitle (title) {
+        var currentTitle   = $window.document.title,
+            prefixEndIndex = currentTitle.indexOf('-'),
+            prefixValue    = currentTitle.substring(0, prefixEndIndex + 1);
+
+        $window.document.title = prefixValue + ' ' + title;
       }
-    });
-  }]);
+
+      // authentication rules
+      $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        var isLoggedIn = userMdl.isLoggedIn();
+
+        if (next.$$route.controller === 'RootCtrl' && isLoggedIn) {
+          $location.path('/songs/loved');
+          return;
+        }
+
+        if (next.$$route.authenticated && !isLoggedIn) {
+          $location.path('/');
+        }
+      });
+
+      // page title update
+      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        if (userMdl.isLoggedIn()) {
+          userMdl.get().then(function (response) {
+            setPageTitle(response.data.name + ' - ' + current.$$route.pageTitle);
+          });
+        } else {
+          setPageTitle(current.$$route.pageTitle);
+        }
+      });
+    }
+  ]);
 });

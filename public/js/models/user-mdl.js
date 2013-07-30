@@ -9,7 +9,7 @@ define([
   'use strict';
 
   function UserMdl ($http, $cookies) {
-    this.getUser = function () {
+    this.get = function () {
       return $http
         .get('/api/users/me', { cache: true })
         .error(function (data, status, headers, config) {
@@ -17,12 +17,12 @@ define([
         });
     };
 
-    this.isAuthenticated = function () {
+    this.isLoggedIn = function () {
       var userCookie = $cookies.user;
       return angular.isDefined(userCookie) && userCookie !== null;
     };
 
-    this.signOut = function () {
+    this.logout = function () {
       return $http
         .post('/logout')
         .error(function (data, status, headers, config) {
