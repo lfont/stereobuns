@@ -36,13 +36,11 @@ define([
 
       $httpProvider.interceptors.push([
         '$q',
-        '$cookies',
         '$location',
-        function ($q, $cookies, $location) {
+        function ($q, $location) {
           return {
             responseError: function (rejection) {
               if (rejection.status === 401) {
-                delete $cookies.user;
                 $location.path('/');
                 return $q.reject(rejection);
               }

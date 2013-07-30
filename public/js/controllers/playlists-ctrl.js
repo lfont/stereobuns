@@ -4,32 +4,21 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define(function () {
-    'use strict';
+  'use strict';
 
-    function PlaylistsCtrl ($scope, $location, playlistMdl) {
-        function loadPlaylistStores () {
-            var promise = playlistMdl.getPlaylistStores();
-            promise.then(function (playlistStores) {
-                $scope.playlistStores = playlistStores;
-            }, function (error) {
-                // TODO: handle error
-            });
-        }
-        
-        $scope.playlistStores = [];
-        
-        $scope.isCurrentPlaylistStore = function (playlistStore) {
-            var playlistStoreNamePattern = /^\/playlist\/(.*)/,
-                matchs = playlistStoreNamePattern.exec($location.path());
-            
-            return matchs &&
-                   matchs[1].toLowerCase() === playlistStore.name.toLowerCase();
-        };
-        
-        loadPlaylistStores();
-    }
+  function PlaylistsCtrl ($scope, $location, playlistMdl) {
+    $scope.playlistStores = playlistMdl.getPlaylistStores();
 
-    PlaylistsCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
-    
-    return PlaylistsCtrl;
+    $scope.isCurrentPlaylistStore = function (playlistStore) {
+      var playlistStoreNamePattern = /^\/playlist\/(.*)/,
+          matchs = playlistStoreNamePattern.exec($location.path());
+
+      return matchs &&
+             matchs[1].toLowerCase() === playlistStore.name.toLowerCase();
+    };
+  }
+
+  PlaylistsCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
+
+  return PlaylistsCtrl;
 });

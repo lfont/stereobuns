@@ -16,6 +16,8 @@ function ensureAuthenticated (req, res, next) {
     return next();
   }
 
+  res.clearCookie('user');
+
   // respond with html page
   if (req.accepts('html')) {
     res.redirect('/');

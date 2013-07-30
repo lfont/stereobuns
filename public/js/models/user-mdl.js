@@ -14,6 +14,9 @@ define([
         .get('/api/users/me', { cache: true })
         .error(function (data, status, headers, config) {
           // TODO: handle error
+        })
+        .then(function (response) {
+          return response.data;
         });
     };
 

@@ -10,22 +10,13 @@ define(function () {
     var currentPlaylistStore;
 
     function setPlaylistStore (name) {
-      var promise = playlistMdl.getPlaylistStore(name);
-
-      promise.then(function (playlistStore) {
-        var promise = playlistStore.songs();
-
-        currentPlaylistStore = playlistStore;
-        $scope.name = playlistStore.name;
-
-        promise.then(function (response) {
-          $scope.songs = response.data.songs;
-        }, function (error) {
-          // TODO: handle error
+      playlistMdl
+        .getPlaylistStore(name)
+        .then(function (playlistStore) {
+          $scope.name = playlistStore.name;
+          $scope.songs = playlistStore.songs();
+          currentPlaylistStore = playlistStore;
         });
-      }, function (error) {
-        // TODO: handle error
-      });
     }
 
     $scope.songsActionsOptions = {
@@ -75,7 +66,7 @@ define(function () {
         .then(function (confirmed) {
           if (confirmed) {
             playlistMdl.deletePlaylistStore(currentPlaylistStore);
-            $location.path('/home');
+            $location.path('/songs/loved');
           }
         });
     };

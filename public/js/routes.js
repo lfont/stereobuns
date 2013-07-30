@@ -74,8 +74,8 @@ define([
       // page title update
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         if (userMdl.isLoggedIn()) {
-          userMdl.get().then(function (response) {
-            setPageTitle(response.data.name + ' - ' + current.$$route.pageTitle);
+          userMdl.get().then(function (user) {
+            setPageTitle(user.name + ' - ' + current.$$route.pageTitle);
           });
         } else {
           setPageTitle(current.$$route.pageTitle);
