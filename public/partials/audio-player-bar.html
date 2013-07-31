@@ -1,4 +1,5 @@
-<div ng-controller="AudioPlayerBarCtrl">
+<div ng-controller="AudioPlayerBarCtrl"
+     shortcut="{ p: 'previous()', space: 'togglePlay()', n: 'next()', r: 'toggleRepeat()', q: 'toggleQueue()' }">
     <div ng-include="audioPlayerQueueTemplate"></div>
     
     <div class="navbar navbar-inverse navbar-fixed-bottom">
