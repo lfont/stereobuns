@@ -37,10 +37,10 @@ define([
 
     $templateCache.put('partials/root.html', rootTemplate);
 
-    $templateCache.put('search.html', searchTemplate);
+    $templateCache.put('partials/search.html', searchTemplate);
 
     $templateCache.put('partials/audio-player-bar.html', audioPlayerBarTemplate);
-    $templateCache.put('audio-player-queue.html', audioPlayerQueueTemplate);
+    $templateCache.put('partials/audio-player-queue.html', audioPlayerQueueTemplate);
 
     $templateCache.put('partials/playlists.html', playlistsTemplate);
     $templateCache.put('partials/playlist.html', playlistTemplate);

@@ -7,15 +7,22 @@ define(function () {
   'use strict';
 
   function AudioPlayerBarCtrl ($scope, audioPlayerSrv, songsGroupsMdl) {
+
     function isCurrentSong (song) {
       return $scope.song &&
              song &&
              $scope.song.url === song.url;
     }
 
-    $scope.audioPlayerQueueTemplate = 'audio-player-queue.html';
+    function setStatus () {
+      var status = audioPlayerSrv.getStatus();
+      $scope.song = status.song;
+      $scope.isPlaying = status.isPlaying;
+    }
+
+    $scope.audioPlayerQueueTemplate = 'partials/audio-player-queue.html';
     $scope.song = null;
-    $scope.isPlaying = false;
+    $scope.isPlaying = null;
     $scope.shouldRepeat = false;
     $scope.shouldOpenQueue = false;
 
@@ -87,6 +94,8 @@ define(function () {
         lovedSongsGroup.add($scope.song);
       }
     };
+
+    setStatus();
   }
 
   AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsGroupsMdl' ];

@@ -20,7 +20,7 @@ exports.index = function (req, res) {
 exports.create = function (req, res) {
   models.songs.mostPlayed.incrementPlayCount(
     req.user.id,
-    req.body.song.url,
+    req.body.url,
     function (err, numberAffected) {
       if (err) {
         res.send(400, { error: err });

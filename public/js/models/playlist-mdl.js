@@ -8,12 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistMdl ($rootScope, $window, $http) {
-    function sanitizeSong (song) {
-      var newSong = angular.copy(song);
-      delete newSong._id;
-      return newSong;
-    }
+  function PlaylistMdl ($rootScope, $window, $http, songUtilsSrv) {
 
     function Playlist (playlistInfo) {
       var _this = this;
@@ -23,7 +18,7 @@ define([
 
       function addOne (song) {
         $http
-            .post('/api/users/me/playlists/' + _this.name + '/songs', sanitizeSong(song))
+            .post('/api/users/me/playlists/' + _this.name + '/songs', songUtilsSrv.copy(song))
             .success(function (data, status, headers, config) {
               if (data.count !== 0) {
                 _this.length++;
@@ -98,7 +93,8 @@ define([
     };
   }
 
-  PlaylistMdl.$inject = [ '$rootScope', '$window', '$http' ];
+  PlaylistMdl.$inject = [ '$rootScope', '$window',
+                          '$http', 'songUtilsSrv' ];
 
   return PlaylistMdl;
 });

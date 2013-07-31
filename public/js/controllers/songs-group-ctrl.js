@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function SongsGroupCtrl ($scope, $routeParams, songsGroupsMdl) {
+  function SongsGroupCtrl ($scope, $routeParams, songsGroupsMdl, songUtilsSrv) {
     function setSongsGroup (id) {
       var songsGroup = songsGroupsMdl.get(id);
       $scope.name  = songsGroup.name;
@@ -31,23 +31,28 @@ define(function () {
     });
 
     $scope.$on('songsGroup:add', function (event, id, song) {
+      var songIndex;
       if (id === $routeParams.id) {
-        $scope.songs.$$v.push(song);
+        songIndex = songUtilsSrv.indexOf($scope.songs.$$v, song.url);
+        if (songIndex < 0) {
+          $scope.songs.$$v.push(song);
+        }
       }
     });
 
     $scope.$on('songsGroup:remove', function (event, id, song) {
-      var index;
+      var songIndex;
       if (id === $routeParams.id) {
-        index = $scope.songs.$$v.indexOf(song);
-        $scope.songs.$$v.splice(index, 1);
+        songIndex = songUtilsSrv.indexOf($scope.songs.$$v, song.url);
+        $scope.songs.$$v.splice(songIndex, 1);
       }
     });
 
     setSongsGroup($routeParams.id);
   }
 
-  SongsGroupCtrl.$inject = [ '$scope', '$routeParams', 'songsGroupsMdl' ];
+  SongsGroupCtrl.$inject = [ '$scope', '$routeParams',
+                             'songsGroupsMdl', 'songUtilsSrv' ];
 
   return SongsGroupCtrl;
 });

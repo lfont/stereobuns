@@ -6,7 +6,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function AudioPlayerSrv ($rootScope, soundManagerSrv, songsGroupsMdl) {
+  function AudioPlayerSrv ($rootScope, soundManagerSrv, songsGroupsMdl,
+                           songUtilsSrv) {
     var _this            = this,
         queuedSongsGroup = songsGroupsMdl.get('queued'),
         repeat           = false,
@@ -18,29 +19,17 @@ define(function () {
       }
     }
 
-    function indexOfSong (url) {
-      var index = -1,
-          i, len;
-      for (i = 0, len = queuedSongs.length; i < len; i++) {
-        if (queuedSongs[i].url === url) {
-          index = i;
-          break;
-        }
-      }
-      return index;
-    }
-
     function indexOfCurrentSong () {
       var url   = soundManagerSrv.getCurrentUrl(),
           index = -1;
       if (url) {
-        index = indexOfSong(url);
+        index = songUtilsSrv.indexOf(queuedSongs, url);
       }
       return index;
     }
 
     function play (song) {
-      var exists = indexOfSong(song.url) > -1;
+      var exists = songUtilsSrv.indexOf(queuedSongs, song.url) > -1;
       if (!exists) {
         _this.enqueue(song).then(function () {
           soundManagerSrv.play(song.url);
@@ -56,7 +45,7 @@ define(function () {
     }
 
     function destroySound (song) {
-      var songIndex = indexOfSong(song.url);
+      var songIndex = songUtilsSrv.indexOf(queuedSongs, song.url);
       queuedSongs.splice(songIndex, 1);
       soundManagerSrv.destroySound(song.url);
     }
@@ -233,7 +222,8 @@ define(function () {
     };
   }
 
-  AudioPlayerSrv.$inject = [ '$rootScope', 'soundManagerSrv', 'songsGroupsMdl' ];
+  AudioPlayerSrv.$inject = [ '$rootScope', 'soundManagerSrv',
+                             'songsGroupsMdl', 'songUtilsSrv' ];
 
   return AudioPlayerSrv;
 });

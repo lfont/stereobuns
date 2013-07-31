@@ -22,7 +22,7 @@ define([
           authenticated: false
         })
         .when('/search', {
-          templateUrl: 'search.html',
+          templateUrl: 'partials/search.html',
           controller: 'SearchCtrl',
           pageTitle: 'Search',
           authenticated: true
