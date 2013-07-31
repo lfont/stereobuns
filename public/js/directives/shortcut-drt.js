@@ -100,7 +100,7 @@ define([
             // Remove the combination when the scope is destroyed
             scope.$on('$destroy', function () {
               var combinationIndex = combinations.indexOf(combination);
-              combinations.slice(combinationIndex, 1);
+              combinations.splice(combinationIndex, 1);
               combination = null;
             });
           });
