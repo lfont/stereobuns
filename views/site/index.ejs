@@ -7,14 +7,16 @@
     <div class="container">
       <a class="btn btn-navbar"
          ng-init="isNavBarCollapsed = true"
-         ng-click="isNavBarCollapsed = !isNavBarCollapsed">
+         ng-click="isNavBarCollapsed = !isNavBarCollapsed"
+         ng-show="searchBarTemplateUrl">
         <i class="icon-align-justify"></i>
       </a>
        
       <a class="brand" href="/">StereoBuns</a>
       <div class="pull-right" ng-include="userMenuTemplateUrl"></div>
        
-      <div class="nav-collapse collapse navbar-responsive-collapse" collapse="isNavBarCollapsed">
+      <div class="nav-collapse collapse navbar-responsive-collapse"
+           collapse="isNavBarCollapsed">
         <div ng-include="searchBarTemplateUrl"></div>
       </div>
     </div>
