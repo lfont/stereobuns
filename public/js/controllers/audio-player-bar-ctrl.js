@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function AudioPlayerBarCtrl ($scope, audioPlayerSrv, songsMdl) {
+  function AudioPlayerBarCtrl ($scope, audioPlayerSrv, songsGroupsMdl) {
     function isCurrentSong (song) {
       return $scope.song &&
              song &&
@@ -41,13 +41,13 @@ define(function () {
       $scope.shouldOpenQueue = false;
     });
 
-    $scope.$on('songsStore:add', function (event, id, song) {
+    $scope.$on('songsGroup:add', function (event, id, song) {
       if (id === 'loved' && isCurrentSong(song) && !$scope.song.loved) {
         $scope.song.loved = true;
       }
     });
 
-    $scope.$on('songsStore:remove', function (event, id, song) {
+    $scope.$on('songsGroup:remove', function (event, id, song) {
       if (id === 'loved' && isCurrentSong(song) && $scope.song.loved) {
         $scope.song.loved = false;
       }
@@ -80,16 +80,16 @@ define(function () {
     };
 
     $scope.toggleLoveStatus = function () {
-      var lovedSongsStore = songsMdl.getSongsStore('loved');
+      var lovedSongsGroup = songsGroupsMdl.get('loved');
       if ($scope.song.loved) {
-        lovedSongsStore.remove($scope.song);
+        lovedSongsGroup.remove($scope.song);
       } else {
-        lovedSongsStore.add($scope.song);
+        lovedSongsGroup.add($scope.song);
       }
     };
   }
 
-  AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];
+  AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsGroupsMdl' ];
 
   return AudioPlayerBarCtrl;
 });

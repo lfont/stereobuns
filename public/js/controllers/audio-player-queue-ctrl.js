@@ -8,10 +8,7 @@ define(function () {
 
   function AudioPlayerQueueCtrl ($scope, audioPlayerSrv) {
     function loadSongs() {
-      var promise = audioPlayerSrv.getQueue();
-      promise.then(function (songs) {
-        $scope.songs = songs;
-      });
+      $scope.songs = audioPlayerSrv.getQueue();
     }
 
     function close () {
@@ -19,7 +16,7 @@ define(function () {
       $scope.songs.length = 0;
     }
 
-    $scope.songs = [];
+    $scope.songs = null;
     $scope.shouldBeOpen = false;
     $scope.isLoaded = false;
 

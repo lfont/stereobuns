@@ -1,8 +1,0 @@
-<ul ng-controller="SongsStatusCtrl" class="nav nav-pills nav-stacked">
-    <li ng-repeat="songsStore in songsStores" ng-class="{ active: $parent.isCurrentSongsStore(songsStore) }">
-        <a href="/songs/{{ songsStore.id }}">
-            <i class="{{ songsStore.icon }}"></i>
-            {{ songsStore.name }}
-        </a>
-    </li>
-</ul>

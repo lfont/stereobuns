@@ -42,8 +42,8 @@ define(function () {
       soundSearchSrv.search(query);
     }
 
-    $scope.songsStatusTemplateUrl = 'songs-status.html';
-    $scope.playlistsTemplateUrl = 'playlists.html';
+    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
+    $scope.playlistsTemplateUrl = 'partials/playlists.html';
     $scope.isSearching = false;
     $scope.songs = [];
     $scope.searchFilter = null;

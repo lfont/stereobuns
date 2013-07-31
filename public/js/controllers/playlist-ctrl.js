@@ -28,8 +28,8 @@ define(function () {
       remove: true
     };
 
-    $scope.songsStatusTemplateUrl = 'songs-status.html';
-    $scope.playlistsTemplateUrl = 'playlists.html';
+    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
+    $scope.playlistsTemplateUrl = 'partials/playlists.html';
     $scope.noSongMessageTemplateUrl = '';
     $scope.name = '';
     $scope.songs = null;
@@ -37,7 +37,7 @@ define(function () {
     $scope.$watchCollection('songs', function (newSongs, oldSongs) {
       $scope.noSongMessageTemplateUrl = !newSongs || newSongs.length ?
         '' :
-        'no-playlist-songs.html';
+        'partials/no-playlist-songs.html';
     });
 
     $scope.$on('playlist:add', function (event, name, song) {

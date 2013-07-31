@@ -12,8 +12,8 @@ define([
   'text!partials/audio-player-queue.html',
   'text!partials/playlists.html',
   'text!partials/playlist.html',
-  'text!partials/songs-status.html',
-  'text!partials/songs.html',
+  'text!partials/songs-groups.html',
+  'text!partials/songs-group.html',
   'text!partials/user-menu.html',
   'text!partials/no-loved-songs.html',
   'text!partials/no-mostplayed-songs.html',
@@ -23,7 +23,7 @@ define([
              searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
              playlistsTemplate, playlistTemplate,
-             songsStatusTemplate, songsTemplate,
+             songsGroupsTemplate, songsGroupTemplate,
              userMenuTemplate,
              noLovedSongsTemplate, noMostPlayedSongsTemplate,
              noPlaylistSongsTemplate) {
@@ -42,15 +42,15 @@ define([
     $templateCache.put('partials/audio-player-bar.html', audioPlayerBarTemplate);
     $templateCache.put('audio-player-queue.html', audioPlayerQueueTemplate);
 
-    $templateCache.put('playlists.html', playlistsTemplate);
-    $templateCache.put('playlist.html', playlistTemplate);
+    $templateCache.put('partials/playlists.html', playlistsTemplate);
+    $templateCache.put('partials/playlist.html', playlistTemplate);
 
-    $templateCache.put('songs-status.html', songsStatusTemplate);
-    $templateCache.put('songs.html', songsTemplate);
+    $templateCache.put('partials/songs-groups.html', songsGroupsTemplate);
+    $templateCache.put('partials/songs-group.html', songsGroupTemplate);
 
-    $templateCache.put('no-loved-songs.html', noLovedSongsTemplate);
-    $templateCache.put('no-mostplayed-songs.html', noMostPlayedSongsTemplate);
-    $templateCache.put('no-playlist-songs.html', noPlaylistSongsTemplate);
+    $templateCache.put('partials/no-loved-songs.html', noLovedSongsTemplate);
+    $templateCache.put('partials/no-mostplayed-songs.html', noMostPlayedSongsTemplate);
+    $templateCache.put('partials/no-playlist-songs.html', noPlaylistSongsTemplate);
   }]);
 
   return partialsTemplateModule;

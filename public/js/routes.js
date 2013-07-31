@@ -28,13 +28,13 @@ define([
           authenticated: true
         })
         .when('/songs/:id', {
-          templateUrl: 'songs.html',
-          controller: 'SongsCtrl',
+          templateUrl: 'partials/songs-group.html',
+          controller: 'SongsGroupCtrl',
           pageTitle: 'Songs',
           authenticated: true
         })
         .when('/playlist/:name', {
-          templateUrl: 'playlist.html',
+          templateUrl: 'partials/playlist.html',
           controller: 'PlaylistCtrl',
           pageTitle: 'Playlist',
           authenticated: true

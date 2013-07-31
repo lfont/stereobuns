@@ -43,13 +43,13 @@ define([
       $scope.isPlaying = false;
     });
 
-    $scope.$on('songsStore:add', function (event, id, song) {
+    $scope.$on('songsGroup:add', function (event, id, song) {
       if (id === 'loved' && song.url === $scope.song.url && !$scope.song.loved) {
         $scope.song.loved = true;
       }
     });
 
-    $scope.$on('songsStore:remove', function (event, id, song) {
+    $scope.$on('songsGroup:remove', function (event, id, song) {
       if (id === 'loved' && song.url === $scope.song.url && $scope.song.loved) {
         $scope.song.loved = false;
       }

@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SongsActionsDrtCtrl ($scope, audioPlayerSrv, songsMdl) {
+  function SongsActionsDrtCtrl ($scope, audioPlayerSrv, songsGroupsMdl) {
     var DEFAULT_OPTIONS = {
       remove: false,
       play: false,
@@ -48,11 +48,11 @@ define([
     };
 
     $scope.toggleLove = function () {
-      var lovedSongsStore = songsMdl.getSongsStore('loved');
+      var lovedSongsGroup = songsGroupsMdl.get('loved');
       if ($scope.songs.loved) {
-        lovedSongsStore.remove($scope.songs);
+        lovedSongsGroup.remove($scope.songs);
       } else {
-        lovedSongsStore.add($scope.songs);
+        lovedSongsGroup.add($scope.songs);
       }
     };
 
@@ -63,7 +63,7 @@ define([
     setOptions();
   }
 
-  SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsMdl' ];
+  SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsGroupsMdl' ];
 
   return SongsActionsDrtCtrl;
 });

@@ -13,8 +13,8 @@ define([
   './audio-player-queue-ctrl',
   './playlists-ctrl',
   './playlist-ctrl',
-  './songs-status-ctrl',
-  './songs-ctrl',
+  './songs-groups-ctrl',
+  './songs-group-ctrl',
   './user-menu-ctrl'
 ], function (angular,
              LayoutCtrl,
@@ -22,7 +22,7 @@ define([
              SearchCtrl, SearchBarCtrl,
              AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
              PlaylistsCtrl, PlaylistCtrl,
-             SongsStatusCtrl, SongsCtrl,
+             SongsGroupsCtrl, SongsGroupCtrl,
              UserMenuCtrl) {
   'use strict';
 
@@ -35,7 +35,7 @@ define([
                 .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
                 .controller('PlaylistsCtrl', PlaylistsCtrl)
                 .controller('PlaylistCtrl', PlaylistCtrl)
-                .controller('SongsStatusCtrl', SongsStatusCtrl)
-                .controller('SongsCtrl', SongsCtrl)
+                .controller('SongsGroupsCtrl', SongsGroupsCtrl)
+                .controller('SongsGroupCtrl', SongsGroupCtrl)
                 .controller('UserMenuCtrl', UserMenuCtrl);
 });

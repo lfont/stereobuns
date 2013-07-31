@@ -6,9 +6,9 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function AudioPlayerSrv ($rootScope, $q, soundManagerSrv, songsMdl) {
+  function AudioPlayerSrv ($rootScope, soundManagerSrv, songsGroupsMdl) {
     var _this            = this,
-        queuedSongsStore = songsMdl.getSongsStore('queued'),
+        queuedSongsGroup = songsGroupsMdl.get('queued'),
         repeat           = false,
         queuedSongs;
 
@@ -89,9 +89,9 @@ define(function () {
     soundManagerSrv.on('stop', stop);
 
     soundManagerSrv.on('halfPlay', function (playTime) {
-      var song                = _this.getStatus().song,
-          mostPlayedSongStore = songsMdl.getSongsStore('mostplayed');
-      mostPlayedSongStore.add(song);
+      var song                 = _this.getStatus().song,
+          mostPlayedSongsGroup = songsGroupsMdl.get('mostplayed');
+      mostPlayedSongsGroup.add(song);
     });
 
     soundManagerSrv.on('finish', function () {
@@ -119,61 +119,58 @@ define(function () {
     };
 
     this.getQueue = function () {
-      var deferred = $q.defer(),
-          promise  = queuedSongsStore.songs();
-
-      promise.then(function (songs) {
-        queuedSongs = songs;
-        // This must be a copy to prevent alteration
-        // of the queue by other component.
-        deferred.resolve(songs.slice(0));
-      }, function (error) {
-        // TODO: handle error
-        deferred.resolve([]);
-      });
-
-      return deferred.promise;
+      return queuedSongsGroup
+        .songs()
+        .then(function (songs) {
+          queuedSongs = songs;
+          // This must be a copy to prevent alteration
+          // of the queue by other component.
+          return songs.slice(0);
+        });
     };
 
     this.enqueue = function (songs) {
-      var deferred = $q.defer();
+      var promise;
 
       function innerEnqueue () {
-        var promise = queuedSongsStore.add(songs, {});
-        promise.then(function (songs) {
-          var i, len;
-          for (i = 0, len = songs.length; i < len; i++) {
-            queuedSongs.push(songs[i]);
-          }
-          $rootScope.$broadcast('audioPlayer:queue');
-          deferred.resolve();
-        }, function (error) {
-          // TODO: handle error
-        });
+        return queuedSongsGroup
+          .add(songs)
+          .then(function (songs) {
+            var i, len;
+
+            for (i = 0, len = songs.length; i < len; i++) {
+              queuedSongs.push(songs[i]);
+            }
+
+            $rootScope.$broadcast('audioPlayer:queue', songs);
+            return songs;
+          });
       }
 
       if (!queuedSongs) {
-        this.getQueue().then(function () {
-          innerEnqueue();
+        promise = this.getQueue().then(function () {
+          return innerEnqueue();
         });
       } else {
-        innerEnqueue();
+        promise = innerEnqueue();
       }
 
-      return deferred.promise;
+      return promise;
     };
 
     this.dequeue = function (songs) {
-      var promise = queuedSongsStore.remove(songs);
-      promise.then(function (songs) {
-        var i, len;
-        for (i = 0, len = songs.length; i < len; i++) {
-          destroySound(songs[i]);
-        }
-        $rootScope.$broadcast('audioPlayer:dequeue');
-      }, function (error) {
-        // TODO: handle error
-      });
+      return queuedSongsGroup
+        .remove(songs)
+        .then(function (songs) {
+          var i, len;
+
+          for (i = 0, len = songs.length; i < len; i++) {
+            destroySound(songs[i]);
+          }
+
+          $rootScope.$broadcast('audioPlayer:dequeue', songs);
+          return songs;
+        });
     };
 
     this.setPosition = function (position) {
@@ -236,7 +233,7 @@ define(function () {
     };
   }
 
-  AudioPlayerSrv.$inject = [ '$rootScope', '$q', 'soundManagerSrv', 'songsMdl' ];
+  AudioPlayerSrv.$inject = [ '$rootScope', 'soundManagerSrv', 'songsGroupsMdl' ];
 
   return AudioPlayerSrv;
 });
