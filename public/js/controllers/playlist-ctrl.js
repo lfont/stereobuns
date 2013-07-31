@@ -6,16 +6,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function PlaylistCtrl ($scope, $routeParams, $location, $dialog, playlistMdl) {
-    var currentPlaylistStore;
+  function PlaylistCtrl ($scope, $routeParams, $location, $dialog, playlistsMdl) {
+    var currentPlaylist;
 
-    function setPlaylistStore (name) {
-      playlistMdl
-        .getPlaylistStore(name)
-        .then(function (playlistStore) {
-          $scope.name = playlistStore.name;
-          $scope.songs = playlistStore.songs();
-          currentPlaylistStore = playlistStore;
+    function setPlaylist (name) {
+      playlistsMdl
+        .get(name)
+        .then(function (playlist) {
+          $scope.name = playlist.name;
+          $scope.songs = playlist.songs();
+          currentPlaylist = playlist;
         });
     }
 
@@ -40,24 +40,24 @@ define(function () {
         'no-playlist-songs.html';
     });
 
-    $scope.$on('playlistStore:add', function (event, name, song) {
+    $scope.$on('playlist:add', function (event, name, song) {
       if (name === $scope.name) {
-        $scope.songs.push(song);
+        $scope.songs.$$v.push(song);
       }
     });
 
-    $scope.$on('playlistStore:remove', function (event, name, song) {
+    $scope.$on('playlist:remove', function (event, name, song) {
       var songIndex;
       if (name === $scope.name) {
-        songIndex = $scope.songs.indexOf(song);
-        $scope.songs.splice(songIndex, 1);
+        songIndex = $scope.songs.$$v.indexOf(song);
+        $scope.songs.$$v.splice(songIndex, 1);
       }
     });
 
     $scope.openDeleteConfirmationBox = function () {
       $dialog.messageBox(
         'Confirmation',
-        '"' + currentPlaylistStore.name + '" will be deleted.',
+        '"' + currentPlaylist.name + '" will be deleted.',
         [
           { label: 'Cancel', result: false },
           { label: 'Delete', result: true, cssClass: 'btn-danger' }
@@ -65,21 +65,21 @@ define(function () {
         .open()
         .then(function (confirmed) {
           if (confirmed) {
-            playlistMdl.deletePlaylistStore(currentPlaylistStore);
+            playlistsMdl.delete(currentPlaylist);
             $location.path('/songs/loved');
           }
         });
     };
 
     $scope.remove = function (songs) {
-      currentPlaylistStore.remove(songs);
+      currentPlaylist.remove(songs);
     };
 
-    setPlaylistStore($routeParams.name);
+    setPlaylist($routeParams.name);
   }
 
   PlaylistCtrl.$inject = [ '$scope', '$routeParams', '$location',
-                           '$dialog', 'playlistMdl' ];
+                           '$dialog', 'playlistsMdl' ];
 
   return PlaylistCtrl;
 });

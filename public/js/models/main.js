@@ -6,18 +6,18 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
   'angular',
   './songs-mdl',
-  './playlist-store-mdl',
   './playlist-mdl',
+  './playlists-mdl',
   './user-mdl'
 ], function (angular,
              SongsMdl,
-             PlaylistStoreMdl, PlaylistMdl,
+             PlaylistMdl, PlaylistsMdl,
              UserMdl) {
   'use strict';
 
   return angular.module('soundrocket.models', [])
                 .service('songsMdl', SongsMdl)
-                .service('playlistStoreMdl', PlaylistStoreMdl)
                 .service('playlistMdl', PlaylistMdl)
+                .service('playlistsMdl', PlaylistsMdl)
                 .service('userMdl', UserMdl);
 });

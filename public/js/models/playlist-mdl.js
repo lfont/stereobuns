@@ -3,86 +3,102 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-define(function () {
+define([
+  'angular'
+], function (angular) {
   'use strict';
 
-  function PlaylistMdl ($rootScope, $window, $http, playlistStoreMdl) {
-    var playlistStoresMap = {},
-        playlistStores    = [];
+  function PlaylistMdl ($rootScope, $window, $http) {
+    function sanitizeSong (song) {
+      var newSong = angular.copy(song);
+      delete newSong._id;
+      return newSong;
+    }
 
-    this.getPlaylistStores = function () {
-      return $http
-        .get('/api/users/me/playlists', { cache: true })
-        .error(function (data, status, headers, config) {
-          // TODO: handle error
-        })
-        .then(function (response) {
-          var playlists = response.data,
-              i, len, name;
+    function Playlist (playlistInfo) {
+      var _this = this;
 
-          if (!playlistStores.length) {
-            for (i = 0, len = playlists.length; i < len; i++) {
-              name = playlists[i].name.toLowerCase();
-              playlistStoresMap[name] = playlistStoreMdl.create(playlists[i]);
-              playlistStores.push(playlistStoresMap[name]);
-            }
-          }
+      this.name = playlistInfo.name;
+      this.length = playlistInfo.length;
 
-          return playlistStores;
-        });
-    };
+      function addOne (song) {
+        $http
+            .post('/api/users/me/playlists/' + _this.name + '/songs', sanitizeSong(song))
+            .success(function (data, status, headers, config) {
+              if (data.count !== 0) {
+                _this.length++;
+                $rootScope.$broadcast('playlist:add', _this.name, song);
+                $window.console.log('song: ' + song.url + ' has been added to ' + _this.name);
+              }
+            })
+            .error(function (data, status, headers, config) {
+              // TODO: handle error
+              $window.console.log('song: ' + song.url + ' has not been added to ' + _this.name);
+            });
+      }
 
-    this.getPlaylistStore = function (name) {
-      return this
-        .getPlaylistStores()
-        .then(function (playlistStores) {
-          return playlistStoresMap[name];
-        });
-    };
+      function removeOne (song) {
+        $http
+            .delete('/api/users/me/playlists/' + _this.name + '/songs/' + song._id)
+            .success(function (data, status, headers, config) {
+              if (data.count !== 0) {
+                _this.length--;
+                $rootScope.$broadcast('playlist:remove', _this.name, song);
+                $window.console.log('song: ' + song.url + ' has been removed from ' + _this.name);
+              }
+            })
+            .error(function (data, status, headers, config) {
+              // TODO: handle error
+              $window.console.log('song: ' + song.url + ' has not been removed from ' + _this.name);
+            });
+      }
 
-    this.createPlaylistStore = function (name) {
-      return $http
-        .post('/api/users/me/playlists', { name: name })
-        .error(function (data, status, headers, config) {
-          // TODO: handle error
-          $window.console.log('playlist: ' + name + ' has not been created');
-        })
-        .then(function (response) {
-          var playlistStore = playlistStoreMdl.create({
-            name: name,
-            length: 0
+      this.songs = function () {
+        return $http
+          .get('/api/users/me/playlists/' + this.name)
+          .error(function (data, status, headers, config) {
+            // TODO: handle error
+            $window.console.log('get songs failed for playlist: ' + _this.name);
+          })
+          .then(function (response) {
+            _this.length = response.data.songs.length;
+            return response.data.songs;
           });
+      };
 
-          playlistStoresMap[playlistStore.name.toLowerCase()] = playlistStore;
-          playlistStores.push(playlistStore);
+      this.add = function (songs) {
+        var i, len, newSongs;
+        if (!angular.isArray(songs)) {
+          newSongs = [ songs ];
+        } else {
+          newSongs = songs;
+        }
+        for (i = 0, len = newSongs.length; i < len; i++) {
+          addOne(newSongs[i]);
+        }
+      };
 
-          $window.console. log('playlist: ' + name + ' has been created');
-          $rootScope.$broadcast('playlistMdl:create', playlistStore);
-          return playlistStore;
-        });
-    };
+      this.remove = function (songs) {
+        var i, len, oldSsongs;
+        if (!angular.isArray(songs)) {
+          oldSsongs = [ songs ];
+        } else {
+          // the array must be duplicated because it can be
+          // altered during the iteration.
+          oldSsongs = songs.slice(0);
+        }
+        for (i = 0, len = oldSsongs.length; i < len; i++) {
+          removeOne(oldSsongs[i]);
+        }
+      };
+    }
 
-    this.deletePlaylistStore = function (playlistStore) {
-      return $http
-        .delete('/api/users/me/playlists/' + playlistStore.name)
-        .error(function (data, status, headers, config) {
-          // TODO: handle error
-          $window.console.log('playlist: ' + playlistStore.name + ' has not been removed');
-        })
-        .then(function (response) {
-          var index = playlistStores.indexOf(playlistStore);
-
-          delete playlistStoresMap[playlistStore.name.toLowerCase()];
-          playlistStores.splice(index, 1);
-
-          $window.console.log('playlist: ' + playlistStore.name + ' has been removed');
-          $rootScope.$broadcast('playlistMdl:delete', playlistStore);
-          return playlistStore;
-        });
+    this.get = function (playlistInfo) {
+      return new Playlist(playlistInfo);
     };
   }
 
-  PlaylistMdl.$inject = [ '$rootScope', '$window', '$http', 'playlistStoreMdl' ];
+  PlaylistMdl.$inject = [ '$rootScope', '$window', '$http' ];
 
   return PlaylistMdl;
 });

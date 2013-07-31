@@ -8,73 +8,72 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistChooserDrtCtrl ($scope, $location, playlistMdl) {
+  function PlaylistChooserDrtCtrl ($scope, $location, playlistsMdl) {
     var DEFAULT_OPTIONS = {
       filter: true
     };
 
-    function filterPlaylistStoresForLocation (playlistStores) {
+    function filterPlaylistsForLocation (playlists) {
       var playlistNamePattern = /^\/playlist\/(.*)/,
-          stores = [],
-          i, len, playlistStore, matchs;
+          filteredPlaylists = [],
+          i, len, playlist, matchs;
 
-      for (i = 0, len = playlistStores.length; i < len; i++) {
-        playlistStore = playlistStores[i];
+      for (i = 0, len = playlists.length; i < len; i++) {
+        playlist = playlists[i];
         matchs = playlistNamePattern.exec($location.path());
         if (!matchs ||
-          matchs[1].toLowerCase() !== playlistStore.name.toLowerCase())
+            matchs[1].toLowerCase() !== playlist.name.toLowerCase())
         {
-          stores.push(playlistStore);
+          filteredPlaylists.push(playlist);
         }
       }
 
-      return stores;
+      return filteredPlaylists;
     }
 
-    function loadPlaylistStores () {
-      var opts    = angular.extend({}, DEFAULT_OPTIONS, $scope.options),
-          promise = playlistMdl.getPlaylistStores();
+    function loadPlaylists () {
+      var opts = angular.extend({}, DEFAULT_OPTIONS, $scope.options);
 
-      promise.then(function (playlistStores) {
-        $scope.playlistStores = opts.filter ?
-            filterPlaylistStoresForLocation(playlistStores) :
-            playlistStores;
-      }, function (error) {
-        // TODO: handle error
-      });
+      playlistsMdl
+        .getAll()
+        .then(function (playlists) {
+          $scope.playlists = opts.filter ?
+            filterPlaylistsForLocation(playlists) :
+            playlists;
+        });
     }
 
-    $scope.playlistName = '';
+    $scope.newPlaylistName = '';
 
-    $scope.$on('playlistMdl:create', function (event, playlistStore) {
-      var index = $scope.playlistStores.indexOf(playlistStore);
+    $scope.$on('playlistsMdl:create', function (event, playlist) {
+      var index = $scope.playlists.indexOf(playlist);
       if (index < 0) {
-        $scope.playlistStores.push(playlistStore);
+        $scope.playlists.push(playlist);
       }
     });
 
-    $scope.$on('playlistMdl:delete', function (event, playlistStore) {
-      var index = $scope.playlistStores.indexOf(playlistStore);
+    $scope.$on('playlistsMdl:delete', function (event, playlist) {
+      var index = $scope.playlists.indexOf(playlist);
       if (index > -1) {
-        $scope.playlistStores.splice(index, 1);
+        $scope.playlists.splice(index, 1);
       }
     });
 
     $scope.createPlaylist = function () {
       if ($scope.playlistForm.$valid) {
-        playlistMdl.createPlaylistStore($scope.playlistName);
-        $scope.playlistName = '';
+        playlistsMdl.create($scope.newPlaylistName);
+        $scope.newPlaylistName = '';
       }
     };
 
-    $scope.addToPlaylist = function (playlistStore) {
-      playlistStore.add($scope.songs);
+    $scope.addToPlaylist = function (playlist) {
+      playlist.add($scope.songs);
     };
 
-    loadPlaylistStores();
+    loadPlaylists();
   }
 
-  PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
+  PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistsMdl' ];
 
   return PlaylistChooserDrtCtrl;
 });

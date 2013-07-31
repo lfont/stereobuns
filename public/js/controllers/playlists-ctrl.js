@@ -6,19 +6,19 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function PlaylistsCtrl ($scope, $location, playlistMdl) {
-    $scope.playlistStores = playlistMdl.getPlaylistStores();
+  function PlaylistsCtrl ($scope, $location, playlistsMdl) {
+    $scope.playlists = playlistsMdl.getAll();
 
-    $scope.isCurrentPlaylistStore = function (playlistStore) {
-      var playlistStoreNamePattern = /^\/playlist\/(.*)/,
-          matchs = playlistStoreNamePattern.exec($location.path());
+    $scope.isCurrentPlaylist = function (playlist) {
+      var playlistNamePattern = /^\/playlist\/(.*)/,
+          matchs = playlistNamePattern.exec($location.path());
 
       return matchs &&
-             matchs[1].toLowerCase() === playlistStore.name.toLowerCase();
+             matchs[1].toLowerCase() === playlist.name.toLowerCase();
     };
   }
 
-  PlaylistsCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
+  PlaylistsCtrl.$inject = [ '$scope', '$location', 'playlistsMdl' ];
 
   return PlaylistsCtrl;
 });

@@ -1,13 +1,13 @@
 <div ng-controller="PlaylistChooserDrtCtrl" class="playlist-chooser">
-    <ul class="nav nav-pills nav-stacked">
-        <li ng-repeat="playlistStore in playlistStores">
-            <a href="#" ng-click="$parent.addToPlaylist(playlistStore); $event.preventDefault()">{{ playlistStore.name }}</a>
-        </li>
-    </ul>
-    <span class="divider"></span>
-    <form class="form-inline" name="playlistForm" ng-submit="createPlaylist()" ng-click="$event.stopPropagation()">
-        <input type="text" placeholder="Name your new playlist" class="input-medium" name="nameField"
-               ng-model="playlistName" required maxlength="20">
-        <input type="submit" class="btn" value="Create">
-    </form>
+  <ul class="nav nav-pills nav-stacked">
+    <li ng-repeat="playlist in playlists">
+      <a href="#" ng-click="$parent.addToPlaylist(playlist); $event.preventDefault()">{{ playlist.name }}</a>
+    </li>
+  </ul>
+  <span class="divider"></span>
+  <form class="form-inline" name="playlistForm" ng-submit="createPlaylist()" ng-click="$event.stopPropagation()">
+    <input type="text" placeholder="Name your new playlist" class="input-medium" name="nameField"
+           ng-model="newPlaylistName" required maxlength="20">
+    <input type="submit" class="btn" value="Create">
+  </form>
 </div>
