@@ -48,7 +48,8 @@ define([
     '$window',
     '$location',
     'userMdl',
-    function ($rootScope, $window, $location, userMdl) {
+    'audioPlayerSrv',
+    function ($rootScope, $window, $location, userMdl, audioPlayerSrv) {
       function setPageTitle (title) {
         var currentTitle   = $window.document.title,
             prefixEndIndex = currentTitle.indexOf('-'),
@@ -61,13 +62,18 @@ define([
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
         var isLoggedIn = userMdl.isLoggedIn();
 
-        if (next.$$route.controller === 'RootCtrl' && isLoggedIn) {
+        if (!isLoggedIn && next.$$route.authenticated) {
+          $location.path('/');
+          return;
+        }
+
+        if (isLoggedIn && next.$$route.controller === 'RootCtrl') {
           $location.path('/songs/loved');
           return;
         }
 
-        if (next.$$route.authenticated && !isLoggedIn) {
-          $location.path('/');
+        if (next.$$route.controller === 'RootCtrl') {
+          audioPlayerSrv.stop();
         }
       });
 

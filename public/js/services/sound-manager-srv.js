@@ -128,6 +128,12 @@ define([
       }
       return false;
     };
+
+    this.stop = function () {
+      if (currentSoundId) {
+        soundManager.stop(currentSoundId);
+      }
+    };
   }
 
   SoundManagerSrv.$inject = [ '$window', 'config', 'soundSrv' ];
