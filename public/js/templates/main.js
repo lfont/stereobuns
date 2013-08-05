@@ -8,13 +8,15 @@ define([
   './partials-tpls',
   './components-tpls',
   './angular-ui-tpls',
+  './dialog-tpls',
   'angular-ui-bootstrap-collapse',
   'angular-ui-bootstrap-dropdownToggle',
   'angular-ui-bootstrap-dialog'
 ], function (angular,
              partialsTemplates,
              componentsTemplates,
-             angularUiTemplates) {
+             angularUiTemplates,
+             dialogTemplates) {
   'use strict';
 
   return angular.module('soundrocket.templates', [
@@ -23,6 +25,7 @@ define([
     'ui.bootstrap.dialog',
     partialsTemplates.name,
     componentsTemplates.name,
-    angularUiTemplates.name
+    angularUiTemplates.name,
+    dialogTemplates.name
   ]);
 });

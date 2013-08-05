@@ -1,0 +1,23 @@
+.keyboard-shortcuts dt {
+  float: left;
+  margin-right: 1em;
+  width: 35px;
+}
+
+.keyboard-shortcuts dt > xkb {
+  background-color: #666;
+  border-radius: 3px;
+  color: #ccc;
+  float: right;
+  font-size: 12px;
+  height: 22px;
+  line-height: 25px;
+  min-width: 20px;
+  padding: 0 5px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.keyboard-shortcuts dd {
+  margin-bottom: 1em;
+}

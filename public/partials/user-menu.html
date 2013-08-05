@@ -1,4 +1,6 @@
-<div class="user-menu" ng-controller="UserMenuCtrl">
+<div class="user-menu"
+     ng-controller="UserMenuCtrl"
+     shortcut="{ h: 'openKeyboardShortcuts()' }">
   <div class="dropdown" ng-init="isOpen = false">
     <button class="btn dropdown-toggle" ng-class="{ active: isOpen }" ng-click="isOpen = !isOpen">
       <img ng-src="{{ user.picture }}" width="30px" height="30px" />    
@@ -6,6 +8,13 @@
       <i class="icon-caret-down icon-large"></i>
     </button>
     <ul class="dropdown-menu">
+      <li>
+        <a href="#" ng-click="openKeyboardShortcuts()">Keyboard shortcuts</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="/settings/account">Settings</a>
+      </li>
       <li>
         <a href="#" ng-click="signOut()">Sign out</a>
       </li>

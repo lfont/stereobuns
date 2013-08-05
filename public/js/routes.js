@@ -39,6 +39,12 @@ define([
           pageTitle: 'Playlist',
           authenticated: true
         })
+        .when('/settings/:id', {
+          templateUrl: 'partials/settings.html',
+          controller: 'SettingsCtrl',
+          pageTitle: 'Settings',
+          authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
     }
   ]);

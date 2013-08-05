@@ -15,7 +15,9 @@ define([
   './playlist-ctrl',
   './songs-groups-ctrl',
   './songs-group-ctrl',
-  './user-menu-ctrl'
+  './user-menu-ctrl',
+  './settings-ctrl',
+  './keyboard-shortcuts-ctrl'
 ], function (angular,
              LayoutCtrl,
              RootCtrl,
@@ -23,7 +25,9 @@ define([
              AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
              PlaylistsCtrl, PlaylistCtrl,
              SongsGroupsCtrl, SongsGroupCtrl,
-             UserMenuCtrl) {
+             UserMenuCtrl,
+             SettingsCtrl,
+             KeyboardShortcutsCtrl) {
   'use strict';
 
   return angular.module('soundrocket.controllers', [])
@@ -37,5 +41,7 @@ define([
                 .controller('PlaylistCtrl', PlaylistCtrl)
                 .controller('SongsGroupsCtrl', SongsGroupsCtrl)
                 .controller('SongsGroupCtrl', SongsGroupCtrl)
-                .controller('UserMenuCtrl', UserMenuCtrl);
+                .controller('UserMenuCtrl', UserMenuCtrl)
+                .controller('SettingsCtrl', SettingsCtrl)
+                .controller('KeyboardShortcutsCtrl', KeyboardShortcutsCtrl);
 });

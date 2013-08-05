@@ -47,8 +47,9 @@ exports.register = function (app) {
 
   app.get('/', site.index);
   app.get('/search', ensureAuthenticated, site.index);
-  app.get('/songs/:name', ensureAuthenticated, site.index);
+  app.get('/songs/:id', ensureAuthenticated, site.index);
   app.get('/playlist/:name', ensureAuthenticated, site.index);
+  app.get('/settings/:id', ensureAuthenticated, site.index);
 
   /* api */
   app.get('/api/users/me', ensureAuthenticated, usersApi.show);
