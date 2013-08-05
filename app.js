@@ -24,7 +24,11 @@ app.configure(function () {
   app.use(express.bodyParser());
   app.use(express.cookieParser('secret string'));
   app.use(express.session());
-  oauth.middleware(app);
+
+  if (config.isAccessible) {
+    oauth.middleware(app); // before the router!!!
+  }
+
   app.use(app.router);
 
   app.enable('verbose errors');
@@ -49,6 +53,15 @@ express.static.mime.define({ 'application/x-web-app-manifest+json': [ 'webapp' ]
 express.static.mime.define({ 'text/cache-manifest': [ 'appcache' ] });
 
 
+// default template data
+
+app.locals({
+  appName: config.appName,
+  domain: config.domain,
+  trackingCode: config.googleAnalyticsTrackingCode
+});
+
+
 // error handler
 
 app.use(function (err, req, res, next) {
@@ -58,7 +71,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error/500', {
     title: 'Internal Error',
-    trackingCode: config.googleAnalyticsTrackingCode,
     error: err
   });
 });
@@ -73,7 +85,6 @@ app.use(function (req, res) {
   if (req.accepts('html')) {
     res.render('error/404', {
       title: 'Not Found',
-      trackingCode: config.googleAnalyticsTrackingCode,
       url: req.url
     });
     return;

@@ -1,8 +1,14 @@
 {
   "name": "SoundRocket",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A sound aggregator.",
+  "author": "Loïc Fontaine <ljph.fontaine@gmail.com>",
+  "private": true,
   "main": "server.js",
+  "engines": {
+    "node": "~0.10.9",
+    "npm": "~1.2.24"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -13,7 +19,7 @@
   "dependencies": {
     "express": "~3.2.6",
     "socket.io": "~0.9.16",
-    "underscore": "~1.4.4",
+    "underscore": "~1.5.1",
     "ejs": "~0.8.4",
     "ejs-locals": "~1.0.2",
     "mongoose": "~3.6.13",

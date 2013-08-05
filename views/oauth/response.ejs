@@ -3,7 +3,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <span class="brand">StereoBuns</span>
+      <span class="brand"><%= appName %></span>
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
         <% if (success) { %>
           <div class="well well-large well-transparent">
             <i class="icon-info icon-4x icon-muted pull-left"></i>
-            You are now logged in StereoBuns.<br />
+            You are now logged in <%= appName %>.<br />
             This window will clause in a few second, enjoy!
           </div>
         <% } else { %>

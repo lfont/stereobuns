@@ -4,7 +4,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 exports.index = function (req, res) {
-  res.render('site/index', {
-    title: 'Welcome'
+  res.render('coming-soon/index', {
+    title: 'Coming Soon'
   });
 };

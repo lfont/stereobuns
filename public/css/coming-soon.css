@@ -1,0 +1,14 @@
+.message {
+  font-size: 18px;
+  margin-top: 5em;
+  text-align: center;
+}
+
+.message h1 {
+  font-size: 44px;
+}
+
+footer {
+  bottom: 0;
+  position: fixed;
+}
