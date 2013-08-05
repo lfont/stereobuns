@@ -9,14 +9,14 @@
     </button>
     <ul class="dropdown-menu">
       <li>
-        <a href="#" ng-click="openKeyboardShortcuts()">Keyboard shortcuts</a>
+        <a href="#" ng-click="openKeyboardShortcuts(); $event.preventDefault()">Keyboard shortcuts</a>
       </li>
       <li class="divider"></li>
       <li>
         <a href="/settings/account">Settings</a>
       </li>
       <li>
-        <a href="#" ng-click="signOut()">Sign out</a>
+        <a href="#" ng-click="signOut(); $event.preventDefault()">Sign out</a>
       </li>
     </ul>
   </div>
