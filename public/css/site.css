@@ -2,19 +2,7 @@
 @import url("partials.css");
 @import url("keyboard-shortcuts.css");
 @import url("settings.css");
-
-
-/* background */
-
-.background {
-  background: url("/img/background.jpg") repeat scroll 0% 0% / cover transparent;
-}
-
-@media (max-width: 768px) {
-  .background {
-    background: url("/img/background.jpg") repeat scroll 0% 0% transparent;
-  }
-}
+@import url("root.css");
 
 
 /* playlist-header */
