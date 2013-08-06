@@ -3,7 +3,7 @@
     <div class="push-top">
       <ul class="nav nav-pills nav-stacked">
         <li class="active">
-          <a href="#">
+          <a href="/settings/account">
             Account
             <i class="icon-caret-right pull-right"></i>
           </a>
@@ -18,20 +18,45 @@
       <p>Change your personal account settings</p>
     </div>
     
-    <form class="form-horizontal" name="invitationForm">
+    <form class="form-horizontal"
+          name="invitationForm"
+          ng-submit="setInvitationCode()"
+          novalidate>
       <fieldset>
         <legend>Invitation</legend>
+
+        <div class="alert"
+             ng-if="error"
+             ng-class="{ 'alert-error': !error.isBusiness }">
+          <strong>{{ error.title }} </strong>
+          {{ error.message }}
+        </div>
+
+        <div class="alert alert-success"
+             ng-if="hasInvitation">
+          <strong>Hooray! </strong>
+          You have access to StereoBuns.
+        </div>
 
         <div class="control-group">
           <label class="control-label" for="codeInput">Code</label>
           <div class="controls">
-            <input type="text" id="codeInput" placeholder="Code">
+            <input type="text" id="codeInput" name="codeInput"
+                   placeholder="ex: 21EC20203AEA"
+                   ng-model="invitationCode"
+                   ng-disabled="hasInvitation"
+                   ng-readonly="hasInvitation"
+                   required
+                   ng-pattern="/^[0-9a-f]{12}$/i">
+            <span class="error" ng-show="invitationForm.codeInput.$error.required">Required!</span>
+            <span class="error" ng-show="invitationForm.codeInput.$error.pattern">Invalid format!</span>
           </div>
         </div>
 
         <div class="control-group">
           <div class="controls">
-            <button type="submit" class="btn">Submit</button>
+            <button type="submit" class="btn"
+                    ng-disabled="hasInvitation">Submit</button>
           </div>
         </div>
       </fieldset>

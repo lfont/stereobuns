@@ -69,18 +69,26 @@ define([
         var isLoggedIn = userMdl.isLoggedIn();
 
         if (!isLoggedIn && next.$$route.authenticated) {
-          $location.path('/');
-          return;
+          return $location.path('/');
         }
 
-        if (isLoggedIn && next.$$route.controller === 'RootCtrl') {
-          $location.path('/songs/loved');
-          return;
-        }
+        userMdl.getInvitationCode().then(function (invitationCode) {
+          var hasInvitation = invitationCode !== null;
 
-        if (next.$$route.controller === 'RootCtrl') {
-          audioPlayerSrv.stop();
-        }
+          if (isLoggedIn) {
+            if (!hasInvitation) {
+              return $location.path('/settings/account');
+            }
+
+            if (next.$$route.controller === 'RootCtrl') {
+              return $location.path('/songs/loved');
+            }
+          }
+
+          if (next.$$route.controller === 'RootCtrl') {
+            audioPlayerSrv.stop();
+          }
+        });
       });
 
       // page title update

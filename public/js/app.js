@@ -42,10 +42,9 @@ define([
             responseError: function (rejection) {
               if (rejection.status === 401) {
                 $location.path('/');
-                return $q.reject(rejection);
               }
 
-              return rejection;
+              return $q.reject(rejection);
             }
           };
         }

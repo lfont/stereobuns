@@ -58,3 +58,15 @@
 .playlist-songs > li:last-child {
   border-bottom: 0;
 }
+
+
+/* validation */
+
+form.ng-dirty .error {
+  display: inline-block;
+}
+
+.error {
+  color: red;
+  display: none;
+}

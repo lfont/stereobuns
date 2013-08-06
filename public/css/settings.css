@@ -1,3 +1,11 @@
 .settings .well {
   margin-top: 10px;
 }
+
+.settings .well h2 {
+  margin-top: 0;
+}
+
+.settings .well p {
+  margin: 0;
+}

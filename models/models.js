@@ -10,7 +10,8 @@ var Schema = mongoose.Schema;
 var userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   name: String,
-  picture: String
+  picture: String,
+  invitationCode: String
 });
 
 exports.User = mongoose.model('User', userSchema);
@@ -32,3 +33,10 @@ var songSchema = new Schema({
 });
 
 exports.Song = mongoose.model('Song', songSchema);
+
+var invitationSchema = new Schema({
+  code: { type: String, required: true },
+  burned: Boolean
+});
+
+exports.Invitation = mongoose.model('Invitation', invitationSchema);
