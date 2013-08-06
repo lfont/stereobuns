@@ -44,7 +44,7 @@ exports.setInvitation = function (id, code, callback) {
       return callback(err);
     }
 
-    if (!invitation || invitation.burned) {
+    if (!invitation || invitation.used) {
       return callback({ code: 'ERRINVALID' });
     }
 
@@ -58,7 +58,7 @@ exports.setInvitation = function (id, code, callback) {
           return callback(err);
         }
 
-        invitation.burned = true;
+        invitation.used = true;
         invitation.save(function (err) {
           // TODO: handle error
           console.log(err);

@@ -36,7 +36,7 @@ exports.Song = mongoose.model('Song', songSchema);
 
 var invitationSchema = new Schema({
   code: { type: String, required: true },
-  burned: Boolean
+  used: Boolean
 });
 
 exports.Invitation = mongoose.model('Invitation', invitationSchema);

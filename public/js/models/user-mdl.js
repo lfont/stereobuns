@@ -8,8 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function UserMdl ($http, $cookies, $q) {
-    var invitationCode = null;
+  function UserMdl ($rootScope, $http, $cookies, $q) {
 
     this.get = function () {
       return $http
@@ -24,33 +23,21 @@ define([
       return angular.isDefined(userCookie) && userCookie !== null;
     };
 
+    this.hasInvitation = function () {
+      var invitationCookie = $cookies.invitation;
+      return angular.isDefined(invitationCookie) && invitationCookie !== null;
+    };
+
     this.logout = function () {
       return $http
         .post('/logout');
-    };
-
-    this.getInvitationCode = function () {
-      if (invitationCode) {
-        return $q.when(invitationCode);
-      }
-
-      return this
-        .get()
-        .then(function (user) {
-          var isValid = angular.isDefined(user.invitationCode) &&
-                        user.invitationCode !== null &&
-                        user.invitationCode !== '';
-          if (isValid) {
-            invitationCode = user.invitationCode;
-          }
-          return invitationCode;
-        });
     };
 
     this.setInvitationCode = function (code) {
       return $http
         .post('/api/users/me/invitation', { code: code })
         .then(function (response) {
+          $rootScope.$broadcast('userMdl:invitation');
           return response.data;
         }, function (response) {
           var error;
@@ -73,7 +60,7 @@ define([
     };
   }
 
-  UserMdl.$inject = [ '$http', '$cookies', '$q' ];
+  UserMdl.$inject = [ '$rootScope', '$http', '$cookies', '$q' ];
 
   return UserMdl;
 });

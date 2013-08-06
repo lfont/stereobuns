@@ -66,29 +66,26 @@ define([
 
       // authentication rules
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        var isLoggedIn = userMdl.isLoggedIn();
+        var isLoggedIn    = userMdl.isLoggedIn(),
+            hasInvitation = userMdl.hasInvitation();
 
         if (!isLoggedIn && next.$$route.authenticated) {
           return $location.path('/');
         }
 
-        userMdl.getInvitationCode().then(function (invitationCode) {
-          var hasInvitation = invitationCode !== null;
-
-          if (isLoggedIn) {
-            if (!hasInvitation) {
-              return $location.path('/settings/account');
-            }
-
-            if (next.$$route.controller === 'RootCtrl') {
-              return $location.path('/songs/loved');
-            }
+        if (isLoggedIn) {
+          if (!hasInvitation) {
+            return $location.path('/settings/account');
           }
 
           if (next.$$route.controller === 'RootCtrl') {
-            audioPlayerSrv.stop();
+            return $location.path('/songs/loved');
           }
-        });
+        }
+
+        if (next.$$route.controller === 'RootCtrl') {
+          audioPlayerSrv.stop();
+        }
       });
 
       // page title update

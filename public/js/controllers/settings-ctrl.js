@@ -9,13 +9,8 @@ define([
   'use strict';
 
   function SettingsCtrl ($scope, userMdl) {
-    userMdl.getInvitationCode().then(function (invitationCode) {
-      $scope.invitationCode = invitationCode;
-      $scope.hasInvitation = invitationCode !== null;
-    });
-
-    $scope.invitationCode = null;
-    $scope.hasInvitation = false;
+    $scope.hasInvitation = userMdl.hasInvitation();
+    $scope.invitationCode = '';
     $scope.error = null;
 
     $scope.setInvitationCode = function () {
@@ -31,7 +26,7 @@ define([
           $scope.hasInvitation = true;
         }, function (error) {
           $scope.error = error;
-          $scope.invitationCode = null;
+          $scope.invitationCode = '';
         });
     };
   }

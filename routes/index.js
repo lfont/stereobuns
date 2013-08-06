@@ -21,19 +21,16 @@ function ensureAuthenticated (req, res, next) {
 
   res.clearCookie('user');
 
-  // respond with html page
   if (req.accepts('html')) {
     return res.redirect('/');
   }
 
   res.status(401);
 
-  // respond with json
   if (req.accepts('json')) {
     return res.send({ error: 'Unauthorized' });
   }
 
-  // default to plain-text. send()
   res.type('txt').send('Unauthorized');
 }
 
@@ -42,19 +39,18 @@ function ensureInvited (req, res, next) {
     return next();
   }
 
-  // respond with html page
+  res.clearCookie('invitation');
+
   if (req.accepts('html')) {
     return res.redirect('/settings/account');
   }
 
   res.status(401);
 
-  // respond with json
   if (req.accepts('json')) {
     return res.send({ error: 'Unauthorized' });
   }
 
-  // default to plain-text. send()
   res.type('txt').send('Unauthorized');
 }
 
