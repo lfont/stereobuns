@@ -15,6 +15,7 @@ require.config({
     'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
     'angular-ui-bootstrap-dialog': '../components/angular-ui-bootstrap/src/dialog/dialog',
     'angular-ui-bootstrap-dropdownToggle': '../components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle',
+    'angular-ui-bootstrap-alert': '../components/angular-ui-bootstrap/src/alert/alert',
     'soundmanager2': '../components/soundmanager/script/soundmanager2',
     'socket.io': '/socket.io/socket.io.js',
     'observable': 'lib/observable'
@@ -28,6 +29,9 @@ require.config({
       deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-dropdownToggle': {
+      deps: [ 'angular' ]
+    },
+    'angular-ui-bootstrap-alert': {
       deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-transition': {

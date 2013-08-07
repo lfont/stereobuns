@@ -85,6 +85,10 @@ textarea {
 
 /* common */
 
+.alert .close {
+  top: -5px;
+}
+
 .background {
   background: url("/img/background.jpg") repeat scroll 0% 0% / cover transparent;
 }

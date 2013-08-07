@@ -58,6 +58,19 @@ define([
           return $q.reject(error);
         });
     };
+
+    this.delete = function () {
+      return $http
+        .delete('/api/users/me')
+        .then(function (response) {
+          return response.data;
+        }, function (response) {
+          return $q.reject({
+            title: 'Oops,',
+            message: 'An error has occured. Please, try again.'
+          });
+        });
+    };
   }
 
   UserMdl.$inject = [ '$rootScope', '$http', '$cookies', '$q' ];

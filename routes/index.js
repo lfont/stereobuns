@@ -69,6 +69,7 @@ exports.register = function (app) {
 
   /* api */
   app.get('/api/users/me', ensureAuthenticated, usersApi.show);
+  app.delete('/api/users/me', ensureAuthenticated, usersApi.destroy);
 
   app.post('/api/users/me/invitation', ensureAuthenticated, userInvitationApi.create);
 

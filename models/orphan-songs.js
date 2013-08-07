@@ -11,8 +11,7 @@ exports.cleanForUserId = function (userId, callback) {
     playlists: { $size: 0 },
     queueIndex: { $exists: false },
     $or: [ { loved: false }, { loved: { $exists: false } } ]
-  },
-  function (err, numberAffected, raw) {
+  }, function (err, numberAffected, raw) {
     if (err) {
       // TODO: handle error
       console.log(err);

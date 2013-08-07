@@ -11,7 +11,8 @@ define([
   './dialog-tpls',
   'angular-ui-bootstrap-collapse',
   'angular-ui-bootstrap-dropdownToggle',
-  'angular-ui-bootstrap-dialog'
+  'angular-ui-bootstrap-dialog',
+  'angular-ui-bootstrap-alert'
 ], function (angular,
              partialsTemplates,
              componentsTemplates,
@@ -23,6 +24,7 @@ define([
     'ui.bootstrap.collapse',
     'ui.bootstrap.dropdownToggle',
     'ui.bootstrap.dialog',
+    'ui.bootstrap.alert',
     partialsTemplates.name,
     componentsTemplates.name,
     angularUiTemplates.name,

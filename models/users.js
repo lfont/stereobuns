@@ -4,20 +4,44 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 var User       = require('./models').User,
-    Invitation = require('./models').Invitation;
+    Invitation = require('./models').Invitation,
+    Song       = require('./models').Song;
 
-exports.create = function (userData, callback) {
-  User.create(userData, function (err, user) {
+exports.create = function (user, callback) {
+  User.create(user, function (err, newUser) {
     if (err) {
       // TODO: handle error
       console.log(err);
     }
-    callback(err, user);
+    callback(err, newUser);
   });
 };
 
-exports.findById = function (id, callback) {
-  User.findById(id, function (err, user) {
+exports.delete = function (userId, callback) {
+  User.remove({
+    _id: userId
+  }, function (err, numberAffected, raw) {
+    if (err) {
+      // TODO: handle error
+      console.log(err);
+      return callback(err);
+    }
+
+    Song.remove({
+      userId: userId
+    }, function (err, numberAffected, raw) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+      }
+    });
+
+    callback(null);
+  });
+};
+
+exports.findById = function (userId, callback) {
+  User.findById(userId, function (err, user) {
     if (err) {
       // TODO: handle error
       console.log(err);
@@ -36,7 +60,7 @@ exports.findByEmail = function (email, callback) {
   });
 };
 
-exports.setInvitation = function (id, code, callback) {
+exports.setInvitation = function (userId, code, callback) {
   Invitation.findOne({ code: code }, function (err, invitation) {
     if (err) {
       // TODO: handle error
@@ -49,7 +73,7 @@ exports.setInvitation = function (id, code, callback) {
     }
 
     User.update(
-      { _id: id },
+      { _id: userId },
       { invitationCode: code },
       function (err, numberAffected, raw) {
         if (err) {

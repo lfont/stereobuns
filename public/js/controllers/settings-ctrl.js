@@ -8,17 +8,21 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SettingsCtrl ($scope, userMdl) {
+  function SettingsCtrl ($scope, $dialog, $location, userMdl) {
     $scope.hasInvitation = userMdl.hasInvitation();
     $scope.invitationCode = '';
     $scope.error = null;
+
+    $scope.closeErrorAlert = function () {
+      $scope.error = null;
+    };
 
     $scope.setInvitationCode = function () {
       if (!$scope.invitationForm.$valid) {
         return $scope.invitationForm.$setDirty();
       }
 
-      $scope.error = null;
+      $scope.closeErrorAlert();
 
       userMdl
         .setInvitationCode($scope.invitationCode)
@@ -29,9 +33,35 @@ define([
           $scope.invitationCode = '';
         });
     };
+
+    $scope.openDeleteConfirmationBox = function () {
+      $scope.closeErrorAlert();
+
+      $dialog.messageBox(
+        'Account Deletion',
+        'All your playlist will be deleted.',
+        [
+          { label: 'Cancel', result: false },
+          { label: 'Delete', result: true, cssClass: 'btn-danger' }
+        ])
+        .open()
+        .then(function (confirmed) {
+          if (!confirmed) {
+            return;
+          }
+
+          userMdl
+            .delete()
+            .then(function () {
+              $location.path('/');
+            }, function (error) {
+              $scope.error = error;
+            });
+        });
+    };
   }
 
-  SettingsCtrl.$inject = [ '$scope', 'userMdl' ];
+  SettingsCtrl.$inject = [ '$scope', '$dialog', '$location', 'userMdl' ];
 
   return SettingsCtrl;
 });

@@ -61,7 +61,7 @@ define(function () {
 
     $scope.openDeleteConfirmationBox = function () {
       $dialog.messageBox(
-        'Confirmation',
+        'Playlist Deletion',
         '"' + currentPlaylist.name + '" will be deleted.',
         [
           { label: 'Cancel', result: false },
@@ -69,10 +69,15 @@ define(function () {
         ])
         .open()
         .then(function (confirmed) {
-          if (confirmed) {
-            playlistsMdl.delete(currentPlaylist);
-            $location.path('/songs/loved');
+          if (!confirmed) {
+            return;
           }
+
+          playlistsMdl
+            .delete(currentPlaylist)
+            .then(function () {
+              $location.path('/songs/loved');
+            });
         });
     };
 

@@ -17,6 +17,13 @@
       <h2>Account</h2>
       <p>Change your personal account settings</p>
     </div>
+
+    <alert ng-if="error"
+           type="error.isBusiness ? 'warning' : 'error'"
+           close="closeErrorAlert()">
+      <strong>{{ error.title }} </strong>
+      {{ error.message }}
+    </alert>
     
     <form class="form-horizontal"
           name="invitationForm"
@@ -32,16 +39,9 @@
           </div>
 
           <div ng-switch-default>
-            <div ng-if="!error" class="alert alert-info">
+            <div class="alert alert-info">
               <strong>Hey, </strong>
               Enter your invitation code to unlock StereoBuns. 
-            </div>
-
-            <div class="alert"
-                 ng-if="error"
-                 ng-class="{ 'alert-error': !error.isBusiness }">
-              <strong>{{ error.title }} </strong>
-              {{ error.message }}
             </div>
         
             <div class="control-group">
@@ -66,5 +66,17 @@
         </div>
       </fieldset>
     </form>
+
+    <fieldset>
+      <legend>Delete Account</legend>
+
+      <div class="alert">
+        <strong>Warning! </strong>
+        This operation cannot be undone. Please be certain.
+      </div>
+
+      <a href="#" class="btn btn-danger"
+         ng-click="openDeleteConfirmationBox(); $event.preventDefault()">Delete your account</a>
+    </fieldset>
   </div>
 </div>
