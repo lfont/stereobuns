@@ -2,3 +2,4 @@
 /public/components
 *.sublime-project
 *.sublime-workspace
+*.DS_Store

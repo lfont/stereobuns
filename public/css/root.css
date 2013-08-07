@@ -64,8 +64,12 @@
 
 /* footer */
 
-.root footer p {
+.root footer,
+.root footer a {
   color: white;
+}
+
+.root footer p {
   display: inline-block;
 }
 
@@ -73,8 +77,4 @@
   display: inline-block;
   margin-left: 0;
   list-style: none;
-}
-
-.root footer .links a {
-  color: white;
 }
