@@ -7725,11 +7725,15 @@ body, html {
 .push-bottom {
   margin-bottom: 5em;
 }
+footer {
+  bottom: 0;
+  position: fixed;
+}
 @media (max-width: 979px) {
   .content {
     padding-top: 0;
   }
-  .side-menu {
+  .push-top {
     margin-top: .5em;
   }
   .navbar-fixed-top {
@@ -7746,20 +7750,6 @@ body, html {
     padding: 4px 10px;
   }
 }
-@media (max-width: 767px) {
-  .content {
-    padding-top: 0;
-  }
-  .side-menu {
-    margin-top: .5em;
-  }
-  .navbar-fixed-top {
-    margin-bottom: 0;
-  }
-  .navbar-fixed-bottom {
-    position: fixed;
-  }
-}
 body {
   font-family: 'Josefin Sans', sans-serif;
 }
@@ -7771,6 +7761,12 @@ textarea {
 }
 .navbar-search .search-query {
   font-family: 'Josefin Sans', sans-serif;
+}
+.alert .close {
+  top: -5px;
+}
+.background {
+  background: url("/img/background.jpg") repeat scroll 0% 0% / cover transparent;
 }
 .navbar .brand {
   font-size: 26px;

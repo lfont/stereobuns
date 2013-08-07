@@ -12,12 +12,7 @@ module.exports = function(grunt) {
       ],
       build: [
         './public-build/components',
-        './public-build/partials',
-        // should not be deployed for the moment
-        './public-build/js',
-        './public-build/img',
-        './public-build/css/site.css',
-        './public-build/build.txt'
+        './public-build/partials'
       ],
       'build-temp': [
         './public-build/temp'
