@@ -21,13 +21,19 @@ body, html {
   margin-bottom: 5em;
 }
 
+footer {
+  bottom: 0;
+  position: fixed;
+}
+
 /*
 @media (min-width: 1200px) {
-
 }
 
 @media (max-width: 1199px) {
+}
 
+@media (max-width: 767px) {
 }
 */
 
@@ -36,7 +42,7 @@ body, html {
     padding-top: 0;
   }
 
-  .side-menu {
+  .push-top {
     margin-top: .5em;
   }
 
@@ -55,24 +61,6 @@ body, html {
 
   .btn {
     padding: 4px 10px;
-  }
-}
-
-@media (max-width: 767px) {
-  .content {
-    padding-top: 0;
-  }
-
-  .side-menu {
-    margin-top: .5em;
-  }
-
-  .navbar-fixed-top {
-    margin-bottom: 0;
-  }
-
-  .navbar-fixed-bottom {
-    position: fixed;
   }
 }
 
@@ -96,6 +84,10 @@ textarea {
 
 
 /* common */
+
+.background {
+  background: url("/img/background.jpg") repeat scroll 0% 0% / cover transparent;
+}
 
 .navbar .brand {
   font-size: 26px;

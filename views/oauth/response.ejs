@@ -1,20 +1,17 @@
 <% layout('../layout') -%>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <span class="brand"><%= appName %></span>
-    </div>
-  </div>
-</div>
 <div class="container">
   <div class="content">
+    <div class="text-center">
+      <h1><%= appName %></h1>
+    </div>
+
     <div class="row-fluid">
       <div class="span8 offset2 push-top">
         <% if (success) { %>
           <div class="well well-large well-transparent">
             <i class="icon-info icon-4x icon-muted pull-left"></i>
-            You are now logged in <%= appName %>.<br />
+            You are now logged in.<br />
             This window will clause in a few second, enjoy!
           </div>
         <% } else { %>
@@ -33,5 +30,5 @@
   setTimeout(function () {
     window.opener.setAuthResult(<%= success %>);
     window.close();
-  }, 2000);
+  }, 1500);
 </script>

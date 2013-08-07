@@ -7,6 +7,7 @@ define(function () {
   'use strict';
 
   function RootCtrl ($scope, $window, $location) {
+
     function openAuthDialog (providerName) {
       var height = 620,
           width  = 450,
@@ -27,6 +28,8 @@ define(function () {
         });
       }
     };
+
+    $scope.contactAddress = 'contact@stereobuns.com';
 
     $scope.signIn = function (providerName) {
       openAuthDialog(providerName);
