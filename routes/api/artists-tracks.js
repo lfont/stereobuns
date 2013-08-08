@@ -6,9 +6,9 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 var ono = require('../../lib/ono');
 
 exports.show = function (req, res) {
-  ono.getAlbumInfo(
-    req.params.artistName,
-    req.params.albumName,
+  ono.getTrackInfo(
+    req.params.artist,
+    req.params.track,
     function (err, info) {
       if (err) {
         return res.send(400, { error: err });

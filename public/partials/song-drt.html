@@ -1,5 +1,5 @@
 <div class="song">
-  <a href="/artist/{{ song.artist }}/song/{{ song.track }}">
+  <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
     <artwork song="song" class="pull-left"></artwork>
   </a>
   <div class="song-body">
@@ -15,7 +15,7 @@
       {{ song.artist }}
     </h4>
     <p>
-      <a href="/artist/{{ song.artist }}/song/{{ song.track }}">
+      <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
         {{ song.track }}
         <span ng-show="song.album"> - {{ song.album }}</span>
       </a>

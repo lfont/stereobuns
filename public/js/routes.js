@@ -45,7 +45,7 @@ define([
           pageTitle: 'Settings',
           authenticated: true
         })
-        .when('/artist/:artistName/song/:songName', {
+        .when('/artist/:artist/track/:track', {
           templateUrl: 'partials/song-info.html',
           controller: 'SongInfoCtrl',
           pageTitle: 'About Song',

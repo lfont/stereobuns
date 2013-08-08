@@ -8,17 +8,9 @@ define(function () {
 
   function MusicInfoSrv ($http) {
 
-    this.getTrackInfo = function (artist, name) {
+    this.getTrackInfo = function (artist, track) {
       return $http
-        .get('/api/artists/' + artist + '/tracks/' + name)
-        .then(function (response) {
-          return response.data;
-        });
-    };
-
-    this.getAlbumInfo = function (artist, name) {
-      return $http
-        .get('/api/artists/' + artist + '/albums/' + name)
+        .get('/api/artists/' + artist + '/tracks/' + track)
         .then(function (response) {
           return response.data;
         });

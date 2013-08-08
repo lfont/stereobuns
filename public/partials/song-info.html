@@ -7,7 +7,9 @@
       {{ trackInfo.album.name }}
     </h4>
     <ul class="nav">
-      <li ng-repeat="track in albumInfo.tracks">{{ track.name }}</li>
+      <li ng-repeat="track in trackInfo.album.tracks">
+        <a href="/search?q={{ trackInfo.artist }}, {{ track.name }}">{{ track.name }}</a>
+      </li>
     </ul>
   </div>
 

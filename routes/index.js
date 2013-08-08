@@ -13,8 +13,7 @@ var config             = require('../lib/configuration'),
     lovedSongsApi      = require('./api/loved-songs'),
     queuedSongsApi     = require('./api/queued-songs'),
     mostPlayedSongsApi = require('./api/most-played-songs'),
-    artistTracksApi    = require('./api/artist-tracks'),
-    artistAlbumsApi    = require('./api/artist-albums');
+    artistsTracksApi   = require('./api/artists-tracks');
 
 function ensureAuthenticated (req, res, next) {
   if (req.isAuthenticated()) {
@@ -68,7 +67,7 @@ exports.register = function (app) {
   app.get('/search', ensureAuthenticated, ensureInvited, site.index);
   app.get('/songs/:id', ensureAuthenticated, ensureInvited, site.index);
   app.get('/playlist/:name', ensureAuthenticated, ensureInvited, site.index);
-  app.get('/artist/:artistName/song/:songName', ensureAuthenticated, ensureInvited, site.index);
+  app.get('/artist/:artist/track/:track', ensureAuthenticated, ensureInvited, site.index);
 
   /* api */
   app.get('/api/users/me', ensureAuthenticated, usersApi.show);
@@ -95,6 +94,5 @@ exports.register = function (app) {
   app.get('/api/users/me/songs/mostplayed', ensureAuthenticated, ensureInvited, mostPlayedSongsApi.index);
   app.post('/api/users/me/songs/mostplayed', ensureAuthenticated, ensureInvited, mostPlayedSongsApi.create);
 
-  app.get('/api/artists/:artistName/tracks/:trackName', ensureAuthenticated, ensureInvited, artistTracksApi.show);
-  app.get('/api/artists/:artistName/albums/:albumName', ensureAuthenticated, ensureInvited, artistAlbumsApi.show);
+  app.get('/api/artists/:artist/tracks/:track', ensureAuthenticated, ensureInvited, artistsTracksApi.show);
 };
