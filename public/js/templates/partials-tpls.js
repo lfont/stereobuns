@@ -18,7 +18,8 @@ define([
   'text!partials/no-loved-songs.html',
   'text!partials/no-mostplayed-songs.html',
   'text!partials/no-playlist-songs.html',
-  'text!partials/settings.html'
+  'text!partials/settings.html',
+  'text!partials/song-info.html'
 ], function (angular,
              rootTemplate,
              searchTemplate, searchBarTemplate,
@@ -28,7 +29,8 @@ define([
              userMenuTemplate,
              noLovedSongsTemplate, noMostPlayedSongsTemplate,
              noPlaylistSongsTemplate,
-             settingsTemplate) {
+             settingsTemplate,
+             songInfoTemplate) {
   'use strict';
 
   var partialsTemplateModule = angular.module('soundrocket.templates.partials', []);
@@ -55,6 +57,8 @@ define([
     $templateCache.put('partials/no-loved-songs.html', noLovedSongsTemplate);
     $templateCache.put('partials/no-mostplayed-songs.html', noMostPlayedSongsTemplate);
     $templateCache.put('partials/no-playlist-songs.html', noPlaylistSongsTemplate);
+
+    $templateCache.put('partials/song-info.html', songInfoTemplate);
   }]);
 
   return partialsTemplateModule;

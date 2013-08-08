@@ -45,6 +45,12 @@ define([
           pageTitle: 'Settings',
           authenticated: true
         })
+        .when('/artist/:artistName/song/:songName', {
+          templateUrl: 'partials/song-info.html',
+          controller: 'SongInfoCtrl',
+          pageTitle: 'About Song',
+          authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
     }
   ]);

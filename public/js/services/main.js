@@ -10,12 +10,14 @@ define([
   './sound-srv',
   './sound-manager-srv',
   './audio-player-srv',
-  './song-utils-srv'
+  './song-utils-srv',
+  './music-info-srv'
 ], function (angular,
              ArtworkSrv,
              SoundSearchSrv,
              SoundSrv, SoundManagerSrv, AudioPlayerSrv,
-             SongUtilsSrv) {
+             SongUtilsSrv,
+             MusicInfoSrv) {
   'use strict';
 
   return angular.module('soundrocket.services', [])
@@ -24,5 +26,6 @@ define([
                 .service('soundSrv', SoundSrv)
                 .service('soundManagerSrv', SoundManagerSrv)
                 .service('audioPlayerSrv', AudioPlayerSrv)
-                .service('songUtilsSrv', SongUtilsSrv);
+                .service('songUtilsSrv', SongUtilsSrv)
+                .service('musicInfoSrv', MusicInfoSrv);
 });

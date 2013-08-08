@@ -1,30 +1,34 @@
 <div class="song">
+  <a href="/artist/{{ song.artist }}/song/{{ song.track }}">
     <artwork song="song" class="pull-left"></artwork>
-    <div class="song-body">
-        <h4 class="song-heading">
-            <button class="btn" title="Play"
-                    ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
-                <i class="icon-play"></i>
-            </button>
-            <button class="btn" title="Pause"
-                    ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
-                <i class="icon-pause"></i>
-            </button>
-            {{ song.artist }}
-        </h4>
-        <p>
-            {{ song.track }}
-            <span ng-show="song.album"> - {{ song.album }}</span>
-        </p>
-        <div>
-            <p class="pull-left">
-                <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
-                   ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
-                <span ng-hide="song.linkUrl">{{ song.source }}</span>
-                <span ng-show="song.duration"> - {{ song.duration | time }}</span>
-            </p>
-            <songs-actions class="pull-right" songs="song" options="options"
-                           on-remove="remove(songs)"></songs-actions>
-        </div>
+  </a>
+  <div class="song-body">
+    <h4 class="song-heading">
+      <button class="btn" title="Play"
+              ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
+        <i class="icon-play"></i>
+      </button>
+      <button class="btn" title="Pause"
+              ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
+        <i class="icon-pause"></i>
+      </button>
+      {{ song.artist }}
+    </h4>
+    <p>
+      <a href="/artist/{{ song.artist }}/song/{{ song.track }}">
+        {{ song.track }}
+        <span ng-show="song.album"> - {{ song.album }}</span>
+      </a>
+    </p>
+    <div>
+      <p class="pull-left">
+        <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+           ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
+        <span ng-hide="song.linkUrl">{{ song.source }}</span>
+        <span ng-show="song.duration"> - {{ song.duration | time }}</span>
+      </p>
+      <songs-actions class="pull-right" songs="song" options="options"
+                     on-remove="remove(songs)"></songs-actions>
     </div>
+  </div>
 </div>

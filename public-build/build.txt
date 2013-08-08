@@ -210,6 +210,7 @@ components/soundmanager/script/soundmanager2.js
 js/services/sound-manager-srv.js
 js/services/audio-player-srv.js
 js/services/song-utils-srv.js
+js/services/music-info-srv.js
 js/services/main.js
 js/models/songs-group-mdl.js
 js/models/songs-groups-mdl.js
@@ -243,6 +244,7 @@ js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
 js/controllers/settings-ctrl.js
 js/controllers/keyboard-shortcuts-ctrl.js
+js/controllers/song-info-ctrl.js
 js/controllers/main.js
 js/directives/artwork-drt.js
 js/directives/no-scroll-propagation-drt.js
@@ -264,6 +266,7 @@ text!partials/no-loved-songs.html
 text!partials/no-mostplayed-songs.html
 text!partials/no-playlist-songs.html
 text!partials/settings.html
+text!partials/song-info.html
 js/templates/partials-tpls.js
 text!partials/song-drt.html
 text!partials/songs-actions-drt.html
