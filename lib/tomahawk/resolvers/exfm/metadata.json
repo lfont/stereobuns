@@ -1,0 +1,12 @@
+{
+  "name": "exfm",
+  "author": "Nicolas and Uwe",
+  "email": "uwelk@xhochy.com",
+  "version": "0.3.1",
+  "website": "http://gettomahawk.com",
+  "description": "Resolves tracks via the ex.fm API",
+  "manifest": {
+    "main": "resolver.js",
+    "icon": "icon.png"
+  }
+}

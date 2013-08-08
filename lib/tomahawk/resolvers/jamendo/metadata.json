@@ -1,0 +1,12 @@
+{
+  "name": "Jamendo",
+  "author": "lasconic",
+  "email": "lasconic@gmail.com",
+  "version": "0.1.5",
+  "website": "http://gettomahawk.com",
+  "description": "Searches Jamendo's free music database",
+  "manifest": {
+    "main": "resolver.js",
+    "icon": "icon.png"
+  }
+}
