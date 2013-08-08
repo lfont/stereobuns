@@ -10,6 +10,13 @@
   position: relative;
 }
 
+@media (max-width: 767px) {
+  .root .introduction {
+    font-size: 20px;
+    margin-bottom: 100px;
+  }
+}
+
 .root .introduction p {
   margin: -52px 0 0 0;
   position: relative;
