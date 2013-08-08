@@ -17,8 +17,11 @@ define(function () {
       .getTrackInfo($routeParams.artistName, $routeParams.songName)
       .then(function (trackInfo) {
         $scope.trackInfo = trackInfo;
-        $scope.albumInfo = musicInfoSrv.getAlbumInfo(trackInfo.artist,
-                                                     trackInfo.album.name);
+
+        if (trackInfo.album) {
+          $scope.albumInfo = musicInfoSrv.getAlbumInfo(trackInfo.artist,
+                                                       trackInfo.album.name);
+        }
       });
   }
 
