@@ -56,6 +56,8 @@ function ensureInvited (req, res, next) {
 }
 
 exports.register = function (app) {
+  var tracksSearchApi = require('./api/tracks-search')(app);
+
   /* views */
   if (!config.isAccessible) {
     app.get('/', comingSoon.index);
@@ -95,4 +97,5 @@ exports.register = function (app) {
   app.post('/api/users/me/songs/mostplayed', ensureAuthenticated, ensureInvited, mostPlayedSongsApi.create);
 
   app.get('/api/artists/:artist/tracks/:track', ensureAuthenticated, ensureInvited, artistsTracksApi.show);
+  app.get('/api/tracks/search/:query', ensureAuthenticated, ensureInvited, tracksSearchApi.index);
 };
