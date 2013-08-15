@@ -203,7 +203,7 @@ components/angular/angular-cookies.js
 js/components/song/song-drt-ctrl.js
 js/components/song/song-drt.js
 js/services/artwork-srv.js
-js/services/sound-search-srv.js
+js/services/tracks-search-srv.js
 js/lib/observable.js
 js/services/sound-srv.js
 components/soundmanager/script/soundmanager2.js

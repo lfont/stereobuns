@@ -17,7 +17,6 @@ require.config({
     'angular-ui-bootstrap-dropdownToggle': '../components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle',
     'angular-ui-bootstrap-alert': '../components/angular-ui-bootstrap/src/alert/alert',
     'soundmanager2': '../components/soundmanager/script/soundmanager2',
-    'socket.io': '/socket.io/socket.io.js',
     'observable': 'lib/observable'
   },
   shim: {
@@ -45,9 +44,6 @@ require.config({
     },
     soundmanager2: {
       exports: 'soundManager'
-    },
-    'socket.io': {
-      exports: 'io'
     }
   },
   packages: [

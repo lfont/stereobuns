@@ -24,7 +24,9 @@
                 <div class="span6 hidden-phone">
                     <div class="row-fluid">
                         <div class="span2">
-                            <artwork song="song" class="pull-right"></artwork>
+                            <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+                                <artwork song="song" class="pull-right"></artwork>
+                            </a>
                         </div>
 
                         <div class="span10 song-info">
@@ -57,7 +59,9 @@
                                     </span>
                                 </div>
                                 <div class="span11">
-                                    {{ song.track }}<span ng-show="song.album"> - {{ song.album }}</span>
+                                    <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+                                        {{ song.track }}
+                                    </a>
                                 </div>
                             </div>
 
