@@ -10,15 +10,15 @@ define(function () {
     var songFilter = $filter('song'),
         allTracks  = [];
 
-    function search (query) {
+    function search (description) {
       allTracks.length = 0;
       $scope.songs.length = 0;
       $scope.searchFilter = null;
       $scope.isSearching = true;
       $scope.hasResult = false;
-      $scope.searchQuery = query;
+      $scope.searchQuery = description;
       tracksSearchSrv
-        .search(query)
+        .find(description)
         .then(function (tracks) {
           allTracks = tracks;
           $scope.hasResult = allTracks.length > 0;
