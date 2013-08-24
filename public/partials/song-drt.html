@@ -1,5 +1,5 @@
 <div class="song">
-  <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+  <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
     <artwork song="song" class="pull-left"></artwork>
   </a>
   <div class="song-body">
@@ -15,7 +15,7 @@
       {{ song.artist }}
     </h4>
     <p>
-      <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+      <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
         {{ song.track }}
       </a>
     </p>

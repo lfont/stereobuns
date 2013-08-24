@@ -18,6 +18,7 @@ exports.User = mongoose.model('User', userSchema);
 
 var songSchema = new Schema({
   userId: { type: Schema.ObjectId, required: true, select: false },
+  trackId: String,
   url: { type: String, required: true },
   artist: String,
   album: String,

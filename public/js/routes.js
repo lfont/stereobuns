@@ -45,10 +45,10 @@ define([
           pageTitle: 'Settings',
           authenticated: true
         })
-        .when('/artist/:artist/track/:track', {
-          templateUrl: 'partials/song-info.html',
-          controller: 'SongInfoCtrl',
-          pageTitle: 'About Song',
+        .when('/track/:artist/:track', {
+          templateUrl: 'partials/track.html',
+          controller: 'TrackCtrl',
+          pageTitle: 'About Track',
           authenticated: true
         })
         .otherwise({ redirectTo: '/' });

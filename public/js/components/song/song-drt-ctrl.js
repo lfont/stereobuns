@@ -25,7 +25,11 @@ define([
              song.url === $scope.song.url;
     }
 
-    $scope.isPlaying = isPlayerSong() && audioPlayerSrv.getStatus().isPlaying;
+    $scope.isPlaying = false;
+
+    $scope.$watch('song', function (newSong, oldSong) {
+      $scope.isPlaying = isPlayerSong() && audioPlayerSrv.getStatus().isPlaying;
+    });
 
     $scope.$on('audioPlayer:play', function (event, loaded) {
       $scope.isPlaying = isPlayerSong();

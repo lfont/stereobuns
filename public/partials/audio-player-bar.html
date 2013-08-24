@@ -24,7 +24,7 @@
                 <div class="span6 hidden-phone">
                     <div class="row-fluid">
                         <div class="span2">
-                            <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+                            <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
                                 <artwork song="song" class="pull-right"></artwork>
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                                     </span>
                                 </div>
                                 <div class="span11">
-                                    <a href="/artist/{{ song.artist }}/track/{{ song.track }}">
+                                    <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
                                         {{ song.track }}
                                     </a>
                                 </div>
