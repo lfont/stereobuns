@@ -54,9 +54,10 @@ define([
     });
 
     soundSrv.on('finish', function () {
+      var latestUrl = _this.getCurrentUrl();
       isPlaying = false;
       currentSoundId = null;
-      _this.trigger('finish');
+      _this.trigger('finish', latestUrl);
     });
 
     [ 'halfPlay', 'loading', 'playing' ].forEach(function (topic) {

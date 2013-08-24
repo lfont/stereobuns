@@ -13,13 +13,17 @@ define(function () {
         repeat           = false,
         queuedSongs;
 
-    function indexOfCurrentSong () {
-      var url   = soundManagerSrv.getCurrentUrl(),
-          index = -1;
+    function indexOfSong (url) {
+      var index = -1;
       if (url) {
         index = songUtilsSrv.indexOf(queuedSongs, url);
       }
       return index;
+    }
+
+    function indexOfCurrentSong () {
+      var url = soundManagerSrv.getCurrentUrl();
+      return indexOfSong(url);
     }
 
     function play (song) {
@@ -81,8 +85,8 @@ define(function () {
       mostPlayedSongsGroup.add(song);
     });
 
-    soundManagerSrv.on('finish', function () {
-      if (!_this.next()) {
+    soundManagerSrv.on('finish', function (latestUrl) {
+      if (!_this.next(latestUrl)) {
         if (repeat) {
           _this.play();
         } else {
@@ -212,12 +216,16 @@ define(function () {
       return false;
     };
 
-    this.next = function () {
-      var songIndex = indexOfCurrentSong();
+    this.next = function (previousUrl) {
+      var songIndex = previousUrl ?
+        indexOfSong(previousUrl) :
+        indexOfCurrentSong();
+
       if (++songIndex < queuedSongs.length) {
         play(queuedSongs[songIndex]);
         return true;
       }
+
       return false;
     };
 

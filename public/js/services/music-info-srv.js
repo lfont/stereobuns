@@ -10,7 +10,7 @@ define(function () {
 
     this.getAlbum = function (artist, track) {
       return $http
-        .get('/api/artists/' + artist + '/tracks/' + track + '/album')
+        .get('/api/artists/' + artist + '/tracks/' + track + '/album', { cache: true })
         .then(function (response) {
           return response.data;
         });
