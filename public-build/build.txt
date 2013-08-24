@@ -244,7 +244,7 @@ js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
 js/controllers/settings-ctrl.js
 js/controllers/keyboard-shortcuts-ctrl.js
-js/controllers/song-info-ctrl.js
+js/controllers/track-ctrl.js
 js/controllers/main.js
 js/directives/artwork-drt.js
 js/directives/no-scroll-propagation-drt.js
@@ -266,7 +266,7 @@ text!partials/no-loved-songs.html
 text!partials/no-mostplayed-songs.html
 text!partials/no-playlist-songs.html
 text!partials/settings.html
-text!partials/song-info.html
+text!partials/track.html
 js/templates/partials-tpls.js
 text!partials/song-drt.html
 text!partials/songs-actions-drt.html
