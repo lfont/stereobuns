@@ -217,6 +217,7 @@ js/models/songs-groups-mdl.js
 js/models/playlist-mdl.js
 js/models/playlists-mdl.js
 js/models/user-mdl.js
+js/models/comments-mdl.js
 js/models/main.js
 js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
