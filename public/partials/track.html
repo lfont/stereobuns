@@ -1,21 +1,55 @@
 <div class="song-info push-bottom row-fluid">
-  <div class="span3" ng-if="album">
-    <img class="push-top"
-         ng-src="{{ album.artworkUrl }}"
-         alt="{{ album.name }}">
-    <h4>
-      {{ album.name }}
-    </h4>
-    <ul class="nav">
-      <li ng-repeat="track in album.tracks">
-        <a href="/search?q={{ song.artist }} {{ track.name }}">{{ track.name }}</a>
-      </li>
-    </ul>
-  </div>
-
-  <div ng-class="{ span6: album, span9: !album }">
+  <div class="span9">
     <div class="push-top">
       <song song="song"></song>
+      <form name="commentForm"
+            ng-submit="addComment()"
+            novalidate>
+        <input type="text" name="commentInput" class="input-block-level"
+               placeholder="Write a comment..."
+               maxlength="140"
+               ng-model="newComment"
+               required
+               ng-minlength="1"
+               ng-maxlength="140">
+      </form>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span3" ng-if="album">
+        Featured on album
+        <img ng-src="{{ album.artworkUrl }}"
+             alt="{{ album.name }}">
+        <h4>{{ album.name }}</h4>
+        <ul class="nav">
+          <li ng-repeat="track in album.tracks">
+            <a href="/search?q={{ song.artist }} {{ track.name }}">{{ track.name }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div ng-class="{ span9: album, span12: !album }">
+        <span ng-show="comments.length">{{ comments.length }}</span>
+        <ng-pluralize count="comments.length"
+            when="{ '0': 'no comment',
+                    '1': 'comment',
+                    'other': 'comments' }">
+        </ng-pluralize>
+        <ul class="media-list">
+          <li class="media" ng-repeat="comment in comments">
+            <img class="media-object pull-left" alt="{{ comment._creator.name }}"
+                 width="64px" height="64px"
+                 ng-src="{{ comment._creator.picture }}">
+            <div class="media-body">
+              <h6 class="media-heading">
+                {{ comment._creator.name }}
+                <small>on {{ comment.createdAt | date: 'medium' }}</small>
+              </h6>
+              {{ comment.body }}
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   

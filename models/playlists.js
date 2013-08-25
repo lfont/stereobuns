@@ -47,6 +47,7 @@ exports.findByName = function (userId, playlistName, callback) {
     { $match: { 'playlists': playlistName, 'url': { $ne: 'empty:' } } },
     { $group: { _id: playlistName, songs: { $push: {
       _id: '$_id',
+      trackId: '$trackId',
       artist: '$artist',
       album: '$album',
       track: '$track',

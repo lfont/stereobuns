@@ -41,3 +41,13 @@ var invitationSchema = new Schema({
 });
 
 exports.Invitation = mongoose.model('Invitation', invitationSchema);
+
+var trackCommentSchema = new Schema({
+  _creator: { type: Schema.ObjectId, ref: 'User', required: true },
+  artist: String,
+  track: String,
+  body: String, // TODO: add length validation (140)
+  createdAt: { type: Date, default: Date.now }
+});
+
+exports.TrackComment = mongoose.model('TrackComment', trackCommentSchema);
