@@ -17,12 +17,12 @@ var userSchema = new mongoose.Schema({
 exports.User = mongoose.model('User', userSchema);
 
 var songSchema = new Schema({
-  userId: { type: Schema.ObjectId, required: true, select: false },
-  trackId: String,
+  _creator: { type: Schema.ObjectId, ref: 'User', required: true },
   url: { type: String, required: true },
   artist: String,
   album: String,
   track: String,
+  trackId: { type: String, required: true },
   source: String,
   linkUrl: String,
   artworkUrl: String,

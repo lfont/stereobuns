@@ -7,7 +7,7 @@ var Song = require('./models').Song;
 
 exports.cleanForUserId = function (userId, callback) {
   Song.remove({
-    userId: userId,
+    _creator: userId,
     playlists: { $size: 0 },
     queueIndex: { $exists: false },
     $or: [ { loved: false }, { loved: { $exists: false } } ]

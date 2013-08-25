@@ -8,23 +8,24 @@ var _           = require('underscore'),
     orphanSongs = require('./orphan-songs');
 
 exports.findByUserId = function (userId, callback) {
-  Song.find({ userId: userId, queueIndex: { $exists: true } },
-            null,
-            { sort: { queueIndex: 1, queueTimestamp: 1 } },
-            function (err, songs) {
-              if (err) {
-                // TODO: handle error
-                console.log(err);
-              }
-              callback(err, { id: 'queued', songs: songs });
-            });
+  Song.find(
+    { _creator: userId, queueIndex: { $exists: true } },
+    null,
+    { sort: { queueIndex: 1, queueTimestamp: 1 } },
+    function (err, songs) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+      }
+      callback(err, { id: 'queued', songs: songs });
+    });
 };
 
 exports.add = function (userId, songData, callback) {
   function update (index) {
     _.extend(songData, { queueIndex: index, queueTimestamp: Date.now() });
     Song.update(
-      { userId: userId, url: songData.url },
+      { _creator: userId, url: songData.url },
       songData,
       { upsert: true },
       function (err, numberAffected, raw) {
@@ -37,7 +38,7 @@ exports.add = function (userId, songData, callback) {
   }
 
   Song.find(
-    { userId: userId, queueIndex: { $exists: true } },
+    { _creator: userId, queueIndex: { $exists: true } },
     '+queueIndex',
     { sort: { queueIndex: -1 }, limit: 1 },
     function (err, songs) {
@@ -53,7 +54,7 @@ exports.add = function (userId, songData, callback) {
 
 exports.remove = function (userId, url, callback) {
   Song.update(
-    { userId: userId, url: url },
+    { _creator: userId, url: url },
     { $unset: { queueIndex: '', queueTimestamp: '' } },
     function (err, numberAffected, raw) {
       if (err) {

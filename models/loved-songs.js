@@ -8,7 +8,7 @@ var _           = require('underscore'),
     orphanSongs = require('./orphan-songs');
 
 exports.findByUserId = function (userId, callback) {
-  Song.find({ userId: userId, loved: true }, function (err, songs) {
+  Song.find({ _creator: userId, loved: true }, function (err, songs) {
     if (err) {
       // TODO: handle error
       console.log(err);
@@ -20,7 +20,7 @@ exports.findByUserId = function (userId, callback) {
 exports.add = function (userId, songData, callback) {
   _.extend(songData, { loved: true });
   Song.update(
-    { userId: userId, url: songData.url },
+    { _creator: userId, url: songData.url },
     songData,
     { upsert: true },
     function (err, numberAffected, raw) {
@@ -34,7 +34,7 @@ exports.add = function (userId, songData, callback) {
 
 exports.remove = function (userId, url, callback) {
   Song.update(
-    { userId: userId, url: url },
+    { _creator: userId, url: url },
     { loved: false },
     function (err, numberAffected, raw) {
       if (err) {

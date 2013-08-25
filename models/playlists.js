@@ -10,9 +10,9 @@ var _           = require('underscore'),
 
 exports.create = function (userId, playlistName, callback) {
   Song.update(
-    { userId: userId, url: 'empty:' },
+    { _creator: userId, url: 'empty:' },
     {
-      userId: userId,
+      _creator: userId,
       url: 'empty:',
       $addToSet: { playlists: playlistName }
     },
@@ -28,7 +28,7 @@ exports.create = function (userId, playlistName, callback) {
 
 exports.delete = function (userId, playlistName, callback) {
   Song.update(
-    { userId: userId },
+    { _creator: userId },
     { $pull: { playlists: playlistName } },
     { multi: true },
     function (err, numberAffected, raw) {
@@ -42,7 +42,7 @@ exports.delete = function (userId, playlistName, callback) {
 
 exports.findByName = function (userId, playlistName, callback) {
   Song.aggregate([
-    { $match: { userId: Types.ObjectId(userId) } },
+    { $match: { _creator: Types.ObjectId(userId) } },
     { $unwind: '$playlists' },
     { $match: { 'playlists': playlistName, 'url': { $ne: 'empty:' } } },
     { $group: { _id: playlistName, songs: { $push: {
@@ -73,7 +73,7 @@ exports.findByName = function (userId, playlistName, callback) {
 
 exports.countSongsByPlaylists = function (userId, callback) {
   Song.aggregate([
-    { $match: { userId: Types.ObjectId(userId) } },
+    { $match: { _creator: Types.ObjectId(userId) } },
     { $unwind: '$playlists' },
     { $group: { _id: '$playlists', length: { $sum: 1 } } },
     { $project: { _id: 0, name: '$_id', length: { $add: [ '$length', -1 ] } } },
@@ -89,7 +89,7 @@ exports.countSongsByPlaylists = function (userId, callback) {
 
 exports.addSong = function (userId, playlistName, songData, callback) {
   Song.count(
-    { userId: userId, url: songData.url, playlists: playlistName },
+    { _creator: userId, url: songData.url, playlists: playlistName },
     function (err, count) {
       if (err) {
         // TODO: handle error
@@ -98,7 +98,7 @@ exports.addSong = function (userId, playlistName, songData, callback) {
       if (!count) {
         _.extend(songData, { $addToSet: { playlists: playlistName } });
         Song.update(
-          { userId: userId, url: songData.url },
+          { _creator: userId, url: songData.url },
           songData,
           { upsert: true },
           function (err, numberAffected, raw) {
@@ -116,7 +116,7 @@ exports.addSong = function (userId, playlistName, songData, callback) {
 
 exports.removeSong = function (userId, playlistName, songId, callback) {
   Song.update(
-    { userId: userId, _id: songId },
+    { _creator: userId, _id: songId },
     { $pull: { playlists: playlistName } },
     function (err, numberAffected, raw) {
       if (err) {

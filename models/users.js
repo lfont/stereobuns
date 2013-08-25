@@ -28,7 +28,7 @@ exports.delete = function (userId, callback) {
     }
 
     Song.remove({
-      userId: userId
+      _creator: userId
     }, function (err, numberAffected, raw) {
       if (err) {
         // TODO: handle error
