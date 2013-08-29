@@ -7774,3 +7774,11 @@ textarea {
 .well.well-transparent {
   background-color: transparent;
 }
+.animate-show.ng-hide-add, 
+.animate-show.ng-hide-remove {
+  -webkit-transition: all linear .3s;
+  -moz-transition:    all linear .3s;
+  -o-transition:      all linear .3s;
+  transition:         all linear .3s;
+  display: block!important;
+}

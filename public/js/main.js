@@ -9,7 +9,9 @@ require.config({
     'text': '../components/requirejs-text/text',
     'jquery': '../components/jquery/jquery',
     'angular': '../components/angular/angular',
-    'angular-cookies': '../components/angular/angular-cookies',
+    'angular-route': '../components/angular-route/angular-route',
+    'angular-cookies': '../components/angular-cookies/angular-cookies',
+    'angular-animate': '../components/angular-animate/angular-animate',
     'angular-ui-bootstrap-template': '../components/angular-ui-bootstrap/template',
     'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
     'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
@@ -24,7 +26,13 @@ require.config({
       deps: [ 'jquery' ], // replace jqLite by jquery
       exports: 'angular'
     },
+    'angular-route': {
+      deps: [ 'angular' ]
+    },
     'angular-cookies': {
+      deps: [ 'angular' ]
+    },
+    'angular-animate': {
       deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-dropdownToggle': {
@@ -66,13 +74,13 @@ require([
   'app',
   'templates',
   'routes'
-], function (angular, app, templates) {
+], function (angular, app, templates, routes) {
   'use strict';
 
   var doc = angular.element(document);
   doc.ready(function () {
     var html = doc.find('html');
-    angular.bootstrap(html, [ app.name, templates.name ]);
+    angular.bootstrap(html, [ app.name, templates.name, routes.name ]);
     // Because of RequireJS we need to bootstrap the app app manually
     // and Angular Scenario runner won't be able to communicate with our app
     // unless we explicitely mark the container as app holder

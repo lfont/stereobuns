@@ -151,50 +151,6 @@
         width: 50%;
     }
 }
-.audio-player-queue {
-    background-color: white;
-    border: 1px solid #999;
-    border-bottom: 0;
-    border-radius: 7px 7px 0 0;
-    box-shadow: 0 0 7px #999;
-    bottom: -400px;
-    left: 10%;
-    height: 400px;
-    position: fixed;
-    width: 80%;
-}
-.audio-player-queue.visible {
-  bottom: 66px;
-}
-.audio-player-queue .modal-header {
-    background-color: #1b1b1b;
-    -webkit-border-radius: 6px 6px 0 0;
-    -moz-border-radius:    6px 6px 0 0;
-    border-radius:         6px 6px 0 0;
-    color: #999999;
-}
-.audio-player-queue .modal-body {
-    max-height: 311px;
-    min-height: 311px;
-}
-.audio-player-queue.show-animation,
-.audio-player-queue.hide-animation {
-    -webkit-transition: all linear 0.3s;
-    -moz-transition:    all linear 0.3s;
-    transition:         all linear 0.3s;
-}
-.audio-player-queue.show-animation {
-    bottom: -400px;
-}
-.audio-player-queue.show-animation-active {
-    bottom: 66px;
-}
-.audio-player-queue.hide-animation {
-    bottom: 66px;
-}
-.audio-player-queue.hide-animation-active {
-    bottom: -400px;
-}
 .keyboard-shortcuts dt {
   float: left;
   margin-right: 1em;
@@ -296,6 +252,37 @@
   list-style: none;
 }
 
+.audio-player-queue {
+    background-color: white;
+    border: 1px solid #999;
+    border-bottom: 0;
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 0 7px #999;
+    left: 10%;
+    height: 400px;
+    position: fixed;
+    width: 80%;
+}
+.audio-player-queue .modal-header {
+    background-color: #1b1b1b;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius:    6px 6px 0 0;
+    border-radius:         6px 6px 0 0;
+    color: #999999;
+}
+.audio-player-queue .modal-body {
+    max-height: 311px;
+    min-height: 311px;
+}
+.audio-player-queue.animate-show.ng-hide-add.ng-hide-add-active,
+.audio-player-queue.animate-show.ng-hide-remove {
+  bottom: -400px;
+}
+.audio-player-queue,
+.audio-player-queue.animate-show.ng-hide-add,
+.audio-player-queue.animate-show.ng-hide-remove.ng-hide-remove-active {
+  bottom: 66px;
+}
 .playlist-header h1 {
   display: inline-block;
   margin-right: .5em;

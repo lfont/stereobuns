@@ -4,11 +4,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-  'app'
-], function (app) {
+  'angular',
+  'angular-route'
+], function (angular) {
   'use strict';
 
-  app.config([
+  var routes = angular.module('soundrocket.routes', [
+    'ngRoute'
+  ]);
+
+  routes.config([
     '$locationProvider',
     '$routeProvider',
     function ($locationProvider, $routeProvider) {
@@ -55,7 +60,7 @@ define([
     }
   ]);
 
-  app.run([
+  routes.run([
     '$rootScope',
     '$window',
     '$location',
@@ -106,4 +111,6 @@ define([
       });
     }
   ]);
+  
+  return routes;
 });
