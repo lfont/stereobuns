@@ -8,8 +8,8 @@ var TrackComment = require('./models').TrackComment;
 exports.add = function (userId, artist, track, body, callback) {
   TrackComment.create({
       _creator: userId,
-      artist: artist,
-      track: track,
+      artist: artist.toLowerCase(),
+      track: track.toLowerCase(),
       body: body
     }, function (err, newComment) {
       if (err) {
@@ -22,7 +22,10 @@ exports.add = function (userId, artist, track, body, callback) {
 
 exports.find = function (artist, track, callback) {
   TrackComment
-    .find({ artist: artist, track: track })
+    .find({
+      artist: artist.toLowerCase(),
+      track: track.toLowerCase()
+    })
     .sort('-createdAt')
     .select('-artist -track')
     .populate('_creator', 'name picture')
