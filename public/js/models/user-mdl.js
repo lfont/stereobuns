@@ -10,6 +10,12 @@ define([
 
   function UserMdl ($rootScope, $http, $cookies, $q) {
 
+    function parseCookie (name)  {
+      var cookie = $cookies[name],
+          json   = cookie.replace('j:', '');
+      return JSON.parse(json);
+    }
+
     this.get = function () {
       return $http
         .get('/api/users/me')
@@ -21,6 +27,15 @@ define([
     this.isLoggedIn = function () {
       var userCookie = $cookies.user;
       return angular.isDefined(userCookie) && userCookie !== null;
+    };
+    
+    this.getName = function () {
+      var userCookie;
+      if (this.isLoggedIn()) {
+        userCookie = parseCookie('user');
+        return userCookie.name;
+      }
+      return null;
     };
 
     this.hasInvitation = function () {

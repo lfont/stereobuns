@@ -59,6 +59,8 @@ require.config({
     'components/songs-actions',
     'components/song-progress',
     'components/playlist-chooser',
+    'components/user-profile',
+    'components/user-profile-menu',
     'controllers',
     'services',
     'filters',

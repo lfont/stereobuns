@@ -17,7 +17,9 @@ exports.create = function (req, res) {
       return;
     }
 
-    res.cookie('invitation', req.body.code, { maxAge: 60 * 3600 * 24, signed: true });
+    res.cookie('invitation',
+               { code: req.body.code },
+               { maxAge: 60 * 3600 * 24 });
     res.send({ success: true });
   });
 };

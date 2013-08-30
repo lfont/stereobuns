@@ -26,34 +26,34 @@ define([
           pageTitle: 'Welcome',
           authenticated: false
         })
-        .when('/search', {
-          templateUrl: 'partials/search.html',
-          controller: 'SearchCtrl',
-          pageTitle: 'Search',
-          authenticated: true
-        })
-        .when('/songs/:id', {
-          templateUrl: 'partials/songs-group.html',
-          controller: 'SongsGroupCtrl',
-          pageTitle: 'Songs',
-          authenticated: true
-        })
-        .when('/playlist/:name', {
-          templateUrl: 'partials/playlist.html',
-          controller: 'PlaylistCtrl',
-          pageTitle: 'Playlist',
-          authenticated: true
-        })
         .when('/settings/:id', {
           templateUrl: 'partials/settings.html',
           controller: 'SettingsCtrl',
           pageTitle: 'Settings',
           authenticated: true
         })
+        .when('/search', {
+          templateUrl: 'partials/search.html',
+          controller: 'SearchCtrl',
+          pageTitle: 'Search',
+          authenticated: true
+        })
         .when('/track/:artist/:track', {
           templateUrl: 'partials/track.html',
           controller: 'TrackCtrl',
           pageTitle: 'About Track',
+          authenticated: true
+        })
+        .when('/:user/tracks/:group', {
+          templateUrl: 'partials/songs-group.html',
+          controller: 'SongsGroupCtrl',
+          pageTitle: 'Songs',
+          authenticated: true
+        })
+        .when('/:user/playlist/:name', {
+          templateUrl: 'partials/playlist.html',
+          controller: 'PlaylistCtrl',
+          pageTitle: 'Playlist',
           authenticated: true
         })
         .otherwise({ redirectTo: '/' });
@@ -90,7 +90,7 @@ define([
           }
 
           if (next.$$route.controller === 'RootCtrl') {
-            return $location.path('/songs/loved');
+            return $location.path('/' + userMdl.getName() + '/tracks/loved');
           }
         }
 

@@ -14,7 +14,7 @@ define([
     };
 
     function filterPlaylistsForLocation (playlists) {
-      var playlistNamePattern = /^\/playlist\/(.*)/,
+      var playlistNamePattern = /^\/.+\/playlist\/(.*)/i,
           filteredPlaylists = [],
           i, len, playlist, matchs;
 

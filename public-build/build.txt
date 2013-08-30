@@ -182,6 +182,10 @@ css/partials.css
 ----------------
 css/partials.css
 
+css/playlist.css
+----------------
+css/playlist.css
+
 css/root.css
 ----------------
 css/root.css
@@ -199,7 +203,13 @@ css/settings.css
 css/root.css
 css/audio-player-queue.css
 css/track.css
+css/songs-group.css
+css/playlist.css
 css/site.css
+
+css/songs-group.css
+----------------
+css/songs-group.css
 
 css/track.css
 ----------------
@@ -242,6 +252,12 @@ js/filters/time-flt.js
 js/filters/song-flt.js
 js/filters/main.js
 js/components/song-progress/main.js
+js/components/user-profile/user-profile-drt-ctrl.js
+js/components/user-profile/user-profile-drt.js
+js/components/user-profile/main.js
+js/components/user-profile-menu/user-profile-menu-drt-ctrl.js
+js/components/user-profile-menu/user-profile-menu-drt.js
+js/components/user-profile-menu/main.js
 js/controllers/layout-ctrl.js
 js/controllers/root-ctrl.js
 js/controllers/search-ctrl.js
@@ -283,6 +299,8 @@ text!partials/song-drt.html
 text!partials/songs-actions-drt.html
 text!partials/playlist-chooser-drt.html
 text!partials/song-progress-drt.html
+text!partials/user-profile-drt.html
+text!partials/user-profile-menu-drt.html
 js/templates/components-tpls.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html

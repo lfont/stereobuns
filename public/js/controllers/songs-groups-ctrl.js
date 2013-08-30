@@ -6,11 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function SongsGroupsCtrl ($scope, $location, songsGroupsMdl) {
+  function SongsGroupsCtrl ($scope, $location, userMdl, songsGroupsMdl) {
+    $scope.userName = userMdl.getName();
     $scope.songsGroups = songsGroupsMdl.getAll();
 
     $scope.isCurrentSongsGroup = function (songsGroup) {
-      var songsGroupIdPattern = /^\/songs\/(.*)/,
+      var songsGroupIdPattern = /^\/.+\/tracks\/(.*)/i,
           matchs = songsGroupIdPattern.exec($location.path());
 
       return matchs &&
@@ -18,7 +19,8 @@ define(function () {
     };
   }
 
-  SongsGroupsCtrl.$inject = [ '$scope', '$location', 'songsGroupsMdl' ];
+  SongsGroupsCtrl.$inject = [ '$scope', '$location',
+                              'userMdl', 'songsGroupsMdl' ];
 
   return SongsGroupsCtrl;
 });

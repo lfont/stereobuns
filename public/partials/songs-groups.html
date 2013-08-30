@@ -1,6 +1,6 @@
 <ul ng-controller="SongsGroupsCtrl" class="nav nav-pills nav-stacked">
     <li ng-repeat="songsGroup in songsGroups" ng-class="{ active: $parent.isCurrentSongsGroup(songsGroup) }">
-        <a href="/songs/{{ songsGroup.id }}">
+        <a href="/{{ userName }}/tracks/{{ songsGroup.id }}">
             <i class="{{ songsGroup.icon }}"></i>
             {{ songsGroup.name }}
         </a>
