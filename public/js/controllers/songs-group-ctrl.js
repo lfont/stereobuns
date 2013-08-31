@@ -23,8 +23,6 @@ define(function () {
       filterPlaylists: false
     };
 
-    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
-    $scope.playlistsTemplateUrl = 'partials/playlists.html';
     $scope.noSongMessageTemplateUrl = '';
     $scope.songs = null;
 

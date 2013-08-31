@@ -34,8 +34,6 @@ define(function () {
       remove: true
     };
 
-    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
-    $scope.playlistsTemplateUrl = 'partials/playlists.html';
     $scope.noSongMessageTemplateUrl = '';
     $scope.playlistName = '';
     $scope.songs = null;

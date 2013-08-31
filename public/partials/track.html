@@ -1,19 +1,17 @@
 <div class="track push-bottom row-fluid">
-  <div class="span9">
-    <div class="push-top">
-      <song song="song"></song>
-      <form name="commentForm"
-            ng-submit="addComment()"
-            novalidate>
-        <input type="text" name="commentInput" class="input-block-level"
-               placeholder="Write a comment..."
-               maxlength="140"
-               ng-model="newComment"
-               required
-               ng-minlength="1"
-               ng-maxlength="140">
-      </form>
-    </div>
+  <div class="span9 push-top">
+    <song song="song"></song>
+    <form name="commentForm"
+          ng-submit="addComment()"
+          novalidate>
+      <input type="text" name="commentInput" class="input-block-level"
+             placeholder="Write a comment..."
+             maxlength="140"
+             ng-model="newComment"
+             required
+             ng-minlength="1"
+             ng-maxlength="140">
+    </form>
 
     <div class="row-fluid">
       <div class="span3" ng-if="album">
@@ -53,10 +51,7 @@
     </div>
   </div>
   
-  <div class="span3">
-    <div class="push-top">
-      <div ng-include="songsStatusTemplateUrl"></div>
-      <div ng-include="playlistsTemplateUrl"></div>
-    </div>
+  <div class="span3 push-top">
+    <div ng-include="'partials/related-tracks.html'"></div>
   </div>
 </div>

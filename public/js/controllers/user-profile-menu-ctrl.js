@@ -6,8 +6,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function UserProfileMenuDrtCtrl ($scope, $location, $routeParams,
-                                   songsGroupsMdl, playlistsMdl) {
+  function UserProfileMenuCtrl ($scope, $location, $routeParams,
+                                songsGroupsMdl, playlistsMdl) {
     $scope.userName = $routeParams.user;
     $scope.isPlaylist = false;
     $scope.songsGroups = songsGroupsMdl.getAll();
@@ -34,8 +34,8 @@ define(function () {
     };
   }
   
-  UserProfileMenuDrtCtrl.$inject = [ '$scope', '$location', '$routeParams',
+  UserProfileMenuCtrl.$inject = [ '$scope', '$location', '$routeParams',
                                      'songsGroupsMdl', 'playlistsMdl' ];
   
-  return UserProfileMenuDrtCtrl;
+  return UserProfileMenuCtrl;
 });

@@ -6,11 +6,11 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function UserProfileDrtCtrl ($scope, userMdl) {
+  function UserProfileCtrl ($scope, userMdl) {
     $scope.user = userMdl.get();
   }
   
-  UserProfileDrtCtrl.$inject = [ '$scope', 'userMdl' ];
+  UserProfileCtrl.$inject = [ '$scope', 'userMdl' ];
   
-  return UserProfileDrtCtrl;
+  return UserProfileCtrl;
 });
