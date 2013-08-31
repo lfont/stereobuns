@@ -18,7 +18,7 @@ define([
   'text!partials/no-playlist-songs.html',
   'text!partials/settings.html',
   'text!partials/track.html',
-  'text!partials/related-tracks.html',
+  'text!partials/similar-tracks.html',
   'text!partials/user-profile.html',
   'text!partials/user-profile-menu.html'
 ], function (angular,
@@ -32,7 +32,7 @@ define([
              noPlaylistSongsTemplate,
              settingsTemplate,
              trackTemplate,
-             relatedTracksTemplate,
+             similarTracksTemplate,
              userProfileTemplate, userProfileMenuTemplate) {
   'use strict';
 
@@ -60,7 +60,7 @@ define([
     $templateCache.put('partials/no-playlist-songs.html', noPlaylistSongsTemplate);
 
     $templateCache.put('partials/track.html', trackTemplate);
-    $templateCache.put('partials/related-tracks.html', relatedTracksTemplate);
+    $templateCache.put('partials/similar-tracks.html', similarTracksTemplate);
     
     $templateCache.put('partials/user-profile.html', userProfileTemplate);
     $templateCache.put('partials/user-profile-menu.html', userProfileMenuTemplate);

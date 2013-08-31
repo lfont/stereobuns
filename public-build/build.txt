@@ -205,6 +205,7 @@ css/audio-player-queue.css
 css/track.css
 css/songs-group.css
 css/playlist.css
+css/user-menu.css
 css/site.css
 
 css/songs-group.css
@@ -214,6 +215,10 @@ css/songs-group.css
 css/track.css
 ----------------
 css/track.css
+
+css/user-menu.css
+----------------
+css/user-menu.css
 
 js/main.js
 ----------------
@@ -252,26 +257,21 @@ js/filters/time-flt.js
 js/filters/song-flt.js
 js/filters/main.js
 js/components/song-progress/main.js
-js/components/user-profile/user-profile-drt-ctrl.js
-js/components/user-profile/user-profile-drt.js
-js/components/user-profile/main.js
-js/components/user-profile-menu/user-profile-menu-drt-ctrl.js
-js/components/user-profile-menu/user-profile-menu-drt.js
-js/components/user-profile-menu/main.js
 js/controllers/layout-ctrl.js
 js/controllers/root-ctrl.js
 js/controllers/search-ctrl.js
 js/controllers/search-bar-ctrl.js
 js/controllers/audio-player-bar-ctrl.js
 js/controllers/audio-player-queue-ctrl.js
-js/controllers/playlists-ctrl.js
 js/controllers/playlist-ctrl.js
-js/controllers/songs-groups-ctrl.js
 js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
 js/controllers/settings-ctrl.js
 js/controllers/keyboard-shortcuts-ctrl.js
 js/controllers/track-ctrl.js
+js/controllers/user-profile-ctrl.js
+js/controllers/user-profile-menu-ctrl.js
+js/controllers/similar-tracks-ctrl.js
 js/controllers/main.js
 js/directives/artwork-drt.js
 js/directives/no-scroll-propagation-drt.js
@@ -284,9 +284,7 @@ text!partials/search.html
 text!partials/search-bar.html
 text!partials/audio-player-bar.html
 text!partials/audio-player-queue.html
-text!partials/playlists.html
 text!partials/playlist.html
-text!partials/songs-groups.html
 text!partials/songs-group.html
 text!partials/user-menu.html
 text!partials/no-loved-songs.html
@@ -294,13 +292,14 @@ text!partials/no-mostplayed-songs.html
 text!partials/no-playlist-songs.html
 text!partials/settings.html
 text!partials/track.html
+text!partials/similar-tracks.html
+text!partials/user-profile.html
+text!partials/user-profile-menu.html
 js/templates/partials-tpls.js
 text!partials/song-drt.html
 text!partials/songs-actions-drt.html
 text!partials/playlist-chooser-drt.html
 text!partials/song-progress-drt.html
-text!partials/user-profile-drt.html
-text!partials/user-profile-menu-drt.html
 js/templates/components-tpls.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html

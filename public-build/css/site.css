@@ -95,20 +95,6 @@
     background-color: gray;
     background-image: linear-gradient(to bottom, gray, #F2F2F2);
 }
-.user-menu .btn {
-    background: none;
-    border: 0;
-    color: gray;
-    text-shadow: none;
-    box-shadow: none;
-}
-.user-menu .btn:hover,
-.user-menu .btn.active {
-    color: white;
-}
-.user-menu .icon-caret-down {
-    margin-left: .5em;
-}
 .search .searching {
     font-size: 2em;
     margin-top: 10%;
@@ -305,6 +291,21 @@
   margin-top: -9px;
 }
 
+.user-menu .btn {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: gray;
+  margin-top: 0;
+  text-shadow: none;
+}
+.user-menu .btn:hover,
+.user-menu .btn.active {
+  color: white;
+}
+.user-menu .icon-caret-down {
+  margin-left: .5em;
+}
 .track-list-actions {
   margin: 0 0 10px 0;    
 }

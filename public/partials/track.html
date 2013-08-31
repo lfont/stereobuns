@@ -16,8 +16,7 @@
     <div class="row-fluid">
       <div class="span3" ng-if="album">
         Featured on album
-        <img ng-src="{{ album.artworkUrl }}"
-             alt="{{ album.name }}">
+        <artwork data="album" type="album"></artwork>
         <h4>{{ album.name }}</h4>
         <ul class="nav">
           <li ng-repeat="track in album.tracks">
@@ -52,6 +51,6 @@
   </div>
   
   <div class="span3 push-top">
-    <div ng-include="'partials/related-tracks.html'"></div>
+    <div ng-include="'partials/similar-tracks.html'"></div>
   </div>
 </div>

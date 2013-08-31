@@ -18,7 +18,8 @@ define([
   './keyboard-shortcuts-ctrl',
   './track-ctrl',
   './user-profile-ctrl',
-  './user-profile-menu-ctrl'
+  './user-profile-menu-ctrl',
+  './similar-tracks-ctrl'
 ], function (angular,
              LayoutCtrl,
              RootCtrl,
@@ -32,7 +33,8 @@ define([
              SettingsCtrl,
              KeyboardShortcutsCtrl,
              TrackCtrl,
-             UserProfileCtrl, UserProfileMenuCtrl) {
+             UserProfileCtrl, UserProfileMenuCtrl,
+             SimilarTracksCtrl) {
   'use strict';
 
   return angular.module('soundrocket.controllers', [])
@@ -49,5 +51,6 @@ define([
                 .controller('KeyboardShortcutsCtrl', KeyboardShortcutsCtrl)
                 .controller('TrackCtrl', TrackCtrl)
                 .controller('UserProfileCtrl', UserProfileCtrl)
-                .controller('UserProfileMenuCtrl', UserProfileMenuCtrl);
+                .controller('UserProfileMenuCtrl', UserProfileMenuCtrl)
+                .controller('SimilarTracksCtrl', SimilarTracksCtrl);
 });

@@ -14,7 +14,8 @@ var config             = require('../lib/configuration'),
     queuedSongsApi     = require('./api/queued-songs'),
     mostPlayedSongsApi = require('./api/most-played-songs'),
     albumsApi          = require('./api/albums'),
-    trackCommentsApi   = require('./api/track-comments');
+    trackCommentsApi   = require('./api/track-comments'),
+    similarTracksApi   = require('./api/similar-tracks');
 
 function ensureAuthenticated (req, res, next) {
   if (req.isAuthenticated()) {
@@ -100,6 +101,7 @@ exports.register = function (app) {
   app.get('/api/tracks/search/:description', ensureAuthenticated, ensureInvited, tracksSearchApi.index);
 
   app.get('/api/artists/:artist/tracks/:track/album', ensureAuthenticated, ensureInvited, albumsApi.show);
+  app.get('/api/artists/:artist/tracks/:track/similar', ensureAuthenticated, ensureInvited, similarTracksApi.index);
 
   app.get('/api/artists/:artist/tracks/:track/comments', ensureAuthenticated, ensureInvited, trackCommentsApi.index);
   app.post('/api/artists/:artist/tracks/:track/comments', ensureAuthenticated, ensureInvited, trackCommentsApi.create);
