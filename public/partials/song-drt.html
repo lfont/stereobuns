@@ -26,8 +26,10 @@
         <span ng-hide="song.linkUrl">{{ song.source }}</span>
         <span ng-show="song.duration"> - {{ song.duration | time }}</span>
       </p>
-      <songs-actions class="pull-right" songs="song" options="options"
-                     on-remove="remove(songs)"></songs-actions>
+      <div class="pull-right">
+        <songs-actions songs="song" options="options"
+                       on-remove="remove(songs)"></songs-actions>
+      </div>
     </div>
   </div>
 </div>

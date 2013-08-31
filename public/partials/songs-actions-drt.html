@@ -1,9 +1,13 @@
-<div class="songs-actions" ng-show="isVisible" ng-click="$event.stopPropagation()">
+<div class="songs-actions"
+     ng-click="$event.stopPropagation()"
+     ng-show="shouldBeVisible">
   <div class="btn-group" ng-show="options.playlists">
     <button class="btn dropdown-toggle" title="Add To Playlist...">
       <i class="icon-reorder"></i>
     </button>
-    <playlist-chooser songs="songs" class="dropdown-menu" options="playlistsOptions"></playlist-chooser>
+    <div class="dropdown-menu">
+      <playlist-chooser songs="songs" options="playlistsOptions"></playlist-chooser>
+    </div>
   </div>
   
   <button class="btn" title="Play" ng-click="play()" ng-show="options.play">
