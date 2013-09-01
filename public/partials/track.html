@@ -1,5 +1,7 @@
 <div class="track push-bottom row-fluid">
   <div class="span9 push-top">
+    <a class="pull-right"
+       href="/search?q={{ song.artist }} {{ song.track }}">More results...</a>
     <song song="song"></song>
     <form name="commentForm"
           ng-submit="addComment()"
@@ -20,7 +22,7 @@
         <h4>{{ album.name }}</h4>
         <ul class="nav">
           <li ng-repeat="track in album.tracks">
-            <a href="/search?q={{ song.artist }} {{ track.name }}">{{ track.name }}</a>
+            <a href="/track/{{ song.artist }}/{{ track.name }}">{{ track.name }}</a>
           </li>
         </ul>
       </div>

@@ -239,35 +239,36 @@
 }
 
 .audio-player-queue {
-    background-color: white;
-    border: 1px solid #999;
-    border-bottom: 0;
-    border-radius: 7px 7px 0 0;
-    box-shadow: 0 0 7px #999;
-    left: 10%;
-    height: 400px;
-    position: fixed;
-    width: 80%;
+  background-color: white;
+  border: 1px solid #999;
+  border-bottom: 0;
+  border-radius: 7px 7px 0 0;
+  bottom: 0;
+  box-shadow: 0 0 7px #999;
+  left: 10%;
+  position: fixed;
+  width: 80%;
 }
 .audio-player-queue .modal-header {
-    background-color: #1b1b1b;
-    -webkit-border-radius: 6px 6px 0 0;
-    -moz-border-radius:    6px 6px 0 0;
-    border-radius:         6px 6px 0 0;
-    color: #999999;
+  -webkit-border-radius: 6px 6px 0 0;
+  -moz-border-radius:    6px 6px 0 0;
+  -o-border-radius:      6px 6px 0 0;
+  border-radius:         6px 6px 0 0;
+  background-color: #1b1b1b;
+  color: #999999;
 }
 .audio-player-queue .modal-body {
-    max-height: 311px;
-    min-height: 311px;
+  max-height: 311px;
+  min-height: 311px;
 }
 .audio-player-queue.animate-show.ng-hide-add.ng-hide-add-active,
 .audio-player-queue.animate-show.ng-hide-remove {
-  bottom: -400px;
+  height: 0;
 }
 .audio-player-queue,
 .audio-player-queue.animate-show.ng-hide-add,
 .audio-player-queue.animate-show.ng-hide-remove.ng-hide-remove-active {
-  bottom: 66px;
+  height: 400px;
 }
 .track .comments {
   margin-top: 10px;

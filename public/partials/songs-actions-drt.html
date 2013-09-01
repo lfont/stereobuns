@@ -2,8 +2,9 @@
      ng-click="$event.stopPropagation()"
      ng-show="shouldBeVisible">
   <div class="btn-group" ng-show="options.playlists">
-    <button class="btn dropdown-toggle" title="Add To Playlist...">
+    <button class="btn dropdown-toggle" title="Add to Playlist">
       <i class="icon-reorder"></i>
+      Add to playlist
     </button>
     <div class="dropdown-menu">
       <playlist-chooser songs="songs" options="playlistsOptions"></playlist-chooser>
@@ -12,17 +13,25 @@
   
   <button class="btn" title="Play" ng-click="play()" ng-show="options.play">
     <i class="icon-play"></i>
+    Play
   </button>
   
   <button class="btn" title="Queue" ng-click="queue()" ng-show="options.queue">
     <i class="icon-plus"></i>
+    Queue
   </button>
   
-  <button class="btn" title="Love" ng-click="toggleLove()" ng-if="!isMulti">
+  <button class="btn" title="Love"
+          ng-click="toggleLove()"
+          ng-if="!isMulti"
+          ng-switch="songs.loved">
     <i ng-class="{ 'icon-heart': songs.loved, 'icon-heart-empty': !songs.loved }"></i>
+    <span ng-switch-when="true"></span>
+    <span ng-switch-default="">Love</span>
   </button>
   
   <button class="btn btn-danger" title="Remove" ng-click="remove()" ng-show="options.remove">
     <i class="icon-remove"></i>
+    Remove
   </button>
 </div>
