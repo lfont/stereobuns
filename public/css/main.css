@@ -90,7 +90,11 @@ textarea {
 }
 
 .background {
-  background: url("/img/background.jpg") repeat scroll 0% 0% / cover transparent;
+  background: url("/img/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size:    cover;
+  -o-background-size:      cover;
+  background-size:         cover;
 }
 
 .navbar .brand {
