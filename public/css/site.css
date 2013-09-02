@@ -1,5 +1,5 @@
-@import url("directives.css");
-@import url("partials.css");
+@import url("search.css");
+@import url("audio-player-bar.css");
 @import url("keyboard-shortcuts.css");
 @import url("settings.css");
 @import url("root.css");
@@ -8,6 +8,10 @@
 @import url("songs-group.css");
 @import url("playlist.css");
 @import url("user-menu.css");
+@import url("song.css");
+@import url("songs-actions.css");
+@import url("song-progress.css");
+@import url("playlist-chooser.css");
 
 
 /* track-list-actions */

@@ -3,11 +3,11 @@
   border: 1px solid #999;
   border-bottom: 0;
   border-radius: 7px 7px 0 0;
-  bottom: 0;
+  bottom: 70px;
   box-shadow: 0 0 7px #999;
-  left: 10%;
   position: fixed;
-  width: 80%;
+  right: 0;
+  width: 483px;
 }
 
 .audio-player-queue .modal-header {
@@ -16,12 +16,12 @@
   -o-border-radius:      6px 6px 0 0;
   border-radius:         6px 6px 0 0;
   background-color: #1b1b1b;
-  color: #999999;
+  color: #999;
 }
 
 .audio-player-queue .modal-body {
-  max-height: 311px;
-  min-height: 311px;
+  max-height: 411px;
+  min-height: 411px;
 }
 
 .audio-player-queue.animate-show.ng-hide-add.ng-hide-add-active,
@@ -32,5 +32,5 @@
 .audio-player-queue,
 .audio-player-queue.animate-show.ng-hide-add,
 .audio-player-queue.animate-show.ng-hide-remove.ng-hide-remove-active {
-  height: 400px;
+  height: 500px;
 }

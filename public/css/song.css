@@ -1,0 +1,33 @@
+.song {
+  padding: 0 0 10px 0;
+}
+
+.song img {
+  margin-right: 10px;
+}
+
+.song .song-body p {
+  margin: 0;
+}
+
+.song .song-body > div {
+  min-height: 20px;
+}
+
+.song .song-heading {
+  margin: 0 0 5px 0;
+}
+
+.song .song-heading .btn {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  margin-top: 0;
+  padding: 0 5px;
+  text-shadow: none;
+}
+
+.song .songs-actions .dropdown-menu {
+  left: auto;
+  right: 0;
+}
