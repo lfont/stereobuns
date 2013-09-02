@@ -1,0 +1,35 @@
+.playlist-chooser .nav,
+.playlist-chooser form {
+  margin-bottom: 0;
+  padding: 0 5px;
+}
+
+.playlist-chooser .nav {
+  min-height: 5px;
+  max-height: 65px;
+  overflow-y: scroll;
+}
+
+.playlist-chooser form input {
+  height: 10px;
+  line-height: 1;
+  font-size: 12px;
+}
+
+.playlist-chooser form .btn {
+  color: gray;
+  font-size: 10px;
+  line-height: 15px;
+  height: 20px;
+  margin: 0 .5em;
+  padding: 0 5px;
+}
+
+.playlist-chooser .divider {
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
+  display: block;
+  height: 1px;
+  margin: 5px 0;
+  overflow: hidden;
+}

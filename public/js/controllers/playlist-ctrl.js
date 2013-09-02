@@ -10,13 +10,18 @@ define(function () {
                          playlistsMdl, songUtilsSrv) {
     var currentPlaylist;
 
-    function setPlaylist (name) {
+    function setPlaylist (user, name) {
+      // TODO get the user's playlist
       playlistsMdl
         .get(name)
         .then(function (playlist) {
-          $scope.name = playlist.name;
-          $scope.songs = playlist.songs();
+          $scope.playlistName = playlist.name;
           currentPlaylist = playlist;
+          playlist
+            .songs()
+            .then(function (songs) {
+              $scope.songs = songs;
+            });
         });
     }
 
@@ -29,10 +34,8 @@ define(function () {
       remove: true
     };
 
-    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
-    $scope.playlistsTemplateUrl = 'partials/playlists.html';
     $scope.noSongMessageTemplateUrl = '';
-    $scope.name = '';
+    $scope.playlistName = '';
     $scope.songs = null;
 
     $scope.$watchCollection('songs', function (newSongs, oldSongs) {
@@ -44,9 +47,9 @@ define(function () {
     $scope.$on('playlist:add', function (event, name, song) {
       var songIndex;
       if (name === $scope.name) {
-        songIndex = songUtilsSrv.indexOf($scope.songs.$$v, song.url);
+        songIndex = songUtilsSrv.indexOf($scope.songs, song.url);
         if (songIndex < 0) {
-          $scope.songs.$$v.push(song);
+          $scope.songs.push(song);
         }
       }
     });
@@ -54,8 +57,8 @@ define(function () {
     $scope.$on('playlist:remove', function (event, name, song) {
       var songIndex;
       if (name === $scope.name) {
-        songIndex = songUtilsSrv.indexOf($scope.songs.$$v, song.url);
-        $scope.songs.$$v.splice(songIndex, 1);
+        songIndex = songUtilsSrv.indexOf($scope.songs, song.url);
+        $scope.songs.splice(songIndex, 1);
       }
     });
 
@@ -76,7 +79,7 @@ define(function () {
           playlistsMdl
             .delete(currentPlaylist)
             .then(function () {
-              $location.path('/songs/loved');
+              $location.path('/' + $routeParams.user);
             });
         });
     };
@@ -85,7 +88,7 @@ define(function () {
       currentPlaylist.remove(songs);
     };
 
-    setPlaylist($routeParams.name);
+    setPlaylist($routeParams.user, $routeParams.name);
   }
 
   PlaylistCtrl.$inject = [ '$scope', '$routeParams',

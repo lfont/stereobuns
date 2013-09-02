@@ -15,6 +15,14 @@ define(function () {
           return response.data;
         });
     };
+    
+    this.getSimilarTracks = function (artist, track) {
+      return $http
+        .get('/api/artists/' + artist + '/tracks/' + track + '/similar', { cache: true })
+        .then(function (response) {
+          return response.data;
+        });
+    };
   }
 
   MusicInfoSrv.$inject = [ '$http' ];

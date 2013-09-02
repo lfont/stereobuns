@@ -1,0 +1,36 @@
+.audio-player-queue {
+  background-color: white;
+  border: 1px solid #999;
+  border-bottom: 0;
+  border-radius: 7px 7px 0 0;
+  bottom: 70px;
+  box-shadow: 0 0 7px #999;
+  position: fixed;
+  right: 0;
+  width: 422px;
+}
+
+.audio-player-queue .modal-header {
+  -webkit-border-radius: 6px 6px 0 0;
+  -moz-border-radius:    6px 6px 0 0;
+  -o-border-radius:      6px 6px 0 0;
+  border-radius:         6px 6px 0 0;
+  background-color: #1b1b1b;
+  color: #999;
+}
+
+.audio-player-queue .modal-body {
+  max-height: 411px;
+  min-height: 411px;
+}
+
+.audio-player-queue.animate-show.ng-hide-add.ng-hide-add-active,
+.audio-player-queue.animate-show.ng-hide-remove {
+  height: 0;
+}
+
+.audio-player-queue,
+.audio-player-queue.animate-show.ng-hide-add,
+.audio-player-queue.animate-show.ng-hide-remove.ng-hide-remove-active {
+  height: 500px;
+}

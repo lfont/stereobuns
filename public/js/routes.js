@@ -4,11 +4,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 define([
-  'app'
-], function (app) {
+  'angular',
+  'angular-route'
+], function (angular) {
   'use strict';
 
-  app.config([
+  var routes = angular.module('soundrocket.routes', [
+    'ngRoute'
+  ]);
+
+  routes.config([
     '$locationProvider',
     '$routeProvider',
     function ($locationProvider, $routeProvider) {
@@ -21,28 +26,16 @@ define([
           pageTitle: 'Welcome',
           authenticated: false
         })
-        .when('/search', {
-          templateUrl: 'partials/search.html',
-          controller: 'SearchCtrl',
-          pageTitle: 'Search',
-          authenticated: true
-        })
-        .when('/songs/:id', {
-          templateUrl: 'partials/songs-group.html',
-          controller: 'SongsGroupCtrl',
-          pageTitle: 'Songs',
-          authenticated: true
-        })
-        .when('/playlist/:name', {
-          templateUrl: 'partials/playlist.html',
-          controller: 'PlaylistCtrl',
-          pageTitle: 'Playlist',
-          authenticated: true
-        })
         .when('/settings/:id', {
           templateUrl: 'partials/settings.html',
           controller: 'SettingsCtrl',
           pageTitle: 'Settings',
+          authenticated: true
+        })
+        .when('/search', {
+          templateUrl: 'partials/search.html',
+          controller: 'SearchCtrl',
+          pageTitle: 'Search',
           authenticated: true
         })
         .when('/track/:artist/:track', {
@@ -51,11 +44,29 @@ define([
           pageTitle: 'About Track',
           authenticated: true
         })
+        .when('/:user', {
+          templateUrl: 'partials/songs-group.html',
+          controller: 'SongsGroupCtrl',
+          pageTitle: 'Home',
+          authenticated: true
+        })
+        .when('/:user/tracks/:group', {
+          templateUrl: 'partials/songs-group.html',
+          controller: 'SongsGroupCtrl',
+          pageTitle: 'Songs',
+          authenticated: true
+        })
+        .when('/:user/playlist/:name', {
+          templateUrl: 'partials/playlist.html',
+          controller: 'PlaylistCtrl',
+          pageTitle: 'Playlist',
+          authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
     }
   ]);
 
-  app.run([
+  routes.run([
     '$rootScope',
     '$window',
     '$location',
@@ -71,6 +82,14 @@ define([
       }
 
       // authentication rules
+      $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        var isLoggedIn = userMdl.isLoggedIn();
+        
+        if (isLoggedIn && $location.path() === '/') {
+          $location.path('/' + userMdl.getName());
+        }
+      });
+      
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
         var isLoggedIn    = userMdl.isLoggedIn(),
             hasInvitation = userMdl.hasInvitation();
@@ -79,14 +98,8 @@ define([
           return $location.path('/');
         }
 
-        if (isLoggedIn) {
-          if (!hasInvitation) {
-            return $location.path('/settings/account');
-          }
-
-          if (next.$$route.controller === 'RootCtrl') {
-            return $location.path('/songs/loved');
-          }
+        if (isLoggedIn && !hasInvitation) {
+          return $location.path('/settings/account');
         }
 
         if (next.$$route.controller === 'RootCtrl') {
@@ -106,4 +119,6 @@ define([
       });
     }
   ]);
+  
+  return routes;
 });

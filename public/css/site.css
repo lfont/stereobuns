@@ -1,49 +1,44 @@
-@import url("directives.css");
-@import url("partials.css");
+@import url("search.css");
+@import url("audio-player-bar.css");
 @import url("keyboard-shortcuts.css");
 @import url("settings.css");
 @import url("root.css");
+@import url("audio-player-queue.css");
+@import url("track.css");
+@import url("songs-group.css");
+@import url("playlist.css");
+@import url("user-menu.css");
+@import url("song.css");
+@import url("songs-actions.css");
+@import url("song-progress.css");
+@import url("playlist-chooser.css");
 
 
-/* playlist-header */
+/* track-list-actions */
 
-.playlist-header h1 {
-  display: inline-block;
-  margin-right: .5em;
-}
-
-.playlist-header .btn {
-  font-size: 12px;
-  line-height: 10px;
-  margin-top: -9px;
-}
-
-
-/* playlist-actions */
-
-.playlist-actions {
+.track-list-actions {
   margin: 0 0 10px 0;    
 }
 
-.playlist-actions .songs-actions {
+.track-list-actions .songs-actions {
   display: inline-block;
   margin-left: .5em;
 }
 
 
-/* playlist-songs */
+/* track-list */
 
-.playlist-songs {
+.track-list {
   list-style-type: none;
   margin: 0;
 }
 
-.playlist-songs > li {
+.track-list > li {
   border-bottom: 1px solid #f2f2f2;
   padding: 1em .5em .2em .5em;
 }
 
-.playlist-songs > li:last-child {
+.track-list > li:last-child {
   border-bottom: 0;
 }
 

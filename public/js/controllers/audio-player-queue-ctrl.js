@@ -7,6 +7,7 @@ define(function () {
   'use strict';
 
   function AudioPlayerQueueCtrl ($scope, audioPlayerSrv) {
+    
     function loadSongs() {
       $scope.songs = audioPlayerSrv.getQueue();
     }
@@ -18,7 +19,6 @@ define(function () {
 
     $scope.songs = null;
     $scope.shouldBeOpen = false;
-    $scope.isLoaded = false;
 
     $scope.songsActionsOptions = {
       remove: true,
@@ -49,7 +49,6 @@ define(function () {
         close();
       } else {
         $scope.shouldBeOpen = true;
-        $scope.isLoaded = true;
         loadSongs();
       }
     });

@@ -1,12 +1,15 @@
-<div class="playlist push-bottom row-fluid">
-  <div class="span9">
-    <div class="playlist-header">
-      <h1>{{ name }}</h1>
+<div class="playlist push-bottom">
+  <div class="push-top">
+    <div ng-include="'partials/user-profile.html'"></div>
+    <div ng-include="'partials/user-profile-menu.html'"></div>
+  
+    <div class="header">
+      <h2>{{ playlistName }}</h2>
       <a href="#" class="btn btn-danger"
          ng-click="openDeleteConfirmationBox(); $event.preventDefault()">Delete this playlist</a>
     </div>
     
-    <div class="playlist-actions">
+    <div class="track-list-actions">
       <span ng-show="songs.length">{{ songs.length }}</span>
       <ng-pluralize count="songs.length"
           when="{ '0': '',
@@ -16,22 +19,13 @@
       <songs-actions songs="songs" options="songsActionsOptions"
                      on-remove="remove(songs)"></songs-actions>
     </div>
-    
-    <div ng-switch on="songs.length">
-      <div ng-switch-when="0" ng-include="noSongMessageTemplateUrl"></div>
 
-      <ul ng-switch-default class="playlist-songs">
-        <li ng-repeat="song in songs">
-          <song song="song" options="songOptions" on-remove="$parent.remove(song)"></song>
-        </li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="span3">
-    <div class="push-top">
-      <div ng-include="songsStatusTemplateUrl"></div>
-      <div ng-include="playlistsTemplateUrl"></div>
-    </div>
+    <div ng-include="noSongMessageTemplateUrl"></div>
+
+    <ul class="track-list">
+      <li ng-repeat="song in songs">
+        <song song="song" options="songOptions" on-remove="$parent.remove(song)"></song>
+      </li>
+    </ul>
   </div>
 </div>

@@ -1,29 +1,28 @@
-<div class="song-info push-bottom row-fluid">
-  <div class="span9">
-    <div class="push-top">
-      <song song="song"></song>
-      <form name="commentForm"
-            ng-submit="addComment()"
-            novalidate>
-        <input type="text" name="commentInput" class="input-block-level"
-               placeholder="Write a comment..."
-               maxlength="140"
-               ng-model="newComment"
-               required
-               ng-minlength="1"
-               ng-maxlength="140">
-      </form>
-    </div>
+<div class="track push-bottom row-fluid">
+  <div class="span9 push-top">
+    <a class="pull-right"
+       href="/search?q={{ song.artist }} {{ song.track }}">More results...</a>
+    <song song="song"></song>
+    <form name="commentForm"
+          ng-submit="addComment()"
+          novalidate>
+      <input type="text" name="commentInput" class="input-block-level"
+             placeholder="Write a comment..."
+             maxlength="140"
+             ng-model="newComment"
+             required
+             ng-minlength="1"
+             ng-maxlength="140">
+    </form>
 
     <div class="row-fluid">
       <div class="span3" ng-if="album">
         Featured on album
-        <img ng-src="{{ album.artworkUrl }}"
-             alt="{{ album.name }}">
+        <artwork data="album" type="album"></artwork>
         <h4>{{ album.name }}</h4>
         <ul class="nav">
           <li ng-repeat="track in album.tracks">
-            <a href="/search?q={{ song.artist }} {{ track.name }}">{{ track.name }}</a>
+            <a href="/track/{{ song.artist }}/{{ track.name }}">{{ track.name }}</a>
           </li>
         </ul>
       </div>
@@ -35,7 +34,7 @@
                     '1': 'comment',
                     'other': 'comments' }">
         </ng-pluralize>
-        <ul class="media-list">
+        <ul class="media-list comments">
           <li class="media" ng-repeat="comment in comments">
             <img class="media-object pull-left" alt="{{ comment._creator.name }}"
                  width="64px" height="64px"
@@ -53,10 +52,7 @@
     </div>
   </div>
   
-  <div class="span3">
-    <div class="push-top">
-      <div ng-include="songsStatusTemplateUrl"></div>
-      <div ng-include="playlistsTemplateUrl"></div>
-    </div>
+  <div class="span3 push-top">
+    <div ng-include="'partials/similar-tracks.html'"></div>
   </div>
 </div>

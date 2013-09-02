@@ -10,27 +10,30 @@ define([
   'text!partials/search-bar.html',
   'text!partials/audio-player-bar.html',
   'text!partials/audio-player-queue.html',
-  'text!partials/playlists.html',
   'text!partials/playlist.html',
-  'text!partials/songs-groups.html',
   'text!partials/songs-group.html',
   'text!partials/user-menu.html',
   'text!partials/no-loved-songs.html',
   'text!partials/no-mostplayed-songs.html',
   'text!partials/no-playlist-songs.html',
   'text!partials/settings.html',
-  'text!partials/track.html'
+  'text!partials/track.html',
+  'text!partials/similar-tracks.html',
+  'text!partials/user-profile.html',
+  'text!partials/user-profile-menu.html'
 ], function (angular,
              rootTemplate,
              searchTemplate, searchBarTemplate,
              audioPlayerBarTemplate, audioPlayerQueueTemplate,
-             playlistsTemplate, playlistTemplate,
-             songsGroupsTemplate, songsGroupTemplate,
+             playlistTemplate,
+             songsGroupTemplate,
              userMenuTemplate,
              noLovedSongsTemplate, noMostPlayedSongsTemplate,
              noPlaylistSongsTemplate,
              settingsTemplate,
-             trackTemplate) {
+             trackTemplate,
+             similarTracksTemplate,
+             userProfileTemplate, userProfileMenuTemplate) {
   'use strict';
 
   var partialsTemplateModule = angular.module('soundrocket.templates.partials', []);
@@ -48,10 +51,8 @@ define([
     $templateCache.put('partials/audio-player-bar.html', audioPlayerBarTemplate);
     $templateCache.put('partials/audio-player-queue.html', audioPlayerQueueTemplate);
 
-    $templateCache.put('partials/playlists.html', playlistsTemplate);
     $templateCache.put('partials/playlist.html', playlistTemplate);
 
-    $templateCache.put('partials/songs-groups.html', songsGroupsTemplate);
     $templateCache.put('partials/songs-group.html', songsGroupTemplate);
 
     $templateCache.put('partials/no-loved-songs.html', noLovedSongsTemplate);
@@ -59,6 +60,10 @@ define([
     $templateCache.put('partials/no-playlist-songs.html', noPlaylistSongsTemplate);
 
     $templateCache.put('partials/track.html', trackTemplate);
+    $templateCache.put('partials/similar-tracks.html', similarTracksTemplate);
+    
+    $templateCache.put('partials/user-profile.html', userProfileTemplate);
+    $templateCache.put('partials/user-profile-menu.html', userProfileMenuTemplate);
   }]);
 
   return partialsTemplateModule;

@@ -14,9 +14,6 @@ define(function () {
                                                 $routeParams.track);
     }
 
-    $scope.songsStatusTemplateUrl = 'partials/songs-groups.html';
-    $scope.playlistsTemplateUrl = 'partials/playlists.html';
-
     musicInfoSrv
       .getAlbum($routeParams.artist, $routeParams.track)
       .then(function (album) {
@@ -47,10 +44,8 @@ define(function () {
     loadComments();
   }
 
-  TrackCtrl.$inject = [ '$scope',
-                        '$routeParams',
-                        'musicInfoSrv',
-                        'tracksSearchSrv',
+  TrackCtrl.$inject = [ '$scope', '$routeParams',
+                        'musicInfoSrv', 'tracksSearchSrv',
                         'commentsMdl' ];
 
   return TrackCtrl;

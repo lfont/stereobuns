@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function RootCtrl ($scope, $window, $location) {
+  function RootCtrl ($scope, $window, $location, userMdl) {
 
     function openAuthDialog (providerName) {
       var height = 620,
@@ -24,7 +24,7 @@ define(function () {
     $window.setAuthResult = function (success) {
       if (success) {
         $scope.$apply(function () {
-          $location.path('/songs/loved');
+          $location.path('/' + userMdl.getName());
         });
       }
     };
@@ -36,7 +36,8 @@ define(function () {
     };
   }
 
-  RootCtrl.$inject = [ '$scope', '$window', '$location' ];
+  RootCtrl.$inject = [ '$scope', '$window',
+                       '$location', 'userMdl' ];
 
   return RootCtrl;
 });

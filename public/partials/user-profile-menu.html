@@ -1,0 +1,27 @@
+<ul class="user-profile-menu nav nav-tabs"
+    ng-controller="UserProfileMenuCtrl">
+  <li ng-repeat="songsGroup in songsGroups"
+      ng-class="{ active: $parent.isCurrentSongsGroup(songsGroup) }">
+    <a href="/{{ userName }}/tracks/{{ songsGroup.id }}">
+      <i class="{{ songsGroup.icon }}"></i>
+      {{ songsGroup.name }}
+    </a>
+  </li>
+  
+  <li class="dropdown"
+      ng-class="{ active: isPlaylist }">
+    <a class="dropdown-toggle" href="#">
+      Playlists
+      <span class="badge">{{ playlists.length }}</span>
+      <i class="icon-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li ng-repeat="playlist in playlists"
+          ng-class="{ active: $parent.isCurrentPlaylist(playlist) }">
+        <a href="/{{ userName }}/playlist/{{ playlist.name | lowercase }}">
+          {{ playlist.name }}<span class="badge pull-right">{{ playlist.length }}</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>

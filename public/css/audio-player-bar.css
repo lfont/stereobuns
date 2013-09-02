@@ -1,0 +1,47 @@
+.audio-player-bar {
+  padding: 2px;
+}
+
+.audio-player-bar .song-info {
+  color: gray;
+}
+
+.audio-player-bar .song-info .row-fluid [class*="span"] {
+  min-height: 26px;
+}
+
+.audio-player-bar .song-info .button-bar .btn {
+  padding: 3px 5px;
+}
+
+.audio-player-bar .button-bar .btn {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  margin-top: 0;
+  text-shadow: none;
+}
+
+.audio-player-bar .button-bar .icon-heart,
+.audio-player-bar .button-bar .icon-heart-empty:hover {
+  color: #ec352f;
+}
+
+.audio-player-bar .middle {
+  line-height: 65px;
+}
+
+.audio-player-bar .button-bar .btn {
+  color: white;
+}
+
+.audio-player-bar .button-bar .btn.active {
+  color: #0088cc;
+}
+
+@media (max-width: 767px) {
+  .audio-player-bar [class*="span"] {
+    float: left;
+    width: 50%;
+  }
+}

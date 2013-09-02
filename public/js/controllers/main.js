@@ -11,25 +11,30 @@ define([
   './search-bar-ctrl',
   './audio-player-bar-ctrl',
   './audio-player-queue-ctrl',
-  './playlists-ctrl',
   './playlist-ctrl',
-  './songs-groups-ctrl',
   './songs-group-ctrl',
   './user-menu-ctrl',
   './settings-ctrl',
   './keyboard-shortcuts-ctrl',
-  './track-ctrl'
+  './track-ctrl',
+  './user-profile-ctrl',
+  './user-profile-menu-ctrl',
+  './similar-tracks-ctrl'
 ], function (angular,
              LayoutCtrl,
              RootCtrl,
-             SearchCtrl, SearchBarCtrl,
-             AudioPlayerBarCtrl, AudioPlayerQueueCtrl,
-             PlaylistsCtrl, PlaylistCtrl,
-             SongsGroupsCtrl, SongsGroupCtrl,
+             SearchCtrl,
+             SearchBarCtrl,
+             AudioPlayerBarCtrl,
+             AudioPlayerQueueCtrl,
+             PlaylistCtrl,
+             SongsGroupCtrl,
              UserMenuCtrl,
              SettingsCtrl,
              KeyboardShortcutsCtrl,
-             TrackCtrl) {
+             TrackCtrl,
+             UserProfileCtrl, UserProfileMenuCtrl,
+             SimilarTracksCtrl) {
   'use strict';
 
   return angular.module('soundrocket.controllers', [])
@@ -39,12 +44,13 @@ define([
                 .controller('SearchBarCtrl', SearchBarCtrl)
                 .controller('AudioPlayerBarCtrl', AudioPlayerBarCtrl)
                 .controller('AudioPlayerQueueCtrl', AudioPlayerQueueCtrl)
-                .controller('PlaylistsCtrl', PlaylistsCtrl)
                 .controller('PlaylistCtrl', PlaylistCtrl)
-                .controller('SongsGroupsCtrl', SongsGroupsCtrl)
                 .controller('SongsGroupCtrl', SongsGroupCtrl)
                 .controller('UserMenuCtrl', UserMenuCtrl)
                 .controller('SettingsCtrl', SettingsCtrl)
                 .controller('KeyboardShortcutsCtrl', KeyboardShortcutsCtrl)
-                .controller('TrackCtrl', TrackCtrl);
+                .controller('TrackCtrl', TrackCtrl)
+                .controller('UserProfileCtrl', UserProfileCtrl)
+                .controller('UserProfileMenuCtrl', UserProfileMenuCtrl)
+                .controller('SimilarTracksCtrl', SimilarTracksCtrl);
 });

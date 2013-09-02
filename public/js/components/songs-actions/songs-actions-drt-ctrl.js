@@ -27,11 +27,11 @@ define([
     };
 
     $scope.isMulti = false;
-    $scope.isVisible = false;
+    $scope.shouldBeVisible = false;
 
     $scope.$watchCollection('songs', function (newSongs, oldSongs) {
       $scope.isMulti = angular.isArray(newSongs);
-      $scope.isVisible = $scope.isMulti ?
+      $scope.shouldBeVisible = $scope.isMulti ?
         newSongs.length !== 0 :
         angular.isDefined(newSongs) && newSongs !== null;
     });

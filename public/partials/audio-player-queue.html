@@ -1,28 +1,26 @@
-<div ng-controller="AudioPlayerQueueCtrl"
-     ng-show="shouldBeOpen"
-     ng-animate="{ show: 'show-animation', hide: 'hide-animation' }"
-     ng-class="{ visible: isLoaded }"
-     class="container audio-player-queue">
-    <div class="modal-header">
-        <h4>Queue</h4>
+<div class="audio-player-queue container animate-show"
+     ng-controller="AudioPlayerQueueCtrl"
+     ng-show="shouldBeOpen">
+  <div class="modal-header">
+    <h4>Queue</h4>
+  </div>
+  
+  <div class="modal-body" no-scroll-propagation>
+    <div class="track-list-actions">
+      <span ng-show="songs.length">{{ songs.length }}</span>
+      <ng-pluralize count="songs.length"
+        when="{ '0': 'empty',
+                '1': 'song',
+                'other': 'songs' }">
+      </ng-pluralize>
+      <songs-actions songs="songs" options="songsActionsOptions"
+                     on-remove="dequeue(songs)"></songs-actions>
     </div>
     
-    <div class="modal-body" no-scroll-propagation>
-        <div class="playlist-actions">
-            <span ng-show="songs.length">{{ songs.length }}</span>
-            <ng-pluralize count="songs.length"
-                when="{ '0': 'empty',
-                        '1': 'song',
-                        'other': 'songs' }">
-            </ng-pluralize>
-            <songs-actions songs="songs" options="songsActionsOptions"
-                           on-remove="dequeue(songs)"></songs-actions>
-        </div>
-        
-        <ul class="playlist-songs">
-            <li ng-repeat="song in songs">
-                <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
-            </li>
-        </ul>
-    </div>
+    <ul class="track-list">
+      <li ng-repeat="song in songs">
+        <song song="song" options="songOptions" on-remove="dequeue(song)"></song>
+      </li>
+    </ul>
+  </div>
 </div>

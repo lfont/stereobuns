@@ -155,13 +155,17 @@ components/soundmanager/troubleshoot/debug.css
 ----------------
 components/soundmanager/troubleshoot/debug.css
 
-css/coming-soon.css
+css/audio-player-bar.css
 ----------------
-css/coming-soon.css
+css/audio-player-bar.css
 
-css/directives.css
+css/audio-player-queue.css
 ----------------
-css/directives.css
+css/audio-player-queue.css
+
+css/coming-soon.css
+----------------
+css/coming-soon.css
 
 css/keyboard-shortcuts.css
 ----------------
@@ -174,13 +178,21 @@ css/../components/bootstrap/docs/assets/css/bootstrap-responsive.css
 css/../components/font-awesome/css/font-awesome.css
 css/main.css
 
-css/partials.css
+css/playlist-chooser.css
 ----------------
-css/partials.css
+css/playlist-chooser.css
+
+css/playlist.css
+----------------
+css/playlist.css
 
 css/root.css
 ----------------
 css/root.css
+
+css/search.css
+----------------
+css/search.css
 
 css/settings.css
 ----------------
@@ -188,18 +200,51 @@ css/settings.css
 
 css/site.css
 ----------------
-css/directives.css
-css/partials.css
+css/search.css
+css/audio-player-bar.css
 css/keyboard-shortcuts.css
 css/settings.css
 css/root.css
+css/audio-player-queue.css
+css/track.css
+css/songs-group.css
+css/playlist.css
+css/user-menu.css
+css/song.css
+css/songs-actions.css
+css/song-progress.css
+css/playlist-chooser.css
 css/site.css
+
+css/song-progress.css
+----------------
+css/song-progress.css
+
+css/song.css
+----------------
+css/song.css
+
+css/songs-actions.css
+----------------
+css/songs-actions.css
+
+css/songs-group.css
+----------------
+css/songs-group.css
+
+css/track.css
+----------------
+css/track.css
+
+css/user-menu.css
+----------------
+css/user-menu.css
 
 js/main.js
 ----------------
 components/jquery/jquery.js
 components/angular/angular.js
-components/angular/angular-cookies.js
+components/angular-cookies/angular-cookies.js
 js/components/song/song-drt-ctrl.js
 js/components/song/song-drt.js
 js/services/artwork-srv.js
@@ -238,14 +283,15 @@ js/controllers/search-ctrl.js
 js/controllers/search-bar-ctrl.js
 js/controllers/audio-player-bar-ctrl.js
 js/controllers/audio-player-queue-ctrl.js
-js/controllers/playlists-ctrl.js
 js/controllers/playlist-ctrl.js
-js/controllers/songs-groups-ctrl.js
 js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
 js/controllers/settings-ctrl.js
 js/controllers/keyboard-shortcuts-ctrl.js
 js/controllers/track-ctrl.js
+js/controllers/user-profile-ctrl.js
+js/controllers/user-profile-menu-ctrl.js
+js/controllers/similar-tracks-ctrl.js
 js/controllers/main.js
 js/directives/artwork-drt.js
 js/directives/no-scroll-propagation-drt.js
@@ -258,9 +304,7 @@ text!partials/search.html
 text!partials/search-bar.html
 text!partials/audio-player-bar.html
 text!partials/audio-player-queue.html
-text!partials/playlists.html
 text!partials/playlist.html
-text!partials/songs-groups.html
 text!partials/songs-group.html
 text!partials/user-menu.html
 text!partials/no-loved-songs.html
@@ -268,6 +312,9 @@ text!partials/no-mostplayed-songs.html
 text!partials/no-playlist-songs.html
 text!partials/settings.html
 text!partials/track.html
+text!partials/similar-tracks.html
+text!partials/user-profile.html
+text!partials/user-profile-menu.html
 js/templates/partials-tpls.js
 text!partials/song-drt.html
 text!partials/songs-actions-drt.html
@@ -279,11 +326,13 @@ text!angular-ui-bootstrap-template/alert/alert.html
 js/templates/angular-ui-tpls.js
 text!partials/keyboard-shortcuts.html
 js/templates/dialog-tpls.js
+components/angular-animate/angular-animate.js
 components/angular-ui-bootstrap/src/transition/transition.js
 components/angular-ui-bootstrap/src/collapse/collapse.js
 components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle.js
 components/angular-ui-bootstrap/src/dialog/dialog.js
 components/angular-ui-bootstrap/src/alert/alert.js
 js/templates/main.js
+components/angular-route/angular-route.js
 js/routes.js
 js/main.js

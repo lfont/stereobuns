@@ -6,9 +6,12 @@
     "bootstrap": "~2.3.2",
     "requirejs-text": "~2.0.6",
     "soundmanager": "latest",
-    "angular-ui-bootstrap": "~0.4.0",
+    "angular-ui-bootstrap": "0.5.0",
     "font-awesome": "~3.2.1",
     "jquery": "~2.0.2",
-    "angular": "git://github.com/atizo/bower-angular-unstable#~1.1.5"
+    "angular": "1.2.0-rc.1",
+    "angular-cookies": "1.2.0-rc.1",
+    "angular-route": "~1.2.0-rc.1",
+    "angular-animate": "~1.2.0-rc.1"
   }
 }

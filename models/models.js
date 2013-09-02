@@ -46,7 +46,7 @@ var trackCommentSchema = new Schema({
   _creator: { type: Schema.ObjectId, ref: 'User', required: true },
   artist: String,
   track: String,
-  body: String, // TODO: add length validation (140)
+  body: { type: String, match: /^.{1,140}$/ },
   createdAt: { type: Date, default: Date.now }
 });
 

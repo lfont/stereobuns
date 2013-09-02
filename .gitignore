@@ -1,5 +1,6 @@
 /node_modules
 /public/components
+/.c9revisions
 *.sublime-project
 *.sublime-workspace
 *.DS_Store

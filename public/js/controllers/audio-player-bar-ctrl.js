@@ -20,7 +20,6 @@ define(function () {
       $scope.isPlaying = status.isPlaying;
     }
 
-    $scope.audioPlayerQueueTemplate = 'partials/audio-player-queue.html';
     $scope.song = null;
     $scope.isPlaying = null;
     $scope.shouldRepeat = false;

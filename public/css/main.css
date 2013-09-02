@@ -18,7 +18,7 @@ body, html {
 }
 
 .push-bottom {
-  margin-bottom: 5em;
+  margin-bottom: 6em;
 }
 
 footer {
@@ -99,4 +99,16 @@ textarea {
 
 .well.well-transparent {
   background-color: transparent;
+}
+
+
+/* animation */
+
+.animate-show.ng-hide-add, 
+.animate-show.ng-hide-remove {
+  -webkit-transition: all linear 0.3s;
+  -moz-transition:    all linear 0.3s;
+  -o-transition:      all linear 0.3s;
+  transition:         all linear 0.3s;
+  display: block !important;
 }
