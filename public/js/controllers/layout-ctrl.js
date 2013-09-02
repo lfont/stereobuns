@@ -7,9 +7,9 @@ define(function () {
   'use strict';
 
   function LayoutCtrl ($scope, userMdl) {
-    $scope.searchBarTemplateUrl = '';
-    $scope.userMenuTemplateUrl = '';
-    $scope.audioPlayerBarTemplateUrl = '';
+    $scope.searchBarTemplateUrl = null;
+    $scope.userMenuTemplateUrl = null;
+    $scope.audioPlayerBarTemplateUrl = null;
     $scope.hasBackground = false;
 
     $scope.$on('userMdl:invitation', function (event) {
@@ -19,11 +19,11 @@ define(function () {
 
     $scope.$on('$routeChangeSuccess', function (event, current, previous) {
       var hasInvitation = userMdl.hasInvitation();
-
+      
       if (current.loadedTemplateUrl === 'partials/root.html') {
-        $scope.searchBarTemplateUrl = '';
-        $scope.userMenuTemplateUrl = '';
-        $scope.audioPlayerBarTemplateUrl = '';
+        $scope.searchBarTemplateUrl = null;
+        $scope.userMenuTemplateUrl = null;
+        $scope.audioPlayerBarTemplateUrl = null;
         $scope.hasBackground = true;
       } else {
         $scope.searchBarTemplateUrl = hasInvitation ? 'partials/search-bar.html' : '';

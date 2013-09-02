@@ -82,6 +82,14 @@ define([
       }
 
       // authentication rules
+      $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        var isLoggedIn = userMdl.isLoggedIn();
+        
+        if (isLoggedIn && $location.path() === '/') {
+          $location.path('/' + userMdl.getName());
+        }
+      });
+      
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
         var isLoggedIn    = userMdl.isLoggedIn(),
             hasInvitation = userMdl.hasInvitation();
@@ -90,14 +98,8 @@ define([
           return $location.path('/');
         }
 
-        if (isLoggedIn) {
-          if (!hasInvitation) {
-            return $location.path('/settings/account');
-          }
-
-          if (next.$$route.controller === 'RootCtrl') {
-            return $location.path('/' + userMdl.getName());
-          }
+        if (isLoggedIn && !hasInvitation) {
+          return $location.path('/settings/account');
         }
 
         if (next.$$route.controller === 'RootCtrl') {
