@@ -6,28 +6,34 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
+  var SONGS_GROUP_ID_PATTERN = /^\/.+\/tracks\/(.*)/i,
+      PLAYLIST_NAME_PATTERN  = /^\/.+\/playlist\/(.*)/i;
+
   function UserProfileMenuCtrl ($scope, $location, $routeParams,
                                 songsGroupsMdl, playlistsMdl) {
+    var songsGroupIdMatchs = SONGS_GROUP_ID_PATTERN.exec($location.path()),
+        playlistNameMatchs = PLAYLIST_NAME_PATTERN.exec($location.path());
+    
+    var isSongsGroup = songsGroupIdMatchs !== null;
+    $scope.isPlaylist = playlistNameMatchs !== null;
+    
     $scope.userName = $routeParams.user;
-    $scope.isPlaylist = false;
     $scope.songsGroups = songsGroupsMdl.getAll();
     $scope.playlists = playlistsMdl.getAll();
     
     $scope.isCurrentSongsGroup = function (songsGroup) {
-      var songsGroupIdPattern = /^\/.+\/tracks\/(.*)/i,
-          matchs = songsGroupIdPattern.exec($location.path());
-
-      return matchs &&
-             matchs[1].toLowerCase() === songsGroup.id;
+      if (isSongsGroup) {
+        return songsGroupIdMatchs[1].toLowerCase() === songsGroup.id;
+      }
+      
+      // default value
+      return !$scope.isPlaylist && songsGroup.id === 'loved';
     };
 
     $scope.isCurrentPlaylist = function (playlist) {
-      var playlistNamePattern = /^\/.+\/playlist\/(.*)/i,
-          matchs = playlistNamePattern.exec($location.path());
-
-      if (matchs) {
-        $scope.isPlaylist = true;
-        return matchs[1].toLowerCase() === playlist.name.toLowerCase();
+      if ($scope.isPlaylist) {
+        return playlistNameMatchs[1].toLowerCase() ===
+               playlist.name.toLowerCase();
       }
 
       return false;
@@ -35,7 +41,7 @@ define(function () {
   }
   
   UserProfileMenuCtrl.$inject = [ '$scope', '$location', '$routeParams',
-                                     'songsGroupsMdl', 'playlistsMdl' ];
+                                  'songsGroupsMdl', 'playlistsMdl' ];
   
   return UserProfileMenuCtrl;
 });

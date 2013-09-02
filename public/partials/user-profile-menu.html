@@ -1,6 +1,7 @@
 <ul class="user-profile-menu nav nav-tabs"
     ng-controller="UserProfileMenuCtrl">
-  <li ng-repeat="songsGroup in songsGroups" ng-class="{ active: $parent.isCurrentSongsGroup(songsGroup) }">
+  <li ng-repeat="songsGroup in songsGroups"
+      ng-class="{ active: $parent.isCurrentSongsGroup(songsGroup) }">
     <a href="/{{ userName }}/tracks/{{ songsGroup.id }}">
       <i class="{{ songsGroup.icon }}"></i>
       {{ songsGroup.name }}
@@ -24,4 +25,3 @@
     </ul>
   </li>
 </ul>
-  

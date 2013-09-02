@@ -44,6 +44,12 @@ define([
           pageTitle: 'About Track',
           authenticated: true
         })
+        .when('/:user', {
+          templateUrl: 'partials/songs-group.html',
+          controller: 'SongsGroupCtrl',
+          pageTitle: 'Home',
+          authenticated: true
+        })
         .when('/:user/tracks/:group', {
           templateUrl: 'partials/songs-group.html',
           controller: 'SongsGroupCtrl',
@@ -90,7 +96,7 @@ define([
           }
 
           if (next.$$route.controller === 'RootCtrl') {
-            return $location.path('/' + userMdl.getName() + '/tracks/loved');
+            return $location.path('/' + userMdl.getName());
           }
         }
 

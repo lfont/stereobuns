@@ -24,7 +24,7 @@ define(function () {
     $window.setAuthResult = function (success) {
       if (success) {
         $scope.$apply(function () {
-          $location.path('/' + userMdl.getName() + '/tracks/loved');
+          $location.path('/' + userMdl.getName());
         });
       }
     };

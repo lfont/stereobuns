@@ -79,7 +79,7 @@ define(function () {
           playlistsMdl
             .delete(currentPlaylist)
             .then(function () {
-              $location.path('/' + $routeParams.user + '/tracks/loved');
+              $location.path('/' + $routeParams.user);
             });
         });
     };

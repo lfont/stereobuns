@@ -50,7 +50,7 @@ define(function () {
       }
     });
 
-    setSongsGroup($routeParams.user, $routeParams.group);
+    setSongsGroup($routeParams.user, $routeParams.group || 'loved');
   }
 
   SongsGroupCtrl.$inject = [ '$scope', '$routeParams',

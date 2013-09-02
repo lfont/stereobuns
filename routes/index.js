@@ -70,6 +70,7 @@ exports.register = function (app) {
   app.get('/settings/:id', ensureAuthenticated, site.index);
   app.get('/search', ensureAuthenticated, ensureInvited, site.index);
   app.get('/track/:artist/:track', ensureAuthenticated, ensureInvited, site.index);
+  app.get('/:user', ensureAuthenticated, ensureInvited, site.index);
   app.get('/:user/tracks/:group', ensureAuthenticated, ensureInvited, site.index);
   app.get('/:user/playlist/:name', ensureAuthenticated, ensureInvited, site.index);
 
