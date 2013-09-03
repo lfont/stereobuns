@@ -7,7 +7,7 @@
 .playlist-chooser .nav {
   min-height: 5px;
   max-height: 65px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .playlist-chooser form input {

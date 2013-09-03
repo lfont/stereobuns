@@ -14,7 +14,7 @@ define(function () {
       }
 
       // TODO: try to get the artwork elsewhere
-      return '/img/120_album.png';
+      return '/img/album.png';
     };
   }
 

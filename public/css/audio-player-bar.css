@@ -6,6 +6,10 @@
   color: gray;
 }
 
+.audio-player-bar .song-info img {
+  vertical-align: top;
+}
+
 .audio-player-bar .song-info .row-fluid [class*="span"] {
   min-height: 26px;
 }

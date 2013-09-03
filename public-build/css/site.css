@@ -8,6 +8,9 @@
 .audio-player-bar .song-info {
   color: gray;
 }
+.audio-player-bar .song-info img {
+  vertical-align: top;
+}
 .audio-player-bar .song-info .row-fluid [class*="span"] {
   min-height: 26px;
 }
@@ -211,31 +214,54 @@
   margin-left: .5em;
 }
 .song {
-  padding: 0 0 10px 0;
+  clear: both;
+  padding: 0 0 10px 80px;
+  position: relative;
+  height: 100%;
 }
-.song img {
-  margin-right: 10px;
+.song .song-artwork {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
-.song .song-body p {
+.song-heading {
+  height: 32px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.song-heading .song-artist {
   margin: 0;
+  position: absolute;
+  top: 6px;
+  left: 40px;
 }
-.song .song-body > div {
-  min-height: 20px;
+.song-heading .song-player .vinyl.play {
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation:    spin 2s linear infinite;
+  animation:         spin 2s linear infinite;
 }
-.song .song-heading {
-  margin: 0 0 5px 0;
-}
-.song .song-heading .btn {
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+.song .song-player .btn {
+  color: white;
   background: none;
   border: 0;
   box-shadow: none;
   margin-top: 0;
   padding: 0 5px;
+  position: absolute;
+  top: 7px;
   text-shadow: none;
 }
-.song .songs-actions .dropdown-menu {
-  left: auto;
-  right: 0;
+.song .song-player .btn.play {
+  left: 5px;
+}
+.song .song-player .btn.pause {
+  left: 3px;
+}
+.song .song-progress {
+  margin-bottom: 10px;
 }
 .songs-actions form {
   margin: 0;
@@ -269,18 +295,32 @@ li:last-child .songs-actions .dropdown-menu {
   color: #ec352f;
 }
 .song-progress {
+  cursor: pointer;
   line-height: 10px;
+  position: relative;
 }
 .song-progress .progress {
-  cursor: pointer;
-  display: inline-block;
-  height: 10px;
-  width: 70%;
+  height: 12px;
   margin-bottom: 0;
 }
 .song-progress .progress .loading {
   background-color: gray;
   background-image: linear-gradient(to bottom, gray, #F2F2F2);
+}
+.song-progress .progress-position,
+.song-progress .progress-duration {
+  font-size: 9px;
+  position: absolute;
+}
+.song-progress .progress-position {
+  margin-left: 5px;
+  top: 0;
+  left: 0;
+}
+.song-progress .progress-duration {
+  margin-right: 5px;
+  top: 0;
+  right: 0;
 }
 .playlist-chooser .nav,
 .playlist-chooser form {
@@ -290,7 +330,7 @@ li:last-child .songs-actions .dropdown-menu {
 .playlist-chooser .nav {
   min-height: 5px;
   max-height: 65px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .playlist-chooser form input {
   height: 10px;

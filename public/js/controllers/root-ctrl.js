@@ -15,7 +15,7 @@ define(function () {
           left   = $window.screen.width / 2 - width / 2;
 
       $window.open('/auth/' + providerName,
-                   'Authentication',
+                   'oauth',
                    'dialog=yes, ' +
                    'height=' + height + ',width=' + width + ',' +
                    'top=' + top + ',left=' + left);

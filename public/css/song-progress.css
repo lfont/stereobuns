@@ -1,16 +1,33 @@
 .song-progress {
+  cursor: pointer;
   line-height: 10px;
+  position: relative;
 }
 
 .song-progress .progress {
-  cursor: pointer;
-  display: inline-block;
-  height: 10px;
-  width: 70%;
+  height: 12px;
   margin-bottom: 0;
 }
 
 .song-progress .progress .loading {
   background-color: gray;
   background-image: linear-gradient(to bottom, gray, #F2F2F2);
+}
+
+.song-progress .progress-position,
+.song-progress .progress-duration {
+  font-size: 9px;
+  position: absolute;
+}
+
+.song-progress .progress-position {
+  margin-left: 5px;
+  top: 0;
+  left: 0;
+}
+
+.song-progress .progress-duration {
+  margin-right: 5px;
+  top: 0;
+  right: 0;
 }

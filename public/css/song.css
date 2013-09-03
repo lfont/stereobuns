@@ -1,33 +1,59 @@
 .song {
-  padding: 0 0 10px 0;
+  clear: both;
+  padding: 0 0 10px 80px;
+  position: relative;
+  height: 100%;
 }
 
-.song img {
-  margin-right: 10px;
+.song .song-artwork {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.song .song-body p {
+.song-heading {
+  height: 32px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.song-heading .song-artist {
   margin: 0;
+  position: absolute;
+  top: 6px;
+  left: 40px;
 }
 
-.song .song-body > div {
-  min-height: 20px;
+.song-heading .song-player .vinyl.play {
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation:    spin 2s linear infinite;
+  animation:         spin 2s linear infinite;
 }
 
-.song .song-heading {
-  margin: 0 0 5px 0;
-}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
-.song .song-heading .btn {
+.song .song-player .btn {
+  color: white;
   background: none;
   border: 0;
   box-shadow: none;
   margin-top: 0;
   padding: 0 5px;
+  position: absolute;
+  top: 7px;
   text-shadow: none;
 }
 
-.song .songs-actions .dropdown-menu {
-  left: auto;
-  right: 0;
+.song .song-player .btn.play {
+  left: 5px;
+}
+
+.song .song-player .btn.pause {
+  left: 3px;
+}
+
+.song .song-progress {
+  margin-bottom: 10px;
 }

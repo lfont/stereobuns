@@ -1,35 +1,46 @@
 <div class="song">
-  <a class="pull-left" href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
+  <a class="song-artwork"
+     href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
     <artwork data="song" type="song"></artwork>
   </a>
-  <div class="song-body">
-    <h4 class="song-heading">
-      <button class="btn" title="Play"
+
+  <div class="song-heading">
+    <div class="song-player">
+      <img src="/img/vinyl.png" class="vinyl" width="32px" height="32px"
+           ng-class="{ play: isPlaying }">
+      <button class="btn play" title="Play"
               ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
-        <i class="icon-play"></i>
+        <i class="icon-play icon-large"></i>
       </button>
-      <button class="btn" title="Pause"
+      <button class="btn pause" title="Pause"
               ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
-        <i class="icon-pause"></i>
+        <i class="icon-pause icon-large"></i>
       </button>
-      {{ song.artist }}
-    </h4>
-    <p>
-      <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
-        {{ song.track }}
-      </a>
-    </p>
-    <div>
-      <p class="pull-left">
+    </div>
+      
+    <h4 class="song-artist">{{ song.artist }}</h4>
+  </div>
+  
+  <p>
+    <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
+      {{ song.track }}
+    </a>
+  </p>
+
+  <song-progress ng-if="isPlaying"></song-progress>
+    
+  <div class="row-fluid">
+    <div class="span8">
+      <songs-actions songs="song" options="options"
+                     on-remove="remove(songs)"></songs-actions>
+    </div>
+      
+    <div class="span4">
+      <p class="pull-right">
         <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
            ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
         <span ng-hide="song.linkUrl">{{ song.source }}</span>
-        <span ng-show="song.duration"> - {{ song.duration | time }}</span>
       </p>
-      <div class="pull-right">
-        <songs-actions songs="song" options="options"
-                       on-remove="remove(songs)"></songs-actions>
-      </div>
     </div>
   </div>
 </div>
