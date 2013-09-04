@@ -1,13 +1,60 @@
-.track .album .artwork {
-  height: 128px;
-  width: 128px;
+.track {
+  clear: both;
+  padding: 0 0 10px 95px;
+  position: relative;
+  height: 100%;
 }
 
-.track .comments {
-  margin-top: 10px;
+.track .artwork {
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-.track .comments img {
-  height: 64px;
-  width: 64px;
+.track .track-heading {
+  height: 32px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.track .track-heading .track-artist {
+  margin: 0;
+  position: absolute;
+  top: 6px;
+  left: 40px;
+}
+
+.track .track-heading .vinyl {
+  height: 32px;
+  width: 32px;
+}
+
+.track .track-heading .vinyl.play {
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation:    spin 2s linear infinite;
+  animation:         spin 2s linear infinite;
+}
+
+.track .track-player .btn {
+  color: white;
+  position: absolute;
+  top: 4px;
+}
+
+.track .track-player .btn.play {
+  left: 9px;
+}
+
+.track .track-player .btn.pause {
+  left: 7px;
+}
+
+.track .track-progress {
+  margin-bottom: 10px;
+}
+
+.track .track-links {
+  color: #0088cc;
 }

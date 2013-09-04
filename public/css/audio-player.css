@@ -1,0 +1,53 @@
+.audio-player {
+  padding: 2px;
+}
+
+.audio-player .artwork {
+  height: 64px;
+  width: 64px;
+}
+
+.audio-player .button-bar .btn {
+  margin: -12px 12px 0 12px;
+}
+
+.audio-player .track-info {
+  color: gray;
+}
+
+.audio-player .track-info img {
+  vertical-align: top;
+}
+
+.audio-player .track-info .row-fluid [class*="span"] {
+  min-height: 26px;
+}
+
+.audio-player .track-info .button-bar .btn {
+  margin: 0;
+  padding: 1px 4px;
+}
+
+.audio-player .button-bar .icon-heart,
+.audio-player .button-bar .icon-heart-empty:hover {
+  color: #ec352f;
+}
+
+.audio-player .middle {
+  line-height: 65px;
+}
+
+.audio-player .button-bar .btn {
+  color: white;
+}
+
+.audio-player .button-bar .btn.active {
+  color: #0088cc;
+}
+
+@media (max-width: 767px) {
+  .audio-player [class*="span"] {
+    float: left;
+    width: 50%;
+  }
+}

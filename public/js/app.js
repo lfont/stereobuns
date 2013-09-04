@@ -6,25 +6,43 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
   'angular',
   'angular-cookies',
-  'components/song',
+  // TODO
+  'components/playlist-chooser',
   'components/song-progress',
+  'components/songs-actions',
   'controllers',
-  'services',
-  'filters',
-  'directives',
-  'models'
+  'models',
+  // common
+  'common',
+  // features
+  'artwork',
+  'audio-player',
+  'keyboard-shortcuts',
+  'similar-tracks',
+  'track',
+  'track-info',
+  'track-search'
 ], function (angular) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
     'ngCookies',
-    'soundrocket.components.song',
+    // TODO
+    'soundrocket.components.playlist-chooser',
     'soundrocket.components.song-progress',
+    'soundrocket.components.songs-actions',
     'soundrocket.controllers',
-    'soundrocket.services',
-    'soundrocket.filters',
-    'soundrocket.directives',
-    'soundrocket.models'
+    'soundrocket.models',
+    // common
+    'soundrocket.common',
+    // features
+    'soundrocket.artwork',
+    'soundrocket.audio-player',
+    'soundrocket.keyboard-shortcuts',
+    'soundrocket.similar-tracks',
+    'soundrocket.track',
+    'soundrocket.track-info',
+    'soundrocket.track-search'
   ]);
 
   soundRocket.constant('config', { debug: false });
@@ -49,6 +67,31 @@ define([
           };
         }
       ]);
+    }
+  ]);
+  
+  soundRocket.run([
+    '$rootScope',
+    function ($rootScope) {
+      $rootScope.utils = {
+        copy: function (obj) {
+          var copy = angular.copy(obj);
+          delete copy._id;
+          return copy;
+        },
+        
+        indexOf: function (objs, key, value) {
+          var index = -1,
+              i, len;
+          for (i = 0, len = objs.length; i < len; i++) {
+            if (objs[i][key] === value) {
+              index = i;
+              break;
+            }
+          }
+          return index;
+        }
+      };
     }
   ]);
 

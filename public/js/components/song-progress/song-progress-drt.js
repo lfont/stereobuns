@@ -12,7 +12,7 @@ define(function () {
       restrict: 'E',
       replace: true,
       scope: true,
-      templateUrl: 'song-progress-drt.html',
+      templateUrl: 'partials/song-progress-drt.html',
       controller: 'SongProgressDrtCtrl',
 
       link: function (scope, iElement, iAttrs, controller) {

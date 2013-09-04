@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistMdl ($rootScope, $window, $http, songUtilsSrv) {
+  function PlaylistMdl ($rootScope, $window, $http) {
 
     function Playlist (playlistInfo) {
       var _this = this;
@@ -18,7 +18,7 @@ define([
 
       function addOne (song) {
         $http
-            .post('/api/users/me/playlists/' + _this.name + '/songs', songUtilsSrv.copy(song))
+            .post('/api/users/me/playlists/' + _this.name + '/songs', $rootScope.utils.copy(song))
             .success(function (data, status, headers, config) {
               if (data.count !== 0) {
                 _this.length++;
@@ -93,8 +93,7 @@ define([
     };
   }
 
-  PlaylistMdl.$inject = [ '$rootScope', '$window',
-                          '$http', 'songUtilsSrv' ];
+  PlaylistMdl.$inject = [ '$rootScope', '$window', '$http' ];
 
   return PlaylistMdl;
 });

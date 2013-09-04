@@ -9,13 +9,11 @@ define([
   './songs-groups-mdl',
   './playlist-mdl',
   './playlists-mdl',
-  './user-mdl',
-  './comments-mdl'
+  './user-mdl'
 ], function (angular,
              SongsGroupMdl, SongsGroupsMdl,
              PlaylistMdl, PlaylistsMdl,
-             UserMdl,
-             CommentsMdl) {
+             UserMdl) {
   'use strict';
 
   return angular.module('soundrocket.models', [])
@@ -23,6 +21,5 @@ define([
                 .service('songsGroupsMdl', SongsGroupsMdl)
                 .service('playlistMdl', PlaylistMdl)
                 .service('playlistsMdl', PlaylistsMdl)
-                .service('userMdl', UserMdl)
-                .service('commentsMdl', CommentsMdl);
+                .service('userMdl', UserMdl);
 });

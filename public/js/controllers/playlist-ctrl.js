@@ -7,7 +7,7 @@ define(function () {
   'use strict';
 
   function PlaylistCtrl ($scope, $routeParams, $location, $dialog,
-                         playlistsMdl, songUtilsSrv) {
+                         playlistsMdl) {
     var currentPlaylist;
 
     function setPlaylist (user, name) {
@@ -47,7 +47,7 @@ define(function () {
     $scope.$on('playlist:add', function (event, name, song) {
       var songIndex;
       if (name === $scope.name) {
-        songIndex = songUtilsSrv.indexOf($scope.songs, song.url);
+        songIndex = $scope.utils.indexOf($scope.songs, 'url', song.url);
         if (songIndex < 0) {
           $scope.songs.push(song);
         }
@@ -57,7 +57,7 @@ define(function () {
     $scope.$on('playlist:remove', function (event, name, song) {
       var songIndex;
       if (name === $scope.name) {
-        songIndex = songUtilsSrv.indexOf($scope.songs, song.url);
+        songIndex = $scope.utils.indexOf($scope.songs, 'url', song.url);
         $scope.songs.splice(songIndex, 1);
       }
     });
@@ -93,7 +93,7 @@ define(function () {
 
   PlaylistCtrl.$inject = [ '$scope', '$routeParams',
                            '$location', '$dialog',
-                           'playlistsMdl', 'songUtilsSrv' ];
+                           'playlistsMdl' ];
 
   return PlaylistCtrl;
 });

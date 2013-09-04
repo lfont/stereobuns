@@ -1,6 +1,6 @@
 <div class="user-menu"
      ng-controller="UserMenuCtrl"
-     shortcut="{ h: 'openKeyboardShortcuts()' }">
+     sr-keyboard-shortcut="{ h: 'openKeyboardShortcuts()' }">
   <div class="dropdown" ng-init="isOpen = false">
     <button class="btn btn-clean dropdown-toggle" ng-class="{ active: isOpen }" ng-click="isOpen = !isOpen">
       <img alt="{{ user.name }}" ng-src="{{ user.picture }}">

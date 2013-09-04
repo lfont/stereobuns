@@ -1,57 +1,51 @@
-<div class="track push-bottom row-fluid">
-  <div class="span9 push-top">
-    <a class="pull-right"
-       href="/search?q={{ song.artist }} {{ song.track }}">More results...</a>  
-    <song song="song"></song>
-    <form name="commentForm"
-          ng-submit="addComment()"
-          novalidate>
-      <input type="text" name="commentInput" class="input-block-level"
-             placeholder="Write a comment..."
-             maxlength="140"
-             ng-model="newComment"
-             required
-             ng-minlength="1"
-             ng-maxlength="140">
-    </form>
+<div class="track">
+  <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
+    <sr-artwork data="song" type="song"></sr-artwork>
+  </a>
 
-    <div class="row-fluid">
-      <div class="album span3" ng-if="album">
-        Featured on album
-        <artwork data="album" type="album"></artwork>
-        <h4>{{ album.name }}</h4>
-        <ul class="nav">
-          <li ng-repeat="track in album.tracks">
-            <a href="/track/{{ song.artist }}/{{ track.name }}">{{ track.name }}</a>
-          </li>
-        </ul>
-      </div>
-
-      <div ng-class="{ span9: album, span12: !album }">
-        <span ng-show="comments.length">{{ comments.length }}</span>
-        <ng-pluralize count="comments.length"
-            when="{ '0': 'no comment',
-                    '1': 'comment',
-                    'other': 'comments' }">
-        </ng-pluralize>
-        <ul class="media-list comments">
-          <li class="media" ng-repeat="comment in comments">
-            <img class="media-object pull-left" alt="{{ comment._creator.name }}"
-                 ng-src="{{ comment._creator.picture }}">
-            <div class="media-body">
-              <h6 class="media-heading">
-                {{ comment._creator.name }}
-                <small>on {{ comment.createdAt | date: 'medium' }}</small>
-              </h6>
-              {{ comment.body }}
-            </div>
-          </li>
-        </ul>
-      </div>
+  <div class="track-heading">
+    <div class="track-player">
+      <img src="/img/vinyl.png" class="vinyl"
+           ng-class="{ play: isPlaying }">
+      <button class="btn btn-clean play" title="Play"
+              ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
+        <i class="icon-play icon-large"></i>
+      </button>
+      <button class="btn btn-clean pause" title="Pause"
+              ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
+        <i class="icon-pause icon-large"></i>
+      </button>
     </div>
+      
+    <h4 class="track-artist">{{ song.artist }}</h4>
   </div>
   
-  <div class="span3 push-top">
-    <div ng-include="'partials/similar-tracks.html'"></div>
+  <p>
+    <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
+      {{ song.track }}
+    </a>
+  </p>
+
+  <song-progress ng-if="isPlaying"></song-progress>
+    
+  <div class="row-fluid">
+    <div class="span8">
+      <songs-actions songs="song" options="options"
+                     on-remove="remove(songs)"></songs-actions>
+    </div>
+      
+    <div class="span4">
+      <p class="track-links pull-right"
+         ng-switch="song.linkUrl">
+        <i class="icon-cloud"></i>
+        <span title="source"
+              ng-switch-when="null">{{ song.source }}</span>
+        <a href="{{ song.linkUrl }}" title="source" target="_blank"
+           ng-switch-default=""
+           ng-click="$event.stopPropagation()">
+           {{ song.source }}
+         </a>
+      </p>
+    </div>
   </div>
 </div>

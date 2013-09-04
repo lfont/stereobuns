@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SongsGroupMdl ($rootScope, $window, $http, $q, songUtilsSrv) {
+  function SongsGroupMdl ($rootScope, $window, $http, $q) {
 
     function SongsGroup (songsGroupInfo) {
       var _this = this;
@@ -20,7 +20,7 @@ define([
 
       function addOne (song) {
         return $http
-          .post('/api/users/me/songs/' + _this.id, songUtilsSrv.copy(song))
+          .post('/api/users/me/songs/' + _this.id, $rootScope.utils.copy(song))
           .error(function (data, status, headers, config) {
             // TODO: handle error
             $window.console.log('song: ' + song.url + ' has not been added.');
@@ -38,7 +38,7 @@ define([
 
       function removeOne (song) {
         return $http
-          .put('/api/users/me/songs/' + _this.id, songUtilsSrv.copy(song))
+          .put('/api/users/me/songs/' + _this.id, $rootScope.utils.copy(song))
           .error(function (data, status, headers, config) {
             // TODO: handle error
             $window.console.log('song: ' + song.url + ' has not been removed.');
@@ -108,8 +108,7 @@ define([
   }
 
   SongsGroupMdl.$inject = [ '$rootScope', '$window',
-                            '$http', '$q',
-                            'songUtilsSrv' ];
+                            '$http', '$q' ];
 
   return SongsGroupMdl;
 });

@@ -5,12 +5,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
-  'angular-route'
+  'angular-route',
+  'models',
+  'audio-player'
 ], function (angular) {
   'use strict';
 
   var routes = angular.module('soundrocket.routes', [
-    'ngRoute'
+    'ngRoute',
+    'soundrocket.models',
+    'soundrocket.audio-player'
   ]);
 
   routes.config([
@@ -33,14 +37,14 @@ define([
           authenticated: true
         })
         .when('/search', {
-          templateUrl: 'partials/search.html',
-          controller: 'SearchCtrl',
+          templateUrl: 'partials/track-search-results.html',
+          controller: 'TrackSearchResultsCtrl',
           pageTitle: 'Search',
           authenticated: true
         })
         .when('/track/:artist/:track', {
-          templateUrl: 'partials/track.html',
-          controller: 'TrackCtrl',
+          templateUrl: 'partials/track-info.html',
+          controller: 'TrackInfoCtrl',
           pageTitle: 'About Track',
           authenticated: true
         })

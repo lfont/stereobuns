@@ -79,9 +79,6 @@ module.exports = function(grunt) {
           cssImportIgnore: 'http://fonts.googleapis.com/css?family=Josefin+Sans',
           removeCombined: true,
           preserveLicenseComments: false,
-          paths: {
-            'socket.io': 'empty:'
-          },
           modules: [
             {
               name: 'main'

@@ -55,18 +55,22 @@ require.config({
     }
   },
   packages: [
-    'components/song',
-    'components/songs-actions',
-    'components/song-progress',
+    // TODO
     'components/playlist-chooser',
-    'components/user-profile',
-    'components/user-profile-menu',
+    'components/song-progress',
+    'components/songs-actions',
     'controllers',
-    'services',
-    'filters',
-    'directives',
     'models',
-    'templates'
+    // common
+    'common',
+    // features
+    'artwork',
+    'audio-player',
+    'keyboard-shortcuts',
+    'similar-tracks',
+    'track',
+    'track-info',
+    'track-search'
   ]
 });
 
