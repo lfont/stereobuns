@@ -16,7 +16,7 @@
     </form>
 
     <div class="row-fluid">
-      <div class="span3" ng-if="album">
+      <div class="album span3" ng-if="album">
         Featured on album
         <artwork data="album" type="album"></artwork>
         <h4>{{ album.name }}</h4>
@@ -37,7 +37,6 @@
         <ul class="media-list comments">
           <li class="media" ng-repeat="comment in comments">
             <img class="media-object pull-left" alt="{{ comment._creator.name }}"
-                 width="64px" height="64px"
                  ng-src="{{ comment._creator.picture }}">
             <div class="media-body">
               <h6 class="media-heading">

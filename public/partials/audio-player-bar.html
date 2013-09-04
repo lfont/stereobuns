@@ -9,13 +9,13 @@
       <div class="row-fluid audio-player-bar">    
         <div class="span3 button-bar middle">
           <div class="pull-right">
-            <button class="btn" ng-click="previous()">
+            <button class="btn btn-clean" ng-click="previous()">
               <i class="icon-step-backward icon-large"></i>
             </button>
-            <button class="btn" ng-click="togglePlay()">
+            <button class="btn btn-clean" ng-click="togglePlay()">
               <i class="icon-large" ng-class="{ 'icon-play': !isPlaying, 'icon-pause': isPlaying }"></i>
             </button>
-            <button class="btn" ng-click="next()">
+            <button class="btn btn-clean" ng-click="next()">
               <i class="icon-step-forward icon-large"></i>
             </button>
           </div>
@@ -32,7 +32,7 @@
             <div class="span10 song-info">
               <div class="row-fluid">
                 <div class="span1 button-bar">
-                  <button class="btn" title="Love"
+                  <button class="btn btn-clean" title="Love"
                           ng-click="toggleLoveStatus()"
                           ng-show="song">
                     <i ng-class="{ 'icon-heart': song.loved, 'icon-heart-empty': !song.loved }"></i>
@@ -71,10 +71,10 @@
         </div>
 
         <div class="span3 button-bar middle">
-          <button class="btn" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat()">
+          <button class="btn btn-clean" ng-class="{ active: shouldRepeat }" ng-click="toggleRepeat()">
             <i class="icon-retweet icon-large"></i>
           </button>
-          <button class="btn" ng-class="{ active: shouldOpenQueue }" ng-click="toggleQueue()">
+          <button class="btn btn-clean" ng-class="{ active: shouldOpenQueue }" ng-click="toggleQueue()">
             <i class="icon-list icon-large"></i>
           </button>
         </div>

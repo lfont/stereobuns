@@ -198,6 +198,10 @@ css/settings.css
 ----------------
 css/settings.css
 
+css/similar-tracks.css
+----------------
+css/similar-tracks.css
+
 css/site.css
 ----------------
 css/search.css
@@ -207,9 +211,11 @@ css/settings.css
 css/root.css
 css/audio-player-queue.css
 css/track.css
+css/similar-tracks.css
 css/songs-group.css
 css/playlist.css
 css/user-menu.css
+css/user-profile.css
 css/song.css
 css/songs-actions.css
 css/song-progress.css
@@ -239,6 +245,10 @@ css/track.css
 css/user-menu.css
 ----------------
 css/user-menu.css
+
+css/user-profile.css
+----------------
+css/user-profile.css
 
 js/main.js
 ----------------

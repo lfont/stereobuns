@@ -1,3 +1,13 @@
+.track .album .artwork {
+  height: 128px;
+  width: 128px;
+}
+
 .track .comments {
   margin-top: 10px;
+}
+
+.track .comments img {
+  height: 64px;
+  width: 64px;
 }

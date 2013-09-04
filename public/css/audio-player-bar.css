@@ -2,6 +2,15 @@
   padding: 2px;
 }
 
+.audio-player-bar .artwork {
+  height: 64px;
+  width: 64px;
+}
+
+.audio-player-bar .button-bar .btn {
+  margin: -12px 12px 0 12px;
+}
+
 .audio-player-bar .song-info {
   color: gray;
 }
@@ -15,15 +24,8 @@
 }
 
 .audio-player-bar .song-info .button-bar .btn {
-  padding: 3px 5px;
-}
-
-.audio-player-bar .button-bar .btn {
-  background: none;
-  border: 0;
-  box-shadow: none;
-  margin-top: 0;
-  text-shadow: none;
+  margin: 0;
+  padding: 1px 4px;
 }
 
 .audio-player-bar .button-bar .icon-heart,

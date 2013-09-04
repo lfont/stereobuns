@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Josefin+Sans");
 @import url("../components/bootstrap/docs/assets/css/bootstrap.css");
 @import url("../components/bootstrap/docs/assets/css/bootstrap-responsive.css");
 @import url("../components/font-awesome/css/font-awesome.css");
@@ -106,6 +107,18 @@ textarea {
 }
 
 
+/* buttons */
+
+.btn.btn-clean {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 1px;
+  text-shadow: none;
+}
+
+
 /* animation */
 
 .animate-show.ng-hide-add, 
@@ -116,3 +129,7 @@ textarea {
   transition:         all linear 0.3s;
   display: block !important;
 }
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

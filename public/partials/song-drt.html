@@ -1,18 +1,17 @@
 <div class="song">
-  <a class="song-artwork"
-     href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
+  <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
     <artwork data="song" type="song"></artwork>
   </a>
 
   <div class="song-heading">
     <div class="song-player">
-      <img src="/img/vinyl.png" class="vinyl" width="32px" height="32px"
+      <img src="/img/vinyl.png" class="vinyl"
            ng-class="{ play: isPlaying }">
-      <button class="btn play" title="Play"
+      <button class="btn btn-clean play" title="Play"
               ng-click="togglePlay(); $event.stopPropagation()" ng-if="!isPlaying">
         <i class="icon-play icon-large"></i>
       </button>
-      <button class="btn pause" title="Pause"
+      <button class="btn btn-clean pause" title="Pause"
               ng-click="togglePlay(); $event.stopPropagation()" ng-if="isPlaying">
         <i class="icon-pause icon-large"></i>
       </button>
@@ -36,10 +35,16 @@
     </div>
       
     <div class="span4">
-      <p class="pull-right">
-        <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
-           ng-show="song.linkUrl" ng-click="$event.stopPropagation()">{{ song.source }}</a>
-        <span ng-hide="song.linkUrl">{{ song.source }}</span>
+      <p class="song-links pull-right"
+         ng-switch="song.linkUrl">
+        <i class="icon-cloud"></i>
+        <span title="source"
+              ng-switch-when="null">{{ song.source }}</span>
+        <a href="{{ song.linkUrl }}" title="source" target="_blank"
+           ng-switch-default=""
+           ng-click="$event.stopPropagation()">
+           {{ song.source }}
+         </a>
       </p>
     </div>
   </div>

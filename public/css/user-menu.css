@@ -1,15 +1,16 @@
 .user-menu .btn {
-  background: none;
-  border: 0;
-  box-shadow: none;
   color: gray;
-  margin-top: 0;
-  text-shadow: none;
+  margin-top: 5px;
 }
 
 .user-menu .btn:hover,
 .user-menu .btn.active {
   color: white;
+}
+
+.user-menu .btn img {
+  height: 32px;
+  width: 32px;
 }
 
 .user-menu .icon-caret-down {

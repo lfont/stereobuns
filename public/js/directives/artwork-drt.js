@@ -15,29 +15,26 @@ define(function () {
         data: '=',
         type: '@'
       },
-      template: '<img alt="{{ alt }}" ng-src="{{ src }}" ng-style="style" />',
+      template: '<img class="artwork" alt="{{ title }}" ng-src="{{ src }}">',
       
       link: function (scope, iElement, iAttrs) {
         var setter = {
           song: function (song) {
-            scope.alt = song ?
+            scope.title = song ?
               song.artist + ' - ' + song.track :
               'none';
-            scope.style = { width: '64px', height: '64px' };
           },
           
           track: function (track) {
-            scope.alt = track ?
+            scope.title = track ?
               track.artist + ' - ' + track.name :
               'none';
-            scope.style = { width: '34px', height: '34px' };
           },
           
           album: function (album) {
-            scope.alt = album ?
+            scope.title = album ?
               album.artist + ' - ' + album.name :
               'none';
-            scope.style = { width: '128px', height: '128px' };
           }
         };
         
