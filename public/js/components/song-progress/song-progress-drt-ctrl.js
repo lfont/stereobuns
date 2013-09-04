@@ -21,15 +21,15 @@ define([
     };
 
     $scope.progress = null;
-    $scope.loadingPercentage = null;
+    $scope.loadingPercentage = 0;
 
     $scope.$on('audioPlayer:play', function (event, loaded) {
       loadingPercentage = loaded ? 100 : 0;
     });
 
     $scope.$on('audioPlayer:stop', function (event) {
-      loadingPercentage = 0;
       $scope.progress = null;
+      $scope.loadingPercentage = 0;
     });
 
     $scope.$on('audioPlayer:loading', function (event, percentage) {
