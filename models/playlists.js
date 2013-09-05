@@ -50,7 +50,7 @@ exports.findByName = function (userId, playlistName, callback) {
       trackId: '$trackId',
       artist: '$artist',
       album: '$album',
-      track: '$track',
+      name: '$name',
       source: '$source',
       url: '$url',
       linkUrl: '$linkUrl',

@@ -279,12 +279,10 @@ js/models/playlist-mdl.js
 js/models/playlists-mdl.js
 js/models/user-mdl.js
 js/models/main.js
+js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
 js/common/filters/time-flt.js
 js/common/main.js
-js/artwork/artwork-srv.js
-js/artwork/artwork-drt.js
-js/artwork/main.js
 js/audio-player/audio-player-ctrl.js
 js/audio-player/audio-player-queue-ctrl.js
 js/audio-player/audio-player-srv.js

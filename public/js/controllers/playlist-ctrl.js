@@ -46,7 +46,7 @@ define(function () {
 
     $scope.$on('playlist:add', function (event, name, song) {
       var songIndex;
-      if (name === $scope.name) {
+      if (name === $scope.playlistName) {
         songIndex = $scope.utils.indexOf($scope.songs, 'url', song.url);
         if (songIndex < 0) {
           $scope.songs.push(song);
@@ -56,7 +56,7 @@ define(function () {
 
     $scope.$on('playlist:remove', function (event, name, song) {
       var songIndex;
-      if (name === $scope.name) {
+      if (name === $scope.playlistName) {
         songIndex = $scope.utils.indexOf($scope.songs, 'url', song.url);
         $scope.songs.splice(songIndex, 1);
       }

@@ -16,23 +16,23 @@ define(function () {
         });
     };
 
-    this.findOne = function (artist, track, trackId) {
+    this.findOne = function (artistName, trackName, trackId) {
       return this
-        .find(artist + ' ' + track)
-        .then(function (songs) {
-          var song = null,
+        .find(artistName + ' ' + trackName)
+        .then(function (tracks) {
+          var track = null,
               i, len;
 
-          for (i = 0, len = songs.length; i < len; i++) {
-            if (artist === songs[i].artist &&
-                track === songs[i].track &&
-                (trackId ? trackId === songs[i].trackId : true)) {
-              song = songs[i];
+          for (i = 0, len = tracks.length; i < len; i++) {
+            if (artistName === tracks[i].artist &&
+                trackName === tracks[i].name &&
+                (trackId ? trackId === tracks[i].trackId : true)) {
+              track = tracks[i];
               break;
             }
           }
 
-          return song;
+          return track;
         });
     };
   }

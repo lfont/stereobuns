@@ -21,7 +21,7 @@ var songSchema = new Schema({
   url: { type: String, required: true },
   artist: String,
   album: String,
-  track: String,
+  name: String,
   trackId: { type: String, required: true },
   source: String,
   linkUrl: String,

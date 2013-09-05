@@ -64,7 +64,6 @@ require.config({
     // common
     'common',
     // features
-    'artwork',
     'audio-player',
     'keyboard-shortcuts',
     'similar-tracks',

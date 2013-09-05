@@ -1,6 +1,6 @@
 <div class="track">
-  <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
-    <sr-artwork data="song" type="song"></sr-artwork>
+  <a href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}">
+    <sr-artwork data="song"></sr-artwork>
   </a>
 
   <div class="track-heading">
@@ -21,8 +21,8 @@
   </div>
   
   <p>
-    <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
-      {{ song.track }}
+    <a href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}">
+      {{ song.name }}
     </a>
   </p>
 
@@ -35,16 +35,12 @@
     </div>
       
     <div class="span4">
-      <p class="track-links pull-right"
-         ng-switch="song.linkUrl">
-        <i class="icon-cloud"></i>
-        <span title="source"
-              ng-switch-when="null">{{ song.source }}</span>
-        <a href="{{ song.linkUrl }}" title="source" target="_blank"
-           ng-switch-default=""
+      <p class="track-links pull-right">
+        <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
            ng-click="$event.stopPropagation()">
-           {{ song.source }}
-         </a>
+          <img class="source" alt="{{ song.source }}"
+               ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png">
+        </a>
       </p>
     </div>
   </div>

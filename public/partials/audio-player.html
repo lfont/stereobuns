@@ -24,8 +24,8 @@
         <div class="span6 hidden-phone">
           <div class="row-fluid">
             <div class="span2">
-              <a class="pull-right" href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
-                <sr-artwork data="song" type="song"></sr-artwork>
+              <a class="pull-right" href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}">
+                <sr-artwork data="song"></sr-artwork>
               </a>
             </div>
 
@@ -45,22 +45,15 @@
                 
               <div class="row-fluid">
                 <div class="span1">
-                  <span ng-if="song">
-                    <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
-                       ng-if="song.linkUrl" ng-click="$event.stopPropagation()">
-                      <img ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png"
-                           alt="{{ song.source }}"
-                           height="22px" width="22px" />
-                    </a>
-                    
-                    <img ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png"
-                         alt="{{ song.source }}"
-                         ng-if="!song.linkUrl" height="22px" width="22px" />
-                  </span>
+                  <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+                     ng-if="song" ng-click="$event.stopPropagation()">
+                    <img class="source" alt="{{ song.source }}"
+                         ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png">
+                  </a>
                 </div>
                 <div class="span11">
-                  <a href="/track/{{ song.artist }}/{{ song.track }}?trackId={{ song.trackId }}">
-                    {{ song.track }}
+                  <a href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}">
+                    {{ song.name }}
                   </a>
                 </div>
               </div>
