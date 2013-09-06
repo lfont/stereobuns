@@ -7,7 +7,6 @@ require.config({
   paths: {
     'templates': '../templates',
     'text': '../components/requirejs-text/text',
-    'jquery': '../components/jquery/jquery',
     'angular': '../components/angular/angular',
     'angular-route': '../components/angular-route/angular-route',
     'angular-cookies': '../components/angular-cookies/angular-cookies',
@@ -23,7 +22,6 @@ require.config({
   },
   shim: {
     angular: {
-      deps: [ 'jquery' ], // replace jqLite by jquery
       exports: 'angular'
     },
     'angular-route': {

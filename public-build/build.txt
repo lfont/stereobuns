@@ -252,7 +252,6 @@ css/user/user-profile.css
 
 js/main.js
 ----------------
-components/jquery/jquery.js
 components/angular/angular.js
 js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
