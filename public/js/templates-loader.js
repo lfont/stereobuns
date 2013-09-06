@@ -14,12 +14,9 @@ define([
   'text!templates/songs-actions-drt.html',
   'text!templates/playlist.html',
   'text!templates/songs-group.html',
-  'text!templates/user-menu.html',
   'text!templates/no-loved-songs.html',
   'text!templates/no-mostplayed-songs.html',
   'text!templates/no-playlist-songs.html',
-  'text!templates/user-profile.html',
-  'text!templates/user-profile-menu.html',
   // features
   'text!templates/audio-player/audio-player.html',
   'text!templates/audio-player/audio-player-queue.html',
@@ -31,6 +28,9 @@ define([
   'text!templates/track-info/track-info.html',
   'text!templates/track-search/track-search.html',
   'text!templates/track-search/track-search-results.html',
+  'text!templates/user/user-menu.html',
+  'text!templates/user/user-profile.html',
+  'text!templates/user/user-profile-menu.html',
   // modules
   'angular-animate',
   'angular-ui-bootstrap-collapse',
@@ -47,12 +47,9 @@ define([
              songsActionsTpl,
              playlistTpl,
              songsGroupTpl,
-             userMenuTpl,
              noLovedSongsTpl,
              noMostPlayedSongsTpl,
              noPlaylistSongsTpl,
-             userProfileTpl,
-             userProfileMenuTpl,
              // features
              audioPlayerTpl,
              audioPlayerQueueTpl,
@@ -63,7 +60,10 @@ define([
              trackTpl,
              trackInfoTpl,
              trackSearchTpl,
-             trackSearchResultsTpl) {
+             trackSearchResultsTpl,
+             userMenuTpl,
+             userProfileTpl,
+             userProfileMenuTpl) {
   'use strict';
 
   var module = angular.module('soundrocket.templates-loader', [
@@ -84,12 +84,9 @@ define([
     $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
     $templateCache.put('templates/playlist.html', playlistTpl);
     $templateCache.put('templates/songs-group.html', songsGroupTpl);
-    $templateCache.put('templates/user-menu.html', userMenuTpl);
     $templateCache.put('templates/no-loved-songs.html', noLovedSongsTpl);
     $templateCache.put('templates/no-mostplayed-songs.html', noMostPlayedSongsTpl);
     $templateCache.put('templates/no-playlist-songs.html', noPlaylistSongsTpl);
-    $templateCache.put('templates/user-profile.html', userProfileTpl);
-    $templateCache.put('templates/user-profile-menu.html', userProfileMenuTpl);
     // features
     $templateCache.put('templates/audio-player/audio-player.html', audioPlayerTpl);
     $templateCache.put('templates/audio-player/audio-player-queue.html', audioPlayerQueueTpl);
@@ -101,6 +98,9 @@ define([
     $templateCache.put('templates/track-info/track-info.html', trackInfoTpl);
     $templateCache.put('templates/track-search/track-search.html', trackSearchTpl);
     $templateCache.put('templates/track-search/track-search-results.html', trackSearchResultsTpl);
+    $templateCache.put('templates/user/user-menu.html', userMenuTpl);
+    $templateCache.put('templates/user/user-profile.html', userProfileTpl);
+    $templateCache.put('templates/user/user-profile-menu.html', userProfileMenuTpl);
   }]);
   
   return module;

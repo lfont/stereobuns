@@ -8,8 +8,8 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SettingsCtrl ($scope, $dialog, $location, userMdl) {
-    $scope.hasInvitation = userMdl.hasInvitation();
+  function SettingsCtrl ($scope, $dialog, $location, userSrv) {
+    $scope.hasInvitation = userSrv.hasInvitation();
     $scope.invitationCode = '';
     $scope.error = null;
 
@@ -24,7 +24,7 @@ define([
 
       $scope.closeErrorAlert();
 
-      userMdl
+      userSrv
         .setInvitationCode($scope.invitationCode)
         .then(function () {
           $scope.hasInvitation = true;
@@ -50,7 +50,7 @@ define([
             return;
           }
 
-          userMdl
+          userSrv
             .delete()
             .then(function () {
               $location.path('/');
@@ -61,7 +61,7 @@ define([
     };
   }
 
-  SettingsCtrl.$inject = [ '$scope', '$dialog', '$location', 'userMdl' ];
+  SettingsCtrl.$inject = [ '$scope', '$dialog', '$location', 'userSrv' ];
 
   return SettingsCtrl;
 });

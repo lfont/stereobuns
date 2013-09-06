@@ -5,13 +5,6 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
-  'angular-cookies',
-  // TODO
-  'components/playlist-chooser',
-  'components/song-progress',
-  'components/songs-actions',
-  'controllers',
-  'models',
   // common
   'common',
   // features
@@ -22,29 +15,38 @@ define([
   'similar-tracks',
   'track',
   'track-info',
-  'track-search'
-], function (angular) {
+  'track-search',
+  'user',
+  // TODO
+  'components/playlist-chooser',
+  'components/song-progress',
+  'components/songs-actions',
+  'controllers',
+  'models'
+], function (angular, commonModule, audioPlayerModule, homeModule,
+             keyboardShortcutsModule, settingsModule, similarTracksModule,
+             trackModule, trackInfoModule, trackSearchModule, userModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
-    'ngCookies',
-    // TODO
+    // common
+    commonModule.name,
+    // features
+    audioPlayerModule.name,
+    homeModule.name,
+    keyboardShortcutsModule.name,
+    settingsModule.name,
+    similarTracksModule.name,
+    trackModule.name,
+    trackInfoModule.name,
+    trackSearchModule.name,
+    userModule.name,
+    // FIX: must be implemented as features
     'soundrocket.components.playlist-chooser',
     'soundrocket.components.song-progress',
     'soundrocket.components.songs-actions',
     'soundrocket.controllers',
-    'soundrocket.models',
-    // common
-    'soundrocket.common',
-    // features
-    'soundrocket.audio-player',
-    'soundrocket.home',
-    'soundrocket.keyboard-shortcuts',
-    'soundrocket.settings',
-    'soundrocket.similar-tracks',
-    'soundrocket.track',
-    'soundrocket.track-info',
-    'soundrocket.track-search'
+    'soundrocket.models'
   ]);
 
   soundRocket.constant('config', { debug: false });

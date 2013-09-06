@@ -71,7 +71,8 @@ require.config({
     'similar-tracks',
     'track',
     'track-info',
-    'track-search'
+    'track-search',
+    'user'
   ]
 });
 

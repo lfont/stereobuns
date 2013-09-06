@@ -5,16 +5,16 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
-  'angular-route',
-  'models',
-  'audio-player'
-], function (angular) {
+  'user',
+  'audio-player',
+  'angular-route'
+], function (angular, userModule, audioPlayerModule) {
   'use strict';
 
   var routes = angular.module('soundrocket.routes', [
     'ngRoute',
-    'soundrocket.models',
-    'soundrocket.audio-player'
+    userModule.name,
+    audioPlayerModule.name
   ]);
 
   routes.config([
@@ -74,9 +74,9 @@ define([
     '$rootScope',
     '$window',
     '$location',
-    'userMdl',
+    'userSrv',
     'audioPlayerSrv',
-    function ($rootScope, $window, $location, userMdl, audioPlayerSrv) {
+    function ($rootScope, $window, $location, userSrv, audioPlayerSrv) {
       function setPageTitle (title) {
         var currentTitle   = $window.document.title,
             prefixEndIndex = currentTitle.indexOf('-'),
@@ -87,16 +87,16 @@ define([
 
       // authentication rules
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var isLoggedIn = userMdl.isLoggedIn();
+        var isLoggedIn = userSrv.isLoggedIn();
         
         if (isLoggedIn && $location.path() === '/') {
-          $location.path('/' + userMdl.getName());
+          $location.path('/' + userSrv.getName());
         }
       });
       
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        var isLoggedIn    = userMdl.isLoggedIn(),
-            hasInvitation = userMdl.hasInvitation();
+        var isLoggedIn    = userSrv.isLoggedIn(),
+            hasInvitation = userSrv.hasInvitation();
 
         if (!isLoggedIn && next.$$route.authenticated) {
           return $location.path('/');
@@ -113,8 +113,8 @@ define([
 
       // page title update
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        if (userMdl.isLoggedIn()) {
-          userMdl.get().then(function (user) {
+        if (userSrv.isLoggedIn()) {
+          userSrv.get().then(function (user) {
             setPageTitle(user.name + ' - ' + current.$$route.pageTitle);
           });
         } else {

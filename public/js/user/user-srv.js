@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function UserMdl ($rootScope, $http, $cookies, $q) {
+  function UserSrv ($rootScope, $http, $cookies, $q) {
 
     function parseCookie (name)  {
       var cookie = $cookies[name],
@@ -52,7 +52,7 @@ define([
       return $http
         .post('/api/users/me/invitation', { code: code })
         .then(function (response) {
-          $rootScope.$broadcast('userMdl:invitation');
+          $rootScope.$broadcast('userSrv:invitation');
           return response.data;
         }, function (response) {
           var error;
@@ -88,7 +88,7 @@ define([
     };
   }
 
-  UserMdl.$inject = [ '$rootScope', '$http', '$cookies', '$q' ];
+  UserSrv.$inject = [ '$rootScope', '$http', '$cookies', '$q' ];
 
-  return UserMdl;
+  return UserSrv;
 });

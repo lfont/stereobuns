@@ -5,15 +5,17 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
+  'track-search',
   './track-info-ctrl',
   './track-info-srv'
 ], function (angular,
+             trackSearchModule,
              TrackInfoCtrl,
              TrackInfoSrv) {
   'use strict';
 
   var module = angular.module('soundrocket.track-info', [
-    'soundrocket.track-search'
+    trackSearchModule.name
   ]);
   
   module.controller('TrackInfoCtrl', TrackInfoCtrl)
