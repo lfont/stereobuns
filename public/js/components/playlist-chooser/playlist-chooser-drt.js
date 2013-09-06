@@ -15,7 +15,7 @@ define(function () {
                 options: '=',
                 songs: '='
             },
-            templateUrl: 'partials/playlist-chooser-drt.html',
+            templateUrl: 'templates/playlist-chooser-drt.html',
             controller: 'PlaylistChooserDrtCtrl'
         };
     }

@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       ],
       build: [
         './public-build/components',
-        './public-build/partials'
+        './public-build/templates'
       ],
       'build-temp': [
         './public-build/temp'

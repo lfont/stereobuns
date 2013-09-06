@@ -155,21 +155,21 @@ components/soundmanager/troubleshoot/debug.css
 ----------------
 components/soundmanager/troubleshoot/debug.css
 
-css/audio-player-queue.css
+css/audio-player/audio-player-queue.css
 ----------------
-css/audio-player-queue.css
+css/audio-player/audio-player-queue.css
 
-css/audio-player.css
+css/audio-player/audio-player.css
 ----------------
-css/audio-player.css
+css/audio-player/audio-player.css
 
 css/coming-soon.css
 ----------------
 css/coming-soon.css
 
-css/keyboard-shortcuts.css
+css/keyboard-shortcuts/keyboard-shortcuts.css
 ----------------
-css/keyboard-shortcuts.css
+css/keyboard-shortcuts/keyboard-shortcuts.css
 
 css/main.css
 ----------------
@@ -194,28 +194,28 @@ css/settings.css
 ----------------
 css/settings.css
 
-css/similar-tracks.css
+css/similar-tracks/similar-tracks.css
 ----------------
-css/similar-tracks.css
+css/similar-tracks/similar-tracks.css
 
 css/site.css
 ----------------
-css/track-search-results.css
-css/audio-player.css
-css/keyboard-shortcuts.css
-css/settings.css
-css/root.css
-css/audio-player-queue.css
-css/track.css
-css/songs-group.css
+css/audio-player/audio-player.css
+css/audio-player/audio-player-queue.css
+css/keyboard-shortcuts/keyboard-shortcuts.css
+css/similar-tracks/similar-tracks.css
+css/track/track.css
+css/track-info/track-info.css
+css/track-search/track-search-results.css
+css/playlist-chooser.css
 css/playlist.css
+css/root.css
+css/settings.css
+css/song-progress.css
+css/songs-actions.css
+css/songs-group.css
 css/user-menu.css
 css/user-profile.css
-css/track-info.css
-css/similar-tracks.css
-css/songs-actions.css
-css/song-progress.css
-css/playlist-chooser.css
 css/site.css
 
 css/song-progress.css
@@ -230,17 +230,17 @@ css/songs-group.css
 ----------------
 css/songs-group.css
 
-css/track-info.css
+css/track/track.css
 ----------------
-css/track-info.css
+css/track/track.css
 
-css/track-search-results.css
+css/track-info/track-info.css
 ----------------
-css/track-search-results.css
+css/track-info/track-info.css
 
-css/track.css
+css/track-search/track-search-results.css
 ----------------
-css/track.css
+css/track-search/track-search-results.css
 
 css/user-menu.css
 ----------------
@@ -309,37 +309,37 @@ js/track-search/track-search-srv.js
 js/track-search/track-flt.js
 js/track-search/main.js
 js/app.js
+components/angular-route/angular-route.js
+js/routes.js
 components/requirejs-text/text.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html
-text!partials/playlist-chooser-drt.html
-text!partials/song-progress-drt.html
-text!partials/songs-actions-drt.html
-text!partials/root.html
-text!partials/playlist.html
-text!partials/songs-group.html
-text!partials/user-menu.html
-text!partials/no-loved-songs.html
-text!partials/no-mostplayed-songs.html
-text!partials/no-playlist-songs.html
-text!partials/settings.html
-text!partials/user-profile.html
-text!partials/user-profile-menu.html
-text!partials/audio-player.html
-text!partials/audio-player-queue.html
-text!partials/keyboard-shortcuts.html
-text!partials/similar-tracks.html
-text!partials/track.html
-text!partials/track-info.html
-text!partials/track-search.html
-text!partials/track-search-results.html
+text!templates/playlist-chooser-drt.html
+text!templates/song-progress-drt.html
+text!templates/songs-actions-drt.html
+text!templates/root.html
+text!templates/playlist.html
+text!templates/songs-group.html
+text!templates/user-menu.html
+text!templates/no-loved-songs.html
+text!templates/no-mostplayed-songs.html
+text!templates/no-playlist-songs.html
+text!templates/settings.html
+text!templates/user-profile.html
+text!templates/user-profile-menu.html
+text!templates/audio-player/audio-player.html
+text!templates/audio-player/audio-player-queue.html
+text!templates/keyboard-shortcuts/keyboard-shortcuts.html
+text!templates/similar-tracks/similar-tracks.html
+text!templates/track/track.html
+text!templates/track-info/track-info.html
+text!templates/track-search/track-search.html
+text!templates/track-search/track-search-results.html
 components/angular-animate/angular-animate.js
 components/angular-ui-bootstrap/src/transition/transition.js
 components/angular-ui-bootstrap/src/collapse/collapse.js
 components/angular-ui-bootstrap/src/dropdownToggle/dropdownToggle.js
 components/angular-ui-bootstrap/src/dialog/dialog.js
 components/angular-ui-bootstrap/src/alert/alert.js
-js/templates.js
-components/angular-route/angular-route.js
-js/routes.js
+js/templates-loader.js
 js/main.js

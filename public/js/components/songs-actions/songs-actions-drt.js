@@ -18,7 +18,7 @@ define([
         songs: '=',
         onRemove: '&'
       },
-      templateUrl: 'partials/songs-actions-drt.html',
+      templateUrl: 'templates/songs-actions-drt.html',
       controller: 'SongsActionsDrtCtrl'
     };
   }

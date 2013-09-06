@@ -41,7 +41,7 @@ define(function () {
     $scope.$watchCollection('songs', function (newSongs, oldSongs) {
       $scope.noSongMessageTemplateUrl = !newSongs || newSongs.length ?
         '' :
-        'partials/no-playlist-songs.html';
+        'templates/no-playlist-songs.html';
     });
 
     $scope.$on('playlist:add', function (event, name, song) {

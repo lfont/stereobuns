@@ -29,7 +29,7 @@ define(function () {
     $scope.$watchCollection('songs', function (newSongs, oldSongs) {
       $scope.noSongMessageTemplateUrl = !newSongs || newSongs.length ?
         '' :
-        'partials/no-' + $routeParams.group + '-songs.html';
+        'templates/no-' + $routeParams.group + '-songs.html';
     });
 
     $scope.$on('songsGroup:add', function (event, id, song) {

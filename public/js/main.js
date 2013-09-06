@@ -5,7 +5,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 require.config({
   paths: {
-    'partials': '../partials',
+    'templates': '../templates',
     'text': '../components/requirejs-text/text',
     'jquery': '../components/jquery/jquery',
     'angular': '../components/angular/angular',
@@ -77,15 +77,15 @@ require.config({
 require([
   'angular',
   'app',
-  'templates',
-  'routes'
-], function (angular, app, templates, routes) {
+  'routes',
+  'templates-loader'
+], function (angular, app, routes, templatesLoader) {
   'use strict';
 
   var doc = angular.element(document);
   doc.ready(function () {
     var html = doc.find('html');
-    angular.bootstrap(html, [ app.name, templates.name, routes.name ]);
+    angular.bootstrap(html, [ app.name, routes.name, templatesLoader.name ]);
     // Because of RequireJS we need to bootstrap the app app manually
     // and Angular Scenario runner won't be able to communicate with our app
     // unless we explicitely mark the container as app holder

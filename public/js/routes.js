@@ -25,43 +25,43 @@ define([
 
       $routeProvider
         .when('/', {
-          templateUrl: 'partials/root.html',
+          templateUrl: 'templates/root.html',
           controller: 'RootCtrl',
           pageTitle: 'Welcome',
           authenticated: false
         })
         .when('/settings/:id', {
-          templateUrl: 'partials/settings.html',
+          templateUrl: 'templates/settings.html',
           controller: 'SettingsCtrl',
           pageTitle: 'Settings',
           authenticated: true
         })
         .when('/search', {
-          templateUrl: 'partials/track-search-results.html',
+          templateUrl: 'templates/track-search/track-search-results.html',
           controller: 'TrackSearchResultsCtrl',
           pageTitle: 'Search',
           authenticated: true
         })
         .when('/track/:artist/:track', {
-          templateUrl: 'partials/track-info.html',
+          templateUrl: 'templates/track-info/track-info.html',
           controller: 'TrackInfoCtrl',
           pageTitle: 'About Track',
           authenticated: true
         })
         .when('/:user', {
-          templateUrl: 'partials/songs-group.html',
+          templateUrl: 'templates/songs-group.html',
           controller: 'SongsGroupCtrl',
           pageTitle: 'Home',
           authenticated: true
         })
         .when('/:user/tracks/:group', {
-          templateUrl: 'partials/songs-group.html',
+          templateUrl: 'templates/songs-group.html',
           controller: 'SongsGroupCtrl',
           pageTitle: 'Songs',
           authenticated: true
         })
         .when('/:user/playlist/:name', {
-          templateUrl: 'partials/playlist.html',
+          templateUrl: 'templates/playlist.html',
           controller: 'PlaylistCtrl',
           pageTitle: 'Playlist',
           authenticated: true

@@ -16,7 +16,7 @@ define(function () {
         song: '=',
         onRemove: '&'
       },
-      templateUrl: 'partials/track.html',
+      templateUrl: 'templates/track/track.html',
       controller: 'TrackCtrl'
     };
   }

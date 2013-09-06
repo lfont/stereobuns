@@ -21,7 +21,7 @@ define(function () {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: 'partials/keyboard-shortcuts.html',
+        templateUrl: 'templates/keyboard-shortcuts/keyboard-shortcuts.html',
         controller: 'KeyboardShortcutsCtrl'
       }).open().then(function () {
         dialogIsOpen = false;
