@@ -18,14 +18,15 @@ exports.User = mongoose.model('User', userSchema);
 
 var songSchema = new Schema({
   _creator: { type: Schema.ObjectId, ref: 'User', required: true },
-  url: { type: String, required: true },
-  artist: String,
-  album: String,
-  name: String,
+  // track properties
   trackId: { type: String, required: true },
+  artist: String,
+  name: String,
   source: String,
-  linkUrl: String,
+  url: { type: String, required: true },
   artworkUrl: String,
+  linkUrl: String,
+  // extra properties
   loved: Boolean,
   queueIndex: { type: Number, select: false },
   queueTimestamp: { type: Number, select: false },
