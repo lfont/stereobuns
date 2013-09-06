@@ -31,7 +31,7 @@ define([
           authenticated: false
         })
         .when('/settings/:id', {
-          templateUrl: 'templates/settings.html',
+          templateUrl: 'templates/settings/settings.html',
           controller: 'SettingsCtrl',
           pageTitle: 'Settings',
           authenticated: true

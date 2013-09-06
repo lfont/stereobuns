@@ -9,7 +9,6 @@ define([
   './playlist-ctrl',
   './songs-group-ctrl',
   './user-menu-ctrl',
-  './settings-ctrl',
   './user-profile-ctrl',
   './user-profile-menu-ctrl'
 ], function (angular,
@@ -17,7 +16,6 @@ define([
              PlaylistCtrl,
              SongsGroupCtrl,
              UserMenuCtrl,
-             SettingsCtrl,
              UserProfileCtrl,
              UserProfileMenuCtrl) {
   'use strict';
@@ -27,7 +25,6 @@ define([
                 .controller('PlaylistCtrl', PlaylistCtrl)
                 .controller('SongsGroupCtrl', SongsGroupCtrl)
                 .controller('UserMenuCtrl', UserMenuCtrl)
-                .controller('SettingsCtrl', SettingsCtrl)
                 .controller('UserProfileCtrl', UserProfileCtrl)
                 .controller('UserProfileMenuCtrl', UserProfileMenuCtrl);
 });

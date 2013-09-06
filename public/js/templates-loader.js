@@ -18,7 +18,6 @@ define([
   'text!templates/no-loved-songs.html',
   'text!templates/no-mostplayed-songs.html',
   'text!templates/no-playlist-songs.html',
-  'text!templates/settings.html',
   'text!templates/user-profile.html',
   'text!templates/user-profile-menu.html',
   // features
@@ -26,6 +25,7 @@ define([
   'text!templates/audio-player/audio-player-queue.html',
   'text!templates/home/home.html',
   'text!templates/keyboard-shortcuts/keyboard-shortcuts.html',
+  'text!templates/settings/settings.html',
   'text!templates/similar-tracks/similar-tracks.html',
   'text!templates/track/track.html',
   'text!templates/track-info/track-info.html',
@@ -51,7 +51,6 @@ define([
              noLovedSongsTpl,
              noMostPlayedSongsTpl,
              noPlaylistSongsTpl,
-             settingsTpl,
              userProfileTpl,
              userProfileMenuTpl,
              // features
@@ -59,6 +58,7 @@ define([
              audioPlayerQueueTpl,
              homeTpl,
              keyboardShortcutsTpl,
+             settingsTpl,
              similarTracksTpl,
              trackTpl,
              trackInfoTpl,
@@ -88,7 +88,6 @@ define([
     $templateCache.put('templates/no-loved-songs.html', noLovedSongsTpl);
     $templateCache.put('templates/no-mostplayed-songs.html', noMostPlayedSongsTpl);
     $templateCache.put('templates/no-playlist-songs.html', noPlaylistSongsTpl);
-    $templateCache.put('templates/settings.html', settingsTpl);
     $templateCache.put('templates/user-profile.html', userProfileTpl);
     $templateCache.put('templates/user-profile-menu.html', userProfileMenuTpl);
     // features
@@ -96,6 +95,7 @@ define([
     $templateCache.put('templates/audio-player/audio-player-queue.html', audioPlayerQueueTpl);
     $templateCache.put('templates/home/home.html', homeTpl);
     $templateCache.put('templates/keyboard-shortcuts/keyboard-shortcuts.html', keyboardShortcutsTpl);
+    $templateCache.put('templates/settings/settings.html', settingsTpl);
     $templateCache.put('templates/similar-tracks/similar-tracks.html', similarTracksTpl);
     $templateCache.put('templates/track/track.html', trackTpl);
     $templateCache.put('templates/track-info/track-info.html', trackInfoTpl);

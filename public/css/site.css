@@ -2,13 +2,13 @@
 @import url("audio-player/audio-player-queue.css");
 @import url("home/home.css");
 @import url("keyboard-shortcuts/keyboard-shortcuts.css");
+@import url("settings/settings.css");
 @import url("similar-tracks/similar-tracks.css");
 @import url("track/track.css");
 @import url("track-info/track-info.css");
 @import url("track-search/track-search-results.css");
 @import url("playlist-chooser.css");
 @import url("playlist.css");
-@import url("settings.css");
 @import url("song-progress.css");
 @import url("songs-actions.css");
 @import url("songs-group.css");

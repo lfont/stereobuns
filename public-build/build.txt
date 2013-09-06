@@ -190,9 +190,9 @@ css/playlist.css
 ----------------
 css/playlist.css
 
-css/settings.css
+css/settings/settings.css
 ----------------
-css/settings.css
+css/settings/settings.css
 
 css/similar-tracks/similar-tracks.css
 ----------------
@@ -204,13 +204,13 @@ css/audio-player/audio-player.css
 css/audio-player/audio-player-queue.css
 css/home/home.css
 css/keyboard-shortcuts/keyboard-shortcuts.css
+css/settings/settings.css
 css/similar-tracks/similar-tracks.css
 css/track/track.css
 css/track-info/track-info.css
 css/track-search/track-search-results.css
 css/playlist-chooser.css
 css/playlist.css
-css/settings.css
 css/song-progress.css
 css/songs-actions.css
 css/songs-group.css
@@ -268,7 +268,6 @@ js/controllers/layout-ctrl.js
 js/controllers/playlist-ctrl.js
 js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
-js/controllers/settings-ctrl.js
 js/controllers/user-profile-ctrl.js
 js/controllers/user-profile-menu-ctrl.js
 js/controllers/main.js
@@ -295,6 +294,8 @@ js/home/main.js
 js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
 js/keyboard-shortcuts/keyboard-shortcut-drt.js
 js/keyboard-shortcuts/main.js
+js/settings/settings-ctrl.js
+js/settings/main.js
 js/similar-tracks/similar-tracks-ctrl.js
 js/similar-tracks/similar-tracks-srv.js
 js/similar-tracks/main.js
@@ -324,13 +325,13 @@ text!templates/user-menu.html
 text!templates/no-loved-songs.html
 text!templates/no-mostplayed-songs.html
 text!templates/no-playlist-songs.html
-text!templates/settings.html
 text!templates/user-profile.html
 text!templates/user-profile-menu.html
 text!templates/audio-player/audio-player.html
 text!templates/audio-player/audio-player-queue.html
 text!templates/home/home.html
 text!templates/keyboard-shortcuts/keyboard-shortcuts.html
+text!templates/settings/settings.html
 text!templates/similar-tracks/similar-tracks.html
 text!templates/track/track.html
 text!templates/track-info/track-info.html
