@@ -6,7 +6,6 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
   'angular',
   './layout-ctrl',
-  './root-ctrl',
   './playlist-ctrl',
   './songs-group-ctrl',
   './user-menu-ctrl',
@@ -15,7 +14,6 @@ define([
   './user-profile-menu-ctrl'
 ], function (angular,
              LayoutCtrl,
-             RootCtrl,
              PlaylistCtrl,
              SongsGroupCtrl,
              UserMenuCtrl,
@@ -26,7 +24,6 @@ define([
 
   return angular.module('soundrocket.controllers', [])
                 .controller('LayoutCtrl', LayoutCtrl)
-                .controller('RootCtrl', RootCtrl)
                 .controller('PlaylistCtrl', PlaylistCtrl)
                 .controller('SongsGroupCtrl', SongsGroupCtrl)
                 .controller('UserMenuCtrl', UserMenuCtrl)

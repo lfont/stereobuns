@@ -10,7 +10,7 @@ define(function () {
     $scope.searchBarTemplateUrl = null;
     $scope.userMenuTemplateUrl = null;
     $scope.audioPlayerBarTemplateUrl = null;
-    $scope.hasBackground = false;
+    $scope.backgroundClass = null;
 
     $scope.$on('userMdl:invitation', function (event) {
       $scope.searchBarTemplateUrl = 'templates/track-search/track-search.html';
@@ -20,16 +20,16 @@ define(function () {
     $scope.$on('$routeChangeSuccess', function (event, current, previous) {
       var hasInvitation = userMdl.hasInvitation();
       
-      if (current.loadedTemplateUrl === 'templates/root.html') {
+      if (current.loadedTemplateUrl === 'templates/home/home.html') {
         $scope.searchBarTemplateUrl = null;
         $scope.userMenuTemplateUrl = null;
         $scope.audioPlayerBarTemplateUrl = null;
-        $scope.hasBackground = true;
+        $scope.backgroundClass = 'home-background';
       } else {
         $scope.searchBarTemplateUrl = hasInvitation ? 'templates/track-search/track-search.html' : '';
         $scope.userMenuTemplateUrl = 'templates/user-menu.html';
         $scope.audioPlayerBarTemplateUrl = hasInvitation ? 'templates/audio-player/audio-player.html' : '';
-        $scope.hasBackground = false;
+        $scope.backgroundClass = null;
       }
     });
   }

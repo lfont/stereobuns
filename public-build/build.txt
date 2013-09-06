@@ -167,6 +167,10 @@ css/coming-soon.css
 ----------------
 css/coming-soon.css
 
+css/home/home.css
+----------------
+css/home/home.css
+
 css/keyboard-shortcuts/keyboard-shortcuts.css
 ----------------
 css/keyboard-shortcuts/keyboard-shortcuts.css
@@ -186,10 +190,6 @@ css/playlist.css
 ----------------
 css/playlist.css
 
-css/root.css
-----------------
-css/root.css
-
 css/settings.css
 ----------------
 css/settings.css
@@ -202,6 +202,7 @@ css/site.css
 ----------------
 css/audio-player/audio-player.css
 css/audio-player/audio-player-queue.css
+css/home/home.css
 css/keyboard-shortcuts/keyboard-shortcuts.css
 css/similar-tracks/similar-tracks.css
 css/track/track.css
@@ -209,7 +210,6 @@ css/track-info/track-info.css
 css/track-search/track-search-results.css
 css/playlist-chooser.css
 css/playlist.css
-css/root.css
 css/settings.css
 css/song-progress.css
 css/songs-actions.css
@@ -265,7 +265,6 @@ js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
 js/controllers/layout-ctrl.js
-js/controllers/root-ctrl.js
 js/controllers/playlist-ctrl.js
 js/controllers/songs-group-ctrl.js
 js/controllers/user-menu-ctrl.js
@@ -291,6 +290,8 @@ components/soundmanager/script/soundmanager2.js
 js/audio-player/sound-manager-srv.js
 js/audio-player/sound-srv.js
 js/audio-player/main.js
+js/home/home-ctrl.js
+js/home/main.js
 js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
 js/keyboard-shortcuts/keyboard-shortcut-drt.js
 js/keyboard-shortcuts/main.js
@@ -317,7 +318,6 @@ text!angular-ui-bootstrap-template/alert/alert.html
 text!templates/playlist-chooser-drt.html
 text!templates/song-progress-drt.html
 text!templates/songs-actions-drt.html
-text!templates/root.html
 text!templates/playlist.html
 text!templates/songs-group.html
 text!templates/user-menu.html
@@ -329,6 +329,7 @@ text!templates/user-profile.html
 text!templates/user-profile-menu.html
 text!templates/audio-player/audio-player.html
 text!templates/audio-player/audio-player-queue.html
+text!templates/home/home.html
 text!templates/keyboard-shortcuts/keyboard-shortcuts.html
 text!templates/similar-tracks/similar-tracks.html
 text!templates/track/track.html

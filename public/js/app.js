@@ -16,6 +16,7 @@ define([
   'common',
   // features
   'audio-player',
+  'home',
   'keyboard-shortcuts',
   'similar-tracks',
   'track',
@@ -36,6 +37,7 @@ define([
     'soundrocket.common',
     // features
     'soundrocket.audio-player',
+    'soundrocket.home',
     'soundrocket.keyboard-shortcuts',
     'soundrocket.similar-tracks',
     'soundrocket.track',

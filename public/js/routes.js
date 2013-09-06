@@ -25,8 +25,8 @@ define([
 
       $routeProvider
         .when('/', {
-          templateUrl: 'templates/root.html',
-          controller: 'RootCtrl',
+          templateUrl: 'templates/home/home.html',
+          controller: 'HomeCtrl',
           pageTitle: 'Welcome',
           authenticated: false
         })
@@ -106,7 +106,7 @@ define([
           return $location.path('/settings/account');
         }
 
-        if (next.$$route.controller === 'RootCtrl') {
+        if (next.$$route.controller === 'HomeCtrl') {
           audioPlayerSrv.stop();
         }
       });

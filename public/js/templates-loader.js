@@ -12,7 +12,6 @@ define([
   'text!templates/playlist-chooser-drt.html',
   'text!templates/song-progress-drt.html',
   'text!templates/songs-actions-drt.html',
-  'text!templates/root.html',
   'text!templates/playlist.html',
   'text!templates/songs-group.html',
   'text!templates/user-menu.html',
@@ -25,6 +24,7 @@ define([
   // features
   'text!templates/audio-player/audio-player.html',
   'text!templates/audio-player/audio-player-queue.html',
+  'text!templates/home/home.html',
   'text!templates/keyboard-shortcuts/keyboard-shortcuts.html',
   'text!templates/similar-tracks/similar-tracks.html',
   'text!templates/track/track.html',
@@ -45,7 +45,6 @@ define([
              playlistChooserTpl,
              songProgressTpl,
              songsActionsTpl,
-             rootTpl,
              playlistTpl,
              songsGroupTpl,
              userMenuTpl,
@@ -58,6 +57,7 @@ define([
              // features
              audioPlayerTpl,
              audioPlayerQueueTpl,
+             homeTpl,
              keyboardShortcutsTpl,
              similarTracksTpl,
              trackTpl,
@@ -82,7 +82,6 @@ define([
     $templateCache.put('templates/playlist-chooser-drt.html', playlistChooserTpl);
     $templateCache.put('templates/song-progress-drt.html', songProgressTpl);
     $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
-    $templateCache.put('templates/root.html', rootTpl);
     $templateCache.put('templates/playlist.html', playlistTpl);
     $templateCache.put('templates/songs-group.html', songsGroupTpl);
     $templateCache.put('templates/user-menu.html', userMenuTpl);
@@ -95,6 +94,7 @@ define([
     // features
     $templateCache.put('templates/audio-player/audio-player.html', audioPlayerTpl);
     $templateCache.put('templates/audio-player/audio-player-queue.html', audioPlayerQueueTpl);
+    $templateCache.put('templates/home/home.html', homeTpl);
     $templateCache.put('templates/keyboard-shortcuts/keyboard-shortcuts.html', keyboardShortcutsTpl);
     $templateCache.put('templates/similar-tracks/similar-tracks.html', similarTracksTpl);
     $templateCache.put('templates/track/track.html', trackTpl);
