@@ -1,7 +1,8 @@
 <div class="user-menu"
      ng-controller="UserMenuCtrl"
      sr-keyboard-shortcut="{ h: 'openKeyboardShortcuts()' }">
-  <div class="dropdown" ng-init="isOpen = false">
+
+  <div class="dropdown visible-desktop" ng-init="isOpen = false">
     <button class="btn btn-clean dropdown-toggle" ng-class="{ active: isOpen }" ng-click="isOpen = !isOpen">
       <img alt="{{ user.name }}" ng-src="{{ user.picture }}">
       {{ user.name }}
@@ -12,6 +13,19 @@
         <a href="#" ng-click="openKeyboardShortcuts(); $event.preventDefault()">Keyboard shortcuts</a>
       </li>
       <li class="divider"></li>
+      <li>
+        <a href="/settings/account">Settings</a>
+      </li>
+      <li>
+        <a href="#" ng-click="signOut(); $event.preventDefault()">Sign out</a>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="hidden-desktop">
+    <img alt="{{ user.name }}" ng-src="{{ user.picture }}">
+    {{ user.name }}
+    <ul class="nav nav-pills nav-stacked">
       <li>
         <a href="/settings/account">Settings</a>
       </li>

@@ -8,11 +8,17 @@
   color: white;
 }
 
-.user-menu .btn img {
+.user-menu img {
   height: 32px;
   width: 32px;
 }
 
 .user-menu .icon-caret-down {
-  margin-left: .5em;
+  margin-left: 5px;
+}
+
+.user-menu .hidden-desktop {
+  color: #999999;
+  margin-left: 5px;
+  margin-top: 10px;
 }

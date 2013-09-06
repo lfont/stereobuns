@@ -27,17 +27,6 @@ footer {
   position: fixed;
 }
 
-/*
-@media (min-width: 1200px) {
-}
-
-@media (max-width: 1199px) {
-}
-
-@media (max-width: 767px) {
-}
-*/
-
 @media (max-width: 979px) {
   .content {
     padding-top: 0;

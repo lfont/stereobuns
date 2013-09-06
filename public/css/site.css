@@ -16,6 +16,15 @@
 @import url("songs-group.css");
 
 
+/* navbar */
+
+@media (max-width: 979px) {
+  .navbar.navbar-inverse.navbar-fixed-top .pull-right {
+    float: none;
+  }
+}
+
+
 /* track-list-actions */
 
 .track-list-actions {

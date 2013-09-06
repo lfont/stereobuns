@@ -13,15 +13,16 @@
       </a>
        
       <a class="brand" href="/"><%= appName %></a>
-      <div class="pull-right" ng-include="userMenuTemplateUrl"></div>
+      <div ng-include="searchBarTemplateUrl"></div>
        
       <div class="nav-collapse collapse navbar-responsive-collapse"
            collapse="isNavBarCollapsed">
-        <div ng-include="searchBarTemplateUrl"></div>
+        <div class="pull-right" ng-include="userMenuTemplateUrl"></div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="content" ng-view></div>
   <div ng-include="audioPlayerBarTemplateUrl"></div>
