@@ -11,6 +11,7 @@ define([
   'audio-player',
   'home',
   'keyboard-shortcuts',
+  'layout',
   'settings',
   'similar-tracks',
   'track',
@@ -24,8 +25,9 @@ define([
   'controllers',
   'models'
 ], function (angular, commonModule, audioPlayerModule, homeModule,
-             keyboardShortcutsModule, settingsModule, similarTracksModule,
-             trackModule, trackInfoModule, trackSearchModule, userModule) {
+             keyboardShortcutsModule, layoutModule, settingsModule,
+             similarTracksModule, trackModule, trackInfoModule,
+             trackSearchModule, userModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
@@ -35,6 +37,7 @@ define([
     audioPlayerModule.name,
     homeModule.name,
     keyboardShortcutsModule.name,
+    layoutModule.name,
     settingsModule.name,
     similarTracksModule.name,
     trackModule.name,

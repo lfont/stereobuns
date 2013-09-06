@@ -67,6 +67,7 @@ require.config({
     'audio-player',
     'home',
     'keyboard-shortcuts',
+    'layout',
     'settings',
     'similar-tracks',
     'track',

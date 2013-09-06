@@ -277,6 +277,8 @@ js/home/main.js
 js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
 js/keyboard-shortcuts/keyboard-shortcut-drt.js
 js/keyboard-shortcuts/main.js
+js/layout/layout-ctrl.js
+js/layout/main.js
 js/settings/settings-ctrl.js
 js/settings/main.js
 js/similar-tracks/similar-tracks-ctrl.js
@@ -302,7 +304,6 @@ js/components/song-progress/main.js
 js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
-js/controllers/layout-ctrl.js
 js/controllers/playlist-ctrl.js
 js/controllers/songs-group-ctrl.js
 js/controllers/main.js
