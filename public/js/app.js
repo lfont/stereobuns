@@ -20,7 +20,6 @@ define([
   'user',
   // TODO
   'components/playlist-chooser',
-  'components/song-progress',
   'components/songs-actions',
   'controllers',
   'models'
@@ -46,7 +45,6 @@ define([
     userModule.name,
     // FIX: must be implemented as features
     'soundrocket.components.playlist-chooser',
-    'soundrocket.components.song-progress',
     'soundrocket.components.songs-actions',
     'soundrocket.controllers',
     'soundrocket.models'

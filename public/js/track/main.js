@@ -7,11 +7,15 @@ define([
   'angular',
   'audio-player',
   './track-ctrl',
-  './track-drt'
+  './progress/track-progress-ctrl',
+  './track-drt',
+  './progress/track-progress-drt'
 ], function (angular,
              audioPlayerModule,
              TrackCtrl,
-             trackDrtFactory) {
+             TrackProgressCtrl,
+             trackDrtFactory,
+             trackProgressDrtFactory) {
   'use strict';
   
   var module = angular.module('soundrocket.track', [
@@ -19,7 +23,9 @@ define([
   ]);
   
   module.controller('TrackCtrl', TrackCtrl)
-        .directive('srTrack', trackDrtFactory);
+        .controller('TrackProgressCtrl', TrackProgressCtrl)
+        .directive('srTrack', trackDrtFactory)
+        .directive('srTrackProgress', trackProgressDrtFactory);
   
   return module;
 });

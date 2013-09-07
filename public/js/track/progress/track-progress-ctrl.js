@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SongProgressDrtCtrl ($scope, audioPlayerSrv) {
+  function TrackProgressCtrl ($scope, audioPlayerSrv) {
     var loadingPercentage;
 
     this.setPlayingPercentage = function (percentage) {
@@ -44,7 +44,7 @@ define([
     });
   }
 
-  SongProgressDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
+  TrackProgressCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];
 
-  return SongProgressDrtCtrl;
+  return TrackProgressCtrl;
 });

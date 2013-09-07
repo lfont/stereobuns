@@ -1,32 +1,32 @@
-.song-progress {
+.track-progress {
   cursor: pointer;
   line-height: 10px;
   position: relative;
 }
 
-.song-progress .progress {
+.track-progress .progress {
   height: 12px;
   margin-bottom: 0;
 }
 
-.song-progress .progress .loading {
+.track-progress .progress .loading {
   background-color: gray;
   background-image: linear-gradient(to bottom, gray, #F2F2F2);
 }
 
-.song-progress .progress-position,
-.song-progress .progress-duration {
+.track-progress .progress-position,
+.track-progress .progress-duration {
   font-size: 9px;
   position: absolute;
 }
 
-.song-progress .progress-position {
+.track-progress .progress-position {
   margin-left: 5px;
   top: 0;
   left: 0;
 }
 
-.song-progress .progress-duration {
+.track-progress .progress-duration {
   margin-right: 5px;
   top: 0;
   right: 0;

@@ -6,6 +6,7 @@
 @import url("keyboard-shortcuts/keyboard-shortcuts.css");
 @import url("settings/settings.css");
 @import url("track/track.css");
+@import url("track/progress/track-progress.css");
 @import url("track-info/track-info.css");
 @import url("track-info/similar-tracks.css");
 @import url("track-search/track-search-results.css");
@@ -13,7 +14,6 @@
 @import url("user/user-profile.css");
 @import url("playlist-chooser.css");
 @import url("playlist.css");
-@import url("song-progress.css");
 @import url("songs-actions.css");
 @import url("songs-group.css");
 

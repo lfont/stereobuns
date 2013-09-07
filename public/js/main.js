@@ -59,7 +59,6 @@ require.config({
   packages: [
     // TODO
     'components/playlist-chooser',
-    'components/song-progress',
     'components/songs-actions',
     'controllers',
     'models',
