@@ -1,6 +1,6 @@
 <div class="similar-artists"
      ng-controller="SimilarArtistsCtrl">
-  <h6>Similar artists</h6>
+  <h5>Similar artists</h5>
   <ul class="media-list">
     <li ng-if="artists.length == 0">No similar artist found</li>
     <li class="media" ng-repeat="artist in artists">
@@ -8,10 +8,11 @@
         <sr-artwork data="artist"></sr-artwork>
       </a>
       <div class="media-body">
-        <h5 class="media-heading">{{ artist.name }}</h5>
-        <a href="/artist/{{ artist.name }}">
-          {{ artist.name }}
-        </a>
+        <h6 class="media-heading">
+          <a href="/artist/{{ artist.name }}">
+            {{ artist.name }}
+          </a>
+        </h6>
       </div>
     </li>
   </ul>

@@ -17,9 +17,9 @@
 
     <div class="row-fluid">
       <div class="album span3" ng-if="album">
-        Featured on album
-        <sr-artwork data="album" type="album"></sr-artwork>
-        <h4>{{ album.name }}</h4>
+        <h5>Featured on album</h5>
+        <sr-artwork data="album"></sr-artwork>
+        <h6>{{ album.name }}</h6>
         <ul class="nav">
           <li ng-repeat="track in album.tracks">
             <a href="/track/{{ song.artist }}/{{ track.name }}">{{ track.name }}</a>
