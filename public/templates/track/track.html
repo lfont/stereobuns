@@ -17,7 +17,11 @@
       </button>
     </div>
       
-    <h4 class="track-artist">{{ song.artist }}</h4>
+    <h4 class="track-artist">
+      <a href="/artist/{{ song.artist }}">
+        {{ song.artist }}
+      </a>
+    </h4>
   </div>
   
   <p>

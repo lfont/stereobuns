@@ -5,7 +5,7 @@
     <li ng-if="tracks.length == 0">No similar track found</li>
     <li class="media" ng-repeat="track in tracks">
       <a class="pull-left" href="/track/{{ track.artist }}/{{ track.name }}">
-        <sr-artwork data="track" type="track"></sr-artwork>
+        <sr-artwork data="track"></sr-artwork>
       </a>
       <div class="media-body">
         <h5 class="media-heading">{{ track.artist }}</h5>

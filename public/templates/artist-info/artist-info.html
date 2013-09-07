@@ -1,0 +1,20 @@
+<div class="artist-info push-bottom row-fluid">
+  <div class="span9 push-top">
+    <a class="pull-right"
+       href="/search?q={{ artist.name }}">Search tracks...</a>
+    <div class="media">
+      <span class="pull-left">
+        <img alt="{{ artist.name }}" class="media-object" ng-src="{{ artist.artworkUrl }}"
+          height="192px" width="192px">
+      </span>
+      <div class="media-body">
+        <h4>{{ artist.name }}</h4>
+        <span ng-bind-html="artist.bio"></span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="span3 push-top">
+    <div ng-include="'templates/artist-info/similar-artists.html'"></div>
+  </div>
+</div>

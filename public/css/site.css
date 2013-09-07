@@ -3,9 +3,9 @@
 @import url("home/home.css");
 @import url("keyboard-shortcuts/keyboard-shortcuts.css");
 @import url("settings/settings.css");
-@import url("similar-tracks/similar-tracks.css");
 @import url("track/track.css");
 @import url("track-info/track-info.css");
+@import url("track-info/similar-tracks.css");
 @import url("track-search/track-search-results.css");
 @import url("user/user-menu.css");
 @import url("user/user-profile.css");

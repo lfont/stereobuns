@@ -8,12 +8,12 @@ define([
   // common
   'common',
   // features
+  'artist-info',
   'audio-player',
   'home',
   'keyboard-shortcuts',
   'layout',
   'settings',
-  'similar-tracks',
   'track',
   'track-info',
   'track-search',
@@ -24,9 +24,9 @@ define([
   'components/songs-actions',
   'controllers',
   'models'
-], function (angular, commonModule, audioPlayerModule, homeModule,
-             keyboardShortcutsModule, layoutModule, settingsModule,
-             similarTracksModule, trackModule, trackInfoModule,
+], function (angular, commonModule, artistInfoModule, audioPlayerModule,
+             homeModule, keyboardShortcutsModule, layoutModule,
+             settingsModule, trackModule, trackInfoModule,
              trackSearchModule, userModule) {
   'use strict';
 
@@ -34,12 +34,12 @@ define([
     // common
     commonModule.name,
     // features
+    artistInfoModule.name,
     audioPlayerModule.name,
     homeModule.name,
     keyboardShortcutsModule.name,
     layoutModule.name,
     settingsModule.name,
-    similarTracksModule.name,
     trackModule.name,
     trackInfoModule.name,
     trackSearchModule.name,

@@ -18,14 +18,16 @@ define([
   'text!templates/no-mostplayed-songs.html',
   'text!templates/no-playlist-songs.html',
   // features
+  'text!templates/artist-info/artist-info.html',
+  'text!templates/artist-info/similar-artists.html',
   'text!templates/audio-player/audio-player.html',
   'text!templates/audio-player/audio-player-queue.html',
   'text!templates/home/home.html',
   'text!templates/keyboard-shortcuts/keyboard-shortcuts.html',
   'text!templates/settings/settings.html',
-  'text!templates/similar-tracks/similar-tracks.html',
   'text!templates/track/track.html',
   'text!templates/track-info/track-info.html',
+  'text!templates/track-info/similar-tracks.html',
   'text!templates/track-search/track-search.html',
   'text!templates/track-search/track-search-results.html',
   'text!templates/user/user-menu.html',
@@ -51,14 +53,16 @@ define([
              noMostPlayedSongsTpl,
              noPlaylistSongsTpl,
              // features
+             artistInfoTpl,
+             similarArtistsTpl,
              audioPlayerTpl,
              audioPlayerQueueTpl,
              homeTpl,
              keyboardShortcutsTpl,
              settingsTpl,
-             similarTracksTpl,
              trackTpl,
              trackInfoTpl,
+             similarTracksTpl,
              trackSearchTpl,
              trackSearchResultsTpl,
              userMenuTpl,
@@ -88,14 +92,16 @@ define([
     $templateCache.put('templates/no-mostplayed-songs.html', noMostPlayedSongsTpl);
     $templateCache.put('templates/no-playlist-songs.html', noPlaylistSongsTpl);
     // features
+    $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
+    $templateCache.put('templates/artist-info/similar-artists.html', similarArtistsTpl);
     $templateCache.put('templates/audio-player/audio-player.html', audioPlayerTpl);
     $templateCache.put('templates/audio-player/audio-player-queue.html', audioPlayerQueueTpl);
     $templateCache.put('templates/home/home.html', homeTpl);
     $templateCache.put('templates/keyboard-shortcuts/keyboard-shortcuts.html', keyboardShortcutsTpl);
     $templateCache.put('templates/settings/settings.html', settingsTpl);
-    $templateCache.put('templates/similar-tracks/similar-tracks.html', similarTracksTpl);
     $templateCache.put('templates/track/track.html', trackTpl);
     $templateCache.put('templates/track-info/track-info.html', trackInfoTpl);
+    $templateCache.put('templates/track-info/similar-tracks.html', similarTracksTpl);
     $templateCache.put('templates/track-search/track-search.html', trackSearchTpl);
     $templateCache.put('templates/track-search/track-search-results.html', trackSearchResultsTpl);
     $templateCache.put('templates/user/user-menu.html', userMenuTpl);

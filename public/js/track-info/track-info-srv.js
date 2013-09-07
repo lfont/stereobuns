@@ -6,11 +6,19 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function TrackSrv ($http) {
+  function TrackInfoSrv ($http) {
 
     this.getAlbum = function (artist, track) {
       return $http
         .get('/api/artists/' + artist + '/tracks/' + track + '/album', { cache: true })
+        .then(function (response) {
+          return response.data;
+        });
+    };
+    
+    this.getSimilar = function (artist, track) {
+      return $http
+        .get('/api/artists/' + artist + '/tracks/' + track + '/similar', { cache: true })
         .then(function (response) {
           return response.data;
         });
@@ -31,7 +39,7 @@ define(function () {
     };
   }
 
-  TrackSrv.$inject = [ '$http' ];
+  TrackInfoSrv.$inject = [ '$http' ];
 
-  return TrackSrv;
+  return TrackInfoSrv;
 });

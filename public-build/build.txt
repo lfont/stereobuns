@@ -194,10 +194,6 @@ css/settings/settings.css
 ----------------
 css/settings/settings.css
 
-css/similar-tracks/similar-tracks.css
-----------------
-css/similar-tracks/similar-tracks.css
-
 css/site.css
 ----------------
 css/audio-player/audio-player.css
@@ -205,9 +201,9 @@ css/audio-player/audio-player-queue.css
 css/home/home.css
 css/keyboard-shortcuts/keyboard-shortcuts.css
 css/settings/settings.css
-css/similar-tracks/similar-tracks.css
 css/track/track.css
 css/track-info/track-info.css
+css/track-info/similar-tracks.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
 css/user/user-profile.css
@@ -234,6 +230,10 @@ css/track/track.css
 ----------------
 css/track/track.css
 
+css/track-info/similar-tracks.css
+----------------
+css/track-info/similar-tracks.css
+
 css/track-info/track-info.css
 ----------------
 css/track-info/track-info.css
@@ -257,6 +257,11 @@ js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
 js/common/filters/time-flt.js
 js/common/main.js
+js/artist-info/artist-info-ctrl.js
+js/artist-info/similar-artists-ctrl.js
+js/artist-info/artist-info-srv.js
+components/angular-sanitize/angular-sanitize.js
+js/artist-info/main.js
 js/audio-player/audio-player-ctrl.js
 js/audio-player/audio-player-queue-ctrl.js
 js/audio-player/audio-player-srv.js
@@ -280,9 +285,6 @@ js/layout/layout-ctrl.js
 js/layout/main.js
 js/settings/settings-ctrl.js
 js/settings/main.js
-js/similar-tracks/similar-tracks-ctrl.js
-js/similar-tracks/similar-tracks-srv.js
-js/similar-tracks/main.js
 js/track/track-ctrl.js
 js/track/track-drt.js
 js/track/main.js
@@ -292,6 +294,7 @@ js/track-search/track-search-srv.js
 js/track-search/track-flt.js
 js/track-search/main.js
 js/track-info/track-info-ctrl.js
+js/track-info/similar-tracks-ctrl.js
 js/track-info/track-info-srv.js
 js/track-info/main.js
 js/components/playlist-chooser/playlist-chooser-drt-ctrl.js
@@ -325,14 +328,16 @@ text!templates/songs-group.html
 text!templates/no-loved-songs.html
 text!templates/no-mostplayed-songs.html
 text!templates/no-playlist-songs.html
+text!templates/artist-info/artist-info.html
+text!templates/artist-info/similar-artists.html
 text!templates/audio-player/audio-player.html
 text!templates/audio-player/audio-player-queue.html
 text!templates/home/home.html
 text!templates/keyboard-shortcuts/keyboard-shortcuts.html
 text!templates/settings/settings.html
-text!templates/similar-tracks/similar-tracks.html
 text!templates/track/track.html
 text!templates/track-info/track-info.html
+text!templates/track-info/similar-tracks.html
 text!templates/track-search/track-search.html
 text!templates/track-search/track-search-results.html
 text!templates/user/user-menu.html

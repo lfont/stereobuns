@@ -42,10 +42,16 @@ define([
           pageTitle: 'Search',
           authenticated: true
         })
+        .when('/artist/:artist', {
+          templateUrl: 'templates/artist-info/artist-info.html',
+          controller: 'ArtistInfoCtrl',
+          pageTitle: 'About artist',
+          authenticated: true
+        })
         .when('/track/:artist/:track', {
           templateUrl: 'templates/track-info/track-info.html',
           controller: 'TrackInfoCtrl',
-          pageTitle: 'About Track',
+          pageTitle: 'About track',
           authenticated: true
         })
         .when('/:user', {
@@ -57,7 +63,7 @@ define([
         .when('/:user/tracks/:group', {
           templateUrl: 'templates/songs-group.html',
           controller: 'SongsGroupCtrl',
-          pageTitle: 'Songs',
+          pageTitle: 'Track group',
           authenticated: true
         })
         .when('/:user/playlist/:name', {
