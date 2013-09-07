@@ -1,7 +1,8 @@
 <div class="track-info push-bottom row-fluid">
   <div class="span9 push-top">
     <a class="pull-right"
-       href="/search?q={{ song.artist }} {{ song.name }}">More results...</a>  
+       href="/search?q={{ song.artist }} {{ song.name }}"
+       ng-show="song">More results...</a>  
     <sr-track song="song"></sr-track>
     <form name="commentForm"
           ng-submit="addComment()"

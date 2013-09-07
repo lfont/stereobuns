@@ -1,7 +1,8 @@
 <div class="artist-info push-bottom row-fluid">
   <div class="span9 push-top">
     <a class="pull-right"
-       href="/search?q={{ artist.name }}">Search tracks...</a>
+       href="/search?q={{ artist.name }}"
+       ng-show="artist">Search tracks...</a>
     <div class="media">
       <span class="pull-left">
         <sr-artwork data="artist" class="media-object"></sr-artwork>
