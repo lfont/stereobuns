@@ -5,34 +5,46 @@
     
   <div class="row-fluid" ng-hide="isSearching">
     <div class="span2 push-top">
-      <h4>Search</h4>
+      <h4>Filter</h4>
       
       <ul class="nav nav-pills nav-stacked" ng-show="hasResult">
         <li ng-class="{ active: !searchFilter }">
           <a href="#" ng-click="filterBy(); $event.preventDefault()">
-            <i class="icon-search"></i>
-            All
+            No filter
           </a>
         </li>
         <li ng-class="{ active: searchFilter == 'artist' }">
-          <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">Artists</a>
+          <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">
+            Artist name
+          </a>
         </li>
         <li ng-class="{ active: searchFilter == 'name' }">
-          <a href="#" ng-click="filterBy('name'); $event.preventDefault()">Tracks</a>
+          <a href="#" ng-click="filterBy('name'); $event.preventDefault()">
+            Track name
+          </a>
         </li>
       </ul>
     </div>
       
     <div class="span10">
-      <h2>{{ searchQuery }}</h2>
+      <form novalidate class="form-search" name="searchForm"
+            ng-controller="TrackSearchCtrl"
+            ng-submit="search()"
+            ng-init="query = $parent.searchQuery">
+        <input type="text" name="queryField" placeholder="Search"
+               class="search-query input-block-level"
+               ng-model="query"
+               required>
+      </form>
       
       <div class="track-list-actions">
         <span ng-show="songs.length">{{ songs.length }}</span>
         <ng-pluralize count="songs.length"
-            when="{ '0': 'no song',
-                    '1': 'song',
-                    'other': 'songs' }">
+            when="{ '0': 'no track',
+                    '1': 'track',
+                    'other': 'tracks' }">
         </ng-pluralize>
+        <span ng-show="songs.length">found</span>
       </div>
       
       <ul class="track-list">

@@ -155,6 +155,14 @@ components/soundmanager/troubleshoot/debug.css
 ----------------
 components/soundmanager/troubleshoot/debug.css
 
+css/artist-info/artist-info.css
+----------------
+css/artist-info/artist-info.css
+
+css/artist-info/similar-artists.css
+----------------
+css/artist-info/similar-artists.css
+
 css/audio-player/audio-player-queue.css
 ----------------
 css/audio-player/audio-player-queue.css
@@ -196,12 +204,15 @@ css/settings/settings.css
 
 css/site.css
 ----------------
+css/artist-info/artist-info.css
+css/artist-info/similar-artists.css
 css/audio-player/audio-player.css
 css/audio-player/audio-player-queue.css
 css/home/home.css
 css/keyboard-shortcuts/keyboard-shortcuts.css
 css/settings/settings.css
 css/track/track.css
+css/track/progress/track-progress.css
 css/track-info/track-info.css
 css/track-info/similar-tracks.css
 css/track-search/track-search-results.css
@@ -209,15 +220,10 @@ css/user/user-menu.css
 css/user/user-profile.css
 css/playlist-chooser.css
 css/playlist.css
-css/song-progress.css
 css/songs-actions.css
 css/songs-group.css
 css/site.css
 
-css/song-progress.css
-----------------
-css/song-progress.css
-
 css/songs-actions.css
 ----------------
 css/songs-actions.css
@@ -225,6 +231,10 @@ css/songs-actions.css
 css/songs-group.css
 ----------------
 css/songs-group.css
+
+css/track/progress/track-progress.css
+----------------
+css/track/progress/track-progress.css
 
 css/track/track.css
 ----------------
@@ -286,7 +296,9 @@ js/layout/main.js
 js/settings/settings-ctrl.js
 js/settings/main.js
 js/track/track-ctrl.js
+js/track/progress/track-progress-ctrl.js
 js/track/track-drt.js
+js/track/progress/track-progress-drt.js
 js/track/main.js
 js/track-search/track-search-ctrl.js
 js/track-search/track-search-results-ctrl.js
@@ -300,9 +312,6 @@ js/track-info/main.js
 js/components/playlist-chooser/playlist-chooser-drt-ctrl.js
 js/components/playlist-chooser/playlist-chooser-drt.js
 js/components/playlist-chooser/main.js
-js/components/song-progress/song-progress-drt-ctrl.js
-js/components/song-progress/song-progress-drt.js
-js/components/song-progress/main.js
 js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
@@ -321,7 +330,6 @@ components/requirejs-text/text.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html
 text!templates/playlist-chooser-drt.html
-text!templates/song-progress-drt.html
 text!templates/songs-actions-drt.html
 text!templates/playlist.html
 text!templates/songs-group.html
@@ -336,6 +344,7 @@ text!templates/home/home.html
 text!templates/keyboard-shortcuts/keyboard-shortcuts.html
 text!templates/settings/settings.html
 text!templates/track/track.html
+text!templates/track/progress/track-progress.html
 text!templates/track-info/track-info.html
 text!templates/track-info/similar-tracks.html
 text!templates/track-search/track-search.html
