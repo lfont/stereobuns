@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 var ono = require('../../lib/ono');
 
 exports.index = function (req, res) {
-  ono.getSimilarTracks(
+  ono.track.getSimilarTracks(
     req.params.artist,
     req.params.track,
     function (err, tracks) {
