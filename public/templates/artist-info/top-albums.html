@@ -4,9 +4,17 @@
   <ul class="thumbnails">
     <li ng-if="albums.length == 0">No top album found</li>
     <li class="span4" ng-repeat="album in albums">
-      <a href="#" class="thumbnail" title="{{ album.name }}">
-        <sr-artwork data="album"></sr-artwork>
-      </a>
+      <div class="thumbnail">
+        <a class="dropdown-toggle" href="#" title="{{ album.name }}"
+           ng-click="$parent.loadAlbumTracks(album)">
+          <sr-artwork data="album"></sr-artwork>  
+        </a>
+        <ul class="dropdown-menu">
+          <li ng-repeat="track in album.tracks">
+            <a href="/track/{{ album.artist }}/{{ track.name }}">{{ track.name }}</a>
+          </li>
+        </ul>
+      </div>
     </li>
   </ul>
 </div>

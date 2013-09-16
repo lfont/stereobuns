@@ -163,6 +163,14 @@ css/artist-info/similar-artists.css
 ----------------
 css/artist-info/similar-artists.css
 
+css/artist-info/top-albums.css
+----------------
+css/artist-info/top-albums.css
+
+css/artist-info/top-tracks.css
+----------------
+css/artist-info/top-tracks.css
+
 css/audio-player/audio-player-queue.css
 ----------------
 css/audio-player/audio-player-queue.css
@@ -206,6 +214,8 @@ css/site.css
 ----------------
 css/artist-info/artist-info.css
 css/artist-info/similar-artists.css
+css/artist-info/top-albums.css
+css/artist-info/top-tracks.css
 css/audio-player/audio-player.css
 css/audio-player/audio-player-queue.css
 css/home/home.css
@@ -269,6 +279,8 @@ js/common/filters/time-flt.js
 js/common/main.js
 js/artist-info/artist-info-ctrl.js
 js/artist-info/similar-artists-ctrl.js
+js/artist-info/top-albums-ctrl.js
+js/artist-info/top-tracks-ctrl.js
 js/artist-info/artist-info-srv.js
 components/angular-sanitize/angular-sanitize.js
 js/artist-info/main.js
@@ -338,6 +350,8 @@ text!templates/no-mostplayed-songs.html
 text!templates/no-playlist-songs.html
 text!templates/artist-info/artist-info.html
 text!templates/artist-info/similar-artists.html
+text!templates/artist-info/top-albums.html
+text!templates/artist-info/top-tracks.html
 text!templates/audio-player/audio-player.html
 text!templates/audio-player/audio-player-queue.html
 text!templates/home/home.html

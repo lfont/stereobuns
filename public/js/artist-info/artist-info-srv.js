@@ -49,6 +49,14 @@ define(function () {
           return response.data;
         });
     };
+    
+    this.getAlbumTracks = function (artist, album) {
+      return $http
+        .get('/api/artists/' + artist + '/albums/' + album, { cache: true })
+        .then(function (response) {
+          return response.data.tracks;
+        });
+    };
   }
 
   ArtistInfoSrv.$inject = [ '$http' ];

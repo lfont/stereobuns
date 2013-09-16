@@ -7,3 +7,12 @@
   margin-left: 0;
   margin-right: 5px;
 }
+
+.top-albums .thumbnails > li .thumbnail {
+  position: relative;
+}
+
+.top-albums .thumbnails > li .thumbnail .dropdown-menu {
+  top: 10%;
+  left: 50%;
+}
