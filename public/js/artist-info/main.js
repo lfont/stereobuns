@@ -7,12 +7,14 @@ define([
   'angular',
   './artist-info-ctrl',
   './similar-artists-ctrl',
+  './top-albums-ctrl',
   './top-tracks-ctrl',
   './artist-info-srv',
   'angular-sanitize'
 ], function (angular,
              ArtistInfoCtrl,
              SimilarArtistsCtrl,
+             TopAlbumsCtrl,
              TopTracksCtrl,
              ArtistInfoSrv) {
   'use strict';
@@ -23,6 +25,7 @@ define([
   
   module.controller('ArtistInfoCtrl', ArtistInfoCtrl)
         .controller('SimilarArtistsCtrl', SimilarArtistsCtrl)
+        .controller('TopAlbumsCtrl', TopAlbumsCtrl)
         .controller('TopTracksCtrl', TopTracksCtrl)
         .service('artistInfoSrv', ArtistInfoSrv);
         

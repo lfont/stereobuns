@@ -1,4 +1,5 @@
-.artist-info .artwork {
+.artist-info .bio > .artwork {
   height: 192px;
   width: 192px;
+  margin: 0 10px 10px 0;
 }

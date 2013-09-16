@@ -3,14 +3,13 @@
     <a class="pull-right"
        href="/search?q={{ artist.name }}"
        ng-show="artist">Search tracks...</a>
-    <div class="media">
-      <span class="pull-left">
-        <sr-artwork data="artist" class="media-object"></sr-artwork>
-      </span>
-      <div class="media-body">
-        <h4>{{ artist.name }}</h4>
-        <span ng-bind-html="artist.bio"></span>
-      </div>
+    <div class="bio row-fluid">
+      <sr-artwork data="artist" class="pull-left"></sr-artwork>
+      <h4>{{ artist.name }}</h4>
+      <div ng-bind-html="artist.bio"></div>
+    </div>
+    <div class="row-fluid">
+      <div class="span5" ng-include="'templates/artist-info/top-albums.html'"></div>  
     </div>
   </div>
   

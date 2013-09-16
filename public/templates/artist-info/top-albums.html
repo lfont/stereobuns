@@ -1,0 +1,12 @@
+<div class="top-albums"
+     ng-controller="TopAlbumsCtrl">
+  <h5>Top albums</h5>
+  <ul class="thumbnails">
+    <li ng-if="albums.length == 0">No top album found</li>
+    <li class="span4" ng-repeat="album in albums">
+      <a href="#" class="thumbnail" title="{{ album.name }}">
+        <sr-artwork data="album"></sr-artwork>
+      </a>
+    </li>
+  </ul>
+</div>

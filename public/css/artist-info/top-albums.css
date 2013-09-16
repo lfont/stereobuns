@@ -1,0 +1,9 @@
+.top-albums .artwork {
+  height: 80px;
+  width: 80px;
+}
+
+.top-albums .thumbnails > li {
+  margin-left: 0;
+  margin-right: 5px;
+}
