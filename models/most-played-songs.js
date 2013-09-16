@@ -9,7 +9,7 @@ exports.findByUserId = function (userId, callback) {
   Song.find(
     { _creator: userId, playCount: { $gt: 0 } },
     null,
-    { sort: { playCount: 1 }, limit: 50 },
+    { sort: { playCount: -1 }, limit: 50 },
     function (err, songs) {
       if (err) {
         // TODO: handle error

@@ -17,7 +17,7 @@ var userSchema = new mongoose.Schema({
 exports.User = mongoose.model('User', userSchema);
 
 var songSchema = new Schema({
-  _creator: { type: Schema.ObjectId, ref: 'User', required: true },
+  _creator: { type: Schema.ObjectId, ref: 'User', required: true, select: false },
   // track properties
   trackId: { type: String, required: true },
   artist: String,
