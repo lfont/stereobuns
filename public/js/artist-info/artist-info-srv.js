@@ -33,6 +33,14 @@ define(function () {
           return info.similarArtists;
         });
     };
+    
+    this.getTopTracks = function (artist) {
+      return $http
+        .get('/api/artists/' + artist + '/tracks', { cache: true })
+        .then(function (response) {
+          return response.data;
+        });
+    };
   }
 
   ArtistInfoSrv.$inject = [ '$http' ];

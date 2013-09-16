@@ -1,0 +1,19 @@
+<div class="top-tracks"
+     ng-controller="TopTracksCtrl">
+  <h5>Top tracks</h5>
+  <ul class="media-list">
+    <li ng-if="tracks.length == 0">No top track found</li>
+    <li class="media" ng-repeat="track in tracks">
+      <a class="pull-left" href="/track/{{ track.artist }}/{{ track.name }}">
+        <sr-artwork data="track"></sr-artwork>
+      </a>
+      <div class="media-body">
+        <h6 class="media-heading">
+          <a href="/track/{{ track.artist }}/{{ track.name }}">
+            {{ track.name }}
+          </a>
+        </h6>
+      </div>
+    </li>
+  </ul>
+</div>

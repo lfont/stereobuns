@@ -19,6 +19,7 @@ define([
   // features
   'text!templates/artist-info/artist-info.html',
   'text!templates/artist-info/similar-artists.html',
+  'text!templates/artist-info/top-tracks.html',
   'text!templates/audio-player/audio-player.html',
   'text!templates/audio-player/audio-player-queue.html',
   'text!templates/home/home.html',
@@ -54,6 +55,7 @@ define([
              // features
              artistInfoTpl,
              similarArtistsTpl,
+             topTracksTpl,
              audioPlayerTpl,
              audioPlayerQueueTpl,
              homeTpl,
@@ -93,6 +95,7 @@ define([
     // features
     $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
     $templateCache.put('templates/artist-info/similar-artists.html', similarArtistsTpl);
+    $templateCache.put('templates/artist-info/top-tracks.html', topTracksTpl);
     $templateCache.put('templates/audio-player/audio-player.html', audioPlayerTpl);
     $templateCache.put('templates/audio-player/audio-player-queue.html', audioPlayerQueueTpl);
     $templateCache.put('templates/home/home.html', homeTpl);
