@@ -9,8 +9,7 @@ define([
   './similar-artists-ctrl',
   './top-albums-ctrl',
   './top-tracks-ctrl',
-  './artist-info-srv',
-  'angular-sanitize'
+  './artist-info-srv'
 ], function (angular,
              ArtistInfoCtrl,
              SimilarArtistsCtrl,
@@ -19,9 +18,7 @@ define([
              ArtistInfoSrv) {
   'use strict';
 
-  var module = angular.module('soundrocket.artist-info', [
-    'ngSanitize'
-  ]);
+  var module = angular.module('soundrocket.artist-info', []);
   
   module.controller('ArtistInfoCtrl', ArtistInfoCtrl)
         .controller('SimilarArtistsCtrl', SimilarArtistsCtrl)
