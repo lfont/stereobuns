@@ -282,7 +282,6 @@ js/artist-info/similar-artists-ctrl.js
 js/artist-info/top-albums-ctrl.js
 js/artist-info/top-tracks-ctrl.js
 js/artist-info/artist-info-srv.js
-components/angular-sanitize/angular-sanitize.js
 js/artist-info/main.js
 js/audio-player/audio-player-ctrl.js
 js/audio-player/audio-player-queue-ctrl.js

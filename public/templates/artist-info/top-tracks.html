@@ -1,19 +1,20 @@
 <div class="top-tracks"
      ng-controller="TopTracksCtrl">
   <h5>Top tracks</h5>
-  <ul class="media-list">
-    <li ng-if="tracks.length == 0">No top track found</li>
-    <li class="media" ng-repeat="track in tracks">
-      <a class="pull-left" href="/track/{{ track.artist }}/{{ track.name }}">
-        <sr-artwork data="track"></sr-artwork>
-      </a>
-      <div class="media-body">
-        <h6 class="media-heading">
-          <a href="/track/{{ track.artist }}/{{ track.name }}">
-            {{ track.name }}
-          </a>
-        </h6>
-      </div>
+  
+  <div class="track-list-actions">
+    <span ng-show="tracks.length">{{ tracks.length }}</span>
+    <ng-pluralize count="tracks.length"
+        when="{ '0': '',
+                '1': 'track',
+                'other': 'tracks' }">
+    </ng-pluralize>
+    <songs-actions songs="tracks" options="tracksActionsOptions"></songs-actions>
+  </div>
+
+  <ul class="track-list">
+    <li ng-repeat="track in tracks">
+      <sr-track song="track"></sr-track>
     </li>
   </ul>
 </div>

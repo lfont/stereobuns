@@ -4,8 +4,7 @@
 }
 
 .top-albums .thumbnails > li {
-  margin-left: 0;
-  margin-right: 5px;
+  margin: 0 4px 4px 0;
 }
 
 .top-albums .thumbnails > li .thumbnail {
@@ -33,7 +32,7 @@
 
 .top-albums .thumbnails > li .thumbnail .dropdown-menu .nav {
   min-height: 35px;
-  max-height: 115px;
+  max-height: 180px;
   margin-bottom: 0;
   overflow-y: auto;
   padding: 0 5px;

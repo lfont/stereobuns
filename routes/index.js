@@ -17,7 +17,6 @@ var config             = require('../lib/configuration'),
     trackCommentsApi   = require('./api/track-comments'),
     similarTracksApi   = require('./api/similar-tracks'),
     artistsApi         = require('./api/artists'),
-    topTracksApi       = require('./api/top-tracks'),
     topAlbumsApi       = require('./api/top-albums'),
     artistAlbumsApi    = require('./api/artist-albums');
 
@@ -106,12 +105,12 @@ exports.register = function (app) {
 
   app.get('/api/artists/:artist', ensureAuthenticated, ensureInvited, artistsApi.show);
 
-  app.get('/api/tracks/search/:description', ensureAuthenticated, ensureInvited, tracksSearchApi.index);
+  app.get('/api/tracks/search/:description', ensureAuthenticated, ensureInvited, tracksSearchApi.searchTracks);
+  app.get('/api/artists/:artist/tracks', ensureAuthenticated, ensureInvited, tracksSearchApi.searchArtistTopTracks);
   
   app.get('/api/artists/:artist/albums', ensureAuthenticated, ensureInvited, topAlbumsApi.index);
   app.get('/api/artists/:artist/albums/:album', ensureAuthenticated, ensureInvited, artistAlbumsApi.show);
   
-  app.get('/api/artists/:artist/tracks', ensureAuthenticated, ensureInvited, topTracksApi.index);
   app.get('/api/artists/:artist/tracks/:track/album', ensureAuthenticated, ensureInvited, albumsApi.show);
   app.get('/api/artists/:artist/tracks/:track/similar', ensureAuthenticated, ensureInvited, similarTracksApi.index);
 
