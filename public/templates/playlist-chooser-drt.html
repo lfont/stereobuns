@@ -1,5 +1,5 @@
 <div ng-controller="PlaylistChooserDrtCtrl" class="playlist-chooser">
-  <ul class="nav nav-pills nav-stacked">
+  <ul class="nav nav-pills nav-stacked" sr-no-scroll-propagation>
     <li ng-repeat="playlist in playlists">
       <a href="#" ng-click="$parent.addToPlaylist(playlist); $event.preventDefault()">{{ playlist.name }}</a>
     </li>
