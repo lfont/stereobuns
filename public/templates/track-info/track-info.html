@@ -16,28 +16,30 @@
              ng-maxlength="140">
     </form>
     
-    <h5 class="section-heading">Comments</h5>
-  
-    <span ng-show="comments.length">{{ comments.length }}</span>
-    <ng-pluralize count="comments.length"
-        when="{ '0': 'Be the first to write a comment.',
-                '1': 'comment',
-                'other': 'comments' }">
-    </ng-pluralize>
+    <div class="comments">
+      <h4 class="section-heading">Comments</h4>
     
-    <ul class="media-list comments">
-      <li class="media" ng-repeat="comment in comments">
-        <img class="media-object pull-left" alt="{{ comment._creator.name }}"
-             ng-src="{{ comment._creator.picture }}">
-        <div class="media-body">
-          <h6 class="media-heading">
-            {{ comment._creator.name }}
-            <small>on {{ comment.createdAt | date: 'medium' }}</small>
-          </h6>
-          {{ comment.body }}
-        </div>
-      </li>
-    </ul>
+      <span ng-show="comments.length">{{ comments.length }}</span>
+      <ng-pluralize count="comments.length"
+          when="{ '0': 'Be the first to write a comment.',
+                  '1': 'comment',
+                  'other': 'comments' }">
+      </ng-pluralize>
+      
+      <ul class="media-list">
+        <li class="media" ng-repeat="comment in comments">
+          <img class="media-object pull-left" alt="{{ comment._creator.name }}"
+               ng-src="{{ comment._creator.picture }}">
+          <div class="media-body">
+            <h6 class="media-heading">
+              {{ comment._creator.name }}
+              <small>on {{ comment.createdAt | date: 'medium' }}</small>
+            </h6>
+            {{ comment.body }}
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
   
   <div class="span3 push-top">

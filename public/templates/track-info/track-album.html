@@ -1,6 +1,6 @@
 <div class="track-album"
      ng-controller="TrackAlbumCtrl">
-  <h5 class="section-heading">Featured on album</h5>
+  <h4 class="section-heading">Featured on album</h4>
   
   <div ng-switch="album">
     <p ng-switch-when="">
@@ -9,7 +9,7 @@
     
     <div ng-switch-default>
       <sr-artwork data="album"></sr-artwork>
-      <h6>{{ album.name }}</h6>
+      <h5>{{ album.name }}</h5>
       
       <ul class="nav">
         <li ng-if="album.tracks.length == 0">No track found.</li>

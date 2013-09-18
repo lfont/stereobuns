@@ -34,11 +34,12 @@
 
 .section-heading {
   border-bottom: 1px solid #f2f2f2;
+  color: gray;
   line-height: 30px;
   margin-bottom: 10px;
 }
 
-.section-heading h5 {
+.section-heading h4 {
   margin-bottom: 0;
 }
 
