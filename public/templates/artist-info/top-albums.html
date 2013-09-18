@@ -1,11 +1,12 @@
 <div class="top-albums"
      ng-controller="TopAlbumsCtrl">
-  <h5>Top albums</h5>
-  <ul class="thumbnails">
+  <h5 class="section-heading">Top albums</h5>
+
+  <ul class="unstyled">
     <li ng-if="albums.length == 0">No top album found.</li>
 
-    <li class="span4" ng-repeat="album in albums">
-      <div class="thumbnail">
+    <li class="pull-left" ng-repeat="album in albums">
+      <div>
         <a class="dropdown-toggle" href="#" title="{{ album.name }}"
            ng-click="$parent.loadAlbumTracks(album)">
           <sr-artwork data="album"></sr-artwork>  
@@ -15,8 +16,8 @@
           <h6>{{ album.name }}</h6>
           <span class="divider"></span>
           <ul class="nav nav-pills nav-stacked" sr-no-scroll-propagation>
-            <li ng-if="album.tracks.length == 0">No track found</li>
-
+            <li ng-if="album.tracks.length == 0">No track found.</li>
+  
             <li ng-repeat="track in album.tracks">
               <a href="/track/{{ album.artist }}/{{ track.name }}">{{ track.name }}</a>
             </li>

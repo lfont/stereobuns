@@ -1,5 +1,8 @@
-.artist-info .bio > .artwork {
+.artist-info .artist .artwork {
   height: 192px;
   width: 192px;
-  margin: 0 10px 10px 0;
+}
+
+.artist-info .artist .bio {
+  text-align: justify;
 }
