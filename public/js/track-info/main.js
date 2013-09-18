@@ -7,11 +7,13 @@ define([
   'angular',
   'track-search',
   './track-info-ctrl',
+  './track-album-ctrl',
   './similar-tracks-ctrl',
   './track-info-srv'
 ], function (angular,
              trackSearchModule,
              TrackInfoCtrl,
+             TrackAlbumCtrl,
              SimilarTracksCtrl,
              TrackInfoSrv) {
   'use strict';
@@ -21,6 +23,7 @@ define([
   ]);
   
   module.controller('TrackInfoCtrl', TrackInfoCtrl)
+        .controller('TrackAlbumCtrl', TrackAlbumCtrl)
         .controller('SimilarTracksCtrl', SimilarTracksCtrl)
         .service('trackInfoSrv', TrackInfoSrv);
         

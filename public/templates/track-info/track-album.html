@@ -1,0 +1,23 @@
+<div class="track-album"
+     ng-controller="TrackAlbumCtrl">
+  <h5 class="section-heading">Featured on album</h5>
+  
+  <div ng-switch="album">
+    <p ng-switch-when="">
+      The album of this track has not been found.
+    </p>
+    
+    <div ng-switch-default>
+      <sr-artwork data="album"></sr-artwork>
+      <h6>{{ album.name }}</h6>
+      
+      <ul class="nav">
+        <li ng-if="album.tracks.length == 0">No track found.</li>
+      
+        <li ng-repeat="track in album.tracks">
+          <a href="/track/{{ song.artist }}/{{ track.name }}">{{ track.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

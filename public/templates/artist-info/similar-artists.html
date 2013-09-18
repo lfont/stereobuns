@@ -3,7 +3,7 @@
   <h5 class="section-heading">Similar artists</h5>
 
   <ul class="media-list">
-    <li ng-if="artists.length == 0">No similar artist found</li>
+    <li ng-if="artists.length == 0">No similar artist found.</li>
     <li class="media" ng-repeat="artist in artists">
       <a class="pull-left" href="/artist/{{ artist.name }}">
         <sr-artwork data="artist"></sr-artwork>

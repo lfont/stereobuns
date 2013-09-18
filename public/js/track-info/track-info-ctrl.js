@@ -6,20 +6,12 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function TrackCtrl ($scope, $routeParams, trackInfoSrv, trackSearchSrv) {
+  function TrackInfoCtrl ($scope, $routeParams, trackInfoSrv, trackSearchSrv) {
 
     function loadComments () {
       $scope.comments = trackInfoSrv.getComments($routeParams.artist,
                                                  $routeParams.track);
     }
-
-    trackInfoSrv
-      .getAlbum($routeParams.artist, $routeParams.track)
-      .then(function (album) {
-        $scope.album = album;
-      });
-
-    $scope.album = null;
 
     $scope.song = trackSearchSrv.findOne($routeParams.artist,
                                          $routeParams.track,
@@ -44,8 +36,8 @@ define(function () {
     loadComments();
   }
 
-  TrackCtrl.$inject = [ '$scope', '$routeParams',
-                        'trackInfoSrv', 'trackSearchSrv' ];
+  TrackInfoCtrl.$inject = [ '$scope', '$routeParams', 'trackInfoSrv',
+                            'trackSearchSrv' ];
 
-  return TrackCtrl;
+  return TrackInfoCtrl;
 });

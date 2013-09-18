@@ -224,6 +224,7 @@ css/settings/settings.css
 css/track/track.css
 css/track/progress/track-progress.css
 css/track-info/track-info.css
+css/track-info/track-album.css
 css/track-info/similar-tracks.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
@@ -253,6 +254,10 @@ css/track/track.css
 css/track-info/similar-tracks.css
 ----------------
 css/track-info/similar-tracks.css
+
+css/track-info/track-album.css
+----------------
+css/track-info/track-album.css
 
 css/track-info/track-info.css
 ----------------
@@ -317,6 +322,7 @@ js/track-search/track-search-srv.js
 js/track-search/track-flt.js
 js/track-search/main.js
 js/track-info/track-info-ctrl.js
+js/track-info/track-album-ctrl.js
 js/track-info/similar-tracks-ctrl.js
 js/track-info/track-info-srv.js
 js/track-info/main.js
@@ -359,6 +365,7 @@ text!templates/settings/settings.html
 text!templates/track/track.html
 text!templates/track/progress/track-progress.html
 text!templates/track-info/track-info.html
+text!templates/track-info/track-album.html
 text!templates/track-info/similar-tracks.html
 text!templates/track-search/track-search.html
 text!templates/track-search/track-search-results.html

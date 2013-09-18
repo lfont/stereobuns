@@ -10,6 +10,7 @@
 @import url("track/track.css");
 @import url("track/progress/track-progress.css");
 @import url("track-info/track-info.css");
+@import url("track-info/track-album.css");
 @import url("track-info/similar-tracks.css");
 @import url("track-search/track-search-results.css");
 @import url("user/user-menu.css");

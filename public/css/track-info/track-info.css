@@ -1,6 +1,5 @@
-.track-info .album .artwork {
-  height: 128px;
-  width: 128px;
+.track-info form {
+  margin-bottom: 0;
 }
 
 .track-info .comments {
