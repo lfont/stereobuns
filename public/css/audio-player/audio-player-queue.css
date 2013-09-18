@@ -19,6 +19,10 @@
   color: #999;
 }
 
+.audio-player-queue .modal-header .btn {
+  margin-top: 5px;
+}
+
 .audio-player-queue .modal-body {
   max-height: 411px;
   min-height: 411px;
