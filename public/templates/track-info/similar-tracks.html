@@ -1,6 +1,7 @@
 <div class="similar-tracks"
      ng-controller="SimilarTracksCtrl">
-  <h5>Similar tracks</h5>
+  <h5 class="section-heading">Similar tracks</h5>
+  
   <ul class="media-list">
     <li ng-if="tracks.length == 0">No similar track found</li>
     <li class="media" ng-repeat="track in tracks">

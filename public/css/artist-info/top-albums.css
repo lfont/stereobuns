@@ -17,7 +17,7 @@
   bottom: 10%;
 }
 
-.top-albums .thumbnails > li .thumbnail .dropdown-menu .heading {
+.top-albums .thumbnails > li .thumbnail .dropdown-menu h6 {
   padding-left: 5px;
 }
 

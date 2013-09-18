@@ -1,6 +1,12 @@
 <div class="top-tracks"
      ng-controller="TopTracksCtrl">
-  <h5>Top tracks</h5>
+  <div class="row-fluid section-heading">
+    <h5 class="span8">Top tracks</h5>
+    <div class="span4">
+      <a class="pull-right"
+         href="/search?q={{ artist }}">Search more tracks...</a>  
+    </div>
+  </div>
   
   <div class="track-list-actions">
     <span ng-show="tracks.length">{{ tracks.length }}</span>

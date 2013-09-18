@@ -29,6 +29,23 @@
 }
 
 
+/* section-heading */
+
+.section-heading {
+  border-bottom: 1px solid #f2f2f2;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.section-heading h5 {
+  margin-bottom: 0;
+}
+
+.section-heading a {
+  margin-top: 10px;
+}
+
+
 /* track-list-actions */
 
 .track-list-actions {

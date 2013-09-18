@@ -11,6 +11,7 @@ define(function () {
       play: true
     };
     
+    $scope.artist = $routeParams.artist;
     $scope.tracks = artistInfoSrv.getTopTracks($routeParams.artist);
   }
 
