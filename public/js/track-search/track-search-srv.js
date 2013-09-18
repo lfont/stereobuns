@@ -25,10 +25,11 @@ define(function () {
 
           for (i = 0, len = tracks.length; i < len; i++) {
             if (artistName === tracks[i].artist &&
-                trackName === tracks[i].name &&
-                (trackId ? trackId === tracks[i].trackId : true)) {
-              track = tracks[i];
-              break;
+                trackName === tracks[i].name) {
+              track = tracks[i]; // match
+              if (!trackId || trackId === tracks[i].trackId) {
+                break; // best match
+              }
             }
           }
 
