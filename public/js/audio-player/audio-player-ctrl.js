@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function AudioPlayerBarCtrl ($scope, audioPlayerSrv, songsGroupsMdl) {
+  function AudioPlayerBarCtrl ($scope, audioPlayerSrv, trackGroupMdl) {
 
     function isCurrentSong (song) {
       return $scope.song &&
@@ -47,14 +47,14 @@ define(function () {
       $scope.shouldOpenQueue = false;
     });
 
-    $scope.$on('songsGroup:add', function (event, id, song) {
-      if (id === 'loved' && isCurrentSong(song) && !$scope.song.loved) {
+    $scope.$on('trackGroup:add', function (event, id, track) {
+      if (id === 'loved' && isCurrentSong(track) && !$scope.song.loved) {
         $scope.song.loved = true;
       }
     });
 
-    $scope.$on('songsGroup:remove', function (event, id, song) {
-      if (id === 'loved' && isCurrentSong(song) && $scope.song.loved) {
+    $scope.$on('trackGroup:remove', function (event, id, track) {
+      if (id === 'loved' && isCurrentSong(track) && $scope.song.loved) {
         $scope.song.loved = false;
       }
     });
@@ -86,18 +86,18 @@ define(function () {
     };
 
     $scope.toggleLoveStatus = function () {
-      var lovedSongsGroup = songsGroupsMdl.get('loved');
+      var lovedTrackGroup = trackGroupMdl.get('loved');
       if ($scope.song.loved) {
-        lovedSongsGroup.remove($scope.song);
+        lovedTrackGroup.remove($scope.song);
       } else {
-        lovedSongsGroup.add($scope.song);
+        lovedTrackGroup.add($scope.song);
       }
     };
 
     setStatus();
   }
 
-  AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsGroupsMdl' ];
+  AudioPlayerBarCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'trackGroupMdl' ];
 
   return AudioPlayerBarCtrl;
 });

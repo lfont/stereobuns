@@ -12,9 +12,6 @@ define([
   'text!templates/playlist-chooser-drt.html',
   'text!templates/songs-actions-drt.html',
   'text!templates/playlist.html',
-  'text!templates/songs-group.html',
-  'text!templates/no-loved-songs.html',
-  'text!templates/no-mostplayed-songs.html',
   'text!templates/no-playlist-songs.html',
   // features
   'text!templates/artist-info/artist-info.html',
@@ -31,6 +28,9 @@ define([
   'text!templates/track-info/track-info.html',
   'text!templates/track-info/track-album.html',
   'text!templates/track-info/similar-tracks.html',
+  'text!templates/track-group/track-group.html',
+  'text!templates/track-group/no-loved-track.html',
+  'text!templates/track-group/no-mostplayed-track.html',
   'text!templates/track-search/track-search.html',
   'text!templates/track-search/track-search-results.html',
   'text!templates/user/user-menu.html',
@@ -50,9 +50,6 @@ define([
              playlistChooserTpl,
              songsActionsTpl,
              playlistTpl,
-             songsGroupTpl,
-             noLovedSongsTpl,
-             noMostPlayedSongsTpl,
              noPlaylistSongsTpl,
              // features
              artistInfoTpl,
@@ -69,6 +66,9 @@ define([
              trackInfoTpl,
              trackAlbumTpl,
              similarTracksTpl,
+             trackGroupTpl,
+             noLovedTrackTpl,
+             noMostPlayedTrackTpl,
              trackSearchTpl,
              trackSearchResultsTpl,
              userMenuTpl,
@@ -92,9 +92,6 @@ define([
     $templateCache.put('templates/playlist-chooser-drt.html', playlistChooserTpl);
     $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
     $templateCache.put('templates/playlist.html', playlistTpl);
-    $templateCache.put('templates/songs-group.html', songsGroupTpl);
-    $templateCache.put('templates/no-loved-songs.html', noLovedSongsTpl);
-    $templateCache.put('templates/no-mostplayed-songs.html', noMostPlayedSongsTpl);
     $templateCache.put('templates/no-playlist-songs.html', noPlaylistSongsTpl);
     // features
     $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
@@ -111,6 +108,9 @@ define([
     $templateCache.put('templates/track-info/track-info.html', trackInfoTpl);
     $templateCache.put('templates/track-info/track-album.html', trackAlbumTpl);
     $templateCache.put('templates/track-info/similar-tracks.html', similarTracksTpl);
+    $templateCache.put('templates/track-group/track-group.html', trackGroupTpl);
+    $templateCache.put('templates/track-group/no-loved-track.html', noLovedTrackTpl);
+    $templateCache.put('templates/track-group/no-mostplayed-track.html', noMostPlayedTrackTpl);
     $templateCache.put('templates/track-search/track-search.html', trackSearchTpl);
     $templateCache.put('templates/track-search/track-search-results.html', trackSearchResultsTpl);
     $templateCache.put('templates/user/user-menu.html', userMenuTpl);

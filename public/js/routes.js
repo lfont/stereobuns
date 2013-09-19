@@ -55,14 +55,14 @@ define([
           authenticated: true
         })
         .when('/:user', {
-          templateUrl: 'templates/songs-group.html',
-          controller: 'SongsGroupCtrl',
+          templateUrl: 'templates/track-group/track-group.html',
+          controller: 'TrackGroupCtrl',
           pageTitle: 'Home',
           authenticated: true
         })
         .when('/:user/tracks/:group', {
-          templateUrl: 'templates/songs-group.html',
-          controller: 'SongsGroupCtrl',
+          templateUrl: 'templates/track-group/track-group.html',
+          controller: 'TrackGroupCtrl',
           pageTitle: 'Track group',
           authenticated: true
         })

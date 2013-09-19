@@ -5,14 +5,11 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
-  './playlist-ctrl',
-  './songs-group-ctrl'
+  './playlist-ctrl'
 ], function (angular,
-             PlaylistCtrl,
-             SongsGroupCtrl) {
+             PlaylistCtrl) {
   'use strict';
 
   return angular.module('soundrocket.controllers', [])
-                .controller('PlaylistCtrl', PlaylistCtrl)
-                .controller('SongsGroupCtrl', SongsGroupCtrl);
+                .controller('PlaylistCtrl', PlaylistCtrl);
 });

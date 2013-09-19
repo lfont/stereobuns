@@ -10,7 +10,7 @@ define(function () {
       PLAYLIST_NAME_PATTERN  = /^\/.+\/playlist\/(.*)/i;
 
   function UserProfileMenuCtrl ($scope, $location, $routeParams,
-                                songsGroupsMdl, playlistsMdl) {
+                                trackGroupMdl, playlistsMdl) {
     var songsGroupIdMatchs = SONGS_GROUP_ID_PATTERN.exec($location.path()),
         playlistNameMatchs = PLAYLIST_NAME_PATTERN.exec($location.path());
     
@@ -18,7 +18,7 @@ define(function () {
     $scope.isPlaylist = playlistNameMatchs !== null;
     
     $scope.userName = $routeParams.user;
-    $scope.songsGroups = songsGroupsMdl.getAll();
+    $scope.songsGroups = trackGroupMdl.getAll();
     $scope.playlists = playlistsMdl.getAll();
     
     $scope.isCurrentSongsGroup = function (songsGroup) {
@@ -41,7 +41,7 @@ define(function () {
   }
   
   UserProfileMenuCtrl.$inject = [ '$scope', '$location', '$routeParams',
-                                  'songsGroupsMdl', 'playlistsMdl' ];
+                                  'trackGroupMdl', 'playlistsMdl' ];
   
   return UserProfileMenuCtrl;
 });

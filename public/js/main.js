@@ -68,6 +68,7 @@ require.config({
     'layout',
     'settings',
     'track',
+    'track-group',
     'track-info',
     'track-search',
     'user'

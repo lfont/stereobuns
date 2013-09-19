@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SongsActionsDrtCtrl ($scope, audioPlayerSrv, songsGroupsMdl) {
+  function SongsActionsDrtCtrl ($scope, audioPlayerSrv, trackGroupMdl) {
     var DEFAULT_OPTIONS = {
       remove: false,
       play: false,
@@ -48,7 +48,7 @@ define([
     };
 
     $scope.toggleLove = function () {
-      var lovedSongsGroup = songsGroupsMdl.get('loved');
+      var lovedSongsGroup = trackGroupMdl.get('loved');
       if ($scope.songs.loved) {
         lovedSongsGroup.remove($scope.songs);
       } else {
@@ -63,7 +63,7 @@ define([
     setOptions();
   }
 
-  SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'songsGroupsMdl' ];
+  SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'trackGroupMdl' ];
 
   return SongsActionsDrtCtrl;
 });

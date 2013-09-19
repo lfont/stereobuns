@@ -16,6 +16,7 @@ define([
   'settings',
   'track',
   'track-info',
+  'track-group',
   'track-search',
   'user',
   // TODO
@@ -26,7 +27,7 @@ define([
 ], function (angular, commonModule, artistInfoModule, audioPlayerModule,
              homeModule, keyboardShortcutsModule, layoutModule,
              settingsModule, trackModule, trackInfoModule,
-             trackSearchModule, userModule) {
+             trackGroupModule, trackSearchModule, userModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
@@ -41,6 +42,7 @@ define([
     settingsModule.name,
     trackModule.name,
     trackInfoModule.name,
+    trackGroupModule.name,
     trackSearchModule.name,
     userModule.name,
     // FIX: must be implemented as features

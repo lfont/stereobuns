@@ -5,12 +5,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
+  'track-group',
   './user-profile-menu-ctrl',
   './user-profile-ctrl',
   './user-menu-ctrl',
   './user-srv',
   'angular-cookies'
 ], function (angular,
+             trackGroupModule,
              UserProfileMenuCtrl,
              UserProfileCtrl,
              UserMenuCtrl,
@@ -19,6 +21,7 @@ define([
 
   var module = angular.module('soundrocket.user', [
     'ngCookies',
+    trackGroupModule.name,
     'soundrocket.models'
   ]);
   

@@ -47,14 +47,14 @@ define([
       $scope.isPlaying = false;
     });
 
-    $scope.$on('songsGroup:add', function (event, id, song) {
-      if (id === 'loved' && song.url === $scope.song.url && !$scope.song.loved) {
+    $scope.$on('trackGroup:add', function (event, id, track) {
+      if (id === 'loved' && track.url === $scope.song.url && !$scope.song.loved) {
         $scope.song.loved = true;
       }
     });
 
-    $scope.$on('songsGroup:remove', function (event, id, song) {
-      if (id === 'loved' && song.url === $scope.song.url && $scope.song.loved) {
+    $scope.$on('trackGroup:remove', function (event, id, track) {
+      if (id === 'loved' && track.url === $scope.song.url && $scope.song.loved) {
         $scope.song.loved = false;
       }
     });

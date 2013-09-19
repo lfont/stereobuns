@@ -6,9 +6,9 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function AudioPlayerSrv ($rootScope, soundManagerSrv, songsGroupsMdl) {
+  function AudioPlayerSrv ($rootScope, soundManagerSrv, trackGroupMdl) {
     var _this            = this,
-        queuedSongsGroup = songsGroupsMdl.get('queued'),
+        queuedSongsGroup = trackGroupMdl.get('queued'),
         repeat           = false,
         queuedSongs;
 
@@ -80,7 +80,7 @@ define(function () {
 
     soundManagerSrv.on('halfPlay', function (playTime) {
       var song = _this.getStatus().song,
-          mostPlayedSongsGroup = songsGroupsMdl.get('mostplayed');
+          mostPlayedSongsGroup = trackGroupMdl.get('mostplayed');
       mostPlayedSongsGroup.add(song);
     });
 
@@ -112,7 +112,7 @@ define(function () {
 
     this.getQueue = function () {
       return queuedSongsGroup
-        .songs()
+        .getTracks()
         .then(function (songs) {
           queuedSongs = songs;
           // This must be a copy to prevent alteration
@@ -233,8 +233,7 @@ define(function () {
     };
   }
 
-  AudioPlayerSrv.$inject = [ '$rootScope', 'soundManagerSrv',
-                             'songsGroupsMdl' ];
+  AudioPlayerSrv.$inject = [ '$rootScope', 'soundManagerSrv', 'trackGroupMdl' ];
 
   return AudioPlayerSrv;
 });
