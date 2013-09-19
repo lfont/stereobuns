@@ -1,11 +1,20 @@
 .top-albums .artwork {
-  height: 95px;
-  width: 95px;
+  height: 88px;
+  width: 88px;
 }
 
-.top-albums .unstyled > li > div {
-  margin: -1px 2px 3px 0;
+.top-albums .thumbnails > li {
+  margin: -1px 0 0 0;
+}
+
+.top-albums .thumbnails > li .thumbnail {
+  border-radius: 0;
   position: relative;
+}
+
+.top-albums .thumbnails > li .thumbnail a {
+  display: inline-block;
+  width: 100%;
 }
 
 .top-albums .dropdown-menu {

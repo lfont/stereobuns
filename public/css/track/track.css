@@ -1,8 +1,8 @@
 .track {
   clear: both;
-  padding: 0 0 10px 95px;
+  padding: 0 0 0 135px;
   position: relative;
-  min-height: 85px;
+  min-height: 135px;
   height: 100%;
 }
 
@@ -11,24 +11,28 @@
   width: 20px;
 }
 
-.track .artwork {
-  height: 80px;
-  width: 80px;
+.track .thumbnail {
   position: absolute;
   left: 0;
   top: 0;
 }
 
+.track .artwork {
+  height: 110px;
+  width: 110px;
+}
+
 .track .track-heading {
   height: 32px;
   margin-bottom: 10px;
+  padding-top: 10px;
   position: relative;
 }
 
 .track .track-heading .track-artist {
   margin: 0;
   position: absolute;
-  top: 6px;
+  top: 17px;
   left: 40px;
 }
 
@@ -46,7 +50,7 @@
 .track .track-player .btn {
   color: white;
   position: absolute;
-  top: 4px;
+  top: 17px;
 }
 
 .track .track-player .btn.play {

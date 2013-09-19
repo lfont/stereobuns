@@ -226,23 +226,19 @@ css/track/progress/track-progress.css
 css/track-info/track-info.css
 css/track-info/track-album.css
 css/track-info/similar-tracks.css
+css/track-group/track-group.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
 css/user/user-profile.css
 css/playlist-chooser.css
 css/playlist.css
 css/songs-actions.css
-css/songs-group.css
 css/site.css
 
 css/songs-actions.css
 ----------------
 css/songs-actions.css
 
-css/songs-group.css
-----------------
-css/songs-group.css
-
 css/track/progress/track-progress.css
 ----------------
 css/track/progress/track-progress.css
@@ -250,6 +246,10 @@ css/track/progress/track-progress.css
 css/track/track.css
 ----------------
 css/track/track.css
+
+css/track-group/track-group.css
+----------------
+css/track-group/track-group.css
 
 css/track-info/similar-tracks.css
 ----------------
@@ -288,6 +288,10 @@ js/artist-info/top-albums-ctrl.js
 js/artist-info/top-tracks-ctrl.js
 js/artist-info/artist-info-srv.js
 js/artist-info/main.js
+js/track-group/track-group-ctrl.js
+js/track-group/track-group-srv.js
+js/track-group/track-group-mdl.js
+js/track-group/main.js
 js/audio-player/audio-player-ctrl.js
 js/audio-player/audio-player-queue-ctrl.js
 js/audio-player/audio-player-srv.js
@@ -333,10 +337,7 @@ js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
 js/controllers/playlist-ctrl.js
-js/controllers/songs-group-ctrl.js
 js/controllers/main.js
-js/models/songs-group-mdl.js
-js/models/songs-groups-mdl.js
 js/models/playlist-mdl.js
 js/models/playlists-mdl.js
 js/models/main.js
@@ -349,9 +350,6 @@ text!angular-ui-bootstrap-template/alert/alert.html
 text!templates/playlist-chooser-drt.html
 text!templates/songs-actions-drt.html
 text!templates/playlist.html
-text!templates/songs-group.html
-text!templates/no-loved-songs.html
-text!templates/no-mostplayed-songs.html
 text!templates/no-playlist-songs.html
 text!templates/artist-info/artist-info.html
 text!templates/artist-info/similar-artists.html
@@ -367,6 +365,9 @@ text!templates/track/progress/track-progress.html
 text!templates/track-info/track-info.html
 text!templates/track-info/track-album.html
 text!templates/track-info/similar-tracks.html
+text!templates/track-group/track-group.html
+text!templates/track-group/no-loved-track.html
+text!templates/track-group/no-mostplayed-track.html
 text!templates/track-search/track-search.html
 text!templates/track-search/track-search-results.html
 text!templates/user/user-menu.html

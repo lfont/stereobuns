@@ -2,11 +2,11 @@
      ng-controller="TopAlbumsCtrl">
   <h4 class="section-heading">Top albums</h4>
 
-  <ul class="unstyled">
+  <ul class="thumbnails">
     <li ng-if="albums.length == 0">No top album found.</li>
 
-    <li class="pull-left" ng-repeat="album in albums">
-      <div>
+    <li ng-repeat="album in albums">
+      <div class="thumbnail">
         <a class="dropdown-toggle" href="#" title="{{ album.name }}"
            ng-click="$parent.loadAlbumTracks(album)">
           <sr-artwork data="album"></sr-artwork>  
