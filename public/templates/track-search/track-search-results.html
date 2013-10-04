@@ -7,18 +7,18 @@
     <div class="span2 push-top">
       <h4>Filter</h4>
       
-      <ul class="nav nav-pills nav-stacked" ng-show="hasResult">
-        <li ng-class="{ active: !searchFilter }">
+      <ul class="nav nav-pills nav-stacked" ng-show="tracks.length">
+        <li ng-class="{ active: !filter }">
           <a href="#" ng-click="filterBy(); $event.preventDefault()">
             No filter
           </a>
         </li>
-        <li ng-class="{ active: searchFilter == 'artist' }">
+        <li ng-class="{ active: filter == 'artist' }">
           <a href="#" ng-click="filterBy('artist'); $event.preventDefault()">
             Artist name
           </a>
         </li>
-        <li ng-class="{ active: searchFilter == 'name' }">
+        <li ng-class="{ active: filter == 'name' }">
           <a href="#" ng-click="filterBy('name'); $event.preventDefault()">
             Track name
           </a>
@@ -38,18 +38,18 @@
       </form>
       
       <div class="track-list-actions">
-        <span ng-show="songs.length">{{ songs.length }}</span>
-        <ng-pluralize count="songs.length"
+        <span ng-show="filteredTracks.length">{{ filteredTracks.length }}</span>
+        <ng-pluralize count="filteredTracks.length"
             when="{ '0': 'no track',
                     '1': 'track',
                     'other': 'tracks' }">
         </ng-pluralize>
-        <span ng-show="songs.length">found</span>
+        <span ng-show="filteredTracks.length">found</span>
       </div>
       
       <ul class="track-list">
-        <li ng-repeat="song in songs">
-          <sr-track song="song"></sr-track>
+        <li ng-repeat="track in filteredTracks">
+          <sr-track song="track"></sr-track>
         </li>
       </ul>
     </div>

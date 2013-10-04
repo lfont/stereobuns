@@ -76,7 +76,7 @@ module.exports = function(grunt) {
           mainConfigFile: './public/js/main.js',
           optimize: 'uglify2',
           optimizeCss: 'standard',
-          cssImportIgnore: 'http://fonts.googleapis.com/css?family=Josefin+Sans',
+          cssImportIgnore: 'http://fonts.googleapis.com/css?family=Carme',
           removeCombined: true,
           preserveLicenseComments: false,
           modules: [

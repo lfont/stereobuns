@@ -281,6 +281,7 @@ components/angular/angular.js
 js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
 js/common/filters/time-flt.js
+js/common/filters/sentence-filter-flt.js
 js/common/main.js
 js/artist-info/artist-info-ctrl.js
 js/artist-info/similar-artists-ctrl.js
@@ -323,7 +324,6 @@ js/track/main.js
 js/track-search/track-search-ctrl.js
 js/track-search/track-search-results-ctrl.js
 js/track-search/track-search-srv.js
-js/track-search/track-flt.js
 js/track-search/main.js
 js/track-info/track-info-ctrl.js
 js/track-info/track-album-ctrl.js

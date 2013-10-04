@@ -6,45 +6,43 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function TrackSearchResultsCtrl ($scope, $routeParams, $filter,
-                                   trackSearchSrv) {
-    var songFilter = $filter('track'),
-        allTracks  = [];
+  function TrackSearchResultsCtrl ($scope, $routeParams, trackSearchSrv,
+                                   srSentenceFilterFilter) {
 
     function search (description) {
-      allTracks.length = 0;
-      $scope.songs.length = 0;
-      $scope.searchFilter = null;
-      $scope.isSearching = true;
-      $scope.hasResult = false;
       $scope.searchQuery = description;
+      $scope.tracks.length = 0;
+      $scope.filteredTracks.length = 0;
+      $scope.isSearching = true;
+      $scope.filter = null;
+      
       trackSearchSrv
         .find(description)
         .then(function (tracks) {
-          allTracks = tracks;
-          $scope.hasResult = allTracks.length > 0;
-          $scope.songs = allTracks;
+          $scope.tracks = tracks;
           $scope.isSearching = false;
+          $scope.filterBy();
         });
     }
 
+    $scope.searchQuery = null;
+    $scope.tracks = [];
+    $scope.filteredTracks = [];
     $scope.isSearching = false;
-    $scope.hasResult = false;
-    $scope.searchFilter = null;
-    $scope.songs = [];
-
+    $scope.filter = null;
+    
     $scope.filterBy = function (property) {
-      $scope.searchFilter = property;
-      $scope.songs = songFilter(allTracks,
-                                $scope.searchFilter,
-                                $scope.searchQuery);
+      $scope.filter = property;
+      $scope.filteredTracks = srSentenceFilterFilter($scope.tracks,
+                                                     $scope.filter,
+                                                     $scope.searchQuery);
     };
 
     search($routeParams.q);
   }
 
   TrackSearchResultsCtrl.$inject = [ '$scope', '$routeParams',
-                                     '$filter', 'trackSearchSrv' ];
+                                     'trackSearchSrv', 'srSentenceFilterFilter' ];
 
   return TrackSearchResultsCtrl;
 });

@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
   
-  function trackFtlFactory (filterFilter) {
+  function sentenceFilterFtlFactory (filterFilter) {
   
     function areEquals (value1, value2) {
       return value1.localeCompare(value2,
@@ -14,18 +14,24 @@ define(function () {
                                   { sensitivity: 'base' }) === 0;
     }
     
-    return function (tracks, property, value) {
-      var expectedWords = value.split(/ +/);
+    return function (items, property, value) {
+      var expectedWords;
       
-      function predicate (track) {
+      if (!property || !value) {
+        return items;
+      }
+      
+      expectedWords = value.split(/ +/);
+      
+      function predicate (item) {
         var expectedWordIndex = 0,
             actualWords, i, len;
         
-        if (!track[property]) {
+        if (!item[property]) {
           return false;
         }
         
-        actualWords = track[property].split(/ +/);
+        actualWords = item[property].split(/ +/);
         for (i = 0, len = actualWords.length; i < len; i++) {
           if (areEquals(expectedWords[expectedWordIndex], actualWords[i])) {
             if (++expectedWordIndex === expectedWords.length) {
@@ -39,11 +45,11 @@ define(function () {
         return false;
       }
       
-      return property ? filterFilter(tracks, predicate) : tracks;
+      return filterFilter(items, predicate);
     };
   }
   
-  trackFtlFactory.$inject = [ 'filterFilter' ];
+  sentenceFilterFtlFactory.$inject = [ 'filterFilter' ];
   
-  return trackFtlFactory;
+  return sentenceFilterFtlFactory;
 });
