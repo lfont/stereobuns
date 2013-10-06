@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistChooserDrtCtrl ($scope, $location, playlistsMdl) {
+  function PlaylistChooserDrtCtrl ($scope, $location, playlistMdl) {
     var DEFAULT_OPTIONS = {
       filter: true
     };
@@ -34,7 +34,7 @@ define([
     function loadPlaylists () {
       var opts = angular.extend({}, DEFAULT_OPTIONS, $scope.options);
 
-      playlistsMdl
+      playlistMdl
         .getAll()
         .then(function (playlists) {
           $scope.playlists = opts.filter ?
@@ -45,14 +45,14 @@ define([
 
     $scope.newPlaylistName = '';
 
-    $scope.$on('playlistsMdl:create', function (event, playlist) {
+    $scope.$on('playlist:create', function (event, playlist) {
       var index = $scope.playlists.indexOf(playlist);
       if (index < 0) {
         $scope.playlists.push(playlist);
       }
     });
 
-    $scope.$on('playlistsMdl:delete', function (event, playlist) {
+    $scope.$on('playlist:delete', function (event, playlist) {
       var index = $scope.playlists.indexOf(playlist);
       if (index > -1) {
         $scope.playlists.splice(index, 1);
@@ -61,7 +61,7 @@ define([
 
     $scope.createPlaylist = function () {
       if ($scope.playlistForm.$valid) {
-        playlistsMdl.create($scope.newPlaylistName);
+        playlistMdl.create($scope.newPlaylistName);
         $scope.newPlaylistName = '';
       }
     };
@@ -73,7 +73,7 @@ define([
     loadPlaylists();
   }
 
-  PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistsMdl' ];
+  PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
 
   return PlaylistChooserDrtCtrl;
 });

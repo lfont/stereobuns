@@ -67,7 +67,7 @@ define([
           authenticated: true
         })
         .when('/:user/playlist/:name', {
-          templateUrl: 'templates/playlist.html',
+          templateUrl: 'templates/playlist/playlist.html',
           controller: 'PlaylistCtrl',
           pageTitle: 'Playlist',
           authenticated: true

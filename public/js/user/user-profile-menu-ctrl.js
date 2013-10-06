@@ -6,24 +6,24 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  var SONGS_GROUP_ID_PATTERN = /^\/.+\/tracks\/(.*)/i,
+  var TRACK_GROUP_ID_PATTERN = /^\/.+\/tracks\/(.*)/i,
       PLAYLIST_NAME_PATTERN  = /^\/.+\/playlist\/(.*)/i;
 
   function UserProfileMenuCtrl ($scope, $location, $routeParams,
-                                trackGroupMdl, playlistsMdl) {
-    var songsGroupIdMatchs = SONGS_GROUP_ID_PATTERN.exec($location.path()),
+                                trackGroupMdl, playlistMdl) {
+    var trackGroupIdMatchs = TRACK_GROUP_ID_PATTERN.exec($location.path()),
         playlistNameMatchs = PLAYLIST_NAME_PATTERN.exec($location.path());
     
-    var isSongsGroup = songsGroupIdMatchs !== null;
+    var isSongsGroup = trackGroupIdMatchs !== null;
     $scope.isPlaylist = playlistNameMatchs !== null;
     
     $scope.userName = $routeParams.user;
     $scope.songsGroups = trackGroupMdl.getAll();
-    $scope.playlists = playlistsMdl.getAll();
+    $scope.playlists = playlistMdl.getAll();
     
     $scope.isCurrentSongsGroup = function (songsGroup) {
       if (isSongsGroup) {
-        return songsGroupIdMatchs[1].toLowerCase() === songsGroup.id;
+        return trackGroupIdMatchs[1].toLowerCase() === songsGroup.id;
       }
       
       // default value
@@ -41,7 +41,7 @@ define(function () {
   }
   
   UserProfileMenuCtrl.$inject = [ '$scope', '$location', '$routeParams',
-                                  'trackGroupMdl', 'playlistsMdl' ];
+                                  'trackGroupMdl', 'playlistMdl' ];
   
   return UserProfileMenuCtrl;
 });

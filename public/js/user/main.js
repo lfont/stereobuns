@@ -6,6 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define([
   'angular',
   'track-group',
+  'playlist',
   './user-profile-menu-ctrl',
   './user-profile-ctrl',
   './user-menu-ctrl',
@@ -13,6 +14,7 @@ define([
   'angular-cookies'
 ], function (angular,
              trackGroupModule,
+             playlistModule,
              UserProfileMenuCtrl,
              UserProfileCtrl,
              UserMenuCtrl,
@@ -22,7 +24,7 @@ define([
   var module = angular.module('soundrocket.user', [
     'ngCookies',
     trackGroupModule.name,
-    'soundrocket.models'
+    playlistModule.name
   ]);
   
   module.controller('UserProfileMenuCtrl', UserProfileMenuCtrl)

@@ -11,8 +11,6 @@ define([
   // TODO
   'text!templates/playlist-chooser-drt.html',
   'text!templates/songs-actions-drt.html',
-  'text!templates/playlist.html',
-  'text!templates/no-playlist-songs.html',
   // features
   'text!templates/artist-info/artist-info.html',
   'text!templates/artist-info/similar-artists.html',
@@ -36,6 +34,8 @@ define([
   'text!templates/user/user-menu.html',
   'text!templates/user/user-profile.html',
   'text!templates/user/user-profile-menu.html',
+  'text!templates/playlist/playlist.html',
+  'text!templates/playlist/empty-playlist.html',
   // modules
   'angular-animate',
   'angular-ui-bootstrap-collapse',
@@ -49,8 +49,6 @@ define([
              // TODO
              playlistChooserTpl,
              songsActionsTpl,
-             playlistTpl,
-             noPlaylistSongsTpl,
              // features
              artistInfoTpl,
              similarArtistsTpl,
@@ -73,7 +71,9 @@ define([
              trackSearchResultsTpl,
              userMenuTpl,
              userProfileTpl,
-             userProfileMenuTpl) {
+             userProfileMenuTpl,
+             playlistTpl,
+             emptyPlaylistTpl) {
   'use strict';
 
   var module = angular.module('soundrocket.templates-loader', [
@@ -91,8 +91,6 @@ define([
     // TODO
     $templateCache.put('templates/playlist-chooser-drt.html', playlistChooserTpl);
     $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
-    $templateCache.put('templates/playlist.html', playlistTpl);
-    $templateCache.put('templates/no-playlist-songs.html', noPlaylistSongsTpl);
     // features
     $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
     $templateCache.put('templates/artist-info/similar-artists.html', similarArtistsTpl);
@@ -116,6 +114,8 @@ define([
     $templateCache.put('templates/user/user-menu.html', userMenuTpl);
     $templateCache.put('templates/user/user-profile.html', userProfileTpl);
     $templateCache.put('templates/user/user-profile-menu.html', userProfileMenuTpl);
+    $templateCache.put('templates/playlist/playlist.html', playlistTpl);
+    $templateCache.put('templates/playlist/empty-playlist.html', emptyPlaylistTpl);
   }]);
   
   return module;

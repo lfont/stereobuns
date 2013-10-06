@@ -12,7 +12,7 @@ define([
     var trackGroupMap = {},
         trackGroups   = [];
     
-    function resolveWhenAllDone (method, group, promises) {
+    function resolveWhenAllDone (event, group, promises) {
       var deferred = $q.defer(),
           expectedResponse = promises.length,
           tracks = [],
@@ -24,7 +24,7 @@ define([
         if (--expectedResponse === 0) {
           for (i = 0, len = tracks.length; i < len; i++) {
             $rootScope.$broadcast(
-              'trackGroup:' + method,
+              'trackGroup:' + event,
               group,
               tracks[i]);
           }
@@ -88,11 +88,19 @@ define([
       };
 
       this.add = function (tracks) {
-        return invokeForAll('add', this.id, tracks);
+        return invokeForAll('add', this.id, tracks)
+          .then(function (tracks) {
+            _this.length += tracks.length;
+            return tracks;
+          });
       };
   
       this.remove = function (tracks) {
-        return invokeForAll('remove', this.id, tracks);
+        return invokeForAll('remove', this.id, tracks)
+          .then(function (tracks) {
+            _this.length -= tracks.length;
+            return tracks;
+          });
       };
     }
 

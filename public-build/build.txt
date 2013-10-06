@@ -198,13 +198,13 @@ css/../components/bootstrap/docs/assets/css/bootstrap-responsive.css
 css/../components/font-awesome/css/font-awesome.css
 css/main.css
 
-css/playlist-chooser.css
+css/playlist/playlist.css
 ----------------
-css/playlist-chooser.css
+css/playlist/playlist.css
 
-css/playlist.css
+css/playlist-chooser.css
 ----------------
-css/playlist.css
+css/playlist-chooser.css
 
 css/settings/settings.css
 ----------------
@@ -230,8 +230,8 @@ css/track-group/track-group.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
 css/user/user-profile.css
+css/playlist/playlist.css
 css/playlist-chooser.css
-css/playlist.css
 css/songs-actions.css
 css/site.css
 
@@ -301,6 +301,10 @@ components/soundmanager/script/soundmanager2.js
 js/audio-player/sound-manager-srv.js
 js/audio-player/sound-srv.js
 js/audio-player/main.js
+js/playlist/playlist-ctrl.js
+js/playlist/playlist-srv.js
+js/playlist/playlist-mdl.js
+js/playlist/main.js
 js/user/user-profile-menu-ctrl.js
 js/user/user-profile-ctrl.js
 js/user/user-menu-ctrl.js
@@ -336,11 +340,6 @@ js/components/playlist-chooser/main.js
 js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
-js/controllers/playlist-ctrl.js
-js/controllers/main.js
-js/models/playlist-mdl.js
-js/models/playlists-mdl.js
-js/models/main.js
 js/app.js
 components/angular-route/angular-route.js
 js/routes.js
@@ -349,8 +348,6 @@ text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html
 text!templates/playlist-chooser-drt.html
 text!templates/songs-actions-drt.html
-text!templates/playlist.html
-text!templates/no-playlist-songs.html
 text!templates/artist-info/artist-info.html
 text!templates/artist-info/similar-artists.html
 text!templates/artist-info/top-albums.html
@@ -373,6 +370,8 @@ text!templates/track-search/track-search-results.html
 text!templates/user/user-menu.html
 text!templates/user/user-profile.html
 text!templates/user/user-profile-menu.html
+text!templates/playlist/playlist.html
+text!templates/playlist/empty-playlist.html
 components/angular-animate/angular-animate.js
 components/angular-ui-bootstrap/src/transition/transition.js
 components/angular-ui-bootstrap/src/collapse/collapse.js

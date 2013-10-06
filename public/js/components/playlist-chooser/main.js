@@ -5,19 +5,21 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
     'angular',
+    'playlist',
     './playlist-chooser-drt-ctrl',
     './playlist-chooser-drt'
 ], function (angular,
+             playlistModule,
              PlaylistChooserDrtCtrl,
              playlistChooserDrtFactory) {
-    'use strict';
-    
-    var playlistChooserComponent = angular.module('soundrocket.components.playlist-chooser', [
-        'soundrocket.models'
-    ]);
-    
-    playlistChooserComponent.controller('PlaylistChooserDrtCtrl', PlaylistChooserDrtCtrl)
-                            .directive('playlistChooser', playlistChooserDrtFactory);
-    
-    return playlistChooserComponent;
+  'use strict';
+  
+  var module = angular.module('soundrocket.components.playlist-chooser', [
+    playlistModule.name
+  ]);
+  
+  module.controller('PlaylistChooserDrtCtrl', PlaylistChooserDrtCtrl)
+        .directive('playlistChooser', playlistChooserDrtFactory);
+  
+  return module;
 });

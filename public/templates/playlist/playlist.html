@@ -10,21 +10,21 @@
     </div>
     
     <div class="track-list-actions">
-      <span ng-show="songs.length">{{ songs.length }}</span>
-      <ng-pluralize count="songs.length"
+      <span ng-show="tracks.length">{{ tracks.length }}</span>
+      <ng-pluralize count="tracks.length"
           when="{ '0': '',
-                  '1': 'song',
-                  'other': 'songs' }">
+                  '1': 'track',
+                  'other': 'tracks' }">
       </ng-pluralize>
-      <songs-actions songs="songs" options="songsActionsOptions"
-                     on-remove="remove(songs)"></songs-actions>
+      <songs-actions songs="tracks" options="tracksActionsOptions"
+                     on-remove="remove(tracks)"></songs-actions>
     </div>
 
-    <div ng-include="noSongMessageTemplateUrl"></div>
+    <div ng-include="emptyPlaylistMessageTemplateUrl"></div>
 
     <ul class="track-list">
-      <li ng-repeat="song in songs">
-        <sr-track song="song" options="songOptions" on-remove="$parent.remove(song)"></sr-track>
+      <li ng-repeat="track in tracks">
+        <sr-track song="track" options="trackOptions" on-remove="$parent.remove(track)"></sr-track>
       </li>
     </ul>
   </div>

@@ -5,9 +5,8 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 define([
   'angular',
-  // common
-  'common',
   // features
+  'common',
   'artist-info',
   'audio-player',
   'home',
@@ -19,21 +18,20 @@ define([
   'track-group',
   'track-search',
   'user',
+  'playlist',
   // TODO
   'components/playlist-chooser',
-  'components/songs-actions',
-  'controllers',
-  'models'
+  'components/songs-actions'
 ], function (angular, commonModule, artistInfoModule, audioPlayerModule,
              homeModule, keyboardShortcutsModule, layoutModule,
              settingsModule, trackModule, trackInfoModule,
-             trackGroupModule, trackSearchModule, userModule) {
+             trackGroupModule, trackSearchModule, userModule,
+             playlistModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
-    // common
-    commonModule.name,
     // features
+    commonModule.name,
     artistInfoModule.name,
     audioPlayerModule.name,
     homeModule.name,
@@ -45,11 +43,10 @@ define([
     trackGroupModule.name,
     trackSearchModule.name,
     userModule.name,
+    playlistModule.name,
     // FIX: must be implemented as features
     'soundrocket.components.playlist-chooser',
-    'soundrocket.components.songs-actions',
-    'soundrocket.controllers',
-    'soundrocket.models'
+    'soundrocket.components.songs-actions'
   ]);
 
   soundRocket.constant('config', { debug: false });

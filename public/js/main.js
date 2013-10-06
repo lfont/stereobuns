@@ -53,14 +53,10 @@ require.config({
     }
   },
   packages: [
-    // TODO
     'components/playlist-chooser',
     'components/songs-actions',
-    'controllers',
-    'models',
-    // common
-    'common',
     // features
+    'common',
     'artist-info',
     'audio-player',
     'home',
@@ -71,7 +67,8 @@ require.config({
     'track-group',
     'track-info',
     'track-search',
-    'user'
+    'user',
+    'playlist'
   ]
 });
 
