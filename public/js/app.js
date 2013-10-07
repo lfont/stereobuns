@@ -18,6 +18,7 @@ define([
   'track-group',
   'track-search',
   'user',
+  'user-profile',
   'playlist',
   // TODO
   'components/playlist-chooser',
@@ -26,7 +27,7 @@ define([
              homeModule, keyboardShortcutsModule, layoutModule,
              settingsModule, trackModule, trackInfoModule,
              trackGroupModule, trackSearchModule, userModule,
-             playlistModule) {
+             userProfileModule, playlistModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
@@ -43,6 +44,7 @@ define([
     trackGroupModule.name,
     trackSearchModule.name,
     userModule.name,
+    userProfileModule.name,
     playlistModule.name,
     // FIX: must be implemented as features
     'soundrocket.components.playlist-chooser',

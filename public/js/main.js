@@ -68,6 +68,7 @@ require.config({
     'track-info',
     'track-search',
     'user',
+    'user-profile',
     'playlist'
   ]
 });

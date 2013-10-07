@@ -229,7 +229,7 @@ css/track-info/similar-tracks.css
 css/track-group/track-group.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
-css/user/user-profile.css
+css/user-profile/user-profile.css
 css/playlist/playlist.css
 css/playlist-chooser.css
 css/songs-actions.css
@@ -271,9 +271,9 @@ css/user/user-menu.css
 ----------------
 css/user/user-menu.css
 
-css/user/user-profile.css
+css/user-profile/user-profile.css
 ----------------
-css/user/user-profile.css
+css/user-profile/user-profile.css
 
 js/main.js
 ----------------
@@ -301,12 +301,6 @@ components/soundmanager/script/soundmanager2.js
 js/audio-player/sound-manager-srv.js
 js/audio-player/sound-srv.js
 js/audio-player/main.js
-js/playlist/playlist-ctrl.js
-js/playlist/playlist-srv.js
-js/playlist/playlist-mdl.js
-js/playlist/main.js
-js/user/user-profile-menu-ctrl.js
-js/user/user-profile-ctrl.js
 js/user/user-menu-ctrl.js
 js/user/user-srv.js
 components/angular-cookies/angular-cookies.js
@@ -334,6 +328,13 @@ js/track-info/track-album-ctrl.js
 js/track-info/similar-tracks-ctrl.js
 js/track-info/track-info-srv.js
 js/track-info/main.js
+js/playlist/playlist-ctrl.js
+js/playlist/playlist-srv.js
+js/playlist/playlist-mdl.js
+js/playlist/main.js
+js/user-profile/user-profile-menu-ctrl.js
+js/user-profile/user-profile-ctrl.js
+js/user-profile/main.js
 js/components/playlist-chooser/playlist-chooser-drt-ctrl.js
 js/components/playlist-chooser/playlist-chooser-drt.js
 js/components/playlist-chooser/main.js
@@ -368,8 +369,8 @@ text!templates/track-group/no-mostplayed-track.html
 text!templates/track-search/track-search.html
 text!templates/track-search/track-search-results.html
 text!templates/user/user-menu.html
-text!templates/user/user-profile.html
-text!templates/user/user-profile-menu.html
+text!templates/user-profile/user-profile.html
+text!templates/user-profile/user-profile-menu.html
 text!templates/playlist/playlist.html
 text!templates/playlist/empty-playlist.html
 components/angular-animate/angular-animate.js

@@ -32,8 +32,8 @@ define([
   'text!templates/track-search/track-search.html',
   'text!templates/track-search/track-search-results.html',
   'text!templates/user/user-menu.html',
-  'text!templates/user/user-profile.html',
-  'text!templates/user/user-profile-menu.html',
+  'text!templates/user-profile/user-profile.html',
+  'text!templates/user-profile/user-profile-menu.html',
   'text!templates/playlist/playlist.html',
   'text!templates/playlist/empty-playlist.html',
   // modules
@@ -112,8 +112,8 @@ define([
     $templateCache.put('templates/track-search/track-search.html', trackSearchTpl);
     $templateCache.put('templates/track-search/track-search-results.html', trackSearchResultsTpl);
     $templateCache.put('templates/user/user-menu.html', userMenuTpl);
-    $templateCache.put('templates/user/user-profile.html', userProfileTpl);
-    $templateCache.put('templates/user/user-profile-menu.html', userProfileMenuTpl);
+    $templateCache.put('templates/user-profile/user-profile.html', userProfileTpl);
+    $templateCache.put('templates/user-profile/user-profile-menu.html', userProfileMenuTpl);
     $templateCache.put('templates/playlist/playlist.html', playlistTpl);
     $templateCache.put('templates/playlist/empty-playlist.html', emptyPlaylistTpl);
   }]);
