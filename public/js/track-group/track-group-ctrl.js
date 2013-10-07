@@ -7,9 +7,11 @@ define(function () {
   'use strict';
 
   function TrackGroupCtrl ($scope, $routeParams, trackGroupMdl) {
+    var group = $routeParams.group || 'loved';
+    
     $scope.tracks = null;
     
-    trackGroupMdl.get($routeParams.group || 'loved')
+    trackGroupMdl.get(group)
                  .getTracks($routeParams.user)
                  .then(function (tracks) {
                    $scope.tracks = tracks;
@@ -25,12 +27,12 @@ define(function () {
     $scope.$watchCollection('tracks', function (newTracks, oldTracks) {
       $scope.noTrackTemplateUrl = !newTracks || newTracks.length ?
         '' :
-        'templates/track-group/no-' + $routeParams.group + '-track.html';
+        'templates/track-group/no-' + group + '-track.html';
     });
 
     $scope.$on('trackGroup:add', function (event, id, track) {
       var trackIndex;
-      if (id === $routeParams.group) {
+      if (id === group) {
         trackIndex = $scope.utils.indexOf($scope.tracks, 'url', track.url);
         if (trackIndex < 0) {
           $scope.tracks.push(track);
@@ -40,7 +42,7 @@ define(function () {
 
     $scope.$on('trackGroup:remove', function (event, id, track) {
       var trackIndex;
-      if (id === $routeParams.group) {
+      if (id === group) {
         trackIndex = $scope.utils.indexOf($scope.tracks, 'url', track.url);
         $scope.tracks.splice(trackIndex, 1);
       }

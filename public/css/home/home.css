@@ -32,6 +32,13 @@
   }
 }
 
+@media (max-width: 328px) {
+  .home .introduction {
+    font-size: 18px;
+    margin-bottom: 100px;
+  }
+}
+
 .home .introduction p {
   margin: -52px 0 0 0;
   position: relative;
@@ -68,6 +75,12 @@
   padding: 0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   width: 300px;
+}
+
+@media (max-width: 340px) {
+  .home .btn-oauth {
+    width: 280px;
+  }
 }
 
 .home .btn-oauth.btn-oauth-google {

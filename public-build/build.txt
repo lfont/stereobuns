@@ -231,6 +231,7 @@ css/track-group/track-group.css
 css/track-search/track-search-results.css
 css/user/user-menu.css
 css/user-profile/user-profile.css
+css/user-profile/user-profile-menu.css
 css/playlist/playlist.css
 css/playlist/chooser/playlist-chooser.css
 css/site.css
@@ -271,6 +272,10 @@ css/user/user-menu.css
 ----------------
 css/user/user-menu.css
 
+css/user-profile/user-profile-menu.css
+----------------
+css/user-profile/user-profile-menu.css
+
 css/user-profile/user-profile.css
 ----------------
 css/user-profile/user-profile.css
@@ -301,15 +306,15 @@ components/soundmanager/script/soundmanager2.js
 js/audio-player/sound-manager-srv.js
 js/audio-player/sound-srv.js
 js/audio-player/main.js
+js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
+js/keyboard-shortcuts/keyboard-shortcut-drt.js
+js/keyboard-shortcuts/main.js
 js/user/user-menu-ctrl.js
 js/user/user-srv.js
 components/angular-cookies/angular-cookies.js
 js/user/main.js
 js/home/home-ctrl.js
 js/home/main.js
-js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
-js/keyboard-shortcuts/keyboard-shortcut-drt.js
-js/keyboard-shortcuts/main.js
 js/layout/layout-ctrl.js
 js/layout/main.js
 js/settings/settings-ctrl.js

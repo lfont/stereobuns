@@ -93,26 +93,26 @@ define([
 
       // authentication rules
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var isLoggedIn = userSrv.isLoggedIn();
+        var isLoggedIn    = userSrv.isLoggedIn(),
+            hasInvitation = userSrv.hasInvitation();
         
-        if (isLoggedIn && $location.path() === '/') {
+        if (!isLoggedIn) {
+          return;
+        }
+        
+        if (!hasInvitation) {
+          $location.path('/settings/account');
+        } else if (next.lastIndexOf('/') === next.length - 1) {
           $location.path('/' + userSrv.getName());
         }
       });
       
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        var isLoggedIn    = userSrv.isLoggedIn(),
-            hasInvitation = userSrv.hasInvitation();
+        var isLoggedIn = userSrv.isLoggedIn();
 
         if (!isLoggedIn && next.$$route.authenticated) {
-          return $location.path('/');
-        }
-
-        if (isLoggedIn && !hasInvitation) {
-          return $location.path('/settings/account');
-        }
-
-        if (next.$$route.controller === 'HomeCtrl') {
+          $location.path('/');
+        } else if (next.$$route.controller === 'HomeCtrl') {
           audioPlayerSrv.stop();
         }
       });
