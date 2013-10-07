@@ -7,18 +7,24 @@ define([
   'angular',
   './playlist-ctrl',
   './playlist-srv',
-  './playlist-mdl'
+  './playlist-mdl',
+  './chooser/playlist-chooser-ctrl',
+  './chooser/playlist-chooser-drt'
 ], function (angular,
              PlaylistCtrl,
              PlaylistSrv,
-             PlaylistMdl) {
+             PlaylistMdl,
+             PlaylistChooserCtrl,
+             playlistChooserDrtFactory) {
   'use strict';
 
   var module = angular.module('soundrocket.playlist', []);
 
   module.controller('PlaylistCtrl', PlaylistCtrl)
         .service('playlistSrv', PlaylistSrv)
-        .service('playlistMdl', PlaylistMdl);
+        .service('playlistMdl', PlaylistMdl)
+        .controller('PlaylistChooserCtrl', PlaylistChooserCtrl)
+        .directive('srPlaylistChooser', playlistChooserDrtFactory);
 
   return module;
 });

@@ -8,19 +8,20 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistChooserDrtCtrl ($scope, $location, playlistMdl) {
+  var PLAYLIST_NAME_PATTERN  = /^\/.+\/playlist\/(.*)/i;
+      
+  function PlaylistChooserCtrl ($scope, $location, playlistMdl) {
     var DEFAULT_OPTIONS = {
       filter: true
     };
 
     function filterPlaylistsForLocation (playlists) {
-      var playlistNamePattern = /^\/.+\/playlist\/(.*)/i,
-          filteredPlaylists = [],
+      var filteredPlaylists = [],
           i, len, playlist, matchs;
 
       for (i = 0, len = playlists.length; i < len; i++) {
         playlist = playlists[i];
-        matchs = playlistNamePattern.exec($location.path());
+        matchs = PLAYLIST_NAME_PATTERN.exec($location.path());
         if (!matchs ||
             matchs[1].toLowerCase() !== playlist.name.toLowerCase())
         {
@@ -67,13 +68,13 @@ define([
     };
 
     $scope.addToPlaylist = function (playlist) {
-      playlist.add($scope.songs);
+      playlist.add($scope.tracks);
     };
 
     loadPlaylists();
   }
 
-  PlaylistChooserDrtCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
+  PlaylistChooserCtrl.$inject = [ '$scope', '$location', 'playlistMdl' ];
 
-  return PlaylistChooserDrtCtrl;
+  return PlaylistChooserCtrl;
 });

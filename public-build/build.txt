@@ -198,13 +198,13 @@ css/../components/bootstrap/docs/assets/css/bootstrap-responsive.css
 css/../components/font-awesome/css/font-awesome.css
 css/main.css
 
-css/playlist/playlist.css
+css/playlist/chooser/playlist-chooser.css
 ----------------
-css/playlist/playlist.css
+css/playlist/chooser/playlist-chooser.css
 
-css/playlist-chooser.css
+css/playlist/playlist.css
 ----------------
-css/playlist-chooser.css
+css/playlist/playlist.css
 
 css/settings/settings.css
 ----------------
@@ -231,7 +231,7 @@ css/track-search/track-search-results.css
 css/user/user-menu.css
 css/user-profile/user-profile.css
 css/playlist/playlist.css
-css/playlist-chooser.css
+css/playlist/chooser/playlist-chooser.css
 css/songs-actions.css
 css/site.css
 
@@ -331,13 +331,12 @@ js/track-info/main.js
 js/playlist/playlist-ctrl.js
 js/playlist/playlist-srv.js
 js/playlist/playlist-mdl.js
+js/playlist/chooser/playlist-chooser-ctrl.js
+js/playlist/chooser/playlist-chooser-drt.js
 js/playlist/main.js
 js/user-profile/user-profile-menu-ctrl.js
 js/user-profile/user-profile-ctrl.js
 js/user-profile/main.js
-js/components/playlist-chooser/playlist-chooser-drt-ctrl.js
-js/components/playlist-chooser/playlist-chooser-drt.js
-js/components/playlist-chooser/main.js
 js/components/songs-actions/songs-actions-drt-ctrl.js
 js/components/songs-actions/songs-actions-drt.js
 js/components/songs-actions/main.js
@@ -347,7 +346,6 @@ js/routes.js
 components/requirejs-text/text.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html
-text!templates/playlist-chooser-drt.html
 text!templates/songs-actions-drt.html
 text!templates/artist-info/artist-info.html
 text!templates/artist-info/similar-artists.html
@@ -373,6 +371,7 @@ text!templates/user-profile/user-profile.html
 text!templates/user-profile/user-profile-menu.html
 text!templates/playlist/playlist.html
 text!templates/playlist/empty-playlist.html
+text!templates/playlist/chooser/playlist-chooser.html
 components/angular-animate/angular-animate.js
 components/angular-ui-bootstrap/src/transition/transition.js
 components/angular-ui-bootstrap/src/collapse/collapse.js

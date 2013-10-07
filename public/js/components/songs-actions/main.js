@@ -18,8 +18,7 @@ define([
   
   var songbarComponent = angular.module('soundrocket.components.songs-actions', [
     audioPlayerModule.name,
-    trackGroupModule.name,
-    'soundrocket.components.playlist-chooser'
+    trackGroupModule.name
   ]);
   
   songbarComponent.controller('SongsActionsDrtCtrl', SongsActionsDrtCtrl)

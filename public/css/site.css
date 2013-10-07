@@ -17,8 +17,8 @@
 @import url("user/user-menu.css");
 @import url("user-profile/user-profile.css");
 @import url("playlist/playlist.css");
+@import url("playlist/chooser/playlist-chooser.css");
 
-@import url("playlist-chooser.css");
 @import url("songs-actions.css");
 
 

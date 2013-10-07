@@ -9,7 +9,6 @@ define([
   'text!angular-ui-bootstrap-template/dialog/message.html',
   'text!angular-ui-bootstrap-template/alert/alert.html',
   // TODO
-  'text!templates/playlist-chooser-drt.html',
   'text!templates/songs-actions-drt.html',
   // features
   'text!templates/artist-info/artist-info.html',
@@ -36,6 +35,7 @@ define([
   'text!templates/user-profile/user-profile-menu.html',
   'text!templates/playlist/playlist.html',
   'text!templates/playlist/empty-playlist.html',
+  'text!templates/playlist/chooser/playlist-chooser.html',
   // modules
   'angular-animate',
   'angular-ui-bootstrap-collapse',
@@ -47,7 +47,6 @@ define([
              dialogMessageTpl,
              alertTpl,
              // TODO
-             playlistChooserTpl,
              songsActionsTpl,
              // features
              artistInfoTpl,
@@ -73,7 +72,8 @@ define([
              userProfileTpl,
              userProfileMenuTpl,
              playlistTpl,
-             emptyPlaylistTpl) {
+             emptyPlaylistTpl,
+             playlistChooserTpl) {
   'use strict';
 
   var module = angular.module('soundrocket.templates-loader', [
@@ -89,7 +89,6 @@ define([
     $templateCache.put('template/dialog/message.html', dialogMessageTpl);
     $templateCache.put('template/alert/alert.html', alertTpl);
     // TODO
-    $templateCache.put('templates/playlist-chooser-drt.html', playlistChooserTpl);
     $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
     // features
     $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
@@ -116,6 +115,7 @@ define([
     $templateCache.put('templates/user-profile/user-profile-menu.html', userProfileMenuTpl);
     $templateCache.put('templates/playlist/playlist.html', playlistTpl);
     $templateCache.put('templates/playlist/empty-playlist.html', emptyPlaylistTpl);
+    $templateCache.put('templates/playlist/chooser/playlist-chooser.html', playlistChooserTpl);
   }]);
   
   return module;

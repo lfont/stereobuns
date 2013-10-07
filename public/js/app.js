@@ -21,7 +21,6 @@ define([
   'user-profile',
   'playlist',
   // TODO
-  'components/playlist-chooser',
   'components/songs-actions'
 ], function (angular, commonModule, artistInfoModule, audioPlayerModule,
              homeModule, keyboardShortcutsModule, layoutModule,
@@ -47,7 +46,6 @@ define([
     userProfileModule.name,
     playlistModule.name,
     // FIX: must be implemented as features
-    'soundrocket.components.playlist-chooser',
     'soundrocket.components.songs-actions'
   ]);
 

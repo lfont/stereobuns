@@ -53,7 +53,6 @@ require.config({
     }
   },
   packages: [
-    'components/playlist-chooser',
     'components/songs-actions',
     // features
     'common',
