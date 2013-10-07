@@ -20,16 +20,16 @@
       <span ng-show="songs.length">{{ songs.length }}</span>
       <ng-pluralize count="songs.length"
         when="{ '0': 'empty',
-                '1': 'song',
-                'other': 'songs' }">
+                '1': 'track',
+                'other': 'tracks' }">
       </ng-pluralize>
-      <songs-actions songs="songs" options="songsActionsOptions"
-                     on-remove="dequeue(songs)"></songs-actions>
+      <sr-track-actions tracks="songs" options="songsActionsOptions"
+                        on-remove="dequeue(tracks)"></sr-track-actions>
     </div>
     
     <ul class="track-list">
       <li ng-repeat="song in songs">
-        <sr-track song="song" options="songOptions" on-remove="dequeue(song)"></sr-track>
+        <sr-track track="song" options="songOptions" on-remove="dequeue(track)"></sr-track>
       </li>
     </ul>
   </div>

@@ -14,19 +14,18 @@ define([
   'layout',
   'settings',
   'track',
+  'track-actions',
   'track-info',
   'track-group',
   'track-search',
   'user',
   'user-profile',
-  'playlist',
-  // TODO
-  'components/songs-actions'
+  'playlist'
 ], function (angular, commonModule, artistInfoModule, audioPlayerModule,
              homeModule, keyboardShortcutsModule, layoutModule,
-             settingsModule, trackModule, trackInfoModule,
-             trackGroupModule, trackSearchModule, userModule,
-             userProfileModule, playlistModule) {
+             settingsModule, trackModule, trackActionsModule,
+             trackInfoModule, trackGroupModule, trackSearchModule,
+             userModule, userProfileModule, playlistModule) {
   'use strict';
 
   var soundRocket = angular.module('soundrocket', [
@@ -39,14 +38,13 @@ define([
     layoutModule.name,
     settingsModule.name,
     trackModule.name,
+    trackActionsModule.name,
     trackInfoModule.name,
     trackGroupModule.name,
     trackSearchModule.name,
     userModule.name,
     userProfileModule.name,
-    playlistModule.name,
-    // FIX: must be implemented as features
-    'soundrocket.components.songs-actions'
+    playlistModule.name
   ]);
 
   soundRocket.constant('config', { debug: false });

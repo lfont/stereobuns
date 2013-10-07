@@ -79,7 +79,7 @@ define(function () {
     });
 
     soundManagerSrv.on('halfPlay', function (playTime) {
-      var song = _this.getStatus().song,
+      var song = _this.getStatus().track,
           mostPlayedSongsGroup = trackGroupMdl.get('mostplayed');
       mostPlayedSongsGroup.add(song);
     });
@@ -105,7 +105,7 @@ define(function () {
       }
 
       return {
-        song: song,
+        track: song,
         isPlaying: soundManagerSrv.isPlaying()
       };
     };

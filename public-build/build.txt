@@ -223,6 +223,7 @@ css/keyboard-shortcuts/keyboard-shortcuts.css
 css/settings/settings.css
 css/track/track.css
 css/track/progress/track-progress.css
+css/track-actions/track-actions.css
 css/track-info/track-info.css
 css/track-info/track-album.css
 css/track-info/similar-tracks.css
@@ -232,13 +233,8 @@ css/user/user-menu.css
 css/user-profile/user-profile.css
 css/playlist/playlist.css
 css/playlist/chooser/playlist-chooser.css
-css/songs-actions.css
 css/site.css
 
-css/songs-actions.css
-----------------
-css/songs-actions.css
-
 css/track/progress/track-progress.css
 ----------------
 css/track/progress/track-progress.css
@@ -246,6 +242,10 @@ css/track/progress/track-progress.css
 css/track/track.css
 ----------------
 css/track/track.css
+
+css/track-actions/track-actions.css
+----------------
+css/track-actions/track-actions.css
 
 css/track-group/track-group.css
 ----------------
@@ -319,6 +319,9 @@ js/track/progress/track-progress-ctrl.js
 js/track/track-drt.js
 js/track/progress/track-progress-drt.js
 js/track/main.js
+js/track-actions/track-actions-ctrl.js
+js/track-actions/track-actions-drt.js
+js/track-actions/main.js
 js/track-search/track-search-ctrl.js
 js/track-search/track-search-results-ctrl.js
 js/track-search/track-search-srv.js
@@ -337,16 +340,12 @@ js/playlist/main.js
 js/user-profile/user-profile-menu-ctrl.js
 js/user-profile/user-profile-ctrl.js
 js/user-profile/main.js
-js/components/songs-actions/songs-actions-drt-ctrl.js
-js/components/songs-actions/songs-actions-drt.js
-js/components/songs-actions/main.js
 js/app.js
 components/angular-route/angular-route.js
 js/routes.js
 components/requirejs-text/text.js
 text!angular-ui-bootstrap-template/dialog/message.html
 text!angular-ui-bootstrap-template/alert/alert.html
-text!templates/songs-actions-drt.html
 text!templates/artist-info/artist-info.html
 text!templates/artist-info/similar-artists.html
 text!templates/artist-info/top-albums.html
@@ -358,6 +357,7 @@ text!templates/keyboard-shortcuts/keyboard-shortcuts.html
 text!templates/settings/settings.html
 text!templates/track/track.html
 text!templates/track/progress/track-progress.html
+text!templates/track-actions/track-actions.html
 text!templates/track-info/track-info.html
 text!templates/track-info/track-album.html
 text!templates/track-info/similar-tracks.html

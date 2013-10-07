@@ -8,8 +8,6 @@ define([
   // angular-ui
   'text!angular-ui-bootstrap-template/dialog/message.html',
   'text!angular-ui-bootstrap-template/alert/alert.html',
-  // TODO
-  'text!templates/songs-actions-drt.html',
   // features
   'text!templates/artist-info/artist-info.html',
   'text!templates/artist-info/similar-artists.html',
@@ -22,6 +20,7 @@ define([
   'text!templates/settings/settings.html',
   'text!templates/track/track.html',
   'text!templates/track/progress/track-progress.html',
+  'text!templates/track-actions/track-actions.html',
   'text!templates/track-info/track-info.html',
   'text!templates/track-info/track-album.html',
   'text!templates/track-info/similar-tracks.html',
@@ -46,8 +45,6 @@ define([
              // angular ui
              dialogMessageTpl,
              alertTpl,
-             // TODO
-             songsActionsTpl,
              // features
              artistInfoTpl,
              similarArtistsTpl,
@@ -60,6 +57,7 @@ define([
              settingsTpl,
              trackTpl,
              trackProgressTpl,
+             trackActionsTpl,
              trackInfoTpl,
              trackAlbumTpl,
              similarTracksTpl,
@@ -88,8 +86,6 @@ define([
     // angular ui
     $templateCache.put('template/dialog/message.html', dialogMessageTpl);
     $templateCache.put('template/alert/alert.html', alertTpl);
-    // TODO
-    $templateCache.put('templates/songs-actions-drt.html', songsActionsTpl);
     // features
     $templateCache.put('templates/artist-info/artist-info.html', artistInfoTpl);
     $templateCache.put('templates/artist-info/similar-artists.html', similarArtistsTpl);
@@ -102,6 +98,7 @@ define([
     $templateCache.put('templates/settings/settings.html', settingsTpl);
     $templateCache.put('templates/track/track.html', trackTpl);
     $templateCache.put('templates/track/progress/track-progress.html', trackProgressTpl);
+    $templateCache.put('templates/track-actions/track-actions.html', trackActionsTpl);
     $templateCache.put('templates/track-info/track-info.html', trackInfoTpl);
     $templateCache.put('templates/track-info/track-album.html', trackAlbumTpl);
     $templateCache.put('templates/track-info/similar-tracks.html', similarTracksTpl);

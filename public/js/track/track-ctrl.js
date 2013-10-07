@@ -18,21 +18,21 @@ define([
       $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
     }
 
-    function isPlayerSong () {
-      var song = audioPlayerSrv.getStatus().song;
-      return song &&
-             $scope.song &&
-             song.url === $scope.song.url;
+    function isPlayerTrack () {
+      var track = audioPlayerSrv.getStatus().track;
+      return track &&
+             $scope.track &&
+             track.url === $scope.track.url;
     }
 
     $scope.isPlaying = false;
 
-    $scope.$watch('song', function (newSong, oldSong) {
-      $scope.isPlaying = isPlayerSong() && audioPlayerSrv.getStatus().isPlaying;
+    $scope.$watch('track', function (newTrack, oldTrack) {
+      $scope.isPlaying = isPlayerTrack() && audioPlayerSrv.getStatus().isPlaying;
     });
 
     $scope.$on('audioPlayer:play', function (event, loaded) {
-      $scope.isPlaying = isPlayerSong();
+      $scope.isPlaying = isPlayerTrack();
     });
 
     $scope.$on('audioPlayer:pause', function (event) {
@@ -40,7 +40,7 @@ define([
     });
 
     $scope.$on('audioPlayer:resume', function (event) {
-      $scope.isPlaying = isPlayerSong();
+      $scope.isPlaying = isPlayerTrack();
     });
 
     $scope.$on('audioPlayer:stop', function (event) {
@@ -48,31 +48,31 @@ define([
     });
 
     $scope.$on('trackGroup:add', function (event, id, track) {
-      if (id === 'loved' && track.url === $scope.song.url && !$scope.song.loved) {
-        $scope.song.loved = true;
+      if (id === 'loved' && track.url === $scope.track.url && !$scope.track.loved) {
+        $scope.track.loved = true;
       }
     });
 
     $scope.$on('trackGroup:remove', function (event, id, track) {
-      if (id === 'loved' && track.url === $scope.song.url && $scope.song.loved) {
-        $scope.song.loved = false;
+      if (id === 'loved' && track.url === $scope.track.url && $scope.track.loved) {
+        $scope.track.loved = false;
       }
     });
 
     $scope.togglePlay = function () {
-      if (isPlayerSong()) {
+      if (isPlayerTrack()) {
         if (audioPlayerSrv.getStatus().isPlaying) {
           audioPlayerSrv.pause();
         } else {
           audioPlayerSrv.play();
         }
       } else {
-        audioPlayerSrv.play($scope.song);
+        audioPlayerSrv.play($scope.track);
       }
     };
 
-    $scope.remove = function (songs) {
-      $scope.onRemove({ song: songs });
+    $scope.remove = function (track) {
+      $scope.onRemove({ track: track });
     };
 
     setOptions();

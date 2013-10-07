@@ -8,7 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function SongsActionsDrtCtrl ($scope, audioPlayerSrv, trackGroupMdl) {
+  function TrackActionsCtrl ($scope, audioPlayerSrv, trackGroupMdl) {
     var DEFAULT_OPTIONS = {
       remove: false,
       play: false,
@@ -29,41 +29,41 @@ define([
     $scope.isMulti = false;
     $scope.shouldBeVisible = false;
 
-    $scope.$watchCollection('songs', function (newSongs, oldSongs) {
-      $scope.isMulti = angular.isArray(newSongs);
+    $scope.$watchCollection('tracks', function (newTracks, oldTracks) {
+      $scope.isMulti = angular.isArray(newTracks);
       $scope.shouldBeVisible = $scope.isMulti ?
-        newSongs.length !== 0 :
-        angular.isDefined(newSongs) && newSongs !== null;
+        newTracks.length !== 0 :
+        angular.isDefined(newTracks) && newTracks !== null;
     });
 
     $scope.play = function () {
-      var promise = audioPlayerSrv.enqueue($scope.songs);
+      var promise = audioPlayerSrv.enqueue($scope.tracks);
       promise.then(function () {
-        audioPlayerSrv.play($scope.isMulti ? $scope.songs[0] : $scope.songs);
+        audioPlayerSrv.play($scope.isMulti ? $scope.tracks[0] : $scope.tracks);
       });
     };
 
     $scope.queue = function () {
-      audioPlayerSrv.enqueue($scope.songs);
+      audioPlayerSrv.enqueue($scope.tracks);
     };
 
     $scope.toggleLove = function () {
       var lovedSongsGroup = trackGroupMdl.get('loved');
-      if ($scope.songs.loved) {
-        lovedSongsGroup.remove($scope.songs);
+      if ($scope.tracks.loved) {
+        lovedSongsGroup.remove($scope.tracks);
       } else {
-        lovedSongsGroup.add($scope.songs);
+        lovedSongsGroup.add($scope.tracks);
       }
     };
 
     $scope.remove = function () {
-      $scope.onRemove({ songs: $scope.songs });
+      $scope.onRemove({ tracks: $scope.tracks });
     };
 
     setOptions();
   }
 
-  SongsActionsDrtCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'trackGroupMdl' ];
+  TrackActionsCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'trackGroupMdl' ];
 
-  return SongsActionsDrtCtrl;
+  return TrackActionsCtrl;
 });

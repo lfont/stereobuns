@@ -53,8 +53,6 @@ require.config({
     }
   },
   packages: [
-    'components/songs-actions',
-    // features
     'common',
     'artist-info',
     'audio-player',
@@ -63,6 +61,7 @@ require.config({
     'layout',
     'settings',
     'track',
+    'track-actions',
     'track-group',
     'track-info',
     'track-search',

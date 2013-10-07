@@ -9,6 +9,7 @@
 @import url("settings/settings.css");
 @import url("track/track.css");
 @import url("track/progress/track-progress.css");
+@import url("track-actions/track-actions.css");
 @import url("track-info/track-info.css");
 @import url("track-info/track-album.css");
 @import url("track-info/similar-tracks.css");
@@ -18,8 +19,6 @@
 @import url("user-profile/user-profile.css");
 @import url("playlist/playlist.css");
 @import url("playlist/chooser/playlist-chooser.css");
-
-@import url("songs-actions.css");
 
 
 /* navbar */
@@ -55,7 +54,7 @@
   margin: 0 0 10px 0;    
 }
 
-.track-list-actions .songs-actions {
+.track-list-actions .track-actions {
   display: inline-block;
   margin-left: .5em;
 }

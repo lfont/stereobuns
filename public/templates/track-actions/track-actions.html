@@ -1,4 +1,4 @@
-<div class="songs-actions"
+<div class="track-actions"
      ng-click="$event.stopPropagation()"
      ng-show="shouldBeVisible">
   <div class="btn-group" ng-show="options.playlists">
@@ -7,7 +7,7 @@
       Add to playlist
     </button>
     <div class="dropdown-menu">
-      <sr-playlist-chooser tracks="songs" options="playlistsOptions"></sr-playlist-chooser>
+      <sr-playlist-chooser tracks="tracks" options="playlistsOptions"></sr-playlist-chooser>
     </div>
   </div>
   
@@ -24,8 +24,8 @@
   <button class="btn" title="Love"
           ng-click="toggleLove()"
           ng-if="!isMulti"
-          ng-switch="songs.loved">
-    <i ng-class="{ 'icon-heart': songs.loved, 'icon-heart-empty': !songs.loved }"></i>
+          ng-switch="tracks.loved">
+    <i ng-class="{ 'icon-heart': tracks.loved, 'icon-heart-empty': !tracks.loved }"></i>
     <span ng-switch-when="true"></span>
     <span ng-switch-default="">Love</span>
   </button>

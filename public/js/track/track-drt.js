@@ -13,7 +13,7 @@ define(function () {
       replace: true,
       scope: {
         customOptions: '=options',
-        song: '=',
+        track: '=',
         onRemove: '&'
       },
       templateUrl: 'templates/track/track.html',

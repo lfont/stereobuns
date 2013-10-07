@@ -1,8 +1,8 @@
 <div class="track"
-     ng-show="song">
-  <a href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}"
+     ng-if="track">
+  <a href="/track/{{ track.artist }}/{{ track.name }}?trackId={{ track.trackId }}"
      class="thumbnail">
-    <sr-artwork data="song"></sr-artwork>
+    <sr-artwork data="track"></sr-artwork>
   </a>
 
   <div class="track-heading">
@@ -20,15 +20,15 @@
     </div>
       
     <h4 class="track-artist">
-      <a href="/artist/{{ song.artist }}">
-        {{ song.artist }}
+      <a href="/artist/{{ track.artist }}">
+        {{ track.artist }}
       </a>
     </h4>
   </div>
   
   <p>
-    <a href="/track/{{ song.artist }}/{{ song.name }}?trackId={{ song.trackId }}">
-      {{ song.name }}
+    <a href="/track/{{ track.artist }}/{{ track.name }}?trackId={{ track.trackId }}">
+      {{ track.name }}
     </a>
   </p>
 
@@ -36,16 +36,16 @@
     
   <div class="row-fluid">
     <div class="span8">
-      <songs-actions songs="song" options="options"
-                     on-remove="remove(songs)"></songs-actions>
+      <sr-track-actions tracks="track" options="options"
+                        on-remove="remove(tracks)"></sr-track-actions>
     </div>
       
     <div class="span4">
       <p class="track-links pull-right">
-        <a href="{{ song.linkUrl }}" title="{{ song.source }}" target="_blank"
+        <a href="{{ track.linkUrl }}" title="{{ track.source }}" target="_blank"
            ng-click="$event.stopPropagation()">
-          <img class="source" alt="{{ song.source }}"
-               ng-src="/tomahawk/resolvers/{{ song.source }}/icon.png">
+          <img class="source" alt="{{ track.source }}"
+               ng-src="/tomahawk/resolvers/{{ track.source }}/icon.png">
         </a>
       </p>
     </div>

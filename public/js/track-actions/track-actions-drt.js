@@ -8,20 +8,20 @@ define([
 ], function (angular) {
   'use strict';
   
-  function songsActionsDrtFactory () {
+  function trackActionsDrtFactory () {
 
     return {
       restrict: 'E',
       replace: true,
       scope: {
         customOptions: '=options',
-        songs: '=',
+        tracks: '=',
         onRemove: '&'
       },
-      templateUrl: 'templates/songs-actions-drt.html',
-      controller: 'SongsActionsDrtCtrl'
+      templateUrl: 'templates/track-actions/track-actions.html',
+      controller: 'TrackActionsCtrl'
     };
   }
   
-  return songsActionsDrtFactory;
+  return trackActionsDrtFactory;
 });

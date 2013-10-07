@@ -15,12 +15,12 @@
                 '1': 'track',
                 'other': 'tracks' }">
     </ng-pluralize>
-    <songs-actions songs="tracks" options="tracksActionsOptions"></songs-actions>
+    <sr-track-actions tracks="tracks" options="tracksActionsOptions"></sr-track-actions>
   </div>
 
   <ul class="track-list">
     <li ng-repeat="track in tracks">
-      <sr-track song="track"></sr-track>
+      <sr-track track="track"></sr-track>
     </li>
   </ul>
 </div>

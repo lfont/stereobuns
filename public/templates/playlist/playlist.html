@@ -16,15 +16,15 @@
                   '1': 'track',
                   'other': 'tracks' }">
       </ng-pluralize>
-      <songs-actions songs="tracks" options="tracksActionsOptions"
-                     on-remove="remove(tracks)"></songs-actions>
+      <sr-track-actions tracks="tracks" options="tracksActionsOptions"
+                        on-remove="remove(tracks)"></sr-track-actions>
     </div>
 
     <div ng-include="emptyPlaylistMessageTemplateUrl"></div>
 
     <ul class="track-list">
       <li ng-repeat="track in tracks">
-        <sr-track song="track" options="trackOptions" on-remove="$parent.remove(track)"></sr-track>
+        <sr-track track="track" options="trackOptions" on-remove="$parent.remove(track)"></sr-track>
       </li>
     </ul>
   </div>

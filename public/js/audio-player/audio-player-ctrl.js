@@ -27,7 +27,7 @@ define(function () {
 
     $scope.$on('audioPlayer:play', function (event, loaded) {
       $scope.isPlaying = true;
-      $scope.song = audioPlayerSrv.getStatus().song;
+      $scope.song = audioPlayerSrv.getStatus().track;
     });
 
     $scope.$on('audioPlayer:pause', function (event) {
