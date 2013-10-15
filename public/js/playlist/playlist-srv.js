@@ -8,9 +8,9 @@ define(function () {
 
   function PlaylistSrv ($http, $window) {
 
-    this.getPlaylists = function (user) {
+    this.getPlaylists = function (userNickname) {
       return $http
-        .get('/api/users/' + user + '/playlists')
+        .get('/api/users/' + userNickname + '/playlists')
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('get playlists failed!');
@@ -20,53 +20,53 @@ define(function () {
         });
     };
 
-    this.createPlaylist = function (name) {
+    this.createPlaylist = function (playlistName) {
       return $http
-        .post('/api/users/me/playlists', { name: name })
+        .post('/api/users/me/playlists', { name: playlistName })
         .error(function (data, status, headers, config) {
           // TODO: handle error
-          $window.console.log('playlist: ' + name + ' has not been created');
+          $window.console.log('playlist: ' + playlistName + ' has not been created');
         })
         .then(function (response) {
           if (response.data.count !== 0) {
-            $window.console.log('playlist: ' + name + ' has been created');
+            $window.console.log('playlist: ' + playlistName + ' has been created');
             return true;
           }
           return false;
         });
     };
 
-    this.deletePlaylist = function (name) {
+    this.deletePlaylist = function (playlistName) {
       return $http
-        .delete('/api/users/me/playlists/' + name)
+        .delete('/api/users/me/playlists/' + playlistName)
         .error(function (data, status, headers, config) {
           // TODO: handle error
-          $window.console.log('playlist: ' + name + ' has not been removed');
+          $window.console.log('playlist: ' + playlistName + ' has not been removed');
         })
         .then(function (response) {
           if (response.data.count !== 0) {
-            $window.console.log('playlist: ' + name + ' has been removed');
+            $window.console.log('playlist: ' + playlistName + ' has been removed');
             return true;
           }
           return false;
         });
     };
     
-    this.getPlaylistTracks = function (user, playlist) {
+    this.getPlaylistTracks = function (userNickname, playlistName) {
       return $http
-        .get('/api/users/' + user + '/playlists/' + playlist)
+        .get('/api/users/' + userNickname + '/playlists/' + playlistName + '/tracks')
         .error(function (data, status, headers, config) {
           // TODO: handle error
-          $window.console.log('get tracks failed for playlist: ' + playlist);
+          $window.console.log('get tracks failed for playlist: ' + playlistName);
         })
         .then(function (response) {
           return response.data.songs;
         });
     };
       
-    this.addToPlaylist = function (playlist, track) {
+    this.addToPlaylist = function (playlistName, track) {
       return $http
-        .post('/api/users/me/playlists/' + playlist + '/songs', track)
+        .post('/api/users/me/playlists/' + playlistName + '/tracks', track)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been added.');
@@ -80,9 +80,9 @@ define(function () {
         });
     };
 
-    this.removeFromPlaylist = function (playlist, track) {
+    this.removeFromPlaylist = function (playlistName, track) {
       return $http
-        .delete('/api/users/me/playlists/' + playlist + '/songs/' + track._id)
+        .delete('/api/users/me/playlists/' + playlistName + '/tracks/' + track._id)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been removed.');

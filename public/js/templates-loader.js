@@ -25,8 +25,7 @@ define([
   'text!templates/track-info/track-album.html',
   'text!templates/track-info/similar-tracks.html',
   'text!templates/track-group/track-group.html',
-  'text!templates/track-group/no-loved-track.html',
-  'text!templates/track-group/no-mostplayed-track.html',
+  'text!templates/track-group/empty-group.html',
   'text!templates/track-search/track-search.html',
   'text!templates/track-search/track-search-results.html',
   'text!templates/user/user-menu.html',
@@ -62,8 +61,7 @@ define([
              trackAlbumTpl,
              similarTracksTpl,
              trackGroupTpl,
-             noLovedTrackTpl,
-             noMostPlayedTrackTpl,
+             emptyGroupTpl,
              trackSearchTpl,
              trackSearchResultsTpl,
              userMenuTpl,
@@ -103,8 +101,7 @@ define([
     $templateCache.put('templates/track-info/track-album.html', trackAlbumTpl);
     $templateCache.put('templates/track-info/similar-tracks.html', similarTracksTpl);
     $templateCache.put('templates/track-group/track-group.html', trackGroupTpl);
-    $templateCache.put('templates/track-group/no-loved-track.html', noLovedTrackTpl);
-    $templateCache.put('templates/track-group/no-mostplayed-track.html', noMostPlayedTrackTpl);
+    $templateCache.put('templates/track-group/empty-group.html', emptyGroupTpl);
     $templateCache.put('templates/track-search/track-search.html', trackSearchTpl);
     $templateCache.put('templates/track-search/track-search-results.html', trackSearchResultsTpl);
     $templateCache.put('templates/user/user-menu.html', userMenuTpl);

@@ -3,13 +3,11 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-define([
-  'angular'
-], function (angular) {
+define(function () {
   'use strict';
 
-  function SettingsCtrl ($scope, $dialog, $location, userSrv) {
-    $scope.hasInvitation = userSrv.hasInvitation();
+  function SettingsCtrl ($scope, $dialog, $location, userSrv, userMdl) {
+    $scope.hasInvitation = userMdl.hasInvitation();
     $scope.invitationCode = '';
     $scope.error = null;
 
@@ -24,7 +22,7 @@ define([
 
       $scope.closeErrorAlert();
 
-      userSrv
+      userMdl
         .setInvitationCode($scope.invitationCode)
         .then(function () {
           $scope.hasInvitation = true;
@@ -61,7 +59,8 @@ define([
     };
   }
 
-  SettingsCtrl.$inject = [ '$scope', '$dialog', '$location', 'userSrv' ];
+  SettingsCtrl.$inject = [ '$scope', '$dialog', '$location',
+                           'userSrv', 'userMdl' ];
 
   return SettingsCtrl;
 });

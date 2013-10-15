@@ -8,9 +8,7 @@ define([
 ], function (angular) {
   'use strict';
 
-  function TrackGroupMdl ($rootScope, $q, trackGroupSrv) {
-    var trackGroupMap = {},
-        trackGroups   = [];
+  function TrackGroupMdl ($rootScope, $q, cacheFactory, trackGroupSrv, userMdl) {
     
     function resolveWhenAllDone (event, group, promises) {
       var deferred = $q.defer(),
@@ -34,6 +32,9 @@ define([
       
       function onSuccess (track) {
         if (track) {
+          if (group === 'loved') {
+            track.loved = (event === 'add');
+          }
           tracks.push(track);
         }
         
@@ -50,7 +51,7 @@ define([
       
       return deferred.promise;
     }
-      
+
     function invokeForAll(method, group, tracks) {
       var promises = [],
           i, len, trackBatch;
@@ -69,7 +70,7 @@ define([
 
       return resolveWhenAllDone(method, group, promises);
     }
-      
+
     function TrackGroup (trackGroupInfo) {
       var _this = this;
   
@@ -78,9 +79,10 @@ define([
       this.icon = trackGroupInfo.icon;
       this.length = 0;
       
-      this.getTracks = function () {
+      this.getTracks = function (userNickname) {
+        var nickname = userMdl.resolveNickname(userNickname);
         return trackGroupSrv
-          .getTracks('me', this.id)
+          .getTracks(nickname, this.id)
           .then(function (tracks) {
             _this.length = tracks.length;
             return tracks;
@@ -105,41 +107,43 @@ define([
     }
 
     this.getAll = function () {
-      if (!trackGroupMap.loved) {
-        trackGroupMap.loved = new TrackGroup({
+      var cache = cacheFactory('all');
+      
+      if (!cache.get('loved')) {
+        cache.put('loved', new TrackGroup({
           id: 'loved',
           name: 'Loved',
           icon: 'icon-heart'
-        });
-        trackGroups.push(trackGroupMap.loved);
+        }));
       }
 
-      if (!trackGroupMap.mostplayed) {
-        trackGroupMap.mostplayed = new TrackGroup({
+      if (!cache.get('mostplayed')) {
+        cache.put('mostplayed', new TrackGroup({
           id: 'mostplayed',
           name: 'Most Played',
           icon: 'icon-music'
-        });
-        trackGroups.push(trackGroupMap.mostplayed);
+        }));
       }
 
-      if (!trackGroupMap.queued) {
-        trackGroupMap.queued = new TrackGroup({
+      if (!cache.get('queued')) {
+        cache.put('queued', new TrackGroup({
           id: 'queued',
           name: 'Queue'
-        });
+        }), true);
       }
 
-      return trackGroups;
+      return cache.values();
     };
 
     this.get = function (id) {
+      var cache = cacheFactory('all');
       this.getAll(); // ensure that all groups are loaded
-      return trackGroupMap[id];
+      return cache.get(id);
     };
   }
 
-  TrackGroupMdl.$inject = [ '$rootScope', '$q', 'trackGroupSrv' ];
+  TrackGroupMdl.$inject = [ '$rootScope', '$q', 'cacheFactory',
+                            'trackGroupSrv', 'userMdl' ];
 
   return TrackGroupMdl;
 });

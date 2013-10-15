@@ -6,7 +6,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function TrackGroupCtrl ($scope, $routeParams, trackGroupMdl) {
+  function TrackGroupCtrl ($scope, $routeParams, trackGroupMdl, userMdl) {
     var group = $routeParams.group || 'loved';
     
     $scope.tracks = null;
@@ -21,13 +21,18 @@ define(function () {
       play: true,
       filterPlaylists: false
     };
+    
+    $scope.trackActionsOptions = {
+      // FIX: The love button should works even if we are on another user'profile.
+      loved: userMdl.isLoggedUser($routeParams.user)
+    };
 
     $scope.noTrackTemplateUrl = '';
 
     $scope.$watchCollection('tracks', function (newTracks, oldTracks) {
       $scope.noTrackTemplateUrl = !newTracks || newTracks.length ?
         '' :
-        'templates/track-group/no-' + group + '-track.html';
+        'templates/track-group/empty-group.html';
     });
 
     $scope.$on('trackGroup:add', function (event, id, track) {
@@ -44,12 +49,15 @@ define(function () {
       var trackIndex;
       if (id === group) {
         trackIndex = $scope.utils.indexOf($scope.tracks, 'url', track.url);
-        $scope.tracks.splice(trackIndex, 1);
+        if (trackIndex > -1) {
+          $scope.tracks.splice(trackIndex, 1);
+        }
       }
     });
   }
 
-  TrackGroupCtrl.$inject = [ '$scope', '$routeParams', 'trackGroupMdl' ];
+  TrackGroupCtrl.$inject = [ '$scope', '$routeParams',
+                             'trackGroupMdl', 'userMdl' ];
 
   return TrackGroupCtrl;
 });

@@ -11,12 +11,9 @@ define([
   function TrackCtrl ($scope, audioPlayerSrv) {
     var DEFAULT_OPTIONS = {
       remove: false,
-      queue: true
+      queue: true,
+      loved: true
     };
-
-    function setOptions () {
-      $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
-    }
 
     function isPlayerTrack () {
       var track = audioPlayerSrv.getStatus().track;
@@ -25,6 +22,7 @@ define([
              track.url === $scope.track.url;
     }
 
+    $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
     $scope.isPlaying = false;
 
     $scope.$watch('track', function (newTrack, oldTrack) {
@@ -47,18 +45,6 @@ define([
       $scope.isPlaying = false;
     });
 
-    $scope.$on('trackGroup:add', function (event, id, track) {
-      if (id === 'loved' && track.url === $scope.track.url && !$scope.track.loved) {
-        $scope.track.loved = true;
-      }
-    });
-
-    $scope.$on('trackGroup:remove', function (event, id, track) {
-      if (id === 'loved' && track.url === $scope.track.url && $scope.track.loved) {
-        $scope.track.loved = false;
-      }
-    });
-
     $scope.togglePlay = function () {
       if (isPlayerTrack()) {
         if (audioPlayerSrv.getStatus().isPlaying) {
@@ -74,8 +60,6 @@ define([
     $scope.remove = function (track) {
       $scope.onRemove({ track: track });
     };
-
-    setOptions();
   }
 
   TrackCtrl.$inject = [ '$scope', 'audioPlayerSrv' ];

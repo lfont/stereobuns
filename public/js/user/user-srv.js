@@ -3,44 +3,33 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-define([
-  'angular'
-], function (angular) {
+define(function () {
   'use strict';
 
-  function UserSrv ($rootScope, $http, $cookies, $q) {
+  function UserSrv ($http, $cookies, $q) {
 
-    function parseCookie (name)  {
-      var cookie = $cookies[name],
-          json   = cookie.replace('j:', '');
+    function parseCookie (cookie)  {
+      var json = cookie.replace('j:', '');
       return JSON.parse(json);
     }
-
-    this.get = function () {
-      return $http
-        .get('/api/users/me')
-        .then(function (response) {
-          return response.data;
-        });
-    };
-
-    this.isLoggedIn = function () {
-      var userCookie = $cookies.user;
-      return angular.isDefined(userCookie) && userCookie !== null;
-    };
     
-    this.getName = function () {
-      var userCookie;
-      if (this.isLoggedIn()) {
-        userCookie = parseCookie('user');
-        return userCookie.name;
+    this.getUserCookie = function () {
+      if ($cookies.user) {
+        return parseCookie($cookies.user);
       }
       return null;
     };
+    
+    this.getInvitationCookie = function () {
+      return $cookies.invitation;
+    };
 
-    this.hasInvitation = function () {
-      var invitationCookie = $cookies.invitation;
-      return angular.isDefined(invitationCookie) && invitationCookie !== null;
+    this.getUser = function (nickname) {
+      return $http
+        .get('/api/users/' + nickname)
+        .then(function (response) {
+          return response.data;
+        });
     };
 
     this.logout = function () {
@@ -52,7 +41,6 @@ define([
       return $http
         .post('/api/users/me/invitation', { code: code })
         .then(function (response) {
-          $rootScope.$broadcast('userSrv:invitation');
           return response.data;
         }, function (response) {
           var error;
@@ -88,7 +76,7 @@ define([
     };
   }
 
-  UserSrv.$inject = [ '$rootScope', '$http', '$cookies', '$q' ];
+  UserSrv.$inject = [ '$http', '$cookies', '$q' ];
 
   return UserSrv;
 });

@@ -7,12 +7,15 @@ define(function () {
   'use strict';
 
   function TopAlbumsCtrl ($scope, $routeParams, artistInfoSrv) {
-    $scope.albums = artistInfoSrv.getTopAlbums($routeParams.artist);
+    $scope.albums = null;
     
+    artistInfoSrv.getTopAlbums($routeParams.artist)
+                 .then(function (albums) {
+                    $scope.albums = albums;  
+                 });
     
     $scope.loadAlbumTracks = function (album) {
-      album.tracks = artistInfoSrv.getAlbumTracks($routeParams.artist,
-                                                  album.name);
+      album.tracks = artistInfoSrv.getAlbumTracks($routeParams.artist, album.name);
     };
   }
 

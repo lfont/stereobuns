@@ -6,19 +6,19 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function LayoutCtrl ($scope, userSrv) {
+  function LayoutCtrl ($scope, userMdl) {
     $scope.searchBarTemplateUrl = null;
     $scope.userMenuTemplateUrl = null;
     $scope.audioPlayerBarTemplateUrl = null;
     $scope.backgroundClass = null;
 
-    $scope.$on('userSrv:invitation', function (event) {
+    $scope.$on('userMdl:setInvitationCode', function (event) {
       $scope.searchBarTemplateUrl = 'templates/track-search/track-search.html';
       $scope.audioPlayerBarTemplateUrl = 'templates/audio-player/audio-player.html';
     });
 
     $scope.$on('$routeChangeSuccess', function (event, current, previous) {
-      var hasInvitation = userSrv.hasInvitation();
+      var hasInvitation = userMdl.hasInvitation();
       
       if (current.loadedTemplateUrl === 'templates/home/home.html') {
         $scope.searchBarTemplateUrl = null;
@@ -34,7 +34,7 @@ define(function () {
     });
   }
 
-  LayoutCtrl.$inject = [ '$scope', 'userSrv' ];
+  LayoutCtrl.$inject = [ '$scope', 'userMdl' ];
 
   return LayoutCtrl;
 });

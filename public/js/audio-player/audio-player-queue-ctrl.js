@@ -8,8 +8,12 @@ define(function () {
 
   function AudioPlayerQueueCtrl ($scope, audioPlayerSrv) {
     
-    function loadSongs() {
-      $scope.songs = audioPlayerSrv.getQueue();
+    function loadTracks() {
+      audioPlayerSrv
+        .getQueue()
+        .then(function (tracks) {
+          $scope.songs = tracks;
+        });
     }
 
     function close () {
@@ -34,13 +38,13 @@ define(function () {
 
     $scope.$on('audioPlayer:queue', function (event) {
       if ($scope.shouldBeOpen) {
-        loadSongs();
+        loadTracks();
       }
     });
 
     $scope.$on('audioPlayer:dequeue', function (event) {
       if ($scope.shouldBeOpen) {
-        loadSongs();
+        loadTracks();
       }
     });
 
@@ -49,7 +53,7 @@ define(function () {
         close();
       } else {
         $scope.shouldBeOpen = true;
-        loadSongs();
+        loadTracks();
       }
     });
 

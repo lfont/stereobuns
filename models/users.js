@@ -60,6 +60,19 @@ exports.findByEmail = function (email, callback) {
   });
 };
 
+exports.findByNickname = function (nickname, callback) {
+  User.findOne(
+    { name: nickname },
+    '-email -invitationCode',
+    function (err, user) {
+      if (err) {
+        // TODO: handle error
+        console.log(err);
+      }
+      callback(err, user);
+    });
+};
+
 exports.setInvitation = function (userId, code, callback) {
   Invitation.findOne({ code: code }, function (err, invitation) {
     if (err) {

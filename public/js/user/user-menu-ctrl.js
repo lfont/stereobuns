@@ -6,10 +6,14 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function UserMenuCtrl ($scope, $location, $dialog, userSrv) {
+  function UserMenuCtrl ($scope, $location, $dialog, userSrv, userMdl) {
     var dialogIsOpen = false;
 
-    $scope.user = userSrv.get();
+    userMdl
+      .getUser()
+      .then(function (user) {
+        $scope.user = user;  
+      });
 
     $scope.openKeyboardShortcuts = function () {
       if (dialogIsOpen) {
@@ -37,7 +41,8 @@ define(function () {
     };
   }
 
-  UserMenuCtrl.$inject = [ '$scope', '$location', '$dialog', 'userSrv' ];
+  UserMenuCtrl.$inject = [ '$scope', '$location', '$dialog',
+                           'userSrv', 'userMdl' ];
 
   return UserMenuCtrl;
 });

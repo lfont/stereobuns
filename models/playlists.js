@@ -41,8 +41,9 @@ exports.delete = function (userId, playlistName, callback) {
 };
 
 exports.findByName = function (userId, playlistName, callback) {
+  var creator = userId instanceof Object ? userId : Types.ObjectId(userId);
   Song.aggregate([
-    { $match: { _creator: Types.ObjectId(userId) } },
+    { $match: { _creator: creator } },
     { $unwind: '$playlists' },
     { $match: { 'playlists': playlistName, 'url': { $ne: 'empty:' } } },
     { $group: { _id: playlistName, songs: { $push: {
@@ -72,8 +73,9 @@ exports.findByName = function (userId, playlistName, callback) {
 };
 
 exports.countSongsByPlaylists = function (userId, callback) {
+  var creator = userId instanceof Object ? userId : Types.ObjectId(userId);
   Song.aggregate([
-    { $match: { _creator: Types.ObjectId(userId) } },
+    { $match: { _creator: creator } },
     { $unwind: '$playlists' },
     { $group: { _id: '$playlists', length: { $sum: 1 } } },
     { $project: { _id: 0, name: '$_id', length: { $add: [ '$length', -1 ] } } },

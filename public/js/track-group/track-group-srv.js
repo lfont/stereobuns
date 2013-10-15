@@ -8,21 +8,21 @@ define(function () {
 
   function TrackGroupSrv ($http, $window) {
 
-    this.getTracks = function (user, group) {
+    this.getTracks = function (userNickname, groupId) {
       return $http
-        .get('/api/users/' + user + '/songs/' + group)
+        .get('/api/users/' + userNickname + '/tracks/' + groupId)
         .error(function (data, status, headers, config) {
           // TODO: handle error
-          $window.console.log('get tracks failed for group: ' + group);
+          $window.console.log('get tracks failed for group: ' + groupId);
         })
         .then(function (response) {
           return response.data.songs;
         });
     };
       
-    this.add = function (group, track) {
+    this.add = function (groupId, track) {
       return $http
-        .post('/api/users/me/songs/' + group, track)
+        .post('/api/users/me/tracks/' + groupId, track)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been added.');
@@ -36,9 +36,9 @@ define(function () {
         });
     };
 
-    this.remove = function (group, track) {
+    this.remove = function (groupId, track) {
       return $http
-        .put('/api/users/me/songs/' + group, track)
+        .put('/api/users/me/tracks/' + groupId, track)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been removed.');

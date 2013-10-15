@@ -8,10 +8,9 @@ define([
 ], function (angular) {
   'use strict';
 
-  function PlaylistMdl ($rootScope, $q, $timeout, playlistSrv) {
-    var playlistMap = {},
-        playlists   = [];
-    
+  function PlaylistMdl ($rootScope, $q, $timeout, cacheFactory,
+                        playlistSrv, userMdl) {
+
     function resolveWhenAllDone (event, name, promises) {
       var deferred = $q.defer(),
           expectedResponse = promises.length,
@@ -51,7 +50,7 @@ define([
       return deferred.promise;
     }
       
-    function invokeForAll(method, event, name, tracks, withCopy) {
+    function invokeForAll (method, event, name, tracks, withCopy) {
       var promises = [],
           i, len, trackBatch;
 
@@ -70,7 +69,7 @@ define([
       return resolveWhenAllDone(event, name, promises);
     }
     
-    function Playlist (user, playlistInfo) {
+    function Playlist (userNickname, playlistInfo) {
       var _this = this;
 
       this.name = playlistInfo.name;
@@ -78,7 +77,7 @@ define([
       
       this.getTracks = function () {
         return playlistSrv
-          .getPlaylistTracks(user, this.name)
+          .getPlaylistTracks(userNickname, this.name)
           .then(function (tracks) {
             _this.length = tracks.length;
             return tracks;
@@ -102,41 +101,47 @@ define([
       };
     }
 
-    this.getAll = function () {
-      var user = 'me';
-      
+    this.getAll = function (userNickname) {
+      var nickname = userMdl.resolveNickname(userNickname),
+          cache    = cacheFactory(nickname);
+          
       return playlistSrv
-        .getPlaylists(user)
+        .getPlaylists(nickname)
         .then(function (playlistInfos) {
-          var i, len, name;
+          var i, len, name, playlist;
           
           for (i = 0, len = playlistInfos.length; i < len; i++) {
             name = playlistInfos[i].name.toLowerCase();
-            if (!playlistMap[name]) {
-              playlistMap[name] = new Playlist(user, playlistInfos[i]);
-              playlists.push(playlistMap[name]);
+            if (!cache.get(name)) {
+              playlist = new Playlist(nickname, playlistInfos[i]);
+              cache.put(name, playlist);
             }
           }
           
-          return playlists;
+          return cache.values();
         });
     };
     
-    this.get = function (user, name) {
-      if (playlistMap[name]) {
-        return $timeout(function () {
-          return playlistMap[name];
-        }, 0);
-      } else {
+    this.get = function (userNickname, name) {
+      var nickname = userMdl.resolveNickname(userNickname),
+          cache    = cacheFactory(nickname);
+          
+      if (!cache.get(name)) {
         return this
-          .getAll() // ensure that all playlists are loaded
+          .getAll(nickname) // ensure that all playlists are loaded
           .then(function (playlists) {
-            return playlistMap[name];
+            return cache.get(name);
           });
       }
+      
+      return $timeout(function () {
+        return cache.get(name);
+      }, 0);
     };
     
     this.create = function (name) {
+      var cache = cacheFactory('me');
+      
       return playlistSrv
         .createPlaylist(name)
         .then(function (isSuccess) {
@@ -144,8 +149,7 @@ define([
           
           if (isSuccess) {
             playlist = new Playlist('me', { name: name, length: 0 });
-            playlistMap[name.toLowerCase()] = playlist;
-            playlists.push(playlist);
+            cache.put(name.toLowerCase(), playlist);
             $rootScope.$broadcast('playlist:create', playlist);
             return playlist;
           }
@@ -155,17 +159,17 @@ define([
     };
     
     this.delete = function (name) {
+      var cache = cacheFactory('me');
+      
       return playlistSrv
         .deletePlaylist(name)
         .then(function (isSuccess) {
-          var playlistMapName, playlistIndex, playlist;
+          var cacheKey, playlist;
           
           if (isSuccess) {
-            playlistMapName = name.toLowerCase();
-            playlist = playlistMap[playlistMapName];
-            delete playlistMap[playlistMapName];
-            playlistIndex = playlists.indexOf(playlist);
-            playlists.splice(playlistIndex, 1);
+            cacheKey = name.toLowerCase();
+            playlist = cache.get(cacheKey);
+            cache.remove(cacheKey);
             $rootScope.$broadcast('playlist:delete', playlist);
             return playlist;
           }
@@ -175,7 +179,8 @@ define([
     };
   }
 
-  PlaylistMdl.$inject = [ '$rootScope', '$q', '$timeout', 'playlistSrv' ];
+  PlaylistMdl.$inject = [ '$rootScope', '$q', '$timeout',
+                          'cacheFactory', 'playlistSrv', 'userMdl' ];
 
   return PlaylistMdl;
 });

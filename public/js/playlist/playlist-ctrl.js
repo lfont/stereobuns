@@ -6,8 +6,10 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 define(function () {
   'use strict';
 
-  function PlaylistCtrl ($scope, $routeParams, $location, $dialog, playlistMdl) {
-    var currentPlaylist;
+  function PlaylistCtrl ($scope, $routeParams, $location, $dialog,
+                         playlistMdl, userMdl) {
+    var isLoggedUser = userMdl.isLoggedUser($routeParams.user),
+        currentPlaylist;
 
     playlistMdl
       .get($routeParams.user, $routeParams.name)
@@ -23,13 +25,16 @@ define(function () {
 
     $scope.tracksActionsOptions = {
       play: true,
-      remove: true
+      remove: isLoggedUser
     };
 
     $scope.trackOptions = {
-      remove: true
+      remove: isLoggedUser,
+      // FIX: The love button should works even if we are on another user'profile.
+      loved: isLoggedUser
     };
 
+    $scope.canBeDeleted = isLoggedUser;
     $scope.emptyPlaylistMessageTemplateUrl = '';
     $scope.playlistName = '';
     $scope.tracks = null;
@@ -85,9 +90,8 @@ define(function () {
     };
   }
 
-  PlaylistCtrl.$inject = [ '$scope', '$routeParams',
-                           '$location', '$dialog',
-                           'playlistMdl' ];
+  PlaylistCtrl.$inject = [ '$scope', '$routeParams', '$location', '$dialog',
+                           'playlistMdl', 'userMdl' ];
 
   return PlaylistCtrl;
 });

@@ -7,18 +7,21 @@ define(function () {
   'use strict';
 
   function TrackInfoCtrl ($scope, $routeParams, trackInfoSrv, trackSearchSrv) {
-
-    function loadComments () {
-      $scope.comments = trackInfoSrv.getComments($routeParams.artist,
-                                                 $routeParams.track);
-    }
-
-    $scope.song = trackSearchSrv.findOne($routeParams.artist,
-                                         $routeParams.track,
-                                         $routeParams.trackId);
-
     $scope.newComment = '';
     $scope.comments = null;
+    $scope.song = null;
+
+    function loadComments () {
+      trackInfoSrv.getComments($routeParams.artist, $routeParams.track)
+                  .then(function (comments) {
+                    $scope.comments = comments;
+                  });
+    }
+
+    trackSearchSrv.findOne($routeParams.artist, $routeParams.track, $routeParams.trackId)
+                  .then(function (song) {
+                    $scope.song = song;
+                  });
 
     $scope.addComment = function () {
       if (!$scope.commentForm.$valid) {

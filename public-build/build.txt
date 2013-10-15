@@ -1,4 +1,8 @@
 
+components/angular/angular-csp.css
+----------------
+components/angular/angular-csp.css
+
 components/angular-ui-bootstrap/docs/css/style.css
 ----------------
 components/angular-ui-bootstrap/docs/css/style.css
@@ -287,6 +291,7 @@ js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
 js/common/filters/time-flt.js
 js/common/filters/sentence-filter-flt.js
+js/common/services/cache-fct.js
 js/common/main.js
 js/artist-info/artist-info-ctrl.js
 js/artist-info/similar-artists-ctrl.js
@@ -294,9 +299,19 @@ js/artist-info/top-albums-ctrl.js
 js/artist-info/top-tracks-ctrl.js
 js/artist-info/artist-info-srv.js
 js/artist-info/main.js
+js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
+js/keyboard-shortcuts/keyboard-shortcut-drt.js
+js/keyboard-shortcuts/main.js
+js/user/user-menu-ctrl.js
+js/user/user-srv.js
+js/user/user-mdl.js
+components/angular-cookies/angular-cookies.js
+js/user/main.js
 js/track-group/track-group-ctrl.js
+js/track-group/empty-group-ctrl.js
 js/track-group/track-group-srv.js
 js/track-group/track-group-mdl.js
+components/angular-sanitize/angular-sanitize.js
 js/track-group/main.js
 js/audio-player/audio-player-ctrl.js
 js/audio-player/audio-player-queue-ctrl.js
@@ -306,13 +321,6 @@ components/soundmanager/script/soundmanager2.js
 js/audio-player/sound-manager-srv.js
 js/audio-player/sound-srv.js
 js/audio-player/main.js
-js/keyboard-shortcuts/keyboard-shortcuts-ctrl.js
-js/keyboard-shortcuts/keyboard-shortcut-drt.js
-js/keyboard-shortcuts/main.js
-js/user/user-menu-ctrl.js
-js/user/user-srv.js
-components/angular-cookies/angular-cookies.js
-js/user/main.js
 js/home/home-ctrl.js
 js/home/main.js
 js/layout/layout-ctrl.js
@@ -337,6 +345,7 @@ js/track-info/similar-tracks-ctrl.js
 js/track-info/track-info-srv.js
 js/track-info/main.js
 js/playlist/playlist-ctrl.js
+js/playlist/empty-playlist-ctrl.js
 js/playlist/playlist-srv.js
 js/playlist/playlist-mdl.js
 js/playlist/chooser/playlist-chooser-ctrl.js
@@ -367,8 +376,7 @@ text!templates/track-info/track-info.html
 text!templates/track-info/track-album.html
 text!templates/track-info/similar-tracks.html
 text!templates/track-group/track-group.html
-text!templates/track-group/no-loved-track.html
-text!templates/track-group/no-mostplayed-track.html
+text!templates/track-group/empty-group.html
 text!templates/track-search/track-search.html
 text!templates/track-search/track-search-results.html
 text!templates/user/user-menu.html

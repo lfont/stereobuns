@@ -14,18 +14,16 @@ define([
       play: false,
       queue: true,
       playlists: true,
-      filterPlaylists: true
+      filterPlaylists: true,
+      loved: true
     };
-
-    function setOptions () {
-      $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
-      $scope.playlistsOptions.filter = $scope.options.filterPlaylists;
-    }
 
     $scope.playlistsOptions = {
       filter: DEFAULT_OPTIONS.filterPlaylists
     };
 
+    $scope.options = angular.extend({}, DEFAULT_OPTIONS, $scope.customOptions);
+    $scope.playlistsOptions.filter = $scope.options.filterPlaylists;
     $scope.isMulti = false;
     $scope.shouldBeVisible = false;
 
@@ -34,6 +32,18 @@ define([
       $scope.shouldBeVisible = $scope.isMulti ?
         newTracks.length !== 0 :
         angular.isDefined(newTracks) && newTracks !== null;
+    });
+    
+    $scope.$on('trackGroup:add', function (event, id, track) {
+      if (id === 'loved' && track.url === $scope.tracks.url) {
+        $scope.tracks.loved = true;
+      }
+    });
+
+    $scope.$on('trackGroup:remove', function (event, id, track) {
+      if (id === 'loved' && track.url === $scope.tracks.url) {
+        $scope.tracks.loved = false;
+      }
     });
 
     $scope.play = function () {
@@ -59,8 +69,6 @@ define([
     $scope.remove = function () {
       $scope.onRemove({ tracks: $scope.tracks });
     };
-
-    setOptions();
   }
 
   TrackActionsCtrl.$inject = [ '$scope', 'audioPlayerSrv', 'trackGroupMdl' ];

@@ -11,6 +11,7 @@ require.config({
     'angular-route': '../components/angular-route/angular-route',
     'angular-cookies': '../components/angular-cookies/angular-cookies',
     'angular-animate': '../components/angular-animate/angular-animate',
+    'angular-sanitize': '../components/angular-sanitize/angular-sanitize',
     'angular-ui-bootstrap-template': '../components/angular-ui-bootstrap/template',
     'angular-ui-bootstrap-transition': '../components/angular-ui-bootstrap/src/transition/transition',
     'angular-ui-bootstrap-collapse': '../components/angular-ui-bootstrap/src/collapse/collapse',
@@ -31,6 +32,9 @@ require.config({
       deps: [ 'angular' ]
     },
     'angular-animate': {
+      deps: [ 'angular' ]
+    },
+    'angular-sanitize': {
       deps: [ 'angular' ]
     },
     'angular-ui-bootstrap-dropdownToggle': {

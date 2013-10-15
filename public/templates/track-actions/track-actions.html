@@ -23,7 +23,7 @@
   
   <button class="btn" title="Love"
           ng-click="toggleLove()"
-          ng-if="!isMulti"
+          ng-if="options.loved && !isMulti"
           ng-switch="tracks.loved">
     <i ng-class="{ 'icon-heart': tracks.loved, 'icon-heart-empty': !tracks.loved }"></i>
     <span ng-switch-when="true"></span>

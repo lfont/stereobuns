@@ -12,7 +12,12 @@ define(function () {
     };
     
     $scope.artist = $routeParams.artist;
-    $scope.tracks = artistInfoSrv.getTopTracks($routeParams.artist);
+    $scope.tracks = null;
+    
+    artistInfoSrv.getTopTracks($routeParams.artist)
+                 .then(function (tracks) {
+                    $scope.tracks = tracks;
+                 });
   }
 
   TopTracksCtrl.$inject = [ '$scope', '$routeParams', 'artistInfoSrv' ];

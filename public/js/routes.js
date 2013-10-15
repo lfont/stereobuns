@@ -80,9 +80,10 @@ define([
     '$rootScope',
     '$window',
     '$location',
-    'userSrv',
+    'userMdl',
     'audioPlayerSrv',
-    function ($rootScope, $window, $location, userSrv, audioPlayerSrv) {
+    function ($rootScope, $window, $location, userMdl, audioPlayerSrv) {
+      
       function setPageTitle (title) {
         var currentTitle   = $window.document.title,
             prefixEndIndex = currentTitle.indexOf('-'),
@@ -93,8 +94,8 @@ define([
 
       // authentication rules
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var isLoggedIn    = userSrv.isLoggedIn(),
-            hasInvitation = userSrv.hasInvitation();
+        var isLoggedIn    = userMdl.isLoggedIn(),
+            hasInvitation = userMdl.hasInvitation();
         
         if (!isLoggedIn) {
           return;
@@ -103,12 +104,12 @@ define([
         if (!hasInvitation) {
           $location.path('/settings/account');
         } else if (next.lastIndexOf('/') === next.length - 1) {
-          $location.path('/' + userSrv.getName());
+          $location.path('/' + userMdl.getNickname());
         }
       });
       
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        var isLoggedIn = userSrv.isLoggedIn();
+        var isLoggedIn = userMdl.isLoggedIn();
 
         if (!isLoggedIn && next.$$route.authenticated) {
           $location.path('/');
@@ -119,8 +120,8 @@ define([
 
       // page title update
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        if (userSrv.isLoggedIn()) {
-          userSrv.get().then(function (user) {
+        if (userMdl.isLoggedIn()) {
+          userMdl.getUser().then(function (user) {
             setPageTitle(user.name + ' - ' + current.$$route.pageTitle);
           });
         } else {

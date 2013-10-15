@@ -17,7 +17,7 @@
       <i class="icon-caret-down"></i>
     </a>
     <ul class="dropdown-menu">
-      <li ng-if="!playlists.length">You don't have any playlist.</li>
+      <li ng-if="!playlists.length">{{ noPlaylistMessage }}</li>
     
       <li ng-repeat="playlist in playlists"
           ng-class="{ active: $parent.isCurrentPlaylist(playlist) }">

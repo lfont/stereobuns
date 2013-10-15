@@ -3,28 +3,36 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var tracksSearch = require('../../lib/tracks-search');
+var securityMiddleware = require('../middleware/security'),
+    tracksSearch       = require('../../lib/tracks-search');
+
 
 module.exports = function (app) {
   var appTracksSearch = tracksSearch.configure(app);
 
-  exports.searchTracks = function (req, res) {
+  function searchTracks (req, res) {
     appTracksSearch.searchTracks(
       req.user._id,
       req.params.description,
       function (tracks) {
         res.send(tracks);
       });
-  };
+  }
   
-  exports.searchArtistTopTracks = function (req, res) {
+  function searchArtistTopTracks (req, res) {
     appTracksSearch.searchArtistTopTracks(
       req.user._id,
       req.params.artist,
       function (tracks) {
         res.send(tracks);
       });
-  };
+  }
 
-  return exports;
+  app.get('/api/tracks/search/:description',
+          securityMiddleware.ensureAuthenticated, securityMiddleware.ensureInvited,
+          searchTracks);
+          
+  app.get('/api/artists/:artist/tracks',
+          securityMiddleware.ensureAuthenticated, securityMiddleware.ensureInvited,
+          searchArtistTopTracks);
 };

@@ -6,6 +6,7 @@
     <div class="header">
       <h2>{{ playlistName }}</h2>
       <a href="#" class="btn btn-danger"
+         ng-if="canBeDeleted"
          ng-click="openDeleteConfirmationBox(); $event.preventDefault()">Delete this playlist</a>
     </div>
     

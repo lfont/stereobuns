@@ -28,11 +28,15 @@
       
       <ul class="media-list">
         <li class="media" ng-repeat="comment in comments">
-          <img class="media-object pull-left" alt="{{ comment._creator.name }}"
-               ng-src="{{ comment._creator.picture }}">
+          <a class="thumbnail pull-left" href="/{{ comment._creator.name }}">
+            <img class="media-object" alt="{{ comment._creator.name }}"
+                 ng-src="{{ comment._creator.picture }}">
+          </a>
           <div class="media-body">
             <h6 class="media-heading">
-              {{ comment._creator.name }}
+              <a href="/{{ comment._creator.name }}">
+                {{ comment._creator.name }}
+              </a>
               <small>on {{ comment.createdAt | date: 'medium' }}</small>
             </h6>
             {{ comment.body }}
