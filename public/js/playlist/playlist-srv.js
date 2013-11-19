@@ -38,7 +38,7 @@ define(function () {
 
     this.deletePlaylist = function (playlistName) {
       return $http
-        .delete('/api/users/me/playlists/' + playlistName)
+        .delete('/api/users/me/playlists/' + encodeURIComponent(playlistName))
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('playlist: ' + playlistName + ' has not been removed');
@@ -54,7 +54,7 @@ define(function () {
     
     this.getPlaylistTracks = function (userNickname, playlistName) {
       return $http
-        .get('/api/users/' + userNickname + '/playlists/' + playlistName + '/tracks')
+        .get('/api/users/' + userNickname + '/playlists/' + encodeURIComponent(playlistName) + '/tracks')
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('get tracks failed for playlist: ' + playlistName);
@@ -66,7 +66,7 @@ define(function () {
       
     this.addToPlaylist = function (playlistName, track) {
       return $http
-        .post('/api/users/me/playlists/' + playlistName + '/tracks', track)
+        .post('/api/users/me/playlists/' + encodeURIComponent(playlistName) + '/tracks', track)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been added.');
@@ -82,7 +82,7 @@ define(function () {
 
     this.removeFromPlaylist = function (playlistName, track) {
       return $http
-        .delete('/api/users/me/playlists/' + playlistName + '/tracks/' + track._id)
+        .delete('/api/users/me/playlists/' + encodeURIComponent(playlistName) + '/tracks/' + track._id)
         .error(function (data, status, headers, config) {
           // TODO: handle error
           $window.console.log('track: ' + track.url + ' has not been removed.');

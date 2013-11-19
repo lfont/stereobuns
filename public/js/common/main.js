@@ -9,12 +9,14 @@ define([
   './directives/no-scroll-propagation-drt',
   './filters/time-flt',
   './filters/sentence-filter-flt',
+  './filters/encode-flt',
   './services/cache-fct'
 ], function (angular,
              artworkDrtFactory,
              noScrollPropagationDrtFactory,
              timeFltFactory,
              sentenceFilterFltFactory,
+             encodeFilterFactory,
              cacheFct) {
   'use strict';
   
@@ -23,5 +25,6 @@ define([
                 .directive('srNoScrollPropagation', noScrollPropagationDrtFactory)
                 .filter('time', timeFltFactory)
                 .filter('srSentenceFilter', sentenceFilterFltFactory)
+                .filter('srEncode', encodeFilterFactory)
                 .factory('cacheFactory', cacheFct);
 });

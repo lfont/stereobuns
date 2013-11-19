@@ -21,7 +21,7 @@
     
       <li ng-repeat="playlist in playlists"
           ng-class="{ active: $parent.isCurrentPlaylist(playlist) }">
-        <a href="/{{ userName }}/playlist/{{ playlist.name | lowercase }}">
+        <a href="/{{ userName }}/playlist/{{ playlist.name | lowercase | srEncode }}">
           {{ playlist.name }}<span class="badge pull-right">{{ playlist.length }}</span>
         </a>
       </li>
