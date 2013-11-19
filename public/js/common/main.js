@@ -16,15 +16,15 @@ define([
              noScrollPropagationDrtFactory,
              timeFltFactory,
              sentenceFilterFltFactory,
-             encodeFilterFactory,
+             encodeFltFactory,
              cacheFct) {
   'use strict';
   
   return angular.module('soundrocket.common', [])
                 .directive('srArtwork', artworkDrtFactory)
                 .directive('srNoScrollPropagation', noScrollPropagationDrtFactory)
-                .filter('time', timeFltFactory)
+                .filter('srTime', timeFltFactory)
                 .filter('srSentenceFilter', sentenceFilterFltFactory)
-                .filter('srEncode', encodeFilterFactory)
+                .filter('srEncode', encodeFltFactory)
                 .factory('cacheFactory', cacheFct);
 });

@@ -291,6 +291,7 @@ js/common/directives/artwork-drt.js
 js/common/directives/no-scroll-propagation-drt.js
 js/common/filters/time-flt.js
 js/common/filters/sentence-filter-flt.js
+js/common/filters/encode-flt.js
 js/common/services/cache-fct.js
 js/common/main.js
 js/artist-info/artist-info-ctrl.js

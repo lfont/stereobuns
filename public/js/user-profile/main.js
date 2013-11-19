@@ -8,14 +8,12 @@ define([
   'user',
   'track-group',
   'playlist',
-  'common',
   './user-profile-menu-ctrl',
   './user-profile-ctrl'
 ], function (angular,
              userModule,
              trackGroupModule,
              playlistModule,
-             commonModule,
              UserProfileMenuCtrl,
              UserProfileCtrl) {
   'use strict';
@@ -23,8 +21,7 @@ define([
   var module = angular.module('soundrocket.user-profile', [
     userModule.name,
     trackGroupModule.name,
-    playlistModule.name,
-    commonModule.name
+    playlistModule.name
   ]);
   
   module.controller('UserProfileMenuCtrl', UserProfileMenuCtrl)
