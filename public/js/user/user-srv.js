@@ -8,20 +8,24 @@ define(function () {
 
   function UserSrv ($http, $cookies, $q) {
 
-    function parseCookie (cookie)  {
-      var json = cookie.replace('j:', '');
+    function getCookie (key)  {
+      var cookie, json;
+      
+      if (!$cookies[key]) {
+        return null;
+      }
+      
+      cookie = decodeURIComponent(escape($cookies[key]));
+      json = cookie.replace('j:', '');
       return JSON.parse(json);
     }
     
     this.getUserCookie = function () {
-      if ($cookies.user) {
-        return parseCookie($cookies.user);
-      }
-      return null;
+      return getCookie('user');
     };
     
     this.getInvitationCookie = function () {
-      return $cookies.invitation;
+      return getCookie('invitation');
     };
 
     this.getUser = function (nickname) {
