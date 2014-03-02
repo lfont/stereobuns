@@ -14,6 +14,12 @@ module.exports = function (app) {
       res.send(tracks);
     });
   }
+
+  function searchTrack (req, res) {
+    appTracksSearch.searchTrack(req.params.description, req.params.trackId, function (track) {
+      res.send(track);
+    });
+  }
   
   function searchArtistTopTracks (req, res) {
     appTracksSearch.searchArtistTopTracks(req.params.artist, function (tracks) {
@@ -25,6 +31,10 @@ module.exports = function (app) {
           securityMiddleware.ensureAuthenticated, securityMiddleware.ensureInvited,
           searchTracks);
           
+  app.get('/api/tracks/search/:description/:trackId',
+          securityMiddleware.ensureAuthenticated, securityMiddleware.ensureInvited,
+          searchTrack);
+
   app.get('/api/artists/:artist/tracks',
           securityMiddleware.ensureAuthenticated, securityMiddleware.ensureInvited,
           searchArtistTopTracks);

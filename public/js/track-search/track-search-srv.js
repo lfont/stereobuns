@@ -17,23 +17,12 @@ define(function () {
     };
 
     this.findOne = function (artistName, trackName, trackId) {
-      return this
-        .find(artistName + ' ' + trackName)
-        .then(function (tracks) {
-          var track = null,
-              i, len;
+      var description = artistName + ' ' + trackName;
 
-          for (i = 0, len = tracks.length; i < len; i++) {
-            if (artistName === tracks[i].artist &&
-                trackName === tracks[i].name) {
-              track = tracks[i]; // match
-              if (!trackId || trackId === tracks[i].trackId) {
-                break; // best match
-              }
-            }
-          }
-
-          return track;
+      return $http
+        .get('/api/tracks/search/' + description + '/' + trackId, { cache: true })
+        .then(function (response) {
+          return response.data;
         });
     };
   }
