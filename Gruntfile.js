@@ -99,23 +99,6 @@ module.exports = function(grunt) {
       }
     },
 
-    urequire: {
-      _defaults: {
-        debugLevel: 10,
-        verbose: true,
-        scanAllow: true,
-        allNodeRequires: true,
-        noRootExports: false
-      },
-
-      observableAsAMD: {
-        template: 'AMD',
-        path: 'lib/',
-        filez: [ 'observable.js' ],
-        dstPath: 'public/js/lib/'
-      }
-    },
-
     nodemon: {
       dev: {
         options: {
@@ -138,19 +121,12 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         }
-      },
-      urequire: {
-        files: [ 'lib/observable.js' ],
-        tasks: [ 'urequire:observableAsAMD' ],
-        options: {
-          nospawn: true
-        }
       }
     },
 
     concurrent: {
       dev: {
-        tasks: [ 'nodemon:dev', 'watch:assets', 'watch:urequire' ],
+        tasks: [ 'nodemon:dev', 'watch:assets' ],
         options: {
           logConcurrentOutput: true
         }
@@ -165,7 +141,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-urequire');
 
   // Default task(s).
   grunt.registerTask('default', [ 'concurrent:dev' ]);
