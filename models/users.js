@@ -3,9 +3,9 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var User        = require('./models').User,
-    Invitation  = require('./models').Invitation,
-    Song        = require('./models').Song,
+var User        = require('./model').User,
+    Invitation  = require('./model').Invitation,
+    Song        = require('./model').Song,
     userPicture = require('./user-picture');
 
 exports.create = function (user, callback) {

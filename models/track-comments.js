@@ -4,7 +4,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 var async        = require('async'),
-    TrackComment = require('./models').TrackComment,
+    TrackComment = require('./model').TrackComment,
     userPicture  = require('./user-picture');
 
 exports.add = function (userId, artist, track, body, callback) {

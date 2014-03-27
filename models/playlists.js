@@ -5,7 +5,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 
 var _           = require('underscore'),
     Types       = require('mongoose').Types,
-    Song        = require('./models').Song,
+    Song        = require('./model').Song,
     orphanSongs = require('./orphan-songs');
 
 exports.create = function (userId, playlistName, callback) {

@@ -4,7 +4,7 @@ Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
 var _           = require('underscore'),
-    Song        = require('./models').Song,
+    Song        = require('./model').Song,
     orphanSongs = require('./orphan-songs');
 
 exports.findByUserId = function (userId, callback) {

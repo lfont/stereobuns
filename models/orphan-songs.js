@@ -3,7 +3,7 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var Song = require('./models').Song;
+var Song = require('./model').Song;
 
 exports.cleanForUserId = function (userId, callback) {
   Song.remove({
