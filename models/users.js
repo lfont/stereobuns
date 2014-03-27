@@ -3,9 +3,10 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var User       = require('./models').User,
-    Invitation = require('./models').Invitation,
-    Song       = require('./models').Song;
+var User        = require('./models').User,
+    Invitation  = require('./models').Invitation,
+    Song        = require('./models').Song,
+    userPicture = require('./user-picture');
 
 exports.create = function (user, callback) {
   User.create(user, function (err, newUser) {
@@ -45,8 +46,14 @@ exports.findById = function (userId, callback) {
     if (err) {
       // TODO: handle error
       console.log(err);
+      return callback(err);
     }
-    callback(err, user);
+
+    if (user) {
+      userPicture.set(user, callback);
+    } else {
+      callback(null, null);
+    }
   });
 };
 
@@ -55,8 +62,14 @@ exports.findByEmail = function (email, callback) {
     if (err) {
       // TODO: handle error
       console.log(err);
+      return callback(err);
     }
-    callback(err, user);
+    
+    if (user) {
+      userPicture.set(user, callback);
+    } else {
+      callback(null, null);
+    }
   });
 };
 
@@ -68,8 +81,14 @@ exports.findByNickname = function (nickname, callback) {
       if (err) {
         // TODO: handle error
         console.log(err);
+        return callback(err);
       }
-      callback(err, user);
+      
+      if (user) {
+        userPicture.set(user, callback);
+      } else {
+        callback(null, null);
+      }
     });
 };
 

@@ -3,20 +3,26 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var mongoose  = require('mongoose');
+var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new mongoose.Schema({
+exports.User = mongoose.model('User', new Schema({
   email: { type: String, required: true },
-  name: String,
-  picture: String,
-  invitationCode: String
-});
+  name: { type: String, required: true },
+  invitationCode: String,
+  linkedAccounts: {
+    type: [
+      {
+        name: { type: String, required: true },
+        userId: { type: String, required: true }
+      }
+    ],
+    required: true
+  }
+}));
 
-exports.User = mongoose.model('User', userSchema);
-
-var songSchema = new Schema({
+exports.Song = mongoose.model('Song', new Schema({
   _creator: { type: Schema.ObjectId, ref: 'User', required: true, select: false },
   // track properties
   trackId: { type: String, required: true },
@@ -32,23 +38,17 @@ var songSchema = new Schema({
   queueTimestamp: { type: Number, select: false },
   playCount: { type: Number, select: false },
   playlists: { type: Array, select: false }
-});
+}));
 
-exports.Song = mongoose.model('Song', songSchema);
-
-var invitationSchema = new Schema({
+exports.Invitation = mongoose.model('Invitation', new Schema({
   code: { type: String, required: true },
   used: Boolean
-});
+}));
 
-exports.Invitation = mongoose.model('Invitation', invitationSchema);
-
-var trackCommentSchema = new Schema({
+exports.TrackComment = mongoose.model('TrackComment', new Schema({
   _creator: { type: Schema.ObjectId, ref: 'User', required: true },
   artist: String,
   track: String,
   body: { type: String, match: /^.{1,140}$/ },
   createdAt: { type: Date, default: Date.now }
-});
-
-exports.TrackComment = mongoose.model('TrackComment', trackCommentSchema);
+}));

@@ -3,7 +3,9 @@ A sound aggregator.
 Loïc Fontaine - http://github.com/lfont - MIT Licensed
 */
 
-var TrackComment = require('./models').TrackComment;
+var async        = require('async'),
+    TrackComment = require('./models').TrackComment,
+    userPicture  = require('./user-picture');
 
 exports.add = function (userId, artist, track, body, callback) {
   TrackComment.create({
@@ -20,6 +22,20 @@ exports.add = function (userId, artist, track, body, callback) {
     });
 };
 
+function setUserPicture (comment, callback) {
+  userPicture.set(comment._creator, function (err, user) {
+    if (err) {
+      // TODO: handle error
+      console.log(err);
+      return callback(err);
+    }
+        
+    comment = comment.toObject();
+    comment._creator = user;
+    callback(null, comment);
+  });
+}
+
 exports.find = function (artist, track, callback) {
   TrackComment
     .find({
@@ -28,12 +44,22 @@ exports.find = function (artist, track, callback) {
     })
     .sort('-createdAt')
     .select('-artist -track')
-    .populate('_creator', 'name picture')
+    .populate('_creator', 'name linkedAccounts')
     .exec(function (err, comments) {
       if (err) {
         // TODO: handle error
         console.log(err);
+        return callback(err);
       }
-      callback(err, comments);
+
+      async.map(comments, setUserPicture, function (err, comments) {
+        if (err) {
+          // TODO: handle error
+          console.log(err);
+          return callback(err);
+        }
+
+        callback(null, comments);
+      });
     });
 };

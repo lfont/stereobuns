@@ -56,9 +56,9 @@ express.static.mime.define({ 'text/cache-manifest': [ 'appcache' ] });
 // default template data
 
 app.locals({
-  appName: config.appName,
-  domain: config.domain,
-  trackingCode: config.googleAnalyticsTrackingCode
+  appName     : config.appName,
+  domain      : config.domain,
+  trackingCode: config.google.trackingCode
 });
 
 
