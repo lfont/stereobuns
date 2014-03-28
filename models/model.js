@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-exports.User = mongoose.model('User', new Schema({
+var userSchema = new Schema({
   email: { type: String, required: true },
   name: { type: String, required: true },
   invitationCode: String,
@@ -20,7 +20,13 @@ exports.User = mongoose.model('User', new Schema({
     ],
     required: true
   }
-}));
+});
+
+userSchema.methods.getDefaultAccount = function () {
+  return this.linkedAccounts[0];
+};
+
+exports.User = mongoose.model('User', userSchema);
 
 exports.Song = mongoose.model('Song', new Schema({
   _creator: { type: Schema.ObjectId, ref: 'User', required: true, select: false },

@@ -23,15 +23,15 @@ exports.add = function (userId, artist, track, body, callback) {
 };
 
 function setUserPicture (comment, callback) {
-  userPicture.set(comment._creator, function (err, user) {
+  userPicture.getURL(comment._creator, function (err, url) {
     if (err) {
-      // TODO: handle error
       console.log(err);
       return callback(err);
     }
         
     comment = comment.toObject();
-    comment._creator = user;
+    delete comment._creator.linkedAccounts;
+    comment._creator.picture = url;
     callback(null, comment);
   });
 }
@@ -47,14 +47,12 @@ exports.find = function (artist, track, callback) {
     .populate('_creator', 'name linkedAccounts')
     .exec(function (err, comments) {
       if (err) {
-        // TODO: handle error
         console.log(err);
         return callback(err);
       }
 
       async.map(comments, setUserPicture, function (err, comments) {
         if (err) {
-          // TODO: handle error
           console.log(err);
           return callback(err);
         }

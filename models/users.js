@@ -41,16 +41,30 @@ exports.delete = function (userId, callback) {
   });
 };
 
+function setUserPicture (user, pictureUrl) {
+  var userObject = user.toObject();
+  userObject.id = user._id;
+  delete userObject._id;
+  userObject.picture = pictureUrl;
+  return userObject;
+}
+
 exports.findById = function (userId, callback) {
   User.findById(userId, function (err, user) {
     if (err) {
-      // TODO: handle error
       console.log(err);
       return callback(err);
     }
 
     if (user) {
-      userPicture.set(user, callback);
+      userPicture.getURL(user, function (err, url) {
+        if (err) {
+          console.log(err);
+          return callback(err);
+        }
+  
+        callback(null, setUserPicture(user, url));
+      });
     } else {
       callback(null, null);
     }
@@ -60,13 +74,19 @@ exports.findById = function (userId, callback) {
 exports.findByEmail = function (email, callback) {
   User.findOne({ email: email }, function (err, user) {
     if (err) {
-      // TODO: handle error
       console.log(err);
       return callback(err);
     }
     
     if (user) {
-      userPicture.set(user, callback);
+      userPicture.getURL(user, function (err, url) {
+        if (err) {
+          console.log(err);
+          return callback(err);
+        }
+    
+        callback(null, setUserPicture(user, url));
+      });
     } else {
       callback(null, null);
     }
@@ -79,13 +99,21 @@ exports.findByNickname = function (nickname, callback) {
     '-email -invitationCode',
     function (err, user) {
       if (err) {
-        // TODO: handle error
         console.log(err);
         return callback(err);
       }
       
       if (user) {
-        userPicture.set(user, callback);
+        userPicture.getURL(user, function (err, url) {
+          if (err) {
+            console.log(err);
+            return callback(err);
+          }
+      
+          var userObject = setUserPicture(user, url);
+          delete userObject.linkedAccounts;
+          callback(null, userObject);
+        });
       } else {
         callback(null, null);
       }
